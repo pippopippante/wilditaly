@@ -410,7 +410,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
       <span class="price">${euro(p.prezzo)}</span>
       <span class="meta">${esc(p.peso || "")}</span>
     </div>
-    <button class="btn btn--dark btn--sm btn--block prod__cta" data-add="${p.slug}">Aggiungi al carrello</button>
+    <button class="btn btn--dark btn--sm btn--block prod__cta" data-add="${p.slug}" aria-label="Aggiungi ${esc(p.nome)} al carrello">Aggiungi<span class="prod__cta-x"> al carrello</span></button>
   </div>
 </article>`;
   }
