@@ -99,12 +99,6 @@ window.CATALOGO = (function () {
   const conservazioneSalumi =
     "Conservare in luogo fresco e asciutto (8–14 °C) o in frigorifero nella parte bassa. Una volta aperto, avvolgere il taglio in carta oleata e consumare entro 15 giorni. Spediamo in confezione sottovuoto con imballo isotermico; ordini entro le 12:00 partono lo stesso giorno.";
 
-  const garanzie = [
-    "Spedizione refrigerata, consegna in 24/48h",
-    "Ordini entro le 12:00 partono in giornata",
-    "Tagliato e confezionato sottovuoto in bottega"
-  ];
-
   const perWild = { testo: "Prodotto per conto di Wild Italy da stabilimento autorizzato IT 9-1949/L CE." };
   const fortunati = {
     testo: "Fortunati Stocchi S.r.l., Via Filippo da Campello 24, 06042 Campello sul Clitunno (PG)."
@@ -567,5 +561,5 @@ window.CATALOGO = (function () {
   const get = (slug) => prodotti.find((p) => p.slug === slug) || null;
   const cat = (slug) => categorie.find((c) => c.slug === slug) || null;
 
-  return { categorie, prodotti, scorciatoie, bottega, garanzie, byCat, get, cat };
+  return { categorie, prodotti, scorciatoie, bottega, byCat, get, cat };
 })();

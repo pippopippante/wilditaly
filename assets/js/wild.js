@@ -929,8 +929,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
       ${facts}
       ${p.inArrivo ? "" : formati}
 
-      <ul class="assure">${C.garanzie.map((g) => `<li><span>${esc(g)}</span></li>`).join("")}</ul>
-
       ${
         p.inArrivo
           ? `<a class="btn btn--wineline btn--block" style="margin-top:26px" href="info.html#contatti">Avvisami quando arriva</a>`
