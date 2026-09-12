@@ -19,15 +19,15 @@
      Corrisponde alle props di "Wild Italy.dc.html":
      mostraBarraAnnuncio, mostraBadgeArtigianale.                         */
   const CONFIG = Object.assign(
-    { mostraBarraAnnuncio: true, mostraBadgeArtigianale: true },
+    { mostraBarraAnnuncio: true, mostraBadgeArtigianale: false },
     window.WILD_CONFIG || {}
   );
 
   /* ------------------------------------------------------------ formati */
   const euro = (n) =>
     Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-  const euroKg = (n) =>
-    Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €/kg";
+  const euroKg = (n, u) =>
+    Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €/" + (u || "kg");
 
   /* ------------------------------------------------------------- icone */
   const SPRITE = `
@@ -255,10 +255,10 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
     </div>
   </div>
   <div class="ftr__bottom">
-    <span>© <span data-anno></span> ${esc(b.nome)} · ${esc(b.piva)}</span>
+    <span>© <span data-anno></span> ${esc(b.ragioneSociale)} · ${esc(b.piva)}</span>
     <div class="ftr__social">
-      <a href="#" data-soon="Instagram">Instagram</a>
-      <a href="#" data-soon="Facebook">Facebook</a>
+      <a href="${b.instagram}" target="_blank" rel="noopener">Instagram</a>
+      <a href="${b.facebook}" target="_blank" rel="noopener">Facebook</a>
       <span class="lang" role="group" aria-label="Lingua">
         <button aria-pressed="true">IT</button>
         <button aria-pressed="false" data-soon="Versione inglese">EN</button>
@@ -720,8 +720,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
 <div class="empty">
   <div class="h3">Questo scaffale non è ancora online</div>
   <p class="body measure" style="margin:0 auto">Stiamo fotografando e schedando i prodotti di ${esc(c.nome.toLowerCase())}.
-  Intanto li trovi tutti in bottega, in via Filitteria.</p>
-  <a class="btn btn--wineline btn--sm" style="margin-top:20px" href="categoria.html?c=selvaggina">Vedi i salumi di selvaggina</a>
+  Intanto li trovi tutti in bottega, in via Porta Fuga.</p>
+  <a class="btn btn--wineline btn--sm" style="margin-top:20px" href="categoria.html?c=selvaggina">Vedi i salumi alla selvaggina</a>
 </div>`;
       return;
     }
@@ -837,7 +837,12 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
 
     /* ------- pannelli informativi */
     const acc = [];
-    if (p.ingredienti) acc.push({ t: "Ingredienti", p: p.ingredienti, open: true });
+    if (p.ingredienti)
+      acc.push({
+        t: "Ingredienti",
+        p: (p.denominazione ? `Denominazione: ${p.denominazione}. ` : "") + p.ingredienti,
+        open: true
+      });
     if (p.valori) acc.push({ t: "Valori nutrizionali", p: p.valori, open: false });
     if (p.conservazione) acc.push({ t: "Conservazione e spedizione", p: p.conservazione, open: true });
     if (p.produttore)
@@ -921,7 +926,9 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
       : "";
 
     const old = p.prezzoPieno ? `<span class="price--old">${euro(p.prezzoPieno)}</span>` : "";
-    const kg = p.prezzoKg ? ` · ${euroKg(p.prezzoKg)}` : "";
+    /* prezzo per unità di misura: obbligatorio nelle offerte online */
+    const q = p.grammi || p.ml;
+    const kg = q ? ` · ${euroKg((p.prezzo / q) * 1000, p.ml ? "l" : "kg")}` : "";
 
     host.innerHTML = `
 <div class="wrap">

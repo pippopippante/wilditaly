@@ -57,7 +57,7 @@ Ogni slot foto è un elemento `.ph`: senza foto mostra la didascalia del mockup
 - **Pagine statiche**: basta inserire un `<img>` dentro lo slot, il CSS lo fa combaciare:
 
   ```html
-  <div class="ph"><img src="assets/img/salame-cervo-1.jpg" alt="Salame di cervo affettato"></div>
+  <div class="ph"><img src="assets/img/salame-cervo-1.jpg" alt="Salame al cervo affettato"></div>
   ```
 
 - **Catalogo** (`catalogo.js`): `img` è la foto di card, carrello, ricerca e abbinamenti;
@@ -68,7 +68,7 @@ Ogni slot foto è un elemento `.ph`: senza foto mostra la didascalia del mockup
 
 Foto vere in uso (dal vecchio sito Wix e dalla cartella `foto/`, copie web max 1600 px in `assets/img/`):
 hero e "chi siamo" della home, tutti i prodotti tranne Sagrantino e box, tutte le categorie tranne vini.
-Restano segnaposto: vetrina in via Filitteria, Sagrantino, tutti i box, categoria vini.
+Restano segnaposto: vetrina in via Porta Fuga, Sagrantino, tutti i box, categoria vini.
 Pronte ma non usate: `home-*` (vecchia home) e `blog-*` (articoli sul tartufo).
 
 Gli originali recuperati dal vecchio sito (35 foto) sono in `sito vecchio/foto_recuperate/`,
@@ -80,8 +80,24 @@ Le due props del documento di design sono esposte come config globale. Dichiarar
 **prima** di `wild.js`:
 
 ```html
-<script>window.WILD_CONFIG = { mostraBarraAnnuncio: true, mostraBadgeArtigianale: true };</script>
+<script>window.WILD_CONFIG = { mostraBarraAnnuncio: true, mostraBadgeArtigianale: false };</script>
 ```
+
+Il badge "artigianale" è spento di default: i salumi li produce uno stabilimento autorizzato per conto
+di Wild Italy, e la dicitura va confermata con la bottega prima di riaccenderlo.
+
+## Dati prodotto e obblighi di legge
+
+Le schede riportano i dati dell'etichetta, come chiede la vendita online di alimenti (Reg. UE 1169/2011,
+art. 14):
+- nome come in etichetta, con `denominazione` quando quella piena è più lunga;
+- ingredienti con allergeni in maiuscolo, quantità netta (`peso`), conservazione, operatore responsabile
+  (`produttore`), valori nutrizionali;
+- prezzo al kg o al litro, calcolato da `grammi`/`ml`.
+
+Fonti: le foto `-2` delle etichette e `sito vecchio/prodotti_sito_vecchio.md`. Niente frasi che l'etichetta
+non conferma: provenienze, "artigianale", "affumicato", "magro", anno di fondazione. Niente prezzi barrati
+inventati.
 
 ## Carrello
 
@@ -93,20 +109,14 @@ formati e totale. Il pulsante "Vai alla cassa" non è collegato: serve un backen
 Segnalato nel codice e in pagina con il riquadro `DA DEFINIRE`, nella stessa
 convenzione usata dal mockup per le foto:
 
-- **Prezzi dei formati "Mezzo" e "Affettato"** del salame di cervo: il mockup dà solo
-  l'intero (14,50 € / 280 g) e i 51,80 €/kg. Gli altri due sono ricavati da quel
-  prezzo al chilo — da confermare se l'affettato ha un sovrapprezzo.
-- **Prezzi e pesi di cervo, capriolo e cinghiale**: quelli del mockup (es. cervo 14,50 € / 280 g)
-  sono diversi da quelli del vecchio sito (cervo 12,90 € / 350 g). Da decidere quali tenere.
-- **Descrizione del cervo** ("carne di cervo selezionata, sale, pepe"): l'etichetta dice che è
-  soprattutto suino, con cervo 6,5% e latte. Ingredienti e allergeni sono già quelli veri.
-- **Prodotti dal vecchio sito** (salumi tradizionali, formaggi, tartufo, dispensa): prezzi, pesi,
-  ingredienti e valori nutrizionali sono quelli delle etichette del vecchio sito, da riconfermare.
-  Tolta la dicitura "IGP Norcia" del prosciutto tascabile finché non è verificata; oli al tartufo
-  indicati in 60 ml come in etichetta (il vecchio sito diceva 100 ml).
-- **Scheda produttore** dei salumi di selvaggina ("Norcineria di Spoleto" nel mockup, stabilimento
-  IT 9-1949/L CE in etichetta), costi di spedizione e testo legale sui resi.
+- **Tutti i prodotti** hanno prezzi, pesi, ingredienti e valori del vecchio sito e delle etichette:
+  da riconfermare con la bottega prima di andare online.
+- **Oli al tartufo**: 100 ml come sulla bottiglia in foto; una riga della pagina vecchia dice 60 ml.
+- **Salame al cinghiale e tartufo**: denominazione in etichetta illeggibile nella foto.
+- **Orari** del negozio (sono quelli del mockup), costi di spedizione, testo legale su resi e recesso,
+  privacy e cookie.
 - `vini` ha il solo Sagrantino citato nella 2b.
 - **Box Regalo Oro**: nel mockup è una scheda in grigio senza prezzo, qui è marcato
   "in arrivo".
-- Account, cassa, Instagram/Facebook e versione EN non sono collegati.
+- Account, cassa e versione EN non sono collegati. Instagram e Facebook puntano alle pagine
+  indicate nel vecchio sito.

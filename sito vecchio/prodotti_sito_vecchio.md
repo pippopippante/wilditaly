@@ -10,6 +10,39 @@ Lotti e date di scadenza non sono riportati perché cambiano a ogni produzione.
 
 ---
 
+## Dati azienda (footer del sito vecchio)
+
+- **Wild Italy di Parmegiani Diego**, Via Porta Fuga 26, 06049 Spoleto (PG)
+- P.IVA 03718700549 · tel. +39 334 920 6466 · parmegianidiego@gmail.com
+- Facebook: https://www.facebook.com/Wild-Italy-tartufi-100391668390820/ · Instagram: https://www.instagram.com/wilditalytartufi/
+- Pagamenti PayPal, Visa, Mastercard · corrieri GLS, BRT, UPS
+- Il sito vecchio **non ha pagine legali** (privacy, cookie, condizioni di vendita, recesso).
+- La sitemap (`/sitemap.xml` → `store-products-sitemap.xml`) elenca 16 prodotti: sono tutti quelli sotto.
+
+## Denominazioni in etichetta (lette sulle foto `-2`)
+
+Il cliente vuole i testi "a prova di legge": nel sito nuovo (12/09/2026) i nomi seguono queste etichette,
+non i titoli del vecchio sito.
+
+| titolo sul vecchio sito | denominazione in etichetta |
+|---|---|
+| Salame al cervo | SALAME AL CERVO |
+| Salame al capriolo | NORCINETTA AL CAPRIOLO – salame stagionato |
+| Salame al cinghiale | SALAME AL CINGHIALE |
+| Salame cinghiale e tartufo | illeggibile in foto (forse "CINGHIALETTO AL TARTUFO") — da confermare |
+| Salame ubriaco | SALAME UBRIACO |
+| CIAUSCOLO salame spalmabile | SALAME MORBIDO SPALMABILE (Ciauscolo è un nome IGP) |
+| Coglione del mulo | COGLIONI DI MULO – salame stagionato |
+| Prosciutto tascabile IGP Norcia | TASCABILE – prodotto a base di carne stagionato (né prosciutto né IGP) |
+| Olio al tartufo nero/bianco pregiato | CONDIMENTO AROMATIZZATO AL PROFUMO DEL TARTUFO NERO/BIANCO PREGIATO A BASE DI OLIO EXTRA VERGINE DI OLIVA ITALIANO — 100 ml |
+| Zuppa rapida | ZUPPA RAPIDA – legumi e cereali — 500 g |
+| Lenticchie umbre | LENTICCHIE UMBRE — 500 g |
+| Salsa tartufata | SALSA TARTUFATA — 130 g |
+
+Salamelle e pecorino: nessuna etichetta leggibile nelle foto.
+
+---
+
 ## Da controllare prima di andare online
 
 1. **Salame di cervo, ingredienti nel sito nuovo sbagliati.** `catalogo.js` (scheda `salame-di-cervo`)
@@ -26,14 +59,16 @@ Lotti e date di scadenza non sono riportati perché cambiano a ogni produzione.
 
 3. **Salame cinghiale e tartufo:** la descrizione parla di *"tartufo nero pregiato di Norcia"*, ma
    in etichetta c'è *tartufo estivo (Tuber aestivum)* — sono due tartufi diversi.
-4. **Oli al tartufo:** il nome dice 100 ml, l'etichetta dice *quantità netta 60 ml*.
+4. **Oli al tartufo:** il titolo e la bottiglia in foto dicono **100 ml**, una riga della pagina vecchia dice
+   *quantità netta 60 ml*. Nel sito nuovo ora è 100 ml: da confermare con la bottega.
 5. **Zuppa rapida:** contiene orzo perlato (cereale con glutine), che andrebbe evidenziato come allergene.
 6. **Prosciutto tascabile "IGP Norcia":** la descrizione dice che è ricavato *dalla noce della spalla*;
    da verificare che la dicitura IGP sia corretta per questo prodotto.
 7. Il mockup chiama il ciauscolo "di Norcia", il sito vecchio lo descrive come *tipico delle campagne marchigiane*.
 
-Già sistemato nel catalogo nuovo: 1 (ingredienti e allergeni del cervo), 3 (descrizione con tartufo estivo),
-4 (indicati 60 ml), 5 (orzo evidenziato come glutine), 6 (dicitura IGP tolta). Resta da confermare con la bottega.
+Già sistemato nel catalogo nuovo: 1 (ingredienti e allergeni del cervo), 2 (prezzi e pesi del vecchio sito),
+3 (descrizione con tartufo estivo), 5 (orzo evidenziato come glutine), 6 (ora si chiama "Tascabile" come in
+etichetta), 7 (ora "Salame morbido spalmabile"). Resta da confermare con la bottega: 4 (60 o 100 ml).
 
 **Risposte a voci "DA DEFINIRE" del README:** gli ingredienti di capriolo e cinghiale sono sotto;
 i salumi sono prodotti *da stabilimento autorizzato IT 9-1949/L CE, per conto di Wild Italy*.
