@@ -673,11 +673,6 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:1120px){ .pair__buy{padding:28px 32px;text-align:right} }
 
 /* ---------------------------------------------------------------- info */
-.info-grid{display:grid;gap:32px}
-@media (min-width:1120px){ .info-grid{grid-template-columns:260px minmax(0,1fr);gap:64px;align-items:start} }
-.info-nav{position:sticky;top:110px;display:flex;flex-direction:column;gap:12px}
-.info-nav a{font-size:14px;color:var(--muted)}
-.info-nav a:hover{color:var(--wine)}
 .info-block{border-top:1px solid var(--line);padding:28px 0}
 .info-block:first-child{border-top:0;padding-top:0}
 .todo{
