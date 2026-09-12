@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bottega · Wild Italy</title>
+<meta name="description" content="Gli scaffali della bottega Wild Italy di Spoleto: salumi di selvaggina, formaggi, tartufo, vini di Montefalco.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/wild.css">
+</head>
+<body data-pagina="categoria">
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<main id="main">
+
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Percorso" data-cat-crumb></nav>
+  </div>
+
+  <div class="wrap sec sec--tight">
+    <div class="cat-intro">
+      <div>
+        <h1 class="h1" data-cat-title></h1>
+        <p class="body body--lg measure" style="margin-top:16px" data-cat-intro></p>
+      </div>
+      <aside class="helper" data-cat-helper></aside>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="filters" data-cat-filters>
+      <span class="eyebrow">FILTRA</span>
+      <label class="sr" for="f-nota">Nota di gusto</label>
+      <select id="f-nota" data-f-nota></select>
+      <label class="sr" for="f-ordine">Ordina</label>
+      <select id="f-ordine" data-f-ordine>
+        <option value="">Ordina: consigliati</option>
+        <option value="prezzo-su">Prezzo: dal più basso</option>
+        <option value="prezzo-giu">Prezzo: dal più alto</option>
+        <option value="nome">Nome A–Z</option>
+      </select>
+      <span class="filters__count" data-cat-count></span>
+    </div>
+  </div>
+
+  <div class="wrap sec sec--tight" style="padding-top:36px">
+    <div class="grid-3" data-cat-grid></div>
+  </div>
+
+</main>
+
+<script src="assets/js/catalogo.js"></script>
+<script src="assets/js/wild.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prodotto · Wild Italy</title>
+<meta name="description" content="Scheda prodotto Wild Italy: nota di gusto, formato, ingredienti, conservazione e spedizione refrigerata in 24/48h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/wild.css">
+</head>
+<body data-pagina="prodotto">
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<main id="main">
+
+  <div data-pdp></div>
+
+  <!-- ==================================================== abbinalo a -->
+  <section class="sec sec--wood" data-pdp-abbinamenti hidden aria-labelledby="t-abb">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--brass" id="t-abb">ABBINALO A</p>
+    </div>
+    <div class="rail rail--pair" style="margin-top:16px" data-abb-rail></div>
+    <div class="dots" aria-label="Abbinamenti"></div>
+  </section>
+
+</main>
+
+<!-- barra di acquisto fissa su mobile (schermata 2b) -->
+<div class="buybar" data-buybar hidden>
+  <span class="stepper">
+    <button type="button" data-bq="-1" aria-label="Riduci la quantità"><span data-ico="minus"></span></button>
+    <span class="stepper__n" data-bqta>1</span>
+    <button type="button" data-bq="1" aria-label="Aumenta la quantità"><span data-ico="plus"></span></button>
+  </span>
+  <button class="btn btn--wine" data-buybar-add><span data-buybar-label>Aggiungi</span></button>
+</div>
+
+<script src="assets/js/catalogo.js"></script>
+<script src="assets/js/wild.js"></script>
+</body>
+</html>

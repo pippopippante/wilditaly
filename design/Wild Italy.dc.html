@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#2A2420; }
+  a { color:#7C4A52; text-decoration:none; }
+  a:hover { color:#B08A3E; }
+  ::selection { background:#B08A3E; color:#fff; }
+</style>
+</helmet>
+
+<section style="padding:64px 72px 40px; font-family:'Archivo',system-ui,sans-serif; display:flex; flex-direction:column; gap:32px">
+
+  <div style="display:flex; flex-direction:column; gap:8px; color:#EDE4D4; max-width:900px">
+    <div style="font-family:'Courier New',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#B08A3E">Turno 2 · mobile rifatto sulla direzione 1a</div>
+    <div style="font-family:'EB Garamond',serif; font-size:34px; line-height:1.15">Mobile v2 — navigazione, gerarchia e tap target rivisti</div>
+    <div style="font-size:15px; line-height:1.6; color:#A99C8A">Cosa è cambiato rispetto a <a href="#1f" style="color:#D8B05E">1f</a>/<a href="#1g" style="color:#D8B05E">1g</a>: barra di ricerca sempre visibile, barra di navigazione fissa in basso (5 voci, 48–56 px), scorciatoie “fatti guidare” sopra la piega, caroselli con indicatore, categorie con foto, e sulla scheda prodotto prezzo + formato + nota di gusto tutti nel primo scroll.</div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:56px; align-items:flex-start">
+
+    <!-- ---------- 2a MOBILE HOME v2 ---------- -->
+    <div id="2a" style="display:flex; flex-direction:column; gap:12px">
+      <div style="display:flex; align-items:baseline; gap:12px">
+        <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">2a</span>
+        <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Homepage mobile v2</span>
+      </div>
+      <div style="width:410px; background:#14100C; border-radius:52px; padding:10px; box-shadow:0 40px 90px rgba(0,0,0,.55)">
+        <div style="border-radius:42px; overflow:hidden; background:#F6F0E4; color:#2A211A">
+
+          <div style="background:#2B2015; color:#EFE2C8; padding:14px 26px 10px; display:flex; justify-content:space-between; align-items:center; font-size:13px; font-weight:600">
+            <span>9:41</span>
+            <span style="width:92px; height:26px; background:#14100C; border-radius:14px"></span>
+            <span style="font-size:12px; letter-spacing:.06em">5G ▮▮▮</span>
+          </div>
+
+          <div style="background:#2B2015; color:#E9D9B8; text-align:center; padding:9px; font-size:12px; letter-spacing:.04em">Spedizione refrigerata · 24/48h in tutta Italia</div>
+
+          <div style="background:#F6F0E4; border-bottom:1px solid #E0D3BC; padding:10px 14px 14px">
+            <div style="display:flex; align-items:center; justify-content:space-between; height:52px">
+              <span style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-size:20px; color:#4A3C2E">☰</span>
+              <div style="display:flex; flex-direction:column; align-items:center; line-height:1">
+                <span style="font-family:'EB Garamond',serif; font-size:24px">Wild Italy</span>
+                <span style="font-family:'Courier New',monospace; font-size:8px; letter-spacing:.22em; color:#8A7355; margin-top:3px">BOTTEGA · SPOLETO</span>
+              </div>
+              <span style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; position:relative; border:1px solid #C0AE8E; border-radius:2px">
+                <span style="font-size:16px; color:#4A3C2E">▢</span>
+                <span style="position:absolute; top:-6px; right:-6px; background:#7A1E2A; color:#F7EFDF; font-size:11px; width:20px; height:20px; border-radius:10px; display:flex; align-items:center; justify-content:center">2</span>
+              </span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; height:48px; background:#EFE6D5; border:1px solid #DFD1B8; padding:0 14px; margin-top:4px">
+              <span style="color:#8A7355; font-size:15px">⌕</span>
+              <span style="font-size:15px; color:#8A7355">Cerca: cervo, tartufo, Sagrantino…</span>
+            </div>
+          </div>
+
+          <div style="position:relative; height:470px; background:repeating-linear-gradient(135deg,#3B2C22 0 12px,#33261D 12px 24px); display:flex; align-items:flex-end">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,14,10,0) 35%,rgba(20,14,10,.82) 100%)"></div>
+            <div style="position:absolute; top:14px; left:14px; font-family:'Courier New',monospace; font-size:10px; color:#9C8A6E; border:1px dashed #6B5843; padding:5px 9px">FOTO: bancone della bottega — 390×470</div>
+            <div style="position:relative; padding:0 20px 26px; width:100%; box-sizing:border-box">
+              <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#D8B05E; margin-bottom:12px">DAL 1978 · SPOLETO, UMBRIA</div>
+              <h1 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:36px; line-height:1.1; color:#F7EFDF; text-wrap:pretty">Wild Italy — la bottega di Spoleto, ora anche a casa tua</h1>
+              <p style="margin:12px 0 20px; font-size:15px; line-height:1.6; color:#E0D2B8">Salumi di selvaggina, tartufo e formaggi. Con la nota di gusto di chi te li farebbe assaggiare.</p>
+              <div style="display:flex; flex-direction:column; gap:10px">
+                <div style="background:#7A1E2A; color:#F7EFDF; text-align:center; padding:18px; font-size:14px; letter-spacing:.1em; text-transform:uppercase">Fatti guidare nella scelta</div>
+                <div style="border:1px solid #C4A96E; color:#EFE1C5; text-align:center; padding:17px; font-size:14px; letter-spacing:.1em; text-transform:uppercase">Vedi i box</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding:18px 0 18px 20px; border-bottom:1px solid #E0D3BC; background:#EFE6D5">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#8A7355; margin-bottom:12px">SCORCIATOIE</div>
+            <div style="display:flex; gap:10px; overflow:hidden">
+              <span style="flex:0 0 auto; background:#F6F0E4; border:1px solid #C0AE8E; padding:13px 18px; font-size:14px; white-space:nowrap">Non so cosa scegliere</span>
+              <span style="flex:0 0 auto; background:#F6F0E4; border:1px solid #C0AE8E; padding:13px 18px; font-size:14px; white-space:nowrap">Idea regalo</span>
+              <span style="flex:0 0 auto; background:#F6F0E4; border:1px solid #C0AE8E; padding:13px 18px; font-size:14px; white-space:nowrap">Primo ass…</span>
+            </div>
+          </div>
+
+          <div style="padding:30px 20px 28px">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#8A7355; margin-bottom:12px">CHI SIAMO</div>
+            <p style="margin:0; font-family:'EB Garamond',serif; font-size:23px; line-height:1.5; color:#332618; text-wrap:pretty">Bottega storica nel centro di Spoleto. Lavoriamo con norcini e piccoli produttori umbri che conosciamo per nome — e vendiamo solo quello che assaggeremmo noi.</p>
+            <div style="margin-top:16px; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#7A1E2A">La nostra storia →</div>
+          </div>
+
+          <div style="padding:0 0 8px 20px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; padding-right:20px; margin-bottom:14px">
+              <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:28px">Le specialità</h2>
+              <span style="font-size:13px; color:#7A1E2A">Tutte →</span>
+            </div>
+            <div style="display:flex; gap:12px; overflow:hidden">
+              <div style="flex:0 0 250px; background:#EFE6D5">
+                <div style="height:210px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: cervo affettato</div>
+                <div style="padding:16px 16px 20px">
+                  <div style="font-family:'EB Garamond',serif; font-size:24px">Selvaggina</div>
+                  <p style="margin:6px 0 0; font-size:13px; line-height:1.6; color:#5C4C3C">Cervo, capriolo, cinghiale. Magri, stagionati lenti.</p>
+                </div>
+              </div>
+              <div style="flex:0 0 250px; background:#EFE6D5">
+                <div style="height:210px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: tartufo nero</div>
+                <div style="padding:16px 16px 20px">
+                  <div style="font-family:'EB Garamond',serif; font-size:24px">Tartufo</div>
+                  <p style="margin:6px 0 0; font-size:13px; line-height:1.6; color:#5C4C3C">Nero pregiato di Spoleto e Norcia.</p>
+                </div>
+              </div>
+              <div style="flex:0 0 80px; background:#EFE6D5"><div style="height:210px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px)"></div></div>
+            </div>
+            <div style="display:flex; gap:6px; margin:14px 0 0">
+              <span style="width:28px; height:3px; background:#7A1E2A"></span>
+              <span style="width:28px; height:3px; background:#D8CBB5"></span>
+              <span style="width:28px; height:3px; background:#D8CBB5"></span>
+            </div>
+          </div>
+
+          <div style="background:#3A2A1E; padding:32px 0 30px 20px; margin-top:24px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; padding-right:20px; margin-bottom:6px">
+              <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#C4A96E">SCEGLIAMO NOI PER TE</div>
+            </div>
+            <h2 style="margin:0 0 16px; font-family:'EB Garamond',serif; font-weight:500; font-size:28px; color:#F5EADA">Box e degustazioni</h2>
+            <div style="display:flex; gap:12px; overflow:hidden">
+              <div style="flex:0 0 260px; background:#F6F0E4">
+                <div style="height:180px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: tre salami</div>
+                <div style="padding:16px">
+                  <div style="font-family:'Courier New',monospace; font-size:9px; letter-spacing:.16em; color:#7A1E2A; margin-bottom:6px">IL PIÙ SCELTO</div>
+                  <div style="font-family:'EB Garamond',serif; font-size:21px; line-height:1.25">Degustazione salumi di selvaggina</div>
+                  <div style="margin-top:10px; display:flex; gap:8px; align-items:baseline"><span style="font-family:'EB Garamond',serif; font-size:23px; color:#7A1E2A">49,00 €</span><span style="font-size:12px; color:#9A8A73; text-decoration:line-through">58,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 260px; background:#F6F0E4">
+                <div style="height:180px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: box umbria</div>
+                <div style="padding:16px">
+                  <div style="font-family:'Courier New',monospace; font-size:9px; letter-spacing:.16em; color:#4A5A36; margin-bottom:6px">IL REGALO CLASSICO</div>
+                  <div style="font-family:'EB Garamond',serif; font-size:21px; line-height:1.25">Box Umbria</div>
+                  <div style="margin-top:10px; display:flex; gap:8px; align-items:baseline"><span style="font-family:'EB Garamond',serif; font-size:23px; color:#7A1E2A">62,00 €</span><span style="font-size:12px; color:#9A8A73; text-decoration:line-through">74,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 60px; background:#F6F0E4"><div style="height:180px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px)"></div></div>
+            </div>
+            <div style="margin:18px 20px 0 0; border:1px solid #C4A96E; color:#EFE1C5; text-align:center; padding:16px; font-size:13px; letter-spacing:.1em; text-transform:uppercase">Vedi tutti i box</div>
+          </div>
+
+          <div style="padding:30px 20px 8px">
+            <h2 style="margin:0 0 18px; font-family:'EB Garamond',serif; font-weight:500; font-size:28px">Come funziona</h2>
+            <div style="display:flex; gap:16px; border-top:1px solid #E0D3BC; padding:16px 0"><span style="font-family:'EB Garamond',serif; font-size:30px; color:#C4A96E; line-height:1">01</span><div><div style="font-family:'EB Garamond',serif; font-size:21px">Scegli e ordina online</div><p style="margin:4px 0 0; font-size:14px; line-height:1.6; color:#5C4C3C">Ogni prodotto ha la sua nota di gusto.</p></div></div>
+            <div style="display:flex; gap:16px; border-top:1px solid #E0D3BC; padding:16px 0"><span style="font-family:'EB Garamond',serif; font-size:30px; color:#C4A96E; line-height:1">02</span><div><div style="font-family:'EB Garamond',serif; font-size:21px">Prepariamo con cura</div><p style="margin:4px 0 0; font-size:14px; line-height:1.6; color:#5C4C3C">Tagliato e confezionato in bottega, lo stesso giorno.</p></div></div>
+            <div style="display:flex; gap:16px; border-top:1px solid #E0D3BC; border-bottom:1px solid #E0D3BC; padding:16px 0"><span style="font-family:'EB Garamond',serif; font-size:30px; color:#C4A96E; line-height:1">03</span><div><div style="font-family:'EB Garamond',serif; font-size:21px">Arriva a casa tua</div><p style="margin:4px 0 0; font-size:14px; line-height:1.6; color:#5C4C3C">Corriere refrigerato in 24/48h.</p></div></div>
+          </div>
+
+          <div style="padding:30px 20px 32px">
+            <h2 style="margin:0 0 16px; font-family:'EB Garamond',serif; font-weight:500; font-size:28px">La bottega, scaffale per scaffale</h2>
+            <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px">
+              <div style="background:#EFE6D5"><div style="height:110px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px)"></div><div style="padding:12px 12px 14px; font-family:'EB Garamond',serif; font-size:19px; line-height:1.2">Salumi di selvaggina</div></div>
+              <div style="background:#EFE6D5"><div style="height:110px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px)"></div><div style="padding:12px 12px 14px; font-family:'EB Garamond',serif; font-size:19px; line-height:1.2">Salumi tradizionali</div></div>
+              <div style="background:#EFE6D5"><div style="height:110px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px)"></div><div style="padding:12px 12px 14px; font-family:'EB Garamond',serif; font-size:19px; line-height:1.2">Formaggi</div></div>
+              <div style="background:#EFE6D5"><div style="height:110px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px)"></div><div style="padding:12px 12px 14px; font-family:'EB Garamond',serif; font-size:19px; line-height:1.2">Tartufo e salse</div></div>
+              <div style="background:#EFE6D5"><div style="height:110px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px)"></div><div style="padding:12px 12px 14px; font-family:'EB Garamond',serif; font-size:19px; line-height:1.2">Vini di Montefalco</div></div>
+              <div style="background:#EFE6D5"><div style="height:110px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px)"></div><div style="padding:12px 12px 14px; font-family:'EB Garamond',serif; font-size:19px; line-height:1.2">Dispensa</div></div>
+              <div style="grid-column:span 2; background:#7A1E2A; display:flex; align-items:center; justify-content:space-between; padding:18px 16px"><span style="font-family:'EB Garamond',serif; font-size:21px; color:#F3E6CF">Confezioni regalo e degustazioni</span><span style="color:#E3C79A">→</span></div>
+            </div>
+          </div>
+
+          <div style="position:relative; height:340px; background:repeating-linear-gradient(135deg,#CFC2A9 0 10px,#C7B99E 10px 20px); display:flex; align-items:flex-end">
+            <div style="position:absolute; top:14px; left:14px; font-family:'Courier New',monospace; font-size:10px; color:#786A54; border:1px dashed #A2947C; padding:5px 9px">FOTO AUTENTICA: vetrina in via Filitteria</div>
+            <div style="position:relative; background:#F6F0E4; margin:0 16px 16px; padding:22px 20px; width:100%; box-sizing:border-box">
+              <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:26px">Se passi da Spoleto, entra.</h2>
+              <p style="margin:10px 0 16px; font-size:14px; line-height:1.7; color:#5C4C3C">Via Filitteria 12, Spoleto (PG)<br>Lun–Sab 8:30–13:30 · 16:00–20:00</p>
+              <div style="display:flex; gap:10px">
+                <span style="flex:1; text-align:center; border:1px solid #7A1E2A; color:#7A1E2A; padding:15px; font-size:13px; letter-spacing:.08em; text-transform:uppercase">Indicazioni</span>
+                <span style="flex:1; text-align:center; border:1px solid #C0AE8E; color:#4A3C2E; padding:15px; font-size:13px; letter-spacing:.08em; text-transform:uppercase">Chiama</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#2B2015; color:#D8CBB5; padding:32px 20px 24px">
+            <div style="font-family:'EB Garamond',serif; font-size:26px; color:#F3E6CF">Wild Italy</div>
+            <p style="margin:10px 0 22px; font-size:14px; line-height:1.8">Via Filitteria 12, Spoleto (PG)<br>+39 0743 000000 · ciao@wilditaly.it</p>
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#9C8A6E; margin-bottom:10px">NEWSLETTER</div>
+            <p style="margin:0 0 12px; font-size:13px; line-height:1.7">Una mail al mese: stagionature nuove e abbinamenti.</p>
+            <div style="display:flex; border:1px solid #6B5843; height:52px; align-items:stretch">
+              <span style="flex:1; display:flex; align-items:center; padding:0 14px; font-size:14px; color:#9C8A6E">la tua email</span>
+              <span style="background:#C4A96E; color:#2B2015; display:flex; align-items:center; padding:0 18px; font-size:12px; letter-spacing:.1em">ISCRIVIMI</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px 20px; margin-top:26px; font-size:14px; line-height:2">
+              <span>Spedizioni</span><span>Conservazione</span><span>Resi</span><span>Contatti</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:24px; padding-top:18px; border-top:1px solid #4A3A2A; font-size:13px; color:#9C8A6E">
+              <div style="display:flex; gap:18px"><span>Instagram</span><span>Facebook</span></div>
+              <span style="display:flex; border:1px solid #6B5843"><span style="padding:7px 12px; background:#C4A96E; color:#2B2015">IT</span><span style="padding:7px 12px">EN</span></span>
+            </div>
+            <div style="margin-top:20px; font-size:12px; color:#7E7060">© 2026 Wild Italy · P.IVA 00000000000</div>
+          </div>
+
+          <div style="background:#F6F0E4; border-top:1px solid #E0D3BC; display:grid; grid-template-columns:repeat(5,1fr); padding:10px 0 4px">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 0; color:#7A1E2A"><span style="font-size:17px">▦</span><span style="font-size:11px; letter-spacing:.04em">Bottega</span></div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 0; color:#7E6F58"><span style="font-size:17px">⌕</span><span style="font-size:11px">Cerca</span></div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 0; color:#7E6F58"><span style="font-size:17px">▣</span><span style="font-size:11px">Box</span></div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 0; color:#7E6F58"><span style="font-size:17px">▢</span><span style="font-size:11px">Carrello</span></div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 0; color:#7E6F58"><span style="font-size:17px">◎</span><span style="font-size:11px">Account</span></div>
+          </div>
+          <div style="background:#F6F0E4; display:flex; justify-content:center; padding:6px 0 10px"><span style="width:130px; height:5px; border-radius:3px; background:#2A211A33"></span></div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- 2b MOBILE PRODOTTO v2 ---------- -->
+    <div id="2b" style="display:flex; flex-direction:column; gap:12px">
+      <div style="display:flex; align-items:baseline; gap:12px">
+        <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">2b</span>
+        <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Prodotto mobile v2</span>
+      </div>
+      <div style="width:410px; background:#14100C; border-radius:52px; padding:10px; box-shadow:0 40px 90px rgba(0,0,0,.55)">
+        <div style="border-radius:42px; overflow:hidden; background:#F6F0E4; color:#2A211A">
+
+          <div style="background:#2B2015; color:#EFE2C8; padding:14px 26px 10px; display:flex; justify-content:space-between; align-items:center; font-size:13px; font-weight:600">
+            <span>9:41</span>
+            <span style="width:92px; height:26px; background:#14100C; border-radius:14px"></span>
+            <span style="font-size:12px; letter-spacing:.06em">5G ▮▮▮</span>
+          </div>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 14px; background:#F6F0E4; border-bottom:1px solid #E0D3BC; height:56px; box-sizing:border-box">
+            <span style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-size:19px; color:#4A3C2E">←</span>
+            <span style="font-family:'EB Garamond',serif; font-size:20px">Salame di Cervo</span>
+            <div style="display:flex">
+              <span style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-size:16px; color:#4A3C2E">↗</span>
+              <span style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; position:relative; font-size:16px; color:#4A3C2E">▢<span style="position:absolute; top:4px; right:2px; background:#7A1E2A; color:#F7EFDF; font-size:10px; width:18px; height:18px; border-radius:9px; display:flex; align-items:center; justify-content:center">1</span></span>
+            </div>
+          </div>
+
+          <div style="position:relative; height:430px; background:repeating-linear-gradient(135deg,#DCD0B9 0 10px,#D4C7AD 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:11px; color:#7E6F58">
+            FOTO 1: salame intero su tagliere
+            <span style="position:absolute; top:14px; right:14px; background:#2B2015CC; color:#EFE2C8; font-size:11px; padding:5px 10px">1 / 4</span>
+            <span style="position:absolute; top:14px; left:14px; background:#4A5A36; color:#F0EDDF; font-family:'Archivo',sans-serif; font-size:10px; letter-spacing:.14em; padding:6px 10px">ARTIGIANALE</span>
+            <div style="position:absolute; bottom:14px; left:0; right:0; display:flex; gap:6px; justify-content:center"><span style="width:24px; height:3px; background:#7A1E2A"></span><span style="width:24px; height:3px; background:#2A211A33"></span><span style="width:24px; height:3px; background:#2A211A33"></span><span style="width:24px; height:3px; background:#2A211A33"></span></div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:6px; background:#EFE6D5">
+            <div style="height:70px; background:repeating-linear-gradient(135deg,#D4C7AD 0 8px,#CBBDA1 8px 16px); outline:2px solid #7A1E2A; outline-offset:-2px"></div>
+            <div style="height:70px; background:repeating-linear-gradient(135deg,#D4C7AD 0 8px,#CBBDA1 8px 16px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:9px; color:#7E6F58">affettato</div>
+            <div style="height:70px; background:repeating-linear-gradient(135deg,#D4C7AD 0 8px,#CBBDA1 8px 16px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:9px; color:#7E6F58">grana</div>
+            <div style="height:70px; background:repeating-linear-gradient(135deg,#D4C7AD 0 8px,#CBBDA1 8px 16px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:9px; color:#7E6F58">confez.</div>
+          </div>
+
+          <div style="padding:24px 20px 0">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#4A5A36">SELVAGGINA · NORCINERIA DI SPOLETO</div>
+            <h1 style="margin:8px 0 0; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; line-height:1.05">Salame di Cervo</h1>
+            <div style="display:flex; align-items:baseline; gap:12px; margin-top:12px">
+              <span style="font-family:'EB Garamond',serif; font-size:34px; color:#7A1E2A; line-height:1">14,50 €</span>
+              <span style="font-size:13px; color:#8A7355">280 g circa · 51,80 €/kg</span>
+            </div>
+            <p style="margin:14px 0 0; font-size:15px; line-height:1.7; color:#5C4C3C">Carne di cervo selezionata, sale, pepe e stagionatura lenta in cantina. Il più accessibile dei nostri salumi di selvaggina: piace anche a chi non ha mai provato la selvaggina.</p>
+          </div>
+
+          <div style="margin:22px 20px 0; background:#4A1620; padding:22px 20px">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#D8B05E; margin-bottom:10px">LA NOTA DI GUSTO DEL BANCONE</div>
+            <div style="font-family:'EB Garamond',serif; font-style:italic; font-size:27px; line-height:1.35; color:#F7EFDF; text-wrap:pretty">«Cervo: più dolce e leggermente affumicato.»</div>
+            <div style="margin-top:18px; display:flex; flex-direction:column; gap:10px">
+              <div style="display:flex; align-items:center; gap:12px"><span style="font-size:11px; letter-spacing:.1em; color:#E3CFA6; width:96px">DOLCEZZA</span><span style="flex:1; height:4px; background:#7A5A30; display:block"><span style="display:block; width:60%; height:4px; background:#D8B05E"></span></span></div>
+              <div style="display:flex; align-items:center; gap:12px"><span style="font-size:11px; letter-spacing:.1em; color:#E3CFA6; width:96px">AFFUMICATO</span><span style="flex:1; height:4px; background:#7A5A30; display:block"><span style="display:block; width:40%; height:4px; background:#D8B05E"></span></span></div>
+              <div style="display:flex; align-items:center; gap:12px"><span style="font-size:11px; letter-spacing:.1em; color:#E3CFA6; width:96px">SAPIDITÀ</span><span style="flex:1; height:4px; background:#7A5A30; display:block"><span style="display:block; width:35%; height:4px; background:#D8B05E"></span></span></div>
+            </div>
+          </div>
+
+          <div style="padding:26px 20px 0">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#8A7355; margin-bottom:10px">FORMATO</div>
+            <div style="display:flex; gap:10px">
+              <span style="flex:1; text-align:center; border:2px solid #7A1E2A; background:#F3EADA; padding:14px 8px; font-size:14px">Intero<br><span style="font-size:12px; color:#7E6F58">280 g</span></span>
+              <span style="flex:1; text-align:center; border:1px solid #C0AE8E; padding:15px 8px; font-size:14px">Mezzo<br><span style="font-size:12px; color:#7E6F58">140 g</span></span>
+              <span style="flex:1; text-align:center; border:1px solid #C0AE8E; padding:15px 8px; font-size:14px">Affettato<br><span style="font-size:12px; color:#7E6F58">100 g</span></span>
+            </div>
+          </div>
+
+          <div style="padding:24px 20px 0; display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; gap:12px; align-items:baseline; font-size:14px; color:#4A3C2E"><span style="color:#4A5A36">—</span><span>Spedizione refrigerata, consegna in 24/48h</span></div>
+            <div style="display:flex; gap:12px; align-items:baseline; font-size:14px; color:#4A3C2E"><span style="color:#4A5A36">—</span><span>Ordini entro le 12:00 partono in giornata</span></div>
+            <div style="display:flex; gap:12px; align-items:baseline; font-size:14px; color:#4A3C2E"><span style="color:#4A5A36">—</span><span>Tagliato e confezionato sottovuoto in bottega</span></div>
+          </div>
+
+          <div style="padding:26px 20px 0">
+            <div style="border-top:1px solid #E0D3BC; padding:18px 0">
+              <div style="display:flex; justify-content:space-between; align-items:center"><span style="font-family:'EB Garamond',serif; font-size:21px">Ingredienti</span><span style="color:#8A7355; font-size:18px">−</span></div>
+              <p style="margin:10px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C">Carne di cervo (70%), carne di suino, sale, pepe nero, aromi naturali, vino bianco. Senza glutine, senza lattosio, senza glutammato. Conservante: E252.</p>
+            </div>
+            <div style="border-top:1px solid #E0D3BC; padding:18px 0">
+              <div style="display:flex; justify-content:space-between; align-items:center"><span style="font-family:'EB Garamond',serif; font-size:21px">Conservazione e spedizione</span><span style="color:#8A7355; font-size:18px">−</span></div>
+              <p style="margin:10px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C">Conservare in luogo fresco e asciutto (8–14 °C) o in frigorifero. Una volta aperto, avvolgere il taglio in carta oleata e consumare entro 15 giorni. Imballo isotermico incluso.</p>
+            </div>
+            <div style="border-top:1px solid #E0D3BC; border-bottom:1px solid #E0D3BC; padding:18px 0">
+              <div style="display:flex; justify-content:space-between; align-items:center"><span style="font-family:'EB Garamond',serif; font-size:21px">Il produttore</span><span style="color:#8A7355; font-size:18px">+</span></div>
+            </div>
+          </div>
+
+          <div style="background:#3A2A1E; margin-top:28px; padding:26px 0 28px 20px">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#C4A96E; margin-bottom:14px">ABBINALO A</div>
+            <div style="display:flex; gap:12px; overflow:hidden">
+              <div style="flex:0 0 250px; background:#F6F0E4">
+                <div style="height:150px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: degustazione</div>
+                <div style="padding:16px">
+                  <div style="font-family:'EB Garamond',serif; font-size:20px; line-height:1.25">Degustazione salumi di selvaggina</div>
+                  <p style="margin:6px 0 0; font-size:13px; line-height:1.6; color:#5C4C3C">Accanto a capriolo e cinghiale si capisce quanto è dolce.</p>
+                  <div style="margin-top:10px; display:flex; gap:8px; align-items:baseline"><span style="font-family:'EB Garamond',serif; font-size:22px; color:#7A1E2A">49,00 €</span><span style="font-size:12px; color:#9A8A73; text-decoration:line-through">58,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 250px; background:#F6F0E4">
+                <div style="height:150px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: bottiglia</div>
+                <div style="padding:16px">
+                  <div style="font-family:'EB Garamond',serif; font-size:20px; line-height:1.25">Sagrantino di Montefalco DOCG</div>
+                  <p style="margin:6px 0 0; font-size:13px; line-height:1.6; color:#5C4C3C">Tannino deciso, regge la dolcezza del cervo.</p>
+                  <div style="margin-top:10px; font-family:'EB Garamond',serif; font-size:22px; color:#7A1E2A">24,00 €</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#F6F0E4; border-top:1px solid #E0D3BC; padding:14px 16px 10px; display:flex; gap:12px; align-items:center">
+            <div style="display:flex; border:1px solid #C0AE8E; align-items:stretch"><span style="width:44px; height:52px; display:flex; align-items:center; justify-content:center; font-size:18px">−</span><span style="width:34px; display:flex; align-items:center; justify-content:center; border-left:1px solid #C0AE8E; border-right:1px solid #C0AE8E; font-size:15px">1</span><span style="width:44px; display:flex; align-items:center; justify-content:center; font-size:18px">+</span></div>
+            <div style="flex:1; background:#7A1E2A; color:#F7EFDF; text-align:center; padding:17px 8px; font-size:14px; letter-spacing:.08em; text-transform:uppercase">Aggiungi · 14,50 €</div>
+          </div>
+          <div style="background:#F6F0E4; display:flex; justify-content:center; padding:4px 0 10px"><span style="width:130px; height:5px; border-radius:3px; background:#2A211A33"></span></div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding:24px 72px 120px; font-family:'Archivo',system-ui,sans-serif; display:flex; flex-direction:column; gap:72px">
+
+  <div style="display:flex; flex-direction:column; gap:8px; color:#EDE4D4; max-width:900px">
+    <div style="font-family:'Courier New',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#B08A3E">Wild Italy · mockup di validazione · turno 1</div>
+    <div style="font-family:'EB Garamond',serif; font-size:38px; line-height:1.15">Due direzioni stilistiche per la homepage, più le schermate di sistema</div>
+    <div style="font-size:15px; line-height:1.6; color:#A99C8A">Confronta <a href="#1a" style="color:#D8B05E">1a</a> (calda / tradizionale) e <a href="#1b" style="color:#D8B05E">1b</a> (moderna / editoriale). Le schermate <a href="#1c" style="color:#D8B05E">1c</a>–<a href="#1e" style="color:#D8B05E">1e</a> e il mobile <a href="#1f" style="color:#D8B05E">1f</a>–<a href="#1g" style="color:#D8B05E">1g</a> sono costruite sulla direzione 1a: si ri-vestono sulla 1b se il cliente la preferisce. Tutte le foto sono segnaposto.</div>
+  </div>
+
+  <!-- ============ GRUPPO: DIREZIONI HOMEPAGE ============ -->
+  <div style="display:flex; flex-direction:column; gap:20px">
+    <div style="font-family:'Courier New',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8C7F6E">Direzioni homepage</div>
+    <div style="display:flex; flex-wrap:wrap; gap:56px; align-items:flex-start">
+
+      <!-- ---------- 1a : CALDA / TRADIZIONALE ---------- -->
+      <div id="1a" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1a</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Bottega calda — legno, vinaccia, ottone</span>
+        </div>
+
+        <div style="width:1440px; background:#F6F0E4; color:#2A211A; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+
+          <sc-if value="{{ mostraBarraAnnuncio }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#4A1620; color:#E9D9B8; font-size:13px; letter-spacing:.06em; text-align:center; padding:10px">Spedizione refrigerata in tutta Italia · consegna in 24/48h</div>
+          </sc-if>
+
+          <!-- header -->
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 64px; border-bottom:1px solid #E0D3BC; background:#F6F0E4">
+            <div style="display:flex; flex-direction:column; line-height:1">
+              <span style="font-family:'EB Garamond',serif; font-size:28px; letter-spacing:.02em">Wild Italy</span>
+              <span style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.24em; color:#8A7355; margin-top:4px">BOTTEGA · SPOLETO</span>
+            </div>
+            <div style="display:flex; gap:28px; font-size:14px; letter-spacing:.04em; color:#4A3C2E">
+              <span>Selvaggina</span><span>Salumi</span><span>Formaggi</span><span>Tartufo</span><span>Vini</span><span>Dispensa</span><span style="color:#7A1E2A; font-weight:600">Box &amp; degustazioni</span>
+            </div>
+            <div style="display:flex; gap:18px; align-items:center; font-size:13px; color:#4A3C2E">
+              <span>Cerca</span><span>Account</span>
+              <span style="border:1px solid #B08A3E; padding:6px 12px">Carrello · 0</span>
+            </div>
+          </div>
+
+          <!-- hero -->
+          <div style="position:relative; height:620px; background:repeating-linear-gradient(135deg,#3B2C22 0 14px,#33261D 14px 28px); display:flex; align-items:flex-end">
+            <div style="position:absolute; top:24px; left:24px; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.16em; color:#9C8A6E; border:1px dashed #6B5843; padding:6px 10px">FOTO: interno bottega, bancone salumi — 1440×620</div>
+            <div style="position:relative; padding:0 64px 72px; max-width:900px">
+              <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.24em; color:#D8B05E; margin-bottom:18px">DAL 1978 · UMBRIA</div>
+              <h1 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:64px; line-height:1.08; color:#F7EFDF; text-wrap:pretty">Wild Italy — la bottega di Spoleto, ora anche a casa tua</h1>
+              <p style="margin:20px 0 32px; font-size:17px; line-height:1.65; color:#DCCBAE; max-width:560px">Salumi di selvaggina, tartufo e formaggi scelti uno per uno. Come se entrassi dalla porta di via e ti facessimo assaggiare.</p>
+              <div style="display:flex; gap:14px">
+                <span style="background:#7A1E2A; color:#F7EFDF; padding:16px 30px; font-size:14px; letter-spacing:.08em; text-transform:uppercase">Fatti guidare nella scelta</span>
+                <span style="border:1px solid #C4A96E; color:#EFE1C5; padding:16px 30px; font-size:14px; letter-spacing:.08em; text-transform:uppercase">Box e degustazioni</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- chi siamo -->
+          <div style="padding:76px 64px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:center; background:#F6F0E4">
+            <div>
+              <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.24em; color:#8A7355; margin-bottom:16px">CHI SIAMO</div>
+              <p style="margin:0; font-family:'EB Garamond',serif; font-size:30px; line-height:1.45; color:#332618; text-wrap:pretty">Siamo una bottega storica nel centro di Spoleto. Lavoriamo con norcini e piccoli produttori umbri che conosciamo per nome: selvaggina, tartufo, pecorini, vini di Montefalco.</p>
+              <p style="margin:22px 0 0; font-size:15px; line-height:1.75; color:#5C4C3C; max-width:520px">Non vendiamo tutto: vendiamo quello che assaggeremmo noi. Ogni prodotto arriva con la sua nota di gusto, così scegli come se fossi al bancone.</p>
+            </div>
+            <div style="height:340px; background:repeating-linear-gradient(135deg,#E6DCC9 0 10px,#DED2BB 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#8A7A63; text-align:center">FOTO: titolare al bancone<br>620×340</div>
+          </div>
+
+          <!-- specialità -->
+          <div style="padding:16px 64px 80px; background:#F6F0E4">
+            <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:28px">
+              <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#332618">Le nostre specialità</h2>
+              <span style="font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#7A1E2A">Tutte le categorie →</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px">
+
+              <div style="background:#EFE6D5">
+                <div style="height:380px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#7E6F58">FOTO: salame di cervo affettato</div>
+                <div style="padding:26px 26px 30px">
+                  <div style="font-family:'EB Garamond',serif; font-size:28px; color:#332618">Selvaggina</div>
+                  <p style="margin:10px 0 0; font-size:14px; line-height:1.7; color:#5C4C3C">Cervo, capriolo, cinghiale. Carni magre, stagionatura lenta, sale giusto.</p>
+                  <div style="margin-top:18px; font-family:'Courier New',monospace; font-size:11px; letter-spacing:.16em; color:#7A1E2A">SCOPRI →</div>
+                </div>
+              </div>
+
+              <div style="background:#EFE6D5">
+                <div style="height:380px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#7E6F58">FOTO: tartufo nero su tagliere</div>
+                <div style="padding:26px 26px 30px">
+                  <div style="font-family:'EB Garamond',serif; font-size:28px; color:#332618">Tartufo</div>
+                  <p style="margin:10px 0 0; font-size:14px; line-height:1.7; color:#5C4C3C">Nero pregiato di Norcia e Spoleto, in salsa, in crema, sui salumi.</p>
+                  <div style="margin-top:18px; font-family:'Courier New',monospace; font-size:11px; letter-spacing:.16em; color:#7A1E2A">SCOPRI →</div>
+                </div>
+              </div>
+
+              <div style="background:#EFE6D5">
+                <div style="height:380px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#7E6F58">FOTO: pecorini a scalare</div>
+                <div style="padding:26px 26px 30px">
+                  <div style="font-family:'EB Garamond',serif; font-size:28px; color:#332618">Formaggi</div>
+                  <p style="margin:10px 0 0; font-size:14px; line-height:1.7; color:#5C4C3C">Pecorini di fossa, stagionati in grotta, freschi di malga.</p>
+                  <div style="margin-top:18px; font-family:'Courier New',monospace; font-size:11px; letter-spacing:.16em; color:#7A1E2A">SCOPRI →</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- box e degustazioni: carosello -->
+          <div style="padding:80px 0 84px; background:#3A2A1E">
+            <div style="display:flex; align-items:flex-end; justify-content:space-between; padding:0 64px; margin-bottom:32px">
+              <div>
+                <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.24em; color:#C4A96E; margin-bottom:12px">FATTI GUIDARE</div>
+                <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#F5EADA">Box e degustazioni</h2>
+              </div>
+              <div style="display:flex; gap:10px">
+                <span style="width:46px; height:46px; border:1px solid #7A6853; display:flex; align-items:center; justify-content:center; color:#A08F76">←</span>
+                <span style="width:46px; height:46px; border:1px solid #C4A96E; display:flex; align-items:center; justify-content:center; color:#EFE1C5">→</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:24px; padding:0 64px; overflow:hidden">
+
+              <div style="flex:0 0 400px; background:#F6F0E4">
+                <div style="height:260px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: box umbria confezionato</div>
+                <div style="padding:24px 24px 28px">
+                  <div style="font-family:'EB Garamond',serif; font-size:26px; color:#332618">Box Umbria</div>
+                  <p style="margin:8px 0 16px; font-size:13px; line-height:1.7; color:#5C4C3C">Ciauscolo, pecorino di fossa, olio EVO, miele di acacia, Sagrantino.</p>
+                  <div style="display:flex; align-items:baseline; gap:10px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#7A1E2A">62,00 €</span><span style="font-size:13px; color:#9A8A73; text-decoration:line-through">74,50 €</span></div>
+                </div>
+              </div>
+
+              <div style="flex:0 0 400px; background:#F6F0E4">
+                <div style="height:260px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: tagliere tartufo</div>
+                <div style="padding:24px 24px 28px">
+                  <div style="font-family:'EB Garamond',serif; font-size:26px; color:#332618">Box Tartufo</div>
+                  <p style="margin:8px 0 16px; font-size:13px; line-height:1.7; color:#5C4C3C">Salsa tartufata, crema di pecorino al tartufo, salame al tartufo, olio.</p>
+                  <div style="display:flex; align-items:baseline; gap:10px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#7A1E2A">58,00 €</span><span style="font-size:13px; color:#9A8A73; text-decoration:line-through">69,00 €</span></div>
+                </div>
+              </div>
+
+              <div style="flex:0 0 400px; background:#F6F0E4; outline:2px solid #C4A96E">
+                <div style="height:260px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: tre salami di selvaggina</div>
+                <div style="padding:24px 24px 28px">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#7A1E2A; margin-bottom:8px">IL PIÙ SCELTO</div>
+                  <div style="font-family:'EB Garamond',serif; font-size:26px; color:#332618">Degustazione salumi di selvaggina</div>
+                  <p style="margin:8px 0 16px; font-size:13px; line-height:1.7; color:#5C4C3C">Cervo, capriolo, cinghiale + pecorino stagionato. Con schede di assaggio.</p>
+                  <div style="display:flex; align-items:baseline; gap:10px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#7A1E2A">49,00 €</span><span style="font-size:13px; color:#9A8A73; text-decoration:line-through">58,50 €</span></div>
+                </div>
+              </div>
+
+              <div style="flex:0 0 400px; background:#F6F0E4; opacity:.45">
+                <div style="height:260px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px)"></div>
+                <div style="padding:24px"><div style="font-family:'EB Garamond',serif; font-size:26px; color:#332618">Box Regalo Oro</div></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- come funziona -->
+          <div style="padding:84px 64px; background:#F6F0E4">
+            <h2 style="margin:0 0 40px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#332618">Come funziona</h2>
+            <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px">
+              <div style="border-top:2px solid #7A1E2A; padding-top:24px">
+                <div style="font-family:'EB Garamond',serif; font-size:52px; color:#C4A96E; line-height:1">01</div>
+                <div style="font-family:'EB Garamond',serif; font-size:26px; margin-top:8px; color:#332618">Scegli e ordina online</div>
+                <p style="margin:10px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C">Ogni prodotto ha la sua nota di gusto. Se non sai da dove partire, scegli una degustazione.</p>
+              </div>
+              <div style="border-top:2px solid #7A1E2A; padding-top:24px">
+                <div style="font-family:'EB Garamond',serif; font-size:52px; color:#C4A96E; line-height:1">02</div>
+                <div style="font-family:'EB Garamond',serif; font-size:26px; margin-top:8px; color:#332618">Prepariamo con cura</div>
+                <p style="margin:10px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C">Tagliamo e confezioniamo sottovuoto in bottega, il giorno della spedizione.</p>
+              </div>
+              <div style="border-top:2px solid #7A1E2A; padding-top:24px">
+                <div style="font-family:'EB Garamond',serif; font-size:52px; color:#C4A96E; line-height:1">03</div>
+                <div style="font-family:'EB Garamond',serif; font-size:26px; margin-top:8px; color:#332618">Arriva a casa tua</div>
+                <p style="margin:10px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C">Corriere refrigerato in 24/48h, con le schede di assaggio nella scatola.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7 categorie -->
+          <div style="padding:0 64px 84px; background:#F6F0E4">
+            <h2 style="margin:0 0 28px; font-family:'EB Garamond',serif; font-weight:500; font-size:40px; color:#332618">La bottega, scaffale per scaffale</h2>
+            <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px">
+              <div style="height:220px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Salumi di selvaggina</span></div>
+              <div style="height:220px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Salumi tradizionali</span></div>
+              <div style="height:220px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Formaggi</span></div>
+              <div style="height:220px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Tartufo e salse</span></div>
+              <div style="height:220px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Vini di Montefalco</span></div>
+              <div style="height:220px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Dispensa</span></div>
+              <div style="height:220px; background:#7A1E2A; display:flex; align-items:flex-end; padding:20px; grid-column:span 2"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#F3E6CF">Confezioni regalo e degustazioni</span></div>
+            </div>
+          </div>
+
+          <!-- storia / negozio fisico -->
+          <div style="display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); background:#EFE6D5">
+            <div style="height:480px; background:repeating-linear-gradient(135deg,#CFC2A9 0 10px,#C7B99E 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#786A54; text-align:center">FOTO AUTENTICA: vetrina della bottega<br>in via Filitteria, Spoleto</div>
+            <div style="padding:72px 64px; display:flex; flex-direction:column; justify-content:center">
+              <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.24em; color:#8A7355; margin-bottom:16px">IL NEGOZIO</div>
+              <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:38px; line-height:1.2; color:#332618">Se passi da Spoleto, entra.</h2>
+              <p style="margin:18px 0 0; font-size:15px; line-height:1.8; color:#5C4C3C">Il bancone è lo stesso da tre generazioni. Si entra per un etto di ciauscolo e si esce dopo mezz'ora, con due assaggi e un consiglio sul vino.</p>
+              <div style="margin-top:28px; font-size:14px; line-height:1.9; color:#4A3C2E">Via Filitteria 12, Spoleto (PG)<br>Lun–Sab 8:30–13:30 · 16:00–20:00</div>
+            </div>
+          </div>
+
+          <!-- footer -->
+          <div style="background:#2B2015; color:#D8CBB5; padding:72px 64px 40px">
+            <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1.3fr; gap:48px">
+              <div>
+                <div style="font-family:'EB Garamond',serif; font-size:26px; color:#F3E6CF">Wild Italy</div>
+                <p style="margin:14px 0 0; font-size:14px; line-height:1.8">Via Filitteria 12, Spoleto (PG)<br>+39 0743 000000<br>ciao@wilditaly.it</p>
+              </div>
+              <div style="font-size:14px; line-height:2.1">
+                <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#9C8A6E; margin-bottom:10px">BOTTEGA</div>
+                Selvaggina<br>Salumi tradizionali<br>Formaggi<br>Tartufo e salse
+              </div>
+              <div style="font-size:14px; line-height:2.1">
+                <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#9C8A6E; margin-bottom:10px">SERVIZIO</div>
+                Spedizioni<br>Conservazione<br>Resi<br>Contatti
+              </div>
+              <div>
+                <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#9C8A6E; margin-bottom:10px">NEWSLETTER</div>
+                <p style="margin:0 0 14px; font-size:14px; line-height:1.7">Stagionature nuove e consigli di abbinamento, una volta al mese.</p>
+                <div style="display:flex; border:1px solid #6B5843">
+                  <span style="flex:1; padding:12px 14px; font-size:13px; color:#9C8A6E">la tua email</span>
+                  <span style="background:#C4A96E; color:#2B2015; padding:12px 18px; font-size:12px; letter-spacing:.1em">ISCRIVIMI</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:48px; padding-top:24px; border-top:1px solid #4A3A2A; font-size:13px; color:#9C8A6E">
+              <span>© 2026 Wild Italy · P.IVA 00000000000</span>
+              <div style="display:flex; gap:22px; align-items:center">
+                <span>Instagram</span><span>Facebook</span>
+                <span style="display:flex; gap:0; border:1px solid #6B5843"><span style="padding:6px 12px; background:#C4A96E; color:#2B2015">IT</span><span style="padding:6px 12px">EN</span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ---------- 1b : MODERNA / EDITORIALE ---------- -->
+      <div id="1b" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1b</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Editoriale minimal — avorio, oliva, oro sottile</span>
+        </div>
+
+        <div style="width:1440px; background:#FBF9F4; color:#1D1B16; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+
+          <sc-if value="{{ mostraBarraAnnuncio }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#FBF9F4; color:#6E6A5E; font-size:12px; letter-spacing:.16em; text-transform:uppercase; text-align:center; padding:12px; border-bottom:1px solid #E7E2D6">Spedizione refrigerata · 24/48h · Italia</div>
+          </sc-if>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:26px 72px">
+            <span style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:30px; letter-spacing:.14em; text-transform:uppercase">Wild Italy</span>
+            <div style="display:flex; gap:34px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#4A463C">
+              <span>Selvaggina</span><span>Tartufo</span><span>Formaggi</span><span>Vini</span><span>Box</span>
+            </div>
+            <div style="display:flex; gap:24px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#4A463C"><span>IT / EN</span><span>Cerca</span><span>Carrello (0)</span></div>
+          </div>
+
+          <!-- hero editoriale: split -->
+          <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); border-top:1px solid #E7E2D6">
+            <div style="padding:96px 64px 96px 72px; display:flex; flex-direction:column; justify-content:center">
+              <div style="font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#7C6B3F; margin-bottom:26px">Spoleto · Umbria</div>
+              <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:70px; line-height:1.04; letter-spacing:-.01em; text-wrap:pretty">Wild Italy — la bottega di Spoleto, ora anche a casa tua</h1>
+              <p style="margin:28px 0 40px; font-size:16px; line-height:1.8; color:#57534A; max-width:440px">Selvaggina, tartufo, formaggi. Una selezione corta e ragionata, con la nota di gusto di chi te la darebbe da assaggiare al bancone.</p>
+              <div style="display:flex; gap:28px; align-items:center">
+                <span style="background:#1D1B16; color:#FBF9F4; padding:17px 34px; font-size:12px; letter-spacing:.16em; text-transform:uppercase">Inizia dalla degustazione</span>
+                <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; border-bottom:1px solid #A9884B; padding-bottom:4px; color:#7C6B3F">Vedi le categorie</span>
+              </div>
+            </div>
+            <div style="height:660px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#8D8674; text-align:center">FOTO: still life salumi + tartufo<br>luce naturale, fondo chiaro<br>775×660</div>
+          </div>
+
+          <!-- chi siamo, una riga -->
+          <div style="padding:80px 72px; border-top:1px solid #E7E2D6; display:grid; grid-template-columns:200px minmax(0,1fr); gap:48px">
+            <div style="font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#8D8674">Chi siamo</div>
+            <p style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:34px; line-height:1.4; max-width:900px; text-wrap:pretty">Bottega storica nel centro di Spoleto. Lavoriamo con norcini e piccoli produttori umbri che conosciamo per nome. Vendiamo solo ciò che assaggeremmo noi — e ti diciamo sempre perché.</p>
+          </div>
+
+          <!-- specialità: tre lastre alte -->
+          <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid #E7E2D6">
+            <div style="border-right:1px solid #E7E2D6">
+              <div style="height:440px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#8D8674">FOTO: cervo affettato</div>
+              <div style="padding:32px 36px 44px">
+                <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300">Selvaggina</div>
+                <p style="margin:12px 0 0; font-size:14px; line-height:1.8; color:#57534A">Cervo, capriolo, cinghiale. Magri, stagionati lenti, poco sale.</p>
+              </div>
+            </div>
+            <div style="border-right:1px solid #E7E2D6">
+              <div style="height:440px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#8D8674">FOTO: tartufo nero</div>
+              <div style="padding:32px 36px 44px">
+                <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300">Tartufo</div>
+                <p style="margin:12px 0 0; font-size:14px; line-height:1.8; color:#57534A">Nero pregiato di Spoleto e Norcia. Fresco, in salsa, sui salumi.</p>
+              </div>
+            </div>
+            <div>
+              <div style="height:440px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#8D8674">FOTO: pecorini</div>
+              <div style="padding:32px 36px 44px">
+                <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300">Formaggi</div>
+                <p style="margin:12px 0 0; font-size:14px; line-height:1.8; color:#57534A">Pecorini di fossa, di grotta, freschi di malga.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- box carosello su oliva -->
+          <div style="background:#3E4630; padding:80px 0 88px; color:#F2EFE4">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 72px; margin-bottom:36px">
+              <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:44px">Box e degustazioni</h2>
+              <div style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#C8C6B4"><span>← Prec</span><span style="color:#F2EFE4">Succ →</span></div>
+            </div>
+            <div style="display:flex; gap:28px; padding:0 72px; overflow:hidden">
+              <div style="flex:0 0 404px">
+                <div style="height:300px; background:repeating-linear-gradient(135deg,#4A523B 0 12px,#434B35 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#A6AC91">FOTO: tre salami selvaggina</div>
+                <div style="padding:22px 0 0">
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300">Degustazione salumi di selvaggina</div>
+                  <p style="margin:8px 0 14px; font-size:13px; line-height:1.7; color:#C8C6B4">Cervo, capriolo, cinghiale, pecorino stagionato.</p>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="font-size:20px">49,00 €</span><span style="font-size:13px; color:#9BA089; text-decoration:line-through">58,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 404px">
+                <div style="height:300px; background:repeating-linear-gradient(135deg,#4A523B 0 12px,#434B35 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#A6AC91">FOTO: box umbria</div>
+                <div style="padding:22px 0 0">
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300">Box Umbria</div>
+                  <p style="margin:8px 0 14px; font-size:13px; line-height:1.7; color:#C8C6B4">Ciauscolo, pecorino di fossa, olio, miele, Sagrantino.</p>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="font-size:20px">62,00 €</span><span style="font-size:13px; color:#9BA089; text-decoration:line-through">74,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 404px">
+                <div style="height:300px; background:repeating-linear-gradient(135deg,#4A523B 0 12px,#434B35 12px 24px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#A6AC91">FOTO: tagliere tartufo</div>
+                <div style="padding:22px 0 0">
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300">Box Tartufo</div>
+                  <p style="margin:8px 0 14px; font-size:13px; line-height:1.7; color:#C8C6B4">Salsa tartufata, crema di pecorino, salame al tartufo, olio.</p>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="font-size:20px">58,00 €</span><span style="font-size:13px; color:#9BA089; text-decoration:line-through">69,00 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 404px; opacity:.35">
+                <div style="height:300px; background:repeating-linear-gradient(135deg,#4A523B 0 12px,#434B35 12px 24px)"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- come funziona -->
+          <div style="padding:88px 72px">
+            <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:56px">
+              <div>
+                <div style="font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#A9884B">Passo uno</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; margin-top:14px">Scegli e ordina online</div>
+                <p style="margin:10px 0 0; font-size:14px; line-height:1.8; color:#57534A">Ogni prodotto porta la sua nota di gusto. Nel dubbio, si parte da una degustazione.</p>
+              </div>
+              <div>
+                <div style="font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#A9884B">Passo due</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; margin-top:14px">Prepariamo con cura</div>
+                <p style="margin:10px 0 0; font-size:14px; line-height:1.8; color:#57534A">Tagliato e confezionato in bottega il giorno stesso della spedizione.</p>
+              </div>
+              <div>
+                <div style="font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#A9884B">Passo tre</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; margin-top:14px">Arriva a casa tua</div>
+                <p style="margin:10px 0 0; font-size:14px; line-height:1.8; color:#57534A">Corriere refrigerato in 24/48h, schede di assaggio incluse.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7 categorie come indice tipografico -->
+          <div style="border-top:1px solid #E7E2D6; padding:64px 72px 80px">
+            <div style="font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:#8D8674; margin-bottom:28px">Le sette categorie</div>
+            <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:#E7E2D6">
+              <div style="background:#FBF9F4; padding:28px 24px"><div style="height:120px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); margin-bottom:18px"></div><div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300">Salumi di selvaggina</div><div style="font-size:12px; color:#8D8674; margin-top:6px">12 prodotti</div></div>
+              <div style="background:#FBF9F4; padding:28px 24px"><div style="height:120px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); margin-bottom:18px"></div><div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300">Salumi tradizionali</div><div style="font-size:12px; color:#8D8674; margin-top:6px">18 prodotti</div></div>
+              <div style="background:#FBF9F4; padding:28px 24px"><div style="height:120px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); margin-bottom:18px"></div><div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300">Formaggi</div><div style="font-size:12px; color:#8D8674; margin-top:6px">14 prodotti</div></div>
+              <div style="background:#FBF9F4; padding:28px 24px"><div style="height:120px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); margin-bottom:18px"></div><div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300">Tartufo e salse</div><div style="font-size:12px; color:#8D8674; margin-top:6px">21 prodotti</div></div>
+              <div style="background:#FBF9F4; padding:28px 24px"><div style="height:120px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); margin-bottom:18px"></div><div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300">Vini di Montefalco</div><div style="font-size:12px; color:#8D8674; margin-top:6px">9 etichette</div></div>
+              <div style="background:#FBF9F4; padding:28px 24px"><div style="height:120px; background:repeating-linear-gradient(135deg,#EDE8DB 0 12px,#E5DFCF 12px 24px); margin-bottom:18px"></div><div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300">Dispensa</div><div style="font-size:12px; color:#8D8674; margin-top:6px">Olio, miele, riso</div></div>
+              <div style="background:#3E4630; color:#F2EFE4; padding:28px 24px; grid-column:span 2; display:flex; flex-direction:column; justify-content:flex-end"><div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300">Confezioni regalo e degustazioni</div><div style="font-size:12px; color:#C8C6B4; margin-top:8px">Per chi non sa scegliere — o vuole regalare l'Umbria</div></div>
+            </div>
+          </div>
+
+          <!-- negozio fisico full bleed -->
+          <div style="position:relative; height:520px; background:repeating-linear-gradient(135deg,#E5DFCF 0 12px,#DCD5C2 12px 24px); display:flex; align-items:flex-end">
+            <div style="position:absolute; top:24px; left:72px; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.14em; color:#8D8674">FOTO AUTENTICA: esterno bottega, Spoleto — 1440×520</div>
+            <div style="padding:0 72px 64px; max-width:620px">
+              <h2 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:300; font-size:44px; color:#1D1B16">Se passi da Spoleto, entra.</h2>
+              <p style="margin:14px 0 0; font-size:15px; line-height:1.8; color:#3E3A32">Via Filitteria 12 · Lun–Sab 8:30–13:30 / 16:00–20:00</p>
+            </div>
+          </div>
+
+          <!-- footer -->
+          <div style="background:#1D1B16; color:#C9C4B6; padding:72px 72px 36px">
+            <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1.4fr; gap:56px">
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:26px; letter-spacing:.14em; text-transform:uppercase; color:#F2EFE4">Wild Italy</div>
+                <p style="margin:16px 0 0; font-size:13px; line-height:1.9">Via Filitteria 12, Spoleto (PG)<br>+39 0743 000000 · ciao@wilditaly.it</p>
+              </div>
+              <div style="font-size:13px; line-height:2.2"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#8A8474; margin-bottom:12px">Bottega</div>Selvaggina<br>Formaggi<br>Tartufo<br>Vini</div>
+              <div style="font-size:13px; line-height:2.2"><div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#8A8474; margin-bottom:12px">Servizio</div>Spedizioni<br>Conservazione<br>Resi<br>Contatti</div>
+              <div>
+                <div style="font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#8A8474; margin-bottom:12px">Newsletter</div>
+                <p style="margin:0 0 16px; font-size:13px; line-height:1.8">Una mail al mese: stagionature nuove, abbinamenti.</p>
+                <div style="display:flex; align-items:center; border-bottom:1px solid #4A463C; padding-bottom:10px"><span style="flex:1; font-size:13px; color:#8A8474">la tua email</span><span style="font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#C0A05C">Iscrivimi</span></div>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:52px; padding-top:22px; border-top:1px solid #332F28; font-size:12px; letter-spacing:.08em; color:#8A8474">
+              <span>© 2026 Wild Italy</span>
+              <div style="display:flex; gap:24px"><span>Instagram</span><span>Facebook</span><span><span style="color:#F2EFE4">IT</span> / EN</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ GRUPPO: SCHERMATE (direzione 1a) ============ -->
+  <div style="display:flex; flex-direction:column; gap:20px">
+    <div style="font-family:'Courier New',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8C7F6E">Schermate di sistema · direzione 1a</div>
+    <div style="display:flex; flex-wrap:wrap; gap:56px; align-items:flex-start">
+
+      <!-- ---------- 1c CATEGORIA ---------- -->
+      <div id="1c" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1c</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Categoria — Salumi di selvaggina</span>
+        </div>
+        <div style="width:1200px; background:#F6F0E4; color:#2A211A; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 48px; border-bottom:1px solid #E0D3BC">
+            <span style="font-family:'EB Garamond',serif; font-size:24px">Wild Italy</span>
+            <div style="display:flex; gap:24px; font-size:13px; color:#4A3C2E"><span style="border-bottom:2px solid #7A1E2A; padding-bottom:3px">Selvaggina</span><span>Salumi</span><span>Formaggi</span><span>Tartufo</span><span>Vini</span><span>Box</span></div>
+            <span style="border:1px solid #B08A3E; padding:6px 12px; font-size:13px">Carrello · 0</span>
+          </div>
+
+          <div style="padding:16px 48px 0; font-size:12px; color:#8A7355; font-family:'Courier New',monospace; letter-spacing:.1em">BOTTEGA / SALUMI DI SELVAGGINA</div>
+
+          <div style="padding:24px 48px 40px; display:grid; grid-template-columns:minmax(0,1fr) 420px; gap:56px; align-items:start">
+            <div>
+              <h1 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:52px; line-height:1.1">Salumi di selvaggina</h1>
+              <p style="margin:16px 0 0; font-size:16px; line-height:1.8; color:#5C4C3C; max-width:600px">Carni magre di bosco, stagionate lente. Tre caratteri diversi: si parte dal più dolce e si arriva al più deciso. Ogni scheda ti dice che sapore aspettarti.</p>
+            </div>
+            <div style="background:#EFE6D5; border-left:3px solid #C4A96E; padding:24px 26px">
+              <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#7A1E2A; margin-bottom:10px">NON SAI DA DOVE INIZIARE?</div>
+              <div style="font-family:'EB Garamond',serif; font-size:24px; line-height:1.3">Prendi la degustazione: i tre salami insieme, con le schede di assaggio.</div>
+              <div style="margin-top:16px; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:#7A1E2A">Vedi la degustazione →</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; padding:0 48px 28px; align-items:center; border-bottom:1px solid #E0D3BC; padding-bottom:20px">
+            <span style="font-size:12px; font-family:'Courier New',monospace; letter-spacing:.14em; color:#8A7355">FILTRA</span>
+            <span style="border:1px solid #C0AE8E; padding:8px 16px; font-size:13px">Nota di gusto ▾</span>
+            <span style="border:1px solid #C0AE8E; padding:8px 16px; font-size:13px">Formato ▾</span>
+            <span style="border:1px solid #C0AE8E; padding:8px 16px; font-size:13px">Prezzo ▾</span>
+            <span style="margin-left:auto; font-size:13px; color:#8A7355">3 prodotti</span>
+          </div>
+
+          <div style="padding:36px 48px 64px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px">
+
+            <div style="background:#FFFCF5; border:1px solid #E6DACA">
+              <div style="position:relative; height:340px; background:repeating-linear-gradient(135deg,#DCD0B9 0 10px,#D4C7AD 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: salame di cervo</div>
+              <div style="padding:22px 22px 26px">
+                <sc-if value="{{ mostraBadgeArtigianale }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#4A5A36; margin-bottom:8px">PRODUZIONE ARTIGIANALE</div>
+                </sc-if>
+                <div style="font-family:'EB Garamond',serif; font-size:28px">Salame di Cervo</div>
+                <div style="margin-top:14px; background:#F3EADA; border-left:3px solid #7A1E2A; padding:12px 14px">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#7A1E2A; margin-bottom:4px">NOTA DI GUSTO</div>
+                  <div style="font-family:'EB Garamond',serif; font-style:italic; font-size:18px; line-height:1.4; color:#3A2C1E">Più dolce e leggermente affumicato</div>
+                </div>
+                <div style="display:flex; align-items:baseline; justify-content:space-between; margin-top:18px">
+                  <span style="font-family:'EB Garamond',serif; font-size:24px; color:#7A1E2A">14,50 €</span>
+                  <span style="font-size:13px; color:#8A7355">280 g circa</span>
+                </div>
+                <div style="margin-top:16px; text-align:center; background:#2B2015; color:#F3E6CF; padding:13px; font-size:12px; letter-spacing:.12em; text-transform:uppercase">Aggiungi al carrello</div>
+              </div>
+            </div>
+
+            <div style="background:#FFFCF5; border:1px solid #E6DACA">
+              <div style="height:340px; background:repeating-linear-gradient(135deg,#DCD0B9 0 10px,#D4C7AD 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: salame di capriolo</div>
+              <div style="padding:22px 22px 26px">
+                <sc-if value="{{ mostraBadgeArtigianale }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#4A5A36; margin-bottom:8px">PRODUZIONE ARTIGIANALE</div>
+                </sc-if>
+                <div style="font-family:'EB Garamond',serif; font-size:28px">Salame di Capriolo</div>
+                <div style="margin-top:14px; background:#F3EADA; border-left:3px solid #7A1E2A; padding:12px 14px">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#7A1E2A; margin-bottom:4px">NOTA DI GUSTO</div>
+                  <div style="font-family:'EB Garamond',serif; font-style:italic; font-size:18px; line-height:1.4; color:#3A2C1E">Fine ed elegante, sentore di erbe di bosco</div>
+                </div>
+                <div style="display:flex; align-items:baseline; justify-content:space-between; margin-top:18px">
+                  <span style="font-family:'EB Garamond',serif; font-size:24px; color:#7A1E2A">15,90 €</span>
+                  <span style="font-size:13px; color:#8A7355">280 g circa</span>
+                </div>
+                <div style="margin-top:16px; text-align:center; background:#2B2015; color:#F3E6CF; padding:13px; font-size:12px; letter-spacing:.12em; text-transform:uppercase">Aggiungi al carrello</div>
+              </div>
+            </div>
+
+            <div style="background:#FFFCF5; border:1px solid #E6DACA">
+              <div style="height:340px; background:repeating-linear-gradient(135deg,#DCD0B9 0 10px,#D4C7AD 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: salame di cinghiale</div>
+              <div style="padding:22px 22px 26px">
+                <sc-if value="{{ mostraBadgeArtigianale }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#4A5A36; margin-bottom:8px">PRODUZIONE ARTIGIANALE</div>
+                </sc-if>
+                <div style="font-family:'EB Garamond',serif; font-size:28px">Salame di Cinghiale</div>
+                <div style="margin-top:14px; background:#F3EADA; border-left:3px solid #7A1E2A; padding:12px 14px">
+                  <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#7A1E2A; margin-bottom:4px">NOTA DI GUSTO</div>
+                  <div style="font-family:'EB Garamond',serif; font-style:italic; font-size:18px; line-height:1.4; color:#3A2C1E">Deciso e rustico, chiusura lunga e speziata</div>
+                </div>
+                <div style="display:flex; align-items:baseline; justify-content:space-between; margin-top:18px">
+                  <span style="font-family:'EB Garamond',serif; font-size:24px; color:#7A1E2A">13,90 €</span>
+                  <span style="font-size:13px; color:#8A7355">300 g circa</span>
+                </div>
+                <div style="margin-top:16px; text-align:center; background:#2B2015; color:#F3E6CF; padding:13px; font-size:12px; letter-spacing:.12em; text-transform:uppercase">Aggiungi al carrello</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- 1d PRODOTTO ---------- -->
+      <div id="1d" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1d</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Prodotto — Salame di Cervo</span>
+        </div>
+        <div style="width:1200px; background:#F6F0E4; color:#2A211A; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 48px; border-bottom:1px solid #E0D3BC">
+            <span style="font-family:'EB Garamond',serif; font-size:24px">Wild Italy</span>
+            <div style="display:flex; gap:24px; font-size:13px; color:#4A3C2E"><span style="border-bottom:2px solid #7A1E2A; padding-bottom:3px">Selvaggina</span><span>Salumi</span><span>Formaggi</span><span>Tartufo</span><span>Vini</span><span>Box</span></div>
+            <span style="border:1px solid #B08A3E; padding:6px 12px; font-size:13px">Carrello · 1</span>
+          </div>
+          <div style="padding:16px 48px 0; font-size:12px; color:#8A7355; font-family:'Courier New',monospace; letter-spacing:.1em">BOTTEGA / SALUMI DI SELVAGGINA / SALAME DI CERVO</div>
+
+          <div style="padding:28px 48px 56px; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:56px; align-items:start">
+
+            <!-- galleria -->
+            <div style="display:flex; flex-direction:column; gap:14px">
+              <div style="height:560px; background:repeating-linear-gradient(135deg,#DCD0B9 0 10px,#D4C7AD 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:13px; letter-spacing:.12em; color:#7E6F58; text-align:center">FOTO 1: salame intero su tagliere<br>580×560</div>
+              <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px">
+                <div style="height:150px; background:repeating-linear-gradient(135deg,#D4C7AD 0 10px,#CBBDA1 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:11px; color:#7E6F58; text-align:center">FOTO 2<br>affettato</div>
+                <div style="height:150px; background:repeating-linear-gradient(135deg,#D4C7AD 0 10px,#CBBDA1 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:11px; color:#7E6F58; text-align:center">FOTO 3<br>dettaglio grana</div>
+                <div style="height:150px; background:repeating-linear-gradient(135deg,#D4C7AD 0 10px,#CBBDA1 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:11px; color:#7E6F58; text-align:center">FOTO 4<br>confezione</div>
+              </div>
+            </div>
+
+            <!-- info -->
+            <div>
+              <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.2em; color:#4A5A36">SELVAGGINA · UMBRIA</div>
+              <h1 style="margin:10px 0 0; font-family:'EB Garamond',serif; font-weight:500; font-size:54px; line-height:1.05">Salame di Cervo</h1>
+              <p style="margin:16px 0 0; font-size:16px; line-height:1.8; color:#5C4C3C">Carne di cervo selezionata, sale, pepe e una lenta stagionatura in cantina. Il più accessibile dei nostri salumi di selvaggina: piace anche a chi non ha mai provato la selvaggina.</p>
+
+              <div style="margin-top:26px; background:#4A1620; padding:28px 30px">
+                <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.2em; color:#D8B05E; margin-bottom:12px">LA NOTA DI GUSTO DEL BANCONE</div>
+                <div style="font-family:'EB Garamond',serif; font-style:italic; font-size:32px; line-height:1.35; color:#F7EFDF; text-wrap:pretty">«Cervo: più dolce e leggermente affumicato.»</div>
+                <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; font-size:12px; letter-spacing:.08em; color:#E3CFA6">
+                  <span style="border:1px solid #8A6A3A; padding:5px 12px">DOLCEZZA ●●●○○</span>
+                  <span style="border:1px solid #8A6A3A; padding:5px 12px">AFFUMICATO ●●○○○</span>
+                  <span style="border:1px solid #8A6A3A; padding:5px 12px">SAPIDITÀ ●●○○○</span>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:32px; margin-top:28px; padding:20px 0; border-top:1px solid #E0D3BC; border-bottom:1px solid #E0D3BC">
+                <div><div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#8A7355">FORMATO</div><div style="font-size:15px; margin-top:6px">Intero, 280 g circa</div></div>
+                <div><div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#8A7355">STAGIONATURA</div><div style="font-size:15px; margin-top:6px">60 giorni</div></div>
+                <div><div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.16em; color:#8A7355">PRODUTTORE</div><div style="font-size:15px; margin-top:6px">Norcineria di Spoleto</div></div>
+              </div>
+
+              <div style="display:flex; align-items:flex-end; gap:24px; margin-top:26px">
+                <div>
+                  <div style="font-family:'EB Garamond',serif; font-size:44px; color:#7A1E2A; line-height:1">14,50 €</div>
+                  <div style="font-size:13px; color:#8A7355; margin-top:6px">51,80 €/kg · IVA inclusa</div>
+                </div>
+                <div style="display:flex; border:1px solid #C0AE8E; margin-left:auto"><span style="padding:14px 18px">−</span><span style="padding:14px 18px; border-left:1px solid #C0AE8E; border-right:1px solid #C0AE8E">1</span><span style="padding:14px 18px">+</span></div>
+              </div>
+              <div style="margin-top:18px; background:#7A1E2A; color:#F7EFDF; text-align:center; padding:20px; font-size:14px; letter-spacing:.14em; text-transform:uppercase">Aggiungi al carrello</div>
+              <div style="margin-top:12px; font-size:13px; color:#5C4C3C; text-align:center">Spedizione refrigerata · consegna in 24/48h</div>
+
+              <div style="margin-top:34px; display:flex; flex-direction:column; gap:0">
+                <div style="border-top:1px solid #E0D3BC; padding:20px 0">
+                  <div style="font-family:'EB Garamond',serif; font-size:22px; margin-bottom:8px">Ingredienti</div>
+                  <p style="margin:0; font-size:14px; line-height:1.8; color:#5C4C3C">Carne di cervo (70%), carne di suino, sale, pepe nero, aromi naturali, vino bianco. Senza glutine, senza lattosio, senza glutammato. Conservante: E252.</p>
+                </div>
+                <div style="border-top:1px solid #E0D3BC; padding:20px 0">
+                  <div style="font-family:'EB Garamond',serif; font-size:22px; margin-bottom:8px">Conservazione e spedizione</div>
+                  <p style="margin:0; font-size:14px; line-height:1.8; color:#5C4C3C">Conservare in luogo fresco e asciutto (8–14 °C) o in frigorifero nella parte bassa. Una volta aperto, avvolgere il taglio in carta oleata e consumare entro 15 giorni. Spediamo in confezione sottovuoto con imballo isotermico; ordini entro le 12:00 partono lo stesso giorno.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- abbinalo a -->
+          <div style="background:#3A2A1E; padding:56px 48px 60px">
+            <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.22em; color:#C4A96E; margin-bottom:22px">ABBINALO A</div>
+            <div style="display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:40px; align-items:center; background:#F6F0E4; padding:0">
+              <div style="display:grid; grid-template-columns:280px minmax(0,1fr); gap:32px; align-items:center">
+                <div style="height:240px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:11px; color:#7E6F58; text-align:center">FOTO<br>degustazione</div>
+                <div style="padding:28px 0">
+                  <div style="font-family:'EB Garamond',serif; font-size:30px">Degustazione salumi di selvaggina</div>
+                  <p style="margin:10px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C; max-width:440px">Il cervo accanto al capriolo e al cinghiale: è così che si capisce quanto è dolce. Con pecorino stagionato e le tre schede di assaggio.</p>
+                </div>
+              </div>
+              <div style="padding:28px 32px 28px 0; text-align:right">
+                <div style="display:flex; gap:10px; align-items:baseline; justify-content:flex-end"><span style="font-family:'EB Garamond',serif; font-size:32px; color:#7A1E2A">49,00 €</span><span style="font-size:14px; color:#9A8A73; text-decoration:line-through">58,50 €</span></div>
+                <div style="margin-top:16px; display:inline-block; border:1px solid #7A1E2A; color:#7A1E2A; padding:14px 26px; font-size:12px; letter-spacing:.12em; text-transform:uppercase">Aggiungi la degustazione</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- 1e WIDGET BOX ---------- -->
+      <div id="1e" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1e</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Widget — Box e degustazioni</span>
+        </div>
+        <div style="width:860px; background:#3A2A1E; padding:48px; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+          <div style="margin-bottom:28px">
+            <div style="font-family:'Courier New',monospace; font-size:11px; letter-spacing:.22em; color:#C4A96E; margin-bottom:10px">SCEGLIAMO NOI PER TE</div>
+            <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:36px; color:#F5EADA">Box e degustazioni</h2>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px">
+
+            <div style="background:#F6F0E4; display:flex; flex-direction:column">
+              <div style="height:230px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: tre salami + pecorino</div>
+              <div style="padding:26px; display:flex; flex-direction:column; flex:1">
+                <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#7A1E2A; margin-bottom:8px">DEGUSTAZIONE GUIDATA</div>
+                <div style="font-family:'EB Garamond',serif; font-size:28px; line-height:1.2">Degustazione salumi di selvaggina</div>
+                <div style="margin-top:18px; display:flex; flex-direction:column; gap:10px; font-size:14px; color:#4A3C2E">
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Salame di cervo, 280 g <em style="color:#7E6F58; font-style:italic">· dolce, affumicato</em></span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Salame di capriolo, 280 g <em style="color:#7E6F58; font-style:italic">· fine, erbaceo</em></span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Salame di cinghiale, 300 g <em style="color:#7E6F58; font-style:italic">· deciso, speziato</em></span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Pecorino stagionato, 250 g</span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Tre schede di assaggio stampate</span></div>
+                </div>
+                <div style="margin-top:auto; padding-top:24px">
+                  <div style="display:flex; align-items:baseline; gap:12px">
+                    <span style="font-family:'EB Garamond',serif; font-size:34px; color:#7A1E2A">49,00 €</span>
+                    <span style="font-size:14px; color:#9A8A73; text-decoration:line-through">58,50 €</span>
+                    <span style="background:#4A5A36; color:#F0EDDF; font-size:11px; letter-spacing:.1em; padding:4px 8px">RISPARMI 9,50 €</span>
+                  </div>
+                  <div style="margin-top:16px; background:#2B2015; color:#F3E6CF; text-align:center; padding:16px; font-size:12px; letter-spacing:.14em; text-transform:uppercase">Aggiungi al carrello</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#F6F0E4; display:flex; flex-direction:column">
+              <div style="height:230px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:12px; color:#7E6F58">FOTO: box umbria aperto</div>
+              <div style="padding:26px; display:flex; flex-direction:column; flex:1">
+                <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#7A1E2A; margin-bottom:8px">IL REGALO CLASSICO</div>
+                <div style="font-family:'EB Garamond',serif; font-size:28px; line-height:1.2">Box Umbria</div>
+                <div style="margin-top:18px; display:flex; flex-direction:column; gap:10px; font-size:14px; color:#4A3C2E">
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Ciauscolo di Norcia, 400 g</span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Pecorino di fossa, 300 g</span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Salsa tartufata, 90 g</span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Olio EVO umbro, 500 ml</span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Miele di acacia, 250 g</span></div>
+                  <div style="display:flex; gap:10px; align-items:baseline"><span style="color:#B08A3E">—</span><span>Sagrantino di Montefalco DOCG</span></div>
+                </div>
+                <div style="margin-top:auto; padding-top:24px">
+                  <div style="display:flex; align-items:baseline; gap:12px">
+                    <span style="font-family:'EB Garamond',serif; font-size:34px; color:#7A1E2A">62,00 €</span>
+                    <span style="font-size:14px; color:#9A8A73; text-decoration:line-through">74,50 €</span>
+                    <span style="background:#4A5A36; color:#F0EDDF; font-size:11px; letter-spacing:.1em; padding:4px 8px">RISPARMI 12,50 €</span>
+                  </div>
+                  <div style="margin-top:16px; background:#2B2015; color:#F3E6CF; text-align:center; padding:16px; font-size:12px; letter-spacing:.14em; text-transform:uppercase">Aggiungi al carrello</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div style="margin-top:22px; font-size:13px; color:#C0AE8E; text-align:center">Confezionate a mano in bottega · biglietto con dedica su richiesta</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ GRUPPO: MOBILE ============ -->
+  <div style="display:flex; flex-direction:column; gap:20px">
+    <div style="font-family:'Courier New',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8C7F6E">Mobile · 390 px</div>
+    <div style="display:flex; flex-wrap:wrap; gap:56px; align-items:flex-start">
+
+      <!-- ---------- 1f MOBILE HOME ---------- -->
+      <div id="1f" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1f</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Homepage mobile</span>
+        </div>
+        <div style="width:390px; background:#F6F0E4; color:#2A211A; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+          <div style="background:#2B2015; color:#E9D9B8; display:flex; justify-content:space-between; padding:8px 18px; font-size:11px"><span>9:41</span><span>▮▮▮ ⌁ ▰</span></div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid #E0D3BC">
+            <span style="font-size:22px">☰</span>
+            <span style="font-family:'EB Garamond',serif; font-size:22px">Wild Italy</span>
+            <span style="font-size:13px; border:1px solid #B08A3E; padding:4px 8px">0</span>
+          </div>
+
+          <div style="position:relative; height:440px; background:repeating-linear-gradient(135deg,#3B2C22 0 12px,#33261D 12px 24px); display:flex; align-items:flex-end">
+            <div style="position:absolute; top:14px; left:14px; font-family:'Courier New',monospace; font-size:10px; color:#9C8A6E; border:1px dashed #6B5843; padding:4px 8px">FOTO: bancone bottega</div>
+            <div style="padding:0 20px 28px">
+              <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#D8B05E; margin-bottom:12px">SPOLETO · UMBRIA</div>
+              <h1 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:34px; line-height:1.12; color:#F7EFDF; text-wrap:pretty">Wild Italy — la bottega di Spoleto, ora anche a casa tua</h1>
+              <div style="margin-top:22px; background:#7A1E2A; color:#F7EFDF; text-align:center; padding:18px; font-size:13px; letter-spacing:.1em; text-transform:uppercase">Fatti guidare nella scelta</div>
+            </div>
+          </div>
+
+          <div style="padding:28px 20px; border-bottom:1px solid #E0D3BC">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.2em; color:#8A7355; margin-bottom:12px">CHI SIAMO</div>
+            <p style="margin:0; font-family:'EB Garamond',serif; font-size:22px; line-height:1.5">Bottega storica nel centro di Spoleto: selvaggina, tartufo e formaggi da piccoli produttori umbri. Vendiamo solo ciò che assaggeremmo noi.</p>
+          </div>
+
+          <div style="padding:28px 0 28px 20px">
+            <h2 style="margin:0 0 16px; font-family:'EB Garamond',serif; font-weight:500; font-size:26px">Le specialità</h2>
+            <div style="display:flex; gap:14px; overflow:hidden">
+              <div style="flex:0 0 220px; background:#EFE6D5">
+                <div style="height:180px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: cervo</div>
+                <div style="padding:16px"><div style="font-family:'EB Garamond',serif; font-size:22px">Selvaggina</div><p style="margin:6px 0 0; font-size:13px; line-height:1.6; color:#5C4C3C">Cervo, capriolo, cinghiale.</p></div>
+              </div>
+              <div style="flex:0 0 220px; background:#EFE6D5">
+                <div style="height:180px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: tartufo</div>
+                <div style="padding:16px"><div style="font-family:'EB Garamond',serif; font-size:22px">Tartufo</div><p style="margin:6px 0 0; font-size:13px; line-height:1.6; color:#5C4C3C">Nero pregiato di Spoleto.</p></div>
+              </div>
+              <div style="flex:0 0 60px; background:#EFE6D5; opacity:.5"></div>
+            </div>
+          </div>
+
+          <div style="background:#3A2A1E; padding:28px 0 32px 20px">
+            <h2 style="margin:0 0 16px; font-family:'EB Garamond',serif; font-weight:500; font-size:26px; color:#F5EADA">Box e degustazioni</h2>
+            <div style="display:flex; gap:14px; overflow:hidden">
+              <div style="flex:0 0 250px; background:#F6F0E4">
+                <div style="height:160px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: degustazione</div>
+                <div style="padding:16px">
+                  <div style="font-family:'EB Garamond',serif; font-size:20px; line-height:1.25">Degustazione salumi di selvaggina</div>
+                  <div style="margin-top:10px; display:flex; gap:8px; align-items:baseline"><span style="font-family:'EB Garamond',serif; font-size:22px; color:#7A1E2A">49,00 €</span><span style="font-size:12px; color:#9A8A73; text-decoration:line-through">58,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 250px; background:#F6F0E4">
+                <div style="height:160px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58">FOTO: box umbria</div>
+                <div style="padding:16px">
+                  <div style="font-family:'EB Garamond',serif; font-size:20px; line-height:1.25">Box Umbria</div>
+                  <div style="margin-top:10px; display:flex; gap:8px; align-items:baseline"><span style="font-family:'EB Garamond',serif; font-size:22px; color:#7A1E2A">62,00 €</span><span style="font-size:12px; color:#9A8A73; text-decoration:line-through">74,50 €</span></div>
+                </div>
+              </div>
+              <div style="flex:0 0 40px; background:#F6F0E4; opacity:.4"></div>
+            </div>
+          </div>
+
+          <div style="padding:28px 20px; display:flex; flex-direction:column; gap:20px">
+            <h2 style="margin:0; font-family:'EB Garamond',serif; font-weight:500; font-size:26px">Come funziona</h2>
+            <div style="display:flex; gap:16px; align-items:baseline; border-top:1px solid #E0D3BC; padding-top:14px"><span style="font-family:'EB Garamond',serif; font-size:30px; color:#C4A96E">01</span><div><div style="font-family:'EB Garamond',serif; font-size:20px">Scegli e ordina online</div><p style="margin:4px 0 0; font-size:13px; line-height:1.65; color:#5C4C3C">Ogni prodotto ha la sua nota di gusto.</p></div></div>
+            <div style="display:flex; gap:16px; align-items:baseline; border-top:1px solid #E0D3BC; padding-top:14px"><span style="font-family:'EB Garamond',serif; font-size:30px; color:#C4A96E">02</span><div><div style="font-family:'EB Garamond',serif; font-size:20px">Prepariamo con cura</div><p style="margin:4px 0 0; font-size:13px; line-height:1.65; color:#5C4C3C">Tagliato e confezionato in bottega.</p></div></div>
+            <div style="display:flex; gap:16px; align-items:baseline; border-top:1px solid #E0D3BC; padding-top:14px"><span style="font-family:'EB Garamond',serif; font-size:30px; color:#C4A96E">03</span><div><div style="font-family:'EB Garamond',serif; font-size:20px">Arriva a casa tua</div><p style="margin:4px 0 0; font-size:13px; line-height:1.65; color:#5C4C3C">Corriere refrigerato in 24/48h.</p></div></div>
+          </div>
+
+          <div style="padding:8px 20px 32px">
+            <h2 style="margin:0 0 14px; font-family:'EB Garamond',serif; font-weight:500; font-size:26px">Scaffali</h2>
+            <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px">
+              <div style="height:120px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:12px"><span style="font-family:'EB Garamond',serif; font-size:18px">Salumi di selvaggina</span></div>
+              <div style="height:120px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:12px"><span style="font-family:'EB Garamond',serif; font-size:18px">Salumi tradizionali</span></div>
+              <div style="height:120px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:12px"><span style="font-family:'EB Garamond',serif; font-size:18px">Formaggi</span></div>
+              <div style="height:120px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:12px"><span style="font-family:'EB Garamond',serif; font-size:18px">Tartufo e salse</span></div>
+              <div style="height:120px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:12px"><span style="font-family:'EB Garamond',serif; font-size:18px">Vini</span></div>
+              <div style="height:120px; background:repeating-linear-gradient(135deg,#D4C7AF 0 10px,#CCBEA4 10px 20px); display:flex; align-items:flex-end; padding:12px"><span style="font-family:'EB Garamond',serif; font-size:18px">Dispensa</span></div>
+              <div style="height:120px; background:#7A1E2A; display:flex; align-items:flex-end; padding:12px; grid-column:span 2"><span style="font-family:'EB Garamond',serif; font-size:18px; color:#F3E6CF">Confezioni regalo e degustazioni</span></div>
+            </div>
+          </div>
+
+          <div style="height:300px; background:repeating-linear-gradient(135deg,#CFC2A9 0 10px,#C7B99E 10px 20px); display:flex; align-items:flex-end; padding:20px"><span style="font-family:'EB Garamond',serif; font-size:24px; color:#2B2015">Se passi da Spoleto, entra.</span></div>
+
+          <div style="background:#2B2015; color:#D8CBB5; padding:32px 20px 24px">
+            <div style="font-family:'EB Garamond',serif; font-size:24px; color:#F3E6CF">Wild Italy</div>
+            <p style="margin:12px 0 20px; font-size:13px; line-height:1.8">Via Filitteria 12, Spoleto (PG)<br>+39 0743 000000 · ciao@wilditaly.it</p>
+            <div style="display:flex; border:1px solid #6B5843"><span style="flex:1; padding:14px; font-size:13px; color:#9C8A6E">la tua email</span><span style="background:#C4A96E; color:#2B2015; padding:14px 16px; font-size:11px; letter-spacing:.1em">ISCRIVIMI</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:24px; padding-top:16px; border-top:1px solid #4A3A2A; font-size:12px; color:#9C8A6E">
+              <div style="display:flex; gap:16px"><span>Instagram</span><span>Facebook</span></div>
+              <span style="display:flex; border:1px solid #6B5843"><span style="padding:5px 10px; background:#C4A96E; color:#2B2015">IT</span><span style="padding:5px 10px">EN</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- 1g MOBILE PRODOTTO ---------- -->
+      <div id="1g" style="display:flex; flex-direction:column; gap:12px">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="background:#B08A3E; color:#221A12; font-family:'Courier New',monospace; font-size:13px; font-weight:700; letter-spacing:.1em; padding:4px 10px">1g</span>
+          <span style="color:#EDE4D4; font-family:'EB Garamond',serif; font-size:22px">Prodotto mobile — Salame di Cervo</span>
+        </div>
+        <div style="width:390px; background:#F6F0E4; color:#2A211A; box-shadow:0 30px 70px rgba(0,0,0,.45)">
+          <div style="background:#2B2015; color:#E9D9B8; display:flex; justify-content:space-between; padding:8px 18px; font-size:11px"><span>9:41</span><span>▮▮▮ ⌁ ▰</span></div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid #E0D3BC">
+            <span style="font-size:18px">←</span>
+            <span style="font-family:'EB Garamond',serif; font-size:20px">Wild Italy</span>
+            <span style="font-size:13px; border:1px solid #B08A3E; padding:4px 8px">1</span>
+          </div>
+
+          <div style="height:390px; background:repeating-linear-gradient(135deg,#DCD0B9 0 10px,#D4C7AD 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:11px; color:#7E6F58; position:relative">
+            FOTO 1: salame intero
+            <div style="position:absolute; bottom:14px; left:0; right:0; display:flex; gap:6px; justify-content:center"><span style="width:22px; height:3px; background:#7A1E2A"></span><span style="width:22px; height:3px; background:#00000033"></span><span style="width:22px; height:3px; background:#00000033"></span><span style="width:22px; height:3px; background:#00000033"></span></div>
+          </div>
+
+          <div style="padding:22px 20px 0">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#4A5A36">SELVAGGINA · UMBRIA</div>
+            <h1 style="margin:8px 0 0; font-family:'EB Garamond',serif; font-weight:500; font-size:36px; line-height:1.08">Salame di Cervo</h1>
+            <p style="margin:12px 0 0; font-size:14px; line-height:1.75; color:#5C4C3C">Carne di cervo selezionata, sale, pepe e stagionatura lenta in cantina. Il più accessibile dei nostri salumi di selvaggina.</p>
+
+            <div style="margin-top:20px; background:#4A1620; padding:20px">
+              <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#D8B05E; margin-bottom:10px">LA NOTA DI GUSTO</div>
+              <div style="font-family:'EB Garamond',serif; font-style:italic; font-size:24px; line-height:1.35; color:#F7EFDF">«Cervo: più dolce e leggermente affumicato.»</div>
+              <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; font-size:11px; color:#E3CFA6">
+                <span style="border:1px solid #8A6A3A; padding:4px 10px">DOLCEZZA ●●●○○</span>
+                <span style="border:1px solid #8A6A3A; padding:4px 10px">AFFUMICATO ●●○○○</span>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:24px; margin-top:20px; padding:16px 0; border-top:1px solid #E0D3BC; border-bottom:1px solid #E0D3BC">
+              <div><div style="font-family:'Courier New',monospace; font-size:10px; color:#8A7355">FORMATO</div><div style="font-size:14px; margin-top:4px">280 g circa</div></div>
+              <div><div style="font-family:'Courier New',monospace; font-size:10px; color:#8A7355">STAGIONATURA</div><div style="font-size:14px; margin-top:4px">60 giorni</div></div>
+            </div>
+
+            <div style="border-bottom:1px solid #E0D3BC; padding:18px 0">
+              <div style="display:flex; justify-content:space-between; align-items:center"><span style="font-family:'EB Garamond',serif; font-size:20px">Ingredienti</span><span style="color:#8A7355">+</span></div>
+              <p style="margin:10px 0 0; font-size:13px; line-height:1.75; color:#5C4C3C">Carne di cervo (70%), carne di suino, sale, pepe nero, aromi naturali, vino bianco. Senza glutine e lattosio.</p>
+            </div>
+            <div style="border-bottom:1px solid #E0D3BC; padding:18px 0">
+              <div style="display:flex; justify-content:space-between; align-items:center"><span style="font-family:'EB Garamond',serif; font-size:20px">Conservazione e spedizione</span><span style="color:#8A7355">+</span></div>
+            </div>
+          </div>
+
+          <div style="padding:24px 20px 28px">
+            <div style="font-family:'Courier New',monospace; font-size:10px; letter-spacing:.18em; color:#8A7355; margin-bottom:12px">ABBINALO A</div>
+            <div style="background:#EFE6D5; display:flex; gap:14px; align-items:center">
+              <div style="width:110px; height:110px; flex:0 0 110px; background:repeating-linear-gradient(135deg,#D9CDB6 0 10px,#D1C4AA 10px 20px); display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:10px; color:#7E6F58; text-align:center">FOTO<br>degust.</div>
+              <div style="padding:12px 14px 12px 0">
+                <div style="font-family:'EB Garamond',serif; font-size:19px; line-height:1.25">Degustazione salumi di selvaggina</div>
+                <div style="margin-top:8px; display:flex; gap:8px; align-items:baseline"><span style="font-family:'EB Garamond',serif; font-size:20px; color:#7A1E2A">49,00 €</span><span style="font-size:12px; color:#9A8A73; text-decoration:line-through">58,50 €</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- barra sticky -->
+          <div style="position:sticky; bottom:0; background:#F6F0E4; border-top:1px solid #E0D3BC; padding:14px 20px 20px; display:flex; gap:14px; align-items:center">
+            <div>
+              <div style="font-family:'EB Garamond',serif; font-size:26px; color:#7A1E2A; line-height:1">14,50 €</div>
+              <div style="font-size:11px; color:#8A7355; margin-top:2px">280 g · 51,80 €/kg</div>
+            </div>
+            <div style="flex:1; background:#7A1E2A; color:#F7EFDF; text-align:center; padding:18px; font-size:13px; letter-spacing:.1em; text-transform:uppercase">Aggiungi</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mostraBarraAnnuncio&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenuti&quot;},&quot;mostraBadgeArtigianale&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenuti&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      mostraBarraAnnuncio: this.props.mostraBarraAnnuncio ?? true,
+      mostraBadgeArtigianale: this.props.mostraBadgeArtigianale ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
