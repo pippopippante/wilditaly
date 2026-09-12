@@ -224,7 +224,7 @@ input,select,textarea{font:inherit;color:inherit}
 .hdr{position:sticky;top:0;z-index:60;background:var(--paper)}
 .hdr__bar{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  border-bottom:1px solid var(--line);padding:10px var(--pad) 0;
+  border-bottom:1px solid var(--line);padding:10px var(--pad);
 }
 .brand{display:flex;flex-direction:column;line-height:1;align-items:center}
 .brand__name{font-family:var(--serif);font-size:24px;letter-spacing:.02em;color:var(--ink)}
@@ -238,8 +238,7 @@ input,select,textarea{font:inherit;color:inherit}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 @media (max-width:1119px){
-  body[data-pagina="prodotto"] .hdr__bar:not(.hdr__ctx),
-  body[data-pagina="prodotto"] .hdr__searchwrap{display:none}
+  body[data-pagina="prodotto"] .hdr__bar:not(.hdr__ctx){display:none}
   .hdr__ctx{
     display:flex;align-items:center;justify-content:space-between;
     height:56px;padding:0 6px;border-bottom:1px solid var(--line);
@@ -255,15 +254,6 @@ input,select,textarea{font:inherit;color:inherit}
 }
 .badge[hidden]{display:none}
 
-/* ricerca sempre visibile su mobile (schermata 2a) */
-.hdr__searchwrap{padding:0 var(--pad);border-bottom:1px solid var(--line);background:var(--paper)}
-.hdr__search{
-  display:flex;align-items:center;gap:10px;width:100%;height:48px;
-  background:var(--sand);border:1px solid #DFD1B8;padding:0 14px;
-  color:var(--meta);font-size:15px;text-align:left;margin:4px 0 14px;
-}
-.hdr__search .ico{width:18px;height:18px;flex:0 0 auto}
-
 @media (min-width:1120px){
   .hdr__bar{padding:22px var(--pad);align-items:center}
   .brand{align-items:flex-start}
@@ -278,7 +268,6 @@ input,select,textarea{font:inherit;color:inherit}
   .hdr__side .txtbtn{display:inline-flex;align-items:center;gap:7px;width:auto;height:auto}
   .hdr__side .txtbtn:hover{color:var(--wine)}
   .sr-lg{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:nowrap}
-  .hdr__searchwrap{display:none}
   .menu-toggle,.cart-icon-btn{display:none}
   .cart-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--brass);padding:6px 12px;font-size:13px}
   .cart-pill:hover{border-color:var(--wine);color:var(--wine)}

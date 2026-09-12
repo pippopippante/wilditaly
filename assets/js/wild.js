@@ -213,11 +213,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
       </button>
     </div>
   </div>
-  <div class="hdr__searchwrap">
-    <button class="hdr__search" data-open="cerca">
-      ${ico("search")}<span>Cerca: cervo, tartufo, Sagrantino…</span>
-    </button>
-  </div>
 </header>`;
   }
 

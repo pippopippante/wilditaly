@@ -40,7 +40,7 @@ e i due `<script>` in fondo.
 
 ## Breakpoint
 
-- `< 1120px` — layout mobile/tablet: menu a scomparsa, ricerca sempre visibile,
+- `< 1120px` — layout mobile/tablet: menu a scomparsa, ricerca dalla lente nell'header,
   barra di navigazione fissa in basso (5 voci, tap target 48–56 px).
 - `>= 1120px` — layout desktop: navigazione orizzontale, griglie a 3–4 colonne.
 
