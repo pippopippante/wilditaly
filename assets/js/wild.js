@@ -844,7 +844,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
             (t) => `
 <div class="tbar">
   <span class="tbar__l">${esc(t.nome)}</span>
-  <span class="tbar__t"><span class="tbar__f" style="width:${t.valore}%"></span></span>
+  <span class="stars" role="img" aria-label="${t.valore} su 5">${"★".repeat(t.valore)}<span class="stars__off">${"★".repeat(5 - t.valore)}</span></span>
 </div>`
           )
           .join("")}</div>`

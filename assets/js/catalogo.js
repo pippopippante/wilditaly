@@ -124,9 +124,9 @@ window.CATALOGO = (function () {
       nota: "Più dolce e leggermente affumicato",
       notaBancone: "«Cervo: più dolce e leggermente affumicato.»",
       profilo: [
-        { nome: "DOLCEZZA", valore: 60 },
-        { nome: "AFFUMICATO", valore: 40 },
-        { nome: "SAPIDITÀ", valore: 35 }
+        { nome: "DOLCEZZA", valore: 3 },
+        { nome: "AFFUMICATO", valore: 2 },
+        { nome: "SAPIDITÀ", valore: 2 }
       ],
       schede: { FORMATO: "Intero, 280 g circa", STAGIONATURA: "60 giorni", PRODUTTORE: "Norcineria di Spoleto" },
       galleria: [
@@ -171,6 +171,11 @@ window.CATALOGO = (function () {
         "Il più fine dei tre. Carne di capriolo, sale, pepe e stagionatura lenta: il bosco si sente nelle erbe, non nella selvatichezza.",
       nota: "Fine ed elegante, sentore di erbe di bosco",
       notaBancone: "«Capriolo: fine ed elegante, sentore di erbe di bosco.»",
+      profilo: [
+        { nome: "DOLCEZZA", valore: 2 },
+        { nome: "AFFUMICATO", valore: 1 },
+        { nome: "SAPIDITÀ", valore: 3 }
+      ],
       galleria: ["FOTO 1: salame di capriolo su tagliere", "FOTO 2: affettato", "FOTO 3: dettaglio grana"],
       schede: { FORMATO: "Intero, 280 g circa", PRODUTTORE: "Norcineria di Spoleto" },
       ingredienti:
@@ -197,6 +202,11 @@ window.CATALOGO = (function () {
         "Il carattere più deciso del banco: cinghiale, pepe in grani e una chiusura lunga e speziata. Da tagliere, con pane sciapo.",
       nota: "Deciso e rustico, chiusura lunga e speziata",
       notaBancone: "«Cinghiale: deciso e rustico, chiusura lunga e speziata.»",
+      profilo: [
+        { nome: "DOLCEZZA", valore: 1 },
+        { nome: "AFFUMICATO", valore: 2 },
+        { nome: "SAPIDITÀ", valore: 4 }
+      ],
       galleria: ["FOTO 1: salame di cinghiale su tagliere", "FOTO 2: affettato", "FOTO 3: dettaglio grana"],
       schede: { FORMATO: "Intero, 300 g circa", PRODUTTORE: "Norcineria di Spoleto" },
       ingredienti:
