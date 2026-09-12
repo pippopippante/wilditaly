@@ -471,42 +471,47 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
     const padSx = () => parseFloat(getComputedStyle(rail).paddingLeft) || 0;
     const scorre = () => rail.scrollWidth > rail.clientWidth + 4;
 
-    /* indice della scheda allineata al bordo sinistro del carosello */
+    /* Le posizioni in cui il carosello si può davvero fermare, una per tacca.
+       Le ultime schede non arrivano mai al bordo sinistro (il carosello finisce
+       prima): condividono la posizione finale, così l'ultima tacca si accende. */
+    function fermate() {
+      const max = rail.scrollWidth - rail.clientWidth;
+      const pos = [];
+      voci().forEach((el) => {
+        const p = Math.min(el.offsetLeft - rail.offsetLeft - padSx(), max);
+        if (!pos.length || p - pos[pos.length - 1] > 4) pos.push(p);
+      });
+      return pos;
+    }
+
+    /* indice della fermata più vicina alla posizione attuale */
     function attiva() {
-      const list = voci();
-      if (!list.length) return 0;
-      const rif = rail.getBoundingClientRect().left + padSx();
+      const pos = fermate();
       let best = 0;
-      let dist = Infinity;
-      list.forEach((el, i) => {
-        const d = Math.abs(el.getBoundingClientRect().left - rif);
-        if (d < dist - 1) {
-          dist = d;
-          best = i;
-        }
+      pos.forEach((p, i) => {
+        if (Math.abs(p - rail.scrollLeft) < Math.abs(pos[best] - rail.scrollLeft)) best = i;
       });
       return best;
     }
 
     function vaiA(i) {
-      const list = voci();
-      const el = list[Math.max(0, Math.min(list.length - 1, i))];
-      if (el) rail.scrollTo({ left: el.offsetLeft - rail.offsetLeft - padSx(), behavior: "smooth" });
+      const pos = fermate();
+      if (pos.length) rail.scrollTo({ left: pos[Math.max(0, Math.min(pos.length - 1, i))], behavior: "smooth" });
     }
 
     function costruisci() {
       if (!dots) return;
-      const list = voci();
-      if (!scorre() || list.length < 2) {
+      const n = fermate().length;
+      if (!scorre() || n < 2) {
         dots.innerHTML = "";
         dots.hidden = true;
         return;
       }
       dots.hidden = false;
-      dots.innerHTML = list
+      dots.innerHTML = Array.from({ length: n })
         .map(
           (_, i) =>
-            `<button type="button" data-p="${i}" aria-label="Vai alla scheda ${i + 1} di ${list.length}"${i === 0 ? ' aria-current="true"' : ""}></button>`
+            `<button type="button" data-p="${i}" aria-label="Scorri alla posizione ${i + 1} di ${n}"${i === 0 ? ' aria-current="true"' : ""}></button>`
         )
         .join("");
     }
