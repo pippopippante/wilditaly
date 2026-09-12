@@ -351,8 +351,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
         body.innerHTML = `
 <div class="cart-empty">
   <div class="h3">Il carrello è vuoto</div>
-  <p class="body">Se non sai da dove partire, una degustazione è il modo più semplice.</p>
-  <a class="btn btn--wineline btn--sm" href="box.html" style="margin-top:18px">Vedi i box</a>
+  <p class="body">Se non sai da dove partire, ti guidiamo noi.</p>
+  <a class="btn btn--wineline btn--sm" href="selezione.html?s=guida" style="margin-top:18px">Fatti guidare</a>
 </div>`;
         if (foot) foot.hidden = true;
         return;
@@ -744,6 +744,52 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
     disegna();
   }
 
+  /* ---- selezione: guida alla scelta, idee regalo, sotto i 20 € */
+  function mountSelezione() {
+    const s = C.sel(new URLSearchParams(location.search).get("s"));
+    const host = $("[data-sel-sezioni]");
+    if (!s) {
+      host.innerHTML = `
+<div class="wrap"><div class="empty">
+  <div class="h3">Selezione non trovata</div>
+  <a class="btn btn--wineline btn--sm" style="margin-top:18px" href="index.html">Torna alla bottega</a>
+</div></div>`;
+      return;
+    }
+    document.title = s.titolo + " · Wild Italy";
+    $("[data-sel-crumb]").innerHTML = `<a href="index.html">Bottega</a> / ${esc(s.titolo)}`;
+    $("[data-sel-occhiello]").textContent = s.occhiello;
+    $("[data-sel-title]").textContent = s.titolo;
+    $("[data-sel-intro]").textContent = s.intro;
+
+    /* Le sezioni scelte a mano sono caroselli su mobile (griglia su desktop);
+       quelle a regola possono essere lunghe e restano griglia. */
+    host.innerHTML = s.sezioni
+      .map((z) => {
+        const lista = z.prodotti
+          ? z.prodotti.map(C.get).filter(Boolean)
+          : C.prodotti
+              .filter((p) => !p.inArrivo && p.tipo !== "box" && z.filtro(p))
+              .sort((a, b) => a.prezzo - b.prezzo);
+        const card = lista.map(prodCard).join("");
+        return `
+<section class="sec sec--tight">
+  <div class="wrap">
+    ${z.titolo ? `<h2 class="h2">${esc(z.titolo)}</h2>` : ""}
+    ${z.testo ? `<p class="body measure" style="margin-top:8px">${esc(z.testo)}</p>` : ""}
+    ${z.prodotti ? "" : `<div class="grid-3" style="margin-top:24px">${card}</div>`}
+  </div>
+  ${
+    z.prodotti
+      ? `<div class="rail rail--sel" style="margin-top:20px">${card}</div>
+  <div class="dots" aria-label="${esc(z.titolo || s.titolo)}"></div>`
+      : ""
+  }
+</section>`;
+      })
+      .join("");
+  }
+
   /* ---- prodotto */
   function mountProdotto() {
     const slug = new URLSearchParams(location.search).get("p") || "salame-di-cervo";
@@ -1089,6 +1135,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in 
     if (pagina === "box") mountBox();
     if (pagina === "categoria") mountCategoria();
     if (pagina === "prodotto") mountProdotto();
+    if (pagina === "selezione") mountSelezione();
 
     $$(".rail").forEach(initRail);
     initAcc();

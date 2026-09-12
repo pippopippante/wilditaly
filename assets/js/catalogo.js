@@ -548,10 +548,78 @@ window.CATALOGO = (function () {
 
   /* -------------------------------------------------------------- extra */
   const scorciatoie = [
-    { t: "Non so cosa scegliere", href: "box.html" },
-    { t: "Idea regalo", href: "box.html#regalo" },
+    { t: "Non so cosa scegliere", href: "selezione.html?s=guida" },
+    { t: "Idea regalo", href: "selezione.html?s=regalo" },
     { t: "Primo assaggio", href: "prodotto.html?p=degustazione-selvaggina" },
-    { t: "Sotto i 20 €", href: "categoria.html?c=selvaggina" }
+    { t: "Sotto i 20 €", href: "selezione.html?s=sotto-20" }
+  ];
+
+  /* Pagine selezione.html?s=<slug>: ogni sezione ha un elenco di prodotti
+     oppure una regola (`filtro`) applicata a tutto il catalogo tranne i box. */
+  const selezioni = [
+    {
+      slug: "guida",
+      occhiello: "FATTI GUIDARE",
+      titolo: "Fatti guidare nella scelta",
+      intro: "Dicci cosa ti piace e ti diciamo da dove partire, come faremmo al bancone.",
+      sezioni: [
+        {
+          titolo: "Non hai mai assaggiato la selvaggina",
+          testo: "Parti dal cervo, il più dolce dei tre. Con la degustazione li provi tutti insieme.",
+          prodotti: ["salame-di-cervo", "degustazione-selvaggina"]
+        },
+        {
+          titolo: "Ti piacciono i sapori decisi",
+          testo: "Pepe, stagionature lunghe e tanto carattere.",
+          prodotti: ["salame-di-cinghiale", "coglione-del-mulo", "pecorino-13-mesi"]
+        },
+        {
+          titolo: "Per un aperitivo con gli amici",
+          testo: "Uno da spalmare, uno da affettare e uno da versare.",
+          prodotti: ["ciauscolo", "salame-ubriaco", "sagrantino-montefalco"]
+        },
+        {
+          titolo: "Vuoi qualcosa da cucinare",
+          testo: "Legumi umbri e un tocco di tartufo.",
+          prodotti: ["lenticchie-umbre", "zuppa-rapida", "salsa-tartufata"]
+        }
+      ]
+    },
+    {
+      slug: "regalo",
+      occhiello: "IDEE REGALO",
+      titolo: "Idee regalo",
+      intro: "Pensa a chi lo riceve: ecco cosa sceglieremmo noi.",
+      sezioni: [
+        {
+          titolo: "Per chi ama cucinare",
+          testo: "Dalla nostra dispensa, per chi sta volentieri ai fornelli.",
+          prodotti: ["lenticchie-umbre", "zuppa-rapida", "olio-tartufo-bianco", "salsa-tartufata"]
+        },
+        {
+          titolo: "Per il buongustaio curioso",
+          testo: "Sapori che al supermercato non si trovano.",
+          prodotti: ["degustazione-selvaggina", "salame-di-capriolo", "coglione-del-mulo"]
+        },
+        {
+          titolo: "Per chi ama il tartufo",
+          testo: "Salumi, oli e salse col profumo del bosco.",
+          prodotti: ["box-tartufo", "salame-cinghiale-tartufo", "olio-tartufo-nero"]
+        },
+        {
+          titolo: "Per chi ama il vino",
+          testo: "Il Sagrantino e quello che ci va accanto.",
+          prodotti: ["sagrantino-montefalco", "box-umbria", "pecorino-13-mesi"]
+        }
+      ]
+    },
+    {
+      slug: "sotto-20",
+      occhiello: "PICCOLA SPESA",
+      titolo: "Sotto i 20 €",
+      intro: "Tutto quello che in bottega costa meno di 20 €, dal meno caro.",
+      sezioni: [{ filtro: (p) => p.prezzo < 20 }]
+    }
   ];
 
   const bottega = {
@@ -570,6 +638,7 @@ window.CATALOGO = (function () {
   const byCat = (slug) => prodotti.filter((p) => p.categoria === slug && !p.inArrivo);
   const get = (slug) => prodotti.find((p) => p.slug === slug) || null;
   const cat = (slug) => categorie.find((c) => c.slug === slug) || null;
+  const sel = (slug) => selezioni.find((s) => s.slug === slug) || null;
 
-  return { categorie, prodotti, scorciatoie, bottega, byCat, get, cat };
+  return { categorie, prodotti, scorciatoie, selezioni, bottega, byCat, get, cat, sel };
 })();

@@ -18,6 +18,7 @@ npx serve .        # oppure: python -m http.server
 | `categoria.html?c=<slug>` | 1c — categoria, template per tutti gli scaffali |
 | `prodotto.html?p=<slug>` | 1d (desktop) + 2b (mobile) — scheda prodotto |
 | `box.html` | 1e — box e degustazioni |
+| `selezione.html?s=<slug>` | non nel mockup — `guida` (fatti guidare), `regalo` (idee regalo), `sotto-20`; dati in `selezioni` di `catalogo.js` |
 | `info.html` | spedizioni / conservazione / resi / contatti |
 
 `1b` (direzione editoriale) e `1f`/`1g` (mobile del turno 1) non sono implementate:

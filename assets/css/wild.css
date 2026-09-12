@@ -405,25 +405,26 @@ input,select,textarea{font:inherit;color:inherit}
 .rail{
   display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
   padding-left:var(--pad);padding-right:var(--pad);
+  scroll-padding-inline:var(--pad); /* senza, lo snap aggancia la prima scheda al bordo e salta il padding */
   scrollbar-width:none;-webkit-overflow-scrolling:touch;
 }
 .rail::-webkit-scrollbar{display:none}
 .rail>*{scroll-snap-align:start;flex:0 0 auto}
 @media (min-width:760px){ .rail{gap:var(--gap)} }
-.rail--cat>*{width:250px}
+.rail--cat>*,.rail--sel>*{width:250px}
 .rail--box>*{width:260px}
 .rail--pair>*{width:250px}
 @media (min-width:760px){
-  .rail--cat>*{width:min(340px,72vw)}
+  .rail--cat>*,.rail--sel>*{width:min(340px,72vw)}
   .rail--box>*{width:min(360px,78vw)}
   .rail--pair>*{width:min(340px,72vw)}
 }
 @media (min-width:1120px){ .rail--box>*{width:400px} .rail--pair>*{width:400px} }
-/* su desktop la vetrina delle specialità torna griglia a 3 (schermata 1a) */
+/* su desktop la vetrina delle specialità e le selezioni tornano griglia a 3 (schermata 1a) */
 @media (min-width:1120px){
-  .rail--cat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
-  .rail--cat>*{width:auto}
-  .rail--cat + .dots{display:none}
+  .rail--cat,.rail--sel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
+  .rail--cat>*,.rail--sel>*{width:auto}
+  .rail--cat + .dots,.rail--sel + .dots{display:none}
 }
 .dots{display:flex;gap:6px;padding:14px var(--pad) 0}
 .dots button{width:28px;height:3px;background:#D8CBB5;display:block}
