@@ -1,5 +1,6 @@
 /* ==========================================================================
    Wild Italy — comportamento del sito
+   Codice di Emanuele Parmegiani.
    Chrome condiviso (header, pannelli, footer, barra mobile), carrello,
    ricerca, caroselli, galleria, filtri, fisarmoniche.
    ========================================================================== */

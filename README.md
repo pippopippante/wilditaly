@@ -1,5 +1,7 @@
 # Wild Italy
 
+Codice di Emanuele Parmegiani.
+
 Implementazione del documento di design `Wild Italy.dc.html` (progetto Claude Design
 `5d883d42-fdf6-4457-9e95-25598407a515`), sulla **direzione 1a — bottega calda**
 (legno, vinaccia, ottone), con il mobile del **turno 2** (schermate 2a / 2b).

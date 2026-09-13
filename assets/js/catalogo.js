@@ -1,5 +1,6 @@
 /* ==========================================================================
    Wild Italy — catalogo
+   Codice di Emanuele Parmegiani.
    Tutti i dati sono estratti dal documento di design "Wild Italy.dc.html".
    Ingredienti, valori nutrizionali e i prodotti fuori dal mockup vengono
    dalle etichette del vecchio sito (`sito vecchio/prodotti_sito_vecchio.md`).
