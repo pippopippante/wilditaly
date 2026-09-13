@@ -194,7 +194,7 @@
   function headerHtml() {
     const b = C.bottega;
     return `
-${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Spedizione refrigerata in tutta Italia · consegna in 24/48h</div>' : ""}
+${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Salumi sottovuoto · spedizione in tutta Italia · consegna in 48h</div>' : ""}
 <header class="hdr">
   ${document.body.dataset.pagina === "prodotto" ? ctxBarHtml() : ""}
   <div class="hdr__bar">
