@@ -642,7 +642,7 @@ window.CATALOGO = (function () {
     telHref: "tel:+393349206466",
     email: "parmegianidiego@gmail.com",
     piva: "P.IVA 03718700549",
-    mappa: "https://www.openstreetmap.org/search?query=Via%20Porta%20Fuga%2026%20Spoleto",
+    mappa: "https://www.google.com/maps/dir/?api=1&destination=Via%20Porta%20Fuga%2026%2C%2006049%20Spoleto%20PG",
     instagram: "https://www.instagram.com/wilditalytartufi/",
     facebook: "https://www.facebook.com/Wild-Italy-tartufi-100391668390820/"
   };

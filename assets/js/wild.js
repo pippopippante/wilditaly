@@ -193,8 +193,10 @@
 
   function headerHtml() {
     const b = C.bottega;
+    /* la barra annuncio si vede SOLO su telefono (vedi .announce in wild.css):
+       l'ha chiesto l'utente, non rimetterla su tablet e PC */
     return `
-${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Salumi sottovuoto · spedizione in tutta Italia · consegna in 48h</div>' : ""}
+${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuoto e a casa tua in 48h</div>' : ""}
 <header class="hdr">
   ${document.body.dataset.pagina === "prodotto" ? ctxBarHtml() : ""}
   <div class="hdr__bar">
@@ -282,7 +284,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">Salumi sottovuoto · spedi
   <div class="panel__body">
     <nav class="menu-list" aria-label="Categorie">${navHtml("menu")}</nav>
     <div class="menu-extra">
-      <a href="index.html#chi-siamo">La nostra storia</a>
+      <a href="storia.html">La nostra storia</a>
       <a href="info.html#spedizioni">Spedizioni e consegne</a>
       <a href="info.html#conservazione">Conservazione</a>
       <a href="info.html#contatti">Contatti</a>

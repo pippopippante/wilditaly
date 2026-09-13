@@ -214,11 +214,13 @@ input,select,textarea{font:inherit;color:inherit}
 .ph--4.ph--tag .ph__note{border-color:#A2947C;color:#786A54}
 
 /* ------------------------------------------------------- barra annuncio */
+/* SOLO TELEFONO (sotto i 760 px), per richiesta esplicita dell'utente (2026-09-13):
+   su tablet e PC la barra NON va rimessa. */
 .announce{
   background:var(--wine-deep);color:#E9D9B8;text-align:center;
-  padding:10px 16px;font-size:12px;letter-spacing:.05em;
+  padding:10px 16px;font-size:12px;letter-spacing:.05em;text-wrap:balance;
 }
-@media (min-width:760px){ .announce{font-size:13px;letter-spacing:.06em} }
+@media (min-width:760px){ .announce{display:none} }
 [data-annuncio="off"] .announce{display:none}
 [data-badge-artigianale="off"] .badge-craft{display:none}
 
@@ -528,11 +530,11 @@ input,select,textarea{font:inherit;color:inherit}
 .shelf__i--wine span{color:var(--cream-2);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .shelf__i--wine .ico{color:#E3C79A;width:18px;height:18px;flex:0 0 auto}
 
-.shop{position:relative;display:flex;align-items:flex-end;min-height:340px}
+.shop{position:relative;display:flex;align-items:flex-end;min-height:340px;padding-top:200px}
 .shop>.ph{position:absolute;inset:0}
 .shop__card{position:relative;background:var(--paper);margin:0 16px 16px;padding:22px 20px;flex:1;min-width:0}
 @media (min-width:1120px){
-  .shop{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:stretch;min-height:480px;background:var(--sand)}
+  .shop{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:stretch;min-height:480px;padding-top:0;background:var(--sand)}
   .shop>.ph{position:relative;inset:auto;min-height:480px}
   .shop__card{margin:0;padding:72px var(--pad);display:flex;flex-direction:column;justify-content:center;background:var(--sand)}
 }
@@ -687,6 +689,27 @@ input,select,textarea{font:inherit;color:inherit}
   background:var(--sand);border:1px dashed var(--line-strong);padding:16px 18px;
   font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--meta);line-height:1.7;
 }
+
+/* ---------------------------------------------------------------- storia */
+/* capitoli: su telefono una linea del tempo, su desktop testo e foto alternati */
+.chap{position:relative;display:grid;gap:22px;padding:0 0 40px 26px;border-left:1px solid var(--line-strong)}
+.chap:last-child{padding-bottom:0}
+.chap::before{content:"";position:absolute;left:-5px;top:14px;width:9px;height:9px;background:var(--brass)}
+.chap__luogo{font-family:var(--serif);font-size:44px;line-height:1;color:var(--brass)}
+.chap .ph{height:240px}
+@media (min-width:760px){ .chap .ph{height:360px} }
+@media (min-width:1120px){
+  .chaps{display:grid;gap:clamp(56px,6vw,96px)}
+  .chap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;padding:0;border-left:0}
+  .chap::before{display:none}
+  .chap:nth-child(even) .ph{order:-1}
+  .chap .ph{height:460px}
+  .chap__luogo{font-size:72px}
+}
+
+/* il claim, da solo su fondo legno */
+.story-claim{text-align:center}
+.story-claim::before{content:"";display:block;width:48px;height:2px;background:var(--gold);margin:0 auto 26px}
 
 /* ---------------------------------------------------------------- toast */
 .toasts{
