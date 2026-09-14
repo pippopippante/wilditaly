@@ -45,7 +45,7 @@ e i due `<script>` in fondo.
 ## Breakpoint
 
 - `< 1120px` — layout mobile/tablet: menu a scomparsa, ricerca dalla lente nell'header,
-  barra di navigazione fissa in basso (5 voci, tap target 48–56 px).
+  barra di navigazione fissa in basso (4 voci: Bottega, Cerca, Carrello, Account; tap target 48–56 px).
 - `>= 1120px` — layout desktop: navigazione orizzontale, griglie a 3–4 colonne.
 
 Sulla scheda prodotto sotto i 1120 px l'intestazione diventa contestuale

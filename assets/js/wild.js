@@ -38,7 +38,6 @@
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol>
 <symbol id="i-bag" viewBox="0 0 24 24"><path d="M4 7h16v14H4z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/></symbol>
 <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1.5C4 16.5 7.6 15 12 15s8 1.5 8 4.5V21"/></symbol>
-<symbol id="i-box" viewBox="0 0 24 24"><path d="M3 4h18v16H3z"/><path d="M3 9h18"/><path d="M12 4v5"/></symbol>
 <symbol id="i-shop" viewBox="0 0 24 24"><path d="M3 9l1.6-5h14.8L21 9"/><path d="M4.5 9v11h15V9"/><path d="M9.5 20v-6h5v6"/></symbol>
 <symbol id="i-right" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
 <symbol id="i-left" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
@@ -329,7 +328,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 <nav class="tabbar" aria-label="Navigazione rapida">
   <a href="index.html" data-tab="home">${ico("shop")}<span>Bottega</span></a>
   <button data-open="cerca">${ico("search")}<span>Cerca</span></button>
-  <a href="box.html" data-tab="box">${ico("box")}<span>Box</span></a>
   <button data-open="carrello">${ico("bag")}<span>Carrello</span><span class="badge" data-cart-badge hidden>0</span></button>
   <button data-account>${ico("user")}<span>Account</span></button>
 </nav>

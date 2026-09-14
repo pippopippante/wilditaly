@@ -372,7 +372,7 @@ input,select,textarea{font:inherit;color:inherit}
 .tabbar{
   position:fixed;left:0;right:0;bottom:0;z-index:70;
   background:var(--paper);border-top:1px solid var(--line);
-  display:grid;grid-template-columns:repeat(5,1fr);
+  display:grid;grid-template-columns:repeat(4,1fr);
   padding:6px 0 max(6px,env(safe-area-inset-bottom));
 }
 .tabbar a,.tabbar button{
