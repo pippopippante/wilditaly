@@ -37,8 +37,9 @@ assets/img/             cartella per le foto definitive
 design/                 copia del documento di design di partenza
 ```
 
-`wild.js` costruisce da solo header, footer, menu, carrello, ricerca e barra di
-navigazione mobile: le pagine contengono solo `<main>`. Ne consegue che per
+`wild.js` costruisce da solo header, footer, menu, carrello, ricerca, barra di
+navigazione mobile e il pulsante WhatsApp fisso in basso a destra (numero da `bottega.telHref`
+in `catalogo.js`): le pagine contengono solo `<main>`. Ne consegue che per
 aggiungere una pagina bastano lo scheletro HTML, `data-pagina="..."` sul `<body>`
 e i due `<script>` in fondo.
 

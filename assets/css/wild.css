@@ -385,6 +385,24 @@ input,select,textarea{font:inherit;color:inherit}
 @media (max-width:1119px){ body{--bar-h:74px} }
 @media (min-width:1120px){ .tabbar{display:none} }
 
+/* ------------------------------------------ WhatsApp, fisso in basso a destra */
+.wa{
+  position:fixed;right:16px;bottom:calc(var(--bar-h) + 16px + var(--wa-su,0px));z-index:80;
+  width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(20,16,12,.3);transition:bottom .25s ease;
+}
+.wa svg{width:30px;height:30px}
+@media (max-width:1119px){
+  /* sopra la barra acquisto della scheda prodotto e la barra della guida */
+  body:has(.buybar.is-on){--wa-su:77px}
+  body[data-pagina="guida"]{--wa-su:104px}
+}
+@media (min-width:1120px){
+  .wa{right:24px;bottom:24px;width:60px;height:60px}
+  .wa svg{width:32px;height:32px}
+}
+
 /* ------------------------------------------------------------------ hero */
 .hero{position:relative;display:flex;align-items:flex-end;min-height:470px}
 @media (min-width:760px){ .hero{min-height:540px} }
