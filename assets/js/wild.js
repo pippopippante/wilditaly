@@ -657,12 +657,37 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     const sc = $('[data-mount="scorciatoie"]');
     if (sc) sc.innerHTML = C.scorciatoie.map((s) => `<a class="chip" href="${s.href}">${esc(s.t)}</a>`).join("");
 
-    /* recensioni: la barretta sotto il carosello segue lo scorrimento */
+    /* recensioni: la barretta sotto il carosello segue lo scorrimento,
+       le frecce (solo con il mouse) spostano di una scheda */
     const rv = $("[data-revs]");
     if (rv) {
-      const bar = rv.nextElementSibling;
+      const sez = rv.closest(".revs");
+      const bar = $(".revs__bar", sez);
+      const [prev, next] = $$("[data-revs-dir]", sez);
+      sez.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-revs-dir]");
+        if (b) rv.scrollBy({ left: b.dataset.revsDir * (rv.firstElementChild.offsetWidth + 16) });
+        const piu = e.target.closest(".rev__piu");
+        if (piu) {
+          const aperta = piu.closest(".rev").classList.toggle("is-aperta");
+          piu.setAttribute("aria-expanded", aperta);
+          piu.textContent = aperta ? "Nascondi" : "Leggi di più";
+        }
+      });
+      /* "Leggi di più" solo sotto i testi davvero tagliati: si misura a font caricati */
+      document.fonts.ready.then(() =>
+        $$(".rev__t", rv).forEach((t) => {
+          if (t.scrollHeight > t.clientHeight + 2)
+            t.insertAdjacentHTML("afterend", '<button type="button" class="rev__piu" aria-expanded="false">Leggi di più</button>');
+        })
+      );
       const segna = () => {
-        bar.hidden = rv.scrollWidth <= rv.clientWidth + 1;
+        /* spente quando la prima / l'ultima scheda si vede tutta: guardare le schede
+           regge a zoom, decimali e al punto in cui lo scroll-snap si ferma */
+        const r = rv.getBoundingClientRect();
+        prev.disabled = rv.firstElementChild.getBoundingClientRect().left >= r.left - 2;
+        next.disabled = rv.lastElementChild.getBoundingClientRect().right <= r.right + 2;
+        bar.hidden = prev.disabled && next.disabled;
         bar.firstElementChild.style.width = (rv.clientWidth / rv.scrollWidth) * 100 + "%";
         bar.firstElementChild.style.transform = `translateX(${(rv.scrollLeft / rv.clientWidth) * 100}%)`;
       };

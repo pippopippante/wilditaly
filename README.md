@@ -75,6 +75,10 @@ hero e "chi siamo" della home, tutti i prodotti tranne Sagrantino e box, tutte l
 Restano segnaposto: vetrina in via Porta Fuga, Sagrantino, tutti i box, categoria vini.
 Pronte ma non usate: `home-*` (vecchia home) e `blog-*` (articoli sul tartufo).
 
+Favicon: `assets/img/favicon.svg` è il marchio (esagono con le montagne) ridisegnato da
+`particolare_logo.jpeg`; `favicon-32.png` e `apple-touch-icon.png` sono ricavati dall'SVG e vanno
+rigenerati se cambia. Il logo completo è `logo.jpeg`.
+
 Gli originali recuperati dal vecchio sito (35 foto) sono in `sito vecchio/foto_recuperate/`,
 i dati dei prodotti (prezzi, ingredienti, valori nutrizionali) in `sito vecchio/prodotti_sito_vecchio.md`.
 
