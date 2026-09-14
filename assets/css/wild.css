@@ -526,6 +526,8 @@ input,select,textarea{font:inherit;color:inherit}
   .shelf__i{position:relative;justify-content:flex-end;min-height:220px}
   .shelf__i .ph{position:absolute;inset:0;height:auto}
   .shelf__i span{position:relative;font-size:24px;padding:20px;color:#2B2015}
+  /* il nome sta sopra la foto: stessa fascia sabbia del telefono, se no non si legge */
+  .shelf__i .ph + span{background:var(--sand);padding:14px 20px}
 }
 .shelf__i--wine{background:var(--wine);grid-column:span 2}
 .shelf__i--wine span{color:var(--cream-2);display:flex;align-items:center;justify-content:space-between;gap:12px}
