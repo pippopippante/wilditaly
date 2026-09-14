@@ -228,12 +228,19 @@ input,select,textarea{font:inherit;color:inherit}
 /* --------------------------------------------------------------- header */
 .hdr{position:sticky;top:0;z-index:60;background:var(--paper)}
 .hdr__bar{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
   border-bottom:1px solid var(--line);padding:10px var(--pad);
 }
-.brand{display:flex;flex-direction:column;line-height:1;align-items:center;justify-content:center;min-height:44px}
+/* marchio (lo stesso della favicon) accanto al nome */
+/* Sul telefono lo spazio fra menu e icone è poco: icone a 44 px, spazi stretti, marchio
+   piccolo e nascosto sotto i 380 px, se no il carrello esce dallo schermo. */
+.hdr__bar .iconbtn{width:44px;height:44px}
+.brand{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px}
+.brand__mark{flex:0 0 auto;width:20px;height:23px;color:var(--wine)}
+@media (max-width:379px){ .brand__mark{display:none} }
+.brand__txt{display:flex;flex-direction:column;align-items:center;line-height:1}
 .brand__name{font-family:var(--serif);font-size:24px;letter-spacing:.02em;color:var(--ink)}
-.brand__sub{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--meta);margin-top:3px;white-space:nowrap}
+.brand__sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--meta);margin-top:3px;white-space:nowrap}
 
 /* intestazione contestuale della scheda prodotto su mobile (schermata 2b) */
 .hdr__ctx{display:none}
@@ -250,7 +257,7 @@ input,select,textarea{font:inherit;color:inherit}
   }
 }
 .hdr__nav{display:none}
-.hdr__side{display:flex;align-items:center;gap:4px}
+.hdr__side{display:flex;align-items:center;gap:0}
 .cart-pill{display:none}
 .badge{
   position:absolute;top:2px;right:2px;background:var(--wine);color:var(--cream);
@@ -260,8 +267,10 @@ input,select,textarea{font:inherit;color:inherit}
 .badge[hidden]{display:none}
 
 @media (min-width:1120px){
-  .hdr__bar{padding:22px var(--pad);align-items:center}
-  .brand{align-items:flex-start}
+  .hdr__bar{padding:22px var(--pad);align-items:center;gap:16px}
+  .brand{gap:12px}
+  .brand__mark{width:34px;height:39px}
+  .brand__txt{align-items:flex-start}
   .brand__name{font-size:28px}
   .brand__sub{font-size:10px;letter-spacing:.24em;margin-top:4px}
   .hdr__nav{display:flex;gap:clamp(14px,1.5vw,28px);font-size:14px;letter-spacing:.04em;color:var(--ink-soft)}
@@ -623,7 +632,7 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:1120px){ .ftr{padding:72px var(--pad) 40px} }
 .ftr__grid{display:grid;gap:26px}
 @media (min-width:1120px){ .ftr__grid{grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:48px} }
-.ftr__name{font-family:var(--serif);font-size:26px;color:var(--cream-2)}
+.ftr__logo{display:block;width:120px;height:auto;border-radius:6px}
 .ftr__addr{margin-top:10px;font-size:14px;line-height:1.8}
 @media (min-width:1120px){ .ftr__addr{margin-top:14px} }
 .ftr__col a{display:block;font-size:14px;line-height:2.1}
@@ -783,6 +792,7 @@ input,select,textarea{font:inherit;color:inherit}
 }
 
 /* il claim, da solo su fondo legno */
+.story-logo{display:block;width:clamp(128px,18vw,176px);height:auto;margin:0 auto 32px;border-radius:8px}
 .story-claim{text-align:center}
 .story-claim::before{content:"";display:block;width:48px;height:2px;background:var(--gold);margin:0 auto 26px}
 

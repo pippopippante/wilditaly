@@ -204,8 +204,11 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <div class="hdr__bar">
     <button class="iconbtn menu-toggle" data-open="menu" aria-label="Apri il menu">${ico("menu")}</button>
     <a class="brand" href="index.html">
-      <span class="brand__name">${esc(b.nome)}</span>
-      <span class="brand__sub">${esc(b.sottotitolo)}</span>
+      <svg class="brand__mark" viewBox="10.5 7.5 43 49" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="4"><path d="M32 10 51.05 21v22L32 54 12.95 43V21z"/><path d="M15 39 25.2 25.7l4.1 4.5-3.4 3.6 9.9-11.7L50 38.9" stroke-width="3.6"/></svg>
+      <span class="brand__txt">
+        <span class="brand__name">${esc(b.nome)}</span>
+        <span class="brand__sub">${esc(b.sottotitolo)}</span>
+      </span>
     </a>
     <nav class="hdr__nav" aria-label="Categorie">${navHtml("hdr")}</nav>
     <div class="hdr__side">
@@ -232,7 +235,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 <footer class="ftr">
   <div class="ftr__grid">
     <div>
-      <div class="ftr__name">${esc(b.nome)}</div>
+      <img class="ftr__logo" src="assets/img/logo.jpeg" alt="${esc(b.nome)}" width="500" height="500" loading="lazy">
       <p class="ftr__addr">${esc(b.via)}<br><a href="${b.telHref}">${esc(b.tel)}</a><br><a href="mailto:${b.email}">${esc(b.email)}</a></p>
     </div>
     <div class="ftr__col">

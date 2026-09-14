@@ -77,7 +77,9 @@ Pronte ma non usate: `home-*` (vecchia home) e `blog-*` (articoli sul tartufo).
 
 Favicon: `assets/img/favicon.svg` è il marchio (esagono con le montagne) ridisegnato da
 `particolare_logo.jpeg`; `favicon-32.png` e `apple-touch-icon.png` sono ricavati dall'SVG e vanno
-rigenerati se cambia. Il logo completo è `logo.jpeg`.
+rigenerati se cambia. Il logo completo è `logo.jpeg`: sta nel footer, in "La nostra storia" e
+nell'anteprima dei link (`og:image` in ogni `<head>`, con l'indirizzo assoluto dell'anteprima
+GitHub Pages: va cambiato quando il sito passa al dominio definitivo).
 
 Gli originali recuperati dal vecchio sito (35 foto) sono in `sito vecchio/foto_recuperate/`,
 i dati dei prodotti (prezzi, ingredienti, valori nutrizionali) in `sito vecchio/prodotti_sito_vecchio.md`.
