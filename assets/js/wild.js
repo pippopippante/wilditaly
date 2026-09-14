@@ -757,6 +757,11 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   function mountSelezione() {
     const s = C.sel(new URLSearchParams(location.search).get("s"));
     const host = $("[data-sel-sezioni]");
+    /* posto nell'ordine scelto a mano (`ordine`); chi non c'è va in fondo */
+    const pos = (z, p) => {
+      const i = (z.ordine || []).indexOf(p.slug);
+      return i < 0 ? 999 : i;
+    };
     if (!s) {
       host.innerHTML = `
 <div class="wrap"><div class="empty">
@@ -779,7 +784,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
           ? z.prodotti.map(C.get).filter(Boolean)
           : C.prodotti
               .filter((p) => !p.inArrivo && p.tipo !== "box" && z.filtro(p))
-              .sort((a, b) => a.prezzo - b.prezzo);
+              .sort((a, b) => pos(z, a) - pos(z, b) || a.prezzo - b.prezzo);
         const card = lista.map(prodCard).join("");
         return `
 <section class="sec sec--tight">

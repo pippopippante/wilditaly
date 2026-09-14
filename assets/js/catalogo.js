@@ -627,8 +627,29 @@ window.CATALOGO = (function () {
       slug: "sotto-20",
       occhiello: "PICCOLA SPESA",
       titolo: "Sotto i 20 €",
-      intro: "Tutto quello che in bottega costa meno di 20 €, dal meno caro.",
-      sezioni: [{ filtro: (p) => p.prezzo < 20 }]
+      intro: "Tutto quello che in bottega costa meno di 20 €.",
+      /* prima due salami, poi si alterna; quello che non è in `ordine` va in fondo, dal meno caro */
+      sezioni: [
+        {
+          filtro: (p) => p.prezzo < 20,
+          ordine: [
+            "salame-di-cervo",
+            "salame-di-cinghiale",
+            "salsa-tartufata",
+            "salame-ubriaco",
+            "lenticchie-umbre",
+            "salame-di-capriolo",
+            "olio-tartufo-nero",
+            "salame-spalmabile",
+            "zuppa-rapida",
+            "salame-cinghiale-tartufo",
+            "olio-tartufo-bianco",
+            "coglione-del-mulo",
+            "salamella-di-fegato",
+            "salamella-di-maiale"
+          ]
+        }
+      ]
     }
   ];
 
