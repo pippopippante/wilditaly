@@ -656,6 +656,20 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
     const sc = $('[data-mount="scorciatoie"]');
     if (sc) sc.innerHTML = C.scorciatoie.map((s) => `<a class="chip" href="${s.href}">${esc(s.t)}</a>`).join("");
+
+    /* recensioni: la barretta sotto il carosello segue lo scorrimento */
+    const rv = $("[data-revs]");
+    if (rv) {
+      const bar = rv.nextElementSibling;
+      const segna = () => {
+        bar.hidden = rv.scrollWidth <= rv.clientWidth + 1;
+        bar.firstElementChild.style.width = (rv.clientWidth / rv.scrollWidth) * 100 + "%";
+        bar.firstElementChild.style.transform = `translateX(${(rv.scrollLeft / rv.clientWidth) * 100}%)`;
+      };
+      rv.addEventListener("scroll", segna, { passive: true });
+      addEventListener("resize", segna);
+      segna();
+    }
   }
 
   /* ---- box: la schermata 1e come pagina */

@@ -8,7 +8,7 @@
 <meta name="description" content="Salumi di selvaggina, tartufo e formaggi di una bottega storica di Spoleto. Spedizione refrigerata in tutta Italia in 24/48h.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/wild.css">
 </head>
 <body data-pagina="home">
@@ -117,6 +117,69 @@
     <div class="wrap" style="margin-top:22px">
       <a class="btn btn--brass btn--block" href="box.html" style="max-width:420px">Vedi tutti i box</a>
     </div>
+  </section>
+
+  <!-- ========================================================= recensioni -->
+  <!-- Sul modello del widget Trustindex di parmax.com, ma con le recensioni della scheda
+       Google della bottega: testi senza modifiche, nomi accorciati. Niente badge
+       "verificato": Google non le verifica. Voto e numero letti il 14/09/2026, vanno
+       aggiornati a mano. -->
+  <section class="revs" aria-labelledby="t-recensioni">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="g-logo" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></symbol>
+    </svg>
+
+    <h2 class="revs__t" id="t-recensioni">Dicono di noi…</h2>
+
+    <div class="revs__sum">
+      <p class="revs__voto">ECCELLENTE</p>
+      <span class="stelle" role="img" aria-label="5,0 stelle su 5"></span>
+      <p class="revs__base">In base a <a href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">523 recensioni</a></p>
+      <p class="revs__g"><svg aria-hidden="true"><use href="#g-logo"/></svg>Google</p>
+    </div>
+
+    <div class="revs__rail" data-revs tabindex="0" role="region" aria-label="Recensioni, scorri di lato">
+      <article class="rev">
+        <div class="rev__h">
+          <span class="rev__av" style="--c:#8E24AA" aria-hidden="true">F</span>
+          <div><p class="rev__n">Francesca A.</p><p class="rev__d">Recensione Google</p></div>
+          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
+        </div>
+        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+        <p class="rev__t">Siamo stati fermati durante una passeggiata a Spoleto per fare una degustazione gratuita di loro salumi formaggi e addirittura anche il vino! Tutto ottimo, Da provare assolutamente i salumi di cervo e di capriolo! Consiglio vivamente.</p>
+      </article>
+      <article class="rev">
+        <div class="rev__h">
+          <span class="rev__av" style="--c:#0277BD" aria-hidden="true">G</span>
+          <div><p class="rev__n">Giovanni F.</p><p class="rev__d">Recensione Google</p></div>
+          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
+        </div>
+        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+        <p class="rev__t">Tutto buonissimo, conquistati dagli assaggi, dentro abbiamo trovato un posto grazioso e con prelibatezze locali. Signori gentili e molto disponibili. Consiglio di fermarsi anche solo per assaggiare, sicuro che non uscirete a mani vuote.</p>
+      </article>
+      <article class="rev">
+        <div class="rev__h">
+          <span class="rev__av" style="--c:#2E7D32" aria-hidden="true">M</span>
+          <div><p class="rev__n">Maurizio L.</p><p class="rev__d">Recensione Google</p></div>
+          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
+        </div>
+        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+        <p class="rev__t">Ci siamo fermati per caso in questo locale in cerca di un aperitivo pre cena. Ampia scelta di salumi e formaggi tutti di alta qualità , dal salame di cinghiale al tartufo al pecorino dolce di amatrice, oltre ad una bruschetta con ventricina eccezionale...Il tutto accompagnato da un ottimo vinello rosso umbro. Top!</p>
+      </article>
+      <article class="rev">
+        <div class="rev__h">
+          <span class="rev__av" style="--c:#EF6C00" aria-hidden="true">F</span>
+          <div><p class="rev__n">Francesca D.</p><p class="rev__d">Recensione Google</p></div>
+          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
+        </div>
+        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+        <p class="rev__t">Abbiamo fatto una piccola sosta qui e non ci siamo pentite. Il proprietario gioviale ci ha preparato un taglierino con prodotti di alta qualità, e ci abbiamo mangiato abbondantemente in due, ci ha anche offerto un bicchiere di rosso.. Veramente delizioso</p>
+      </article>
+    </div>
+    <div class="revs__bar" aria-hidden="true"><span></span></div>
+
+    <a class="revs__btn" href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">Tutte le recensioni su Google</a>
+    <p class="revs__nota">Una selezione dalle recensioni della nostra scheda Google, riportate senza modifiche. Google non verifica che chi scrive sia stato cliente. Voto e numero aggiornati a settembre 2026.</p>
   </section>
 
   <!-- ========================================================= il negozio -->
