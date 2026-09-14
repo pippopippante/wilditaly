@@ -79,6 +79,7 @@
         /* storage non disponibile: il carrello resta in memoria */
       }
       render.carrello();
+      if (render.guida) render.guida();
     },
     id: (slug, formato) => slug + "::" + (formato || ""),
     aggiungi(slug, formato, qta) {
@@ -355,7 +356,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 <div class="cart-empty">
   <div class="h3">Il carrello è vuoto</div>
   <p class="body">Se non sai da dove partire, ti guidiamo noi.</p>
-  <a class="btn btn--wineline btn--sm" href="selezione.html?s=guida" style="margin-top:18px">Fatti guidare</a>
+  <a class="btn btn--wineline btn--sm" href="guida.html" style="margin-top:18px">Fatti guidare</a>
 </div>`;
         if (foot) foot.hidden = true;
         return;
@@ -798,6 +799,234 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       .join("");
   }
 
+  /* ---- guida: la visita guidata fra gli scaffali ("Fatti guidare.dc.html", versione b).
+     Il cesto è il carrello vero: si aggiunge e si toglie direttamente lì, così niente
+     doppioni e il badge dell'header resta giusto. Ogni parte si ridisegna solo se è
+     cambiata, così la foto della tappa non sfarfalla quando aggiungi un prodotto. */
+  function mountGuida() {
+    const host = $("[data-guida]");
+    if (!host) return;
+    const V = C.visita;
+    const FINE = V.length;
+    const wa = "https://wa.me/" + C.bottega.telHref.replace(/\D/g, "");
+    let i = 0;
+
+    host.innerHTML = `
+<aside class="gv-side" aria-label="Il percorso e il cesto" data-gv="side"></aside>
+<div class="gv-stage">
+  <div data-gv="hero"></div>
+  <div class="gv-in" data-gv="in"></div>
+</div>
+<div class="gv-bar" data-gv="bar"></div>`;
+    const parti = $$("[data-gv]", host).map((el) => ({ el: el, nome: el.dataset.gv, html: "" }));
+
+    const qta = (slug) => (Cart.righe.find((r) => r.slug === slug && !r.formato) || {}).qta || 0;
+    const nn = (n) => "0" + n;
+
+    /* "Nel cesto" oppure − n +: stesso riquadro .gv-ctl, stesse misure */
+    function ctl(p) {
+      const n = qta(p.slug);
+      if (!n)
+        return `<button type="button" class="gv-ctl" data-k="add:${p.slug}" aria-label="Metti nel cesto: ${esc(p.nome)}"><span class="gv-sm">Nel cesto</span><span class="gv-lg">Metti nel cesto</span></button>`;
+      return `
+<span class="gv-ctl gv-ctl--on">
+  <button type="button" data-k="dec:${p.slug}" aria-label="Riduci la quantità di ${esc(p.nome)}">${ico("minus")}</button>
+  <span class="gv-ctl__n">${n}</span>
+  <button type="button" data-k="inc:${p.slug}" aria-label="Aumenta la quantità di ${esc(p.nome)}">${ico("plus")}</button>
+</span>`;
+    }
+
+    const riga = (p, sotto, prezzo, azione) => `
+<div class="gv-item">
+  <div class="gv-item__b">
+    <a class="gv-item__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a>
+    <div class="gv-item__m">${sotto}</div>
+  </div>
+  <span class="gv-item__p">${prezzo}</span>
+  ${azione}
+</div>`;
+
+    function disegna(nuovaTappa) {
+      const fine = i >= FINE;
+      const t = V[i];
+      const presi = [];
+      V.forEach((s) =>
+        s.prodotti.forEach((slug) => {
+          const n = qta(slug);
+          if (n) presi.push({ p: C.get(slug), n: n, dove: s.label });
+        })
+      );
+      const pezzi = presi.reduce((a, x) => a + x.n, 0);
+      const totale = euro(presi.reduce((a, x) => a + x.p.prezzo * x.n, 0));
+      const conta = pezzi === 1 ? "Un pezzo nel cesto" : pezzi + " pezzi nel cesto";
+      const tappe = V.map((s, n) => ({
+        n: n,
+        num: nn(n + 1),
+        label: s.label,
+        pezzi: s.prodotti.reduce((a, slug) => a + qta(slug), 0)
+      })).concat({ n: FINE, num: "—", label: "Il cesto e la cassa", pezzi: pezzi });
+      const prossima = fine ? "" : i === FINE - 1 ? null : V[i + 1];
+
+      const html = {};
+
+      html.side = `
+<div class="gv-k">Il percorso</div>
+<ol class="gv-route">${tappe
+        .map(
+          (s) => `
+  <li><button type="button" data-k="go:${s.n}"${s.n === i ? ' class="is-cur" aria-current="step"' : ""}>
+    <span class="gv-route__n">${s.num}</span><span class="gv-route__l">${esc(s.label)}</span><span class="gv-route__b">${s.pezzi ? "· " + s.pezzi : ""}</span>
+  </button></li>`
+        )
+        .join("")}
+</ol>
+<div class="gv-basket">
+  <div class="gv-basket__t">Nel cesto</div>
+  ${
+    presi.length
+      ? presi
+          .map(
+            (x) =>
+              `<div class="gv-line"><span>${esc(x.p.nome)}${x.n > 1 ? " × " + x.n : ""}</span><span>${euro(x.p.prezzo * x.n)}</span></div>`
+          )
+          .join("") +
+        `
+  <div class="gv-tot"><span class="gv-k">Totale</span><span class="gv-tot__v">${totale}</span></div>
+  <button type="button" class="btn btn--wine btn--block" data-open="carrello">Vai al carrello</button>`
+      : `<p class="gv-basket__vuoto">Ancora vuoto. Aggiungi quello che ti va mentre giri: si paga tutto insieme alla fine.</p>`
+  }
+</div>`;
+
+      const foto = fine
+        ? { img: "assets/img/tagliere-bancone.jpg", alt: "Un tagliere di salumi e pecorino preparato al bancone" }
+        : t;
+      html.hero = `
+<div class="gv-hero${foto.img ? "" : " gv-hero--noimg"}${fine ? " gv-hero--fine" : ""}">
+  ${ph(foto.img ? foto.alt : foto.foto, "gv-hero__ph ph--2", "", foto.img)}
+  <div class="gv-cap">
+    <div class="gv-cap__k">${
+      fine
+        ? "<span>Fine del giro</span>"
+        : `<span>Tappa ${nn(i + 1)} di ${nn(FINE)}</span><span class="gv-cap__dove">${esc(t.dove)}</span>`
+    }</div>
+    <h2 class="gv-cap__t" tabindex="-1" data-gv-t>${esc(
+      fine ? (presi.length ? "Fatto: questo è il tuo cesto" : "Giro finito, cesto vuoto") : t.titolo
+    )}</h2>
+  </div>
+</div>`;
+
+      html.in = fine
+        ? `
+<p class="gv-text">${
+            presi.length
+              ? "Lo confezioniamo così come l'hai messo insieme: sottovuoto, con imballo isotermico. Se vuoi cambiare qualcosa, si toglie qui."
+              : "Capita, e non è un problema: a volte serve solo vedere com'è fatta la bottega. Rifai il giro quando vuoi, oppure guarda da dove partiremmo noi."
+          }</p>
+${
+  presi.length
+    ? `<div class="gv-k">Quello che hai preso</div>
+<div class="gv-list">${presi
+        .map((x) =>
+          riga(
+            x.p,
+            `<span class="gv-item__dove">${esc(x.dove)}${x.n > 1 ? " · × " + x.n : ""}</span>`,
+            euro(x.p.prezzo * x.n),
+            `<button type="button" class="gv-togli" data-k="togli:${x.p.slug}" aria-label="Togli dal cesto: ${esc(x.p.nome)}">Togli</button>`
+          )
+        )
+        .join("")}</div>
+<div class="gv-totbox">
+  <div><div class="gv-k">${conta}</div><div class="gv-totbox__v">${totale}</div></div>
+  <div class="gv-totbox__go">
+    <a class="gv-link gv-link--wine" href="${wa}" target="_blank" rel="noopener">Chiedi a noi →</a>
+    <button type="button" class="btn btn--wine" data-open="carrello">Vai al carrello</button>
+  </div>
+</div>`
+    : ""
+}
+<div class="gv-links">
+  <button type="button" class="gv-link" data-k="go:0">Rifai il giro dall'inizio</button>
+  <a class="gv-link gv-link--wine" href="selezione.html?s=guida">Preferisci che scegliamo noi? Ecco da dove partire →</a>
+</div>`
+        : `
+<p class="gv-text">${esc(t.testo)}</p>
+<div class="gv-k">Su questo scaffale</div>
+<div class="gv-list">${t.prodotti
+            .map(C.get)
+            .filter(Boolean)
+            .map((p) =>
+              riga(p, esc([p.peso, C.noteVisita[p.slug] || p.nota].filter(Boolean).join(" · ")), euro(p.prezzo), ctl(p))
+            )
+            .join("")}</div>
+<div class="gv-nav">
+  ${i > 0 ? `<button type="button" class="gv-link" data-k="go:${i - 1}">← Tappa precedente</button>` : ""}
+  <button type="button" class="btn btn--dark" data-k="go:${i + 1}">${esc(
+            prossima ? "Avanti: " + prossima.label : "Chiudi il giro e vedi il cesto"
+          )} →</button>
+</div>`;
+
+      html.bar = `
+<div class="gv-seg" role="group" aria-label="Tappe della visita">${tappe
+        .map(
+          (s) =>
+            `<button type="button" data-k="go:${s.n}" aria-label="${esc(s.label)}"${
+              s.n === i ? ' class="is-cur" aria-current="step"' : s.pezzi && s.n < FINE ? ' class="is-full"' : ""
+            }><span></span></button>`
+        )
+        .join("")}</div>
+<div class="gv-bar__row">
+  <div class="gv-bar__c"><div class="gv-k">${
+    pezzi ? pezzi + (pezzi === 1 ? " pezzo" : " pezzi") : "Cesto vuoto"
+  }</div><div class="gv-bar__v">${totale}</div></div>
+  ${
+    fine
+      ? `<button type="button" class="gv-bar__go gv-bar__go--wine" data-open="carrello">Al carrello</button>`
+      : `<button type="button" class="gv-bar__go" data-k="go:${i + 1}">${esc(
+          prossima ? "Avanti: " + prossima.breve : "Vedi il cesto"
+        )} →</button>`
+  }
+</div>`;
+
+      /* il fuoco resta sul controllo appena usato: "Nel cesto" diventa "+", e "−" a zero torna "Nel cesto" */
+      const ae = document.activeElement;
+      const k = ae && host.contains(ae) ? ae.dataset.k : null;
+      parti.forEach((pt) => {
+        if (pt.html !== html[pt.nome]) pt.el.innerHTML = pt.html = html[pt.nome];
+      });
+      if (nuovaTappa) {
+        $("[data-gv-t]", host).focus({ preventScroll: true });
+        return;
+      }
+      if (k && !host.contains(document.activeElement)) {
+        const alt = k.indexOf("add:") === 0 ? "inc:" + k.slice(4) : "add:" + k.split(":")[1];
+        const el = $('[data-k="' + k + '"]', host) || $('[data-k="' + alt + '"]', host);
+        if (el) el.focus({ preventScroll: true });
+      }
+    }
+
+    function vai(n) {
+      i = Math.max(0, Math.min(FINE, n));
+      disegna(true);
+      /* se la tappa è finita sotto l'header, torna al suo inizio */
+      const hdr = $(".hdr");
+      const su = host.getBoundingClientRect().top - (hdr ? hdr.offsetHeight : 0);
+      if (su < 0) window.scrollBy(0, su);
+    }
+
+    host.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-k]");
+      if (!b) return;
+      const az = b.dataset.k.split(":")[0];
+      const slug = b.dataset.k.split(":")[1];
+      if (az === "go") vai(+slug);
+      else if (az === "add") Cart.aggiungi(slug, null, 1);
+      else Cart.imposta(Cart.id(slug), az === "inc" ? qta(slug) + 1 : az === "dec" ? qta(slug) - 1 : 0);
+    });
+
+    render.guida = () => disegna(false);
+    disegna(false);
+  }
+
   /* ---- prodotto */
   function mountProdotto() {
     const slug = new URLSearchParams(location.search).get("p") || "salame-di-cervo";
@@ -1151,6 +1380,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     if (pagina === "categoria") mountCategoria();
     if (pagina === "prodotto") mountProdotto();
     if (pagina === "selezione") mountSelezione();
+    if (pagina === "guida") mountGuida();
 
     $$(".rail").forEach(initRail);
     initAcc();

@@ -21,6 +21,7 @@ npx serve .        # oppure: python -m http.server
 | `prodotto.html?p=<slug>` | 1d (desktop) + 2b (mobile) — scheda prodotto |
 | `box.html` | 1e — box e degustazioni |
 | `selezione.html?s=<slug>` | non nel mockup — `guida` (fatti guidare), `regalo` (idee regalo), `sotto-20`; dati in `selezioni` di `catalogo.js` |
+| `guida.html` | "Fatti guidare": la visita guidata, versione b di `design/Fatti guidare.dc.html` (progetto `f2739665-509a-4897-a51c-9b998182b4b4`), 1b desktop + 2b mobile; tappe in `visita` di `catalogo.js`, il cesto è il carrello |
 | `info.html` | spedizioni / conservazione / resi / contatti |
 
 `1b` (direzione editoriale) e `1f`/`1g` (mobile del turno 1) non sono implementate:

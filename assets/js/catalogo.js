@@ -558,7 +558,7 @@ window.CATALOGO = (function () {
 
   /* -------------------------------------------------------------- extra */
   const scorciatoie = [
-    { t: "Non so cosa scegliere", href: "selezione.html?s=guida" },
+    { t: "Non so cosa scegliere", href: "guida.html" },
     { t: "Idea regalo", href: "selezione.html?s=regalo" },
     { t: "Primo assaggio", href: "prodotto.html?p=degustazione-selvaggina" },
     { t: "Sotto i 20 €", href: "selezione.html?s=sotto-20" }
@@ -632,6 +632,80 @@ window.CATALOGO = (function () {
     }
   ];
 
+  /* Pagina guida.html, "Fatti guidare": la visita guidata della bottega
+     (design "Fatti guidare.dc.html", versione b). Nome, prezzo e peso dei prodotti
+     vengono dal catalogo; qui ci sono solo il racconto e le note dette al bancone.
+     Le posizioni in bottega (`dove`) sono del design: da confermare con la bottega. */
+  const visita = [
+    {
+      label: "Il banco della selvaggina",
+      breve: "Selvaggina",
+      dove: "Entrando, subito a destra",
+      titolo: "Si parte sempre da qui",
+      testo: "I tre per cui la gente torna, dal più dolce al più deciso.",
+      img: "assets/img/bottega-bancone.jpg",
+      alt: "Il bancone della bottega di Spoleto",
+      prodotti: ["salame-di-cervo", "salame-di-capriolo", "salame-di-cinghiale"]
+    },
+    {
+      label: "I salumi tradizionali",
+      breve: "Tradizionali",
+      dove: "La parete dietro la bilancia",
+      titolo: "Quelli di sempre",
+      testo: "Il banco del maiale: niente selvaggina, quelli di sempre.",
+      img: "assets/img/ciauscolo-1.jpg",
+      alt: "Il salame morbido spalmabile, aperto",
+      prodotti: ["salame-ubriaco", "salame-spalmabile", "coglione-del-mulo", "tascabile"]
+    },
+    {
+      label: "Pecorino e tartufo",
+      breve: "Pecorino",
+      dove: "Vetrina refrigerata, in mezzo",
+      titolo: "La parte che sorprende",
+      testo: "Vetrina refrigerata e scaffale del tartufo, uno di fianco all'altro.",
+      img: "assets/img/pecorino-13-mesi.jpg",
+      alt: "La forma di pecorino stagionato 13 mesi",
+      prodotti: ["pecorino-13-mesi", "salsa-tartufata", "salame-cinghiale-tartufo", "olio-tartufo-nero"]
+    },
+    {
+      label: "La dispensa",
+      breve: "Dispensa",
+      dove: "Scaffale di legno, a sinistra",
+      titolo: "La roba che dura",
+      testo: "Due cose che ti salvano la sera, mezz'ora di cottura.",
+      img: "assets/img/lenticchie.jpg",
+      alt: "Le lenticchie umbre nella confezione",
+      prodotti: ["lenticchie-umbre", "zuppa-rapida"]
+    },
+    {
+      label: "Gli scaffali dei vini",
+      breve: "Vini",
+      dove: "Ultima parete, verso la cassa",
+      titolo: "Con cosa lo bevi",
+      testo: "Montefalco è a mezz'ora da qui.",
+      foto: "FOTO: bottiglie di Montefalco sullo scaffale",
+      prodotti: ["sagrantino-montefalco"]
+    }
+  ];
+
+  /* nota che segue il peso nelle righe della visita.
+     Cervo: niente "affumicato", l'etichetta non lo dice. */
+  const noteVisita = {
+    "salame-di-cervo": "Il più dolce dei tre. Taglialo sottile. Se non hai mai assaggiato la selvaggina, si comincia da qui.",
+    "salame-di-capriolo": "La norcinetta: un pizzico di peperoncino la tiene vivace. Sta in mezzo, fra la dolcezza del cervo e il cinghiale.",
+    "salame-di-cinghiale": "Il più deciso: rustico, grana larga, e la chiusura resta lunga e speziata in bocca.",
+    "salame-ubriaco": "Grana grossa e settimane a macerare nel vino rosso: da lì il nome e il colore scuro della fetta.",
+    "salame-spalmabile": "Una settimana sola di stagionatura, e infatti si spalma sul pane invece di affettarsi.",
+    "coglione-del-mulo": "Il lardello pepato resta intero nel cuore del salame. Stagionatura medio-lunga.",
+    tascabile: "Dalla noce della spalla: il pezzo grosso del banco, da affettare piano.",
+    "pecorino-13-mesi": "Tredici mesi, solo latte di pecora: piccante e asciutto. Da tagliere, o grattugiato. Con il salame di cervo va a braccetto.",
+    "salsa-tartufata": "Tartufo estivo: sulla bruschetta è già una cena, oppure a condire la pasta.",
+    "salame-cinghiale-tartufo": "Il tartufo estivo macinato dentro l'impasto, non aggiunto dopo: saporito, il più pieno del banco.",
+    "olio-tartufo-nero": "Un filo a crudo, mai in cottura: su bruschette, uova, risotti.",
+    "lenticchie-umbre": "Piccole, quindi più delicate delle altre: 25–30 minuti senza ammollo e sono pronte.",
+    "zuppa-rapida": "Legumi e cereali già insieme: mezz'ora e la cena d'inverno è risolta."
+  };
+
   const bottega = {
     nome: "Wild Italy",
     sottotitolo: "BOTTEGA · SPOLETO",
@@ -654,5 +728,5 @@ window.CATALOGO = (function () {
   const cat = (slug) => categorie.find((c) => c.slug === slug) || null;
   const sel = (slug) => selezioni.find((s) => s.slug === slug) || null;
 
-  return { categorie, prodotti, scorciatoie, selezioni, bottega, byCat, get, cat, sel };
+  return { categorie, prodotti, scorciatoie, selezioni, visita, noteVisita, bottega, byCat, get, cat, sel };
 })();

@@ -714,6 +714,155 @@ input,select,textarea{font:inherit;color:inherit}
 .story-claim{text-align:center}
 .story-claim::before{content:"";display:block;width:48px;height:2px;background:var(--gold);margin:0 auto 26px}
 
+/* -------------------------------------------------------- fatti guidare */
+/* guida.html, "Fatti guidare.dc.html" versione b: la visita guidata.
+   Sotto i 1120 px la 2b (foto a tutta larghezza, barra del percorso in basso),
+   sopra la 1b (percorso e cesto a sinistra, tappa a destra). */
+.gv-k{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--meta)}
+
+.gv-hero{position:relative}
+.gv-hero__ph{height:400px;height:clamp(280px,52svh,400px)}
+.gv-hero--fine .gv-hero__ph{height:300px}
+.gv-cap{
+  position:absolute;left:0;right:0;bottom:0;padding:120px var(--pad) 24px;
+  background:linear-gradient(to top,rgba(20,14,10,.8),rgba(20,14,10,.1) 60%,rgba(20,14,10,0));
+}
+.gv-cap__k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-3);margin-bottom:10px}
+.gv-cap__dove::before{content:" · "}
+.gv-cap__t{font-family:var(--serif);font-weight:500;font-size:clamp(2.125rem,1.7rem + 1.8vw,2.5rem);line-height:1.04;color:#FFFDF8;text-wrap:pretty}
+.gv-hero--noimg .gv-cap{background:none}
+.gv-hero--noimg .gv-cap__k{color:var(--wine)}
+.gv-hero--noimg .gv-cap__t{color:var(--ink-strong)}
+
+.gv-text{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink-soft);padding:26px var(--pad) 24px;max-width:40em}
+.gv-in>.gv-k{padding:20px var(--pad) 10px;border-top:1px solid var(--line)}
+
+.gv-list{border-top:1px solid var(--line)}
+.gv-item{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"b c" "p c";
+  align-items:center;gap:4px 14px;padding:18px var(--pad);border-bottom:1px solid var(--line);
+}
+.gv-item__b{grid-area:b;min-width:0}
+.gv-item__n{display:block;font-family:var(--serif);font-size:21px;line-height:1.2;color:var(--ink-strong);margin-bottom:4px}
+.gv-item__n:hover{color:var(--wine)}
+.gv-item__m{font-size:14.5px;line-height:1.5;color:var(--muted)}
+.gv-item__dove{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta)}
+.gv-item__p{grid-area:p;font-size:16px;color:var(--ink);white-space:nowrap}
+.gv-item>.gv-ctl,.gv-item>.gv-togli{grid-area:c}
+
+/* "Nel cesto" e − n + occupano lo stesso identico riquadro: il passaggio
+   non cambia forma né dimensioni (richiesta del cliente). */
+.gv-ctl{
+  width:136px;height:46px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border:1px solid var(--line-strong);background:var(--card);font-size:15px;color:var(--ink);
+}
+button.gv-ctl{display:flex;align-items:center;justify-content:center;padding:0 10px;white-space:nowrap}
+button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
+.gv-ctl--on button{display:flex;align-items:center;justify-content:center}
+.gv-ctl--on button:hover{background:var(--sand)}
+.gv-ctl .ico{width:16px;height:16px}
+.gv-ctl__n{display:flex;align-items:center;justify-content:center;font-size:15px;font-variant-numeric:tabular-nums}
+.gv-lg{display:none}
+.gv-togli{min-height:44px;min-width:44px;padding:0 14px;border:1px solid var(--line-strong);font-size:14px;color:var(--muted)}
+.gv-togli:hover{border-color:var(--wine);color:var(--wine)}
+
+.gv-link{display:inline-flex;align-items:center;min-height:44px;font-size:15px;color:var(--meta);text-decoration:underline;text-underline-offset:3px}
+.gv-link:hover{color:var(--ink)}
+.gv-link--wine{color:var(--wine);text-decoration:none}
+.gv-link--wine:hover{color:#63161F}
+.gv-links{display:flex;flex-wrap:wrap;align-items:center;gap:0 26px;padding:10px var(--pad) 18px}
+
+.gv-side,.gv-nav,.gv-totbox{display:none}
+
+/* barra del percorso: resta attaccata alla tabbar mentre scorri la tappa.
+   La tabbar è alta 63 px + max(6px, safe area), meno di --bar-h: la barra le
+   finisce 3 px sotto, così fra le due non si vede la pagina (anche su iPhone). */
+.gv-bar{
+  position:sticky;bottom:calc(60px + max(6px,env(safe-area-inset-bottom)));z-index:50;
+  background:var(--paper);border-top:1px solid var(--line-strong);padding:0 var(--pad) 15px;
+}
+.gv-bar .gv-k{white-space:nowrap}
+.gv-seg{display:flex;gap:5px}
+.gv-seg button{flex:1;min-height:44px;display:flex;align-items:center}
+.gv-seg span{display:block;width:100%;height:4px;background:var(--line)}
+.gv-seg .is-full span{background:color-mix(in srgb,var(--wine) 45%,var(--paper))}
+.gv-seg .is-cur span{background:var(--wine)}
+.gv-bar__row{display:flex;align-items:center;gap:14px}
+.gv-bar__c{flex:1;min-width:0}
+.gv-bar__v{font-family:var(--serif);font-size:26px;line-height:1;color:var(--ink-strong);margin-top:3px}
+.gv-bar__go{
+  flex:0 1 200px;min-height:52px;padding:0 16px;background:var(--wood-dark);color:var(--cream-2);
+  font-size:15.5px;line-height:1.25;text-align:left;
+}
+.gv-bar__go--wine{background:var(--wine);color:var(--cream);text-align:center}
+
+@media (max-width:1119px){
+  .gv-intro{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* "TAPPA 01 DI 05 · ENTRANDO, SUBITO A DESTRA" su una riga a 390 px */
+  .gv-cap__k{font-size:11px;letter-spacing:.1em}
+}
+
+@media (min-width:1120px){
+  .gv-intro{padding-bottom:30px}
+  .gv-intro__row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px 48px;margin-top:26px}
+  .gv-intro__row>:first-child{flex:1 1 560px}
+  .gv-intro__aside{flex:0 0 auto;border-left:1px solid var(--line);padding-left:22px}
+  .gv-intro__aside .h3{white-space:nowrap}
+
+  .gv-body{
+    display:grid;grid-template-columns:300px minmax(0,1fr);
+    margin:0 var(--pad) clamp(40px,5vw,84px);border:1px solid var(--line);background:var(--card);
+  }
+  .gv-bar{display:none}
+
+  .gv-side{display:block;background:var(--sand);border-right:1px solid var(--line);padding:28px 26px 30px}
+  .gv-route{display:flex;flex-direction:column;gap:2px;margin:14px 0 26px}
+  .gv-route button{
+    display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;padding:11px 12px;
+    border-left:2px solid transparent;color:var(--muted);font-size:16px;line-height:1.35;
+  }
+  .gv-route button:hover{background:var(--card)}
+  .gv-route .is-cur{background:var(--card);border-left-color:var(--wine);color:var(--ink-strong)}
+  .gv-route__n{font-family:var(--mono);font-size:12px;color:var(--meta)}
+  .gv-route .is-cur .gv-route__n{color:var(--wine)}
+  .gv-route__l{flex:1;min-width:0}
+  .gv-route__b{font-family:var(--mono);font-size:12px;color:var(--wine)}
+  .gv-basket{border-top:1px solid var(--line-strong);padding-top:20px}
+  .gv-basket__t{font-family:var(--serif);font-size:23px;color:var(--ink-strong);margin-bottom:12px}
+  .gv-basket__vuoto{font-size:15px;line-height:1.6;color:var(--muted)}
+  .gv-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+  .gv-line span:last-child{color:var(--muted);white-space:nowrap}
+  .gv-tot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:14px 0 16px}
+  .gv-tot__v{font-family:var(--serif);font-size:28px;line-height:1;color:var(--ink-strong)}
+  .gv-hero__ph{height:260px}
+  .gv-hero--fine .gv-hero__ph{height:220px}
+  .gv-cap{position:static;background:none;padding:30px 40px 0}
+  .gv-cap__k{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;color:var(--wine);margin-bottom:14px}
+  .gv-cap__dove{color:var(--meta)}
+  .gv-cap__dove::before{content:none}
+  .gv-cap__t,.gv-hero--noimg .gv-cap__t{font-size:40px;color:var(--ink-strong)}
+
+  .gv-in{padding:0 40px 36px}
+  .gv-text{padding:16px 0 30px;font-size:22px;max-width:50ch}
+  .gv-in>.gv-k{padding:0 0 2px;border-top:0}
+  .gv-list{border-top:0}
+  .gv-item{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"b p c";gap:12px 18px;padding:16px 0}
+  .gv-item__p{color:var(--muted)}
+  .gv-ctl{width:160px;height:44px}
+  .gv-sm{display:none}
+  .gv-lg{display:inline}
+
+  .gv-nav{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:28px}
+  .gv-nav .btn{margin-left:auto}
+  .gv-totbox{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;
+    margin-top:26px;padding:20px 22px;background:var(--sand);border:1px solid var(--line);
+  }
+  .gv-totbox__v{font-family:var(--serif);font-size:32px;line-height:1;color:var(--ink-strong);margin-top:4px}
+  .gv-totbox__go{display:flex;align-items:center;gap:18px}
+  .gv-links{padding:18px 0 0}
+}
+
 /* ---------------------------------------------------------------- toast */
 .toasts{
   position:fixed;left:var(--pad);right:var(--pad);bottom:calc(var(--bar-h) + 16px);

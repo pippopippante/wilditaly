@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+body{margin:0;background:#EDE7DC;font-family:system-ui,sans-serif}
+a{color:#8F2C24}
+a:hover{color:#6E211B}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#FAF5EA;border:1px solid rgba(0,0,0,.12);border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+@keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Da telefono, disegnate per il telefono — <a class="dv-oid" href="#2a">2a</a> le domande, <a class="dv-oid" href="#2b">2b</a> la visita (stato indipendente dal desktop)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Le domande — una schermata per domanda, tipografia grande, righe a tutta larghezza</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="min-height: 100%; background: #FAF5EA; display: flex; flex-direction: column;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 62px 22px 0;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #8F2C24;">FATTI GUIDARE</div>
+      <div style="display: flex; gap: 5px;">
+        <sc-for list="{{ MA.dots }}" as="d" hint-placeholder-count="4">
+          <span style="width: 20px; height: 3px; background: {{ d.bg }};"></span>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ MA.isQuestion }}" hint-placeholder-val="{{ true }}">
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="padding: 34px 22px 26px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: #A0917F; margin-bottom: 14px;">{{ MA.stepLabel }}</div>
+          <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1; letter-spacing: -0.025em; color: #211B15; margin: 0 0 14px;">{{ MA.qTitle }}</h1>
+          <p style="font-family: Archivo, sans-serif; font-size: 15.5px; line-height: 1.55; color: #5C5147; margin: 0;">{{ MA.qHint }}</p>
+        </div>
+
+        <div style="border-top: 1px solid #E6DCC8;">
+          <sc-for list="{{ MA.options }}" as="opt" hint-placeholder-count="3">
+            <button type="button" onClick="{{ opt.pick }}" style="display: flex; align-items: center; gap: 16px; width: 100%; min-height: 82px; text-align: left; background: none; border: none; border-bottom: 1px solid #E6DCC8; padding: 18px 22px; cursor: pointer; color: #211B15; font-family: Archivo, sans-serif;" style-active="background: #F4EBD9;">
+              <span style="flex: 1; min-width: 0;">
+                <span style="display: block; font-family: Newsreader, Georgia, serif; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 4px;">{{ opt.label }}</span>
+                <span style="display: block; font-size: 13px; line-height: 1.45; color: #6B5C50;">{{ opt.sub }}</span>
+              </span>
+              <span style="font-size: 17px; color: #8F2C24;">→</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ MA.canBack }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ MA.back }}" style="align-self: flex-start; margin: 22px; min-height: 44px; background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">← Domanda prima</button>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ MA.isResult }}" hint-placeholder-val="{{ false }}">
+      <div style="flex: 1; animation: riseIn 380ms cubic-bezier(0.2,0.8,0.2,1) both;">
+        <div style="position: relative; height: 230px; margin-top: 24px; overflow: hidden;">
+          <img src="assets/img/tagliere-bancone.jpg" alt="Un tagliere di salumi e pecorino preparato al bancone" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 60px 22px 16px; background: linear-gradient(to top, rgba(20,14,10,0.72), rgba(20,14,10,0));">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F3E7D5;">ECCO COSA FAREMMO NOI</div>
+          </div>
+        </div>
+
+        <div style="padding: 26px 22px 0;">
+          <p style="font-family: Newsreader, Georgia, serif; font-size: 24px; line-height: 1.38; color: #211B15; margin: 0;">{{ MA.note }}</p>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #8C7F70; margin: 20px 0 0;">{{ MA.meta }}</div>
+        </div>
+
+        <div style="margin-top: 16px; border-top: 1px solid #E6DCC8;">
+          <sc-for list="{{ MA.chosen }}" as="p" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 18px 22px; border-bottom: 1px solid #E6DCC8; font-family: Archivo, sans-serif;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-family: Newsreader, Georgia, serif; font-size: 20px; line-height: 1.2; color: #211B15; margin-bottom: 4px;">{{ p.name }}</div>
+                <div style="font-size: 12.5px; line-height: 1.45; color: #6B5C50;">{{ p.w }} · {{ p.nota }}</div>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                <span style="font-size: 15px; color: #211B15; white-space: nowrap;">{{ p.priceStr }}</span>
+                <span style="display: flex; align-items: center; border: 1px solid #D5C9B4; background: #FFFDF8;">
+                    <button type="button" onClick="{{ p.dec }}" style="width: 42px; height: 44px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 17px; color: #5C5147; cursor: pointer;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-family: Archivo, sans-serif; font-size: 15px; color: #211B15;">{{ p.q }}</span>
+                    <button type="button" onClick="{{ p.inc }}" style="width: 42px; height: 44px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 17px; color: #5C5147; cursor: pointer;">+</button>
+                  </span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ MA.giftNote }}" hint-placeholder-val="{{ false }}">
+          <p style="font-family: Archivo, sans-serif; font-size: 13px; line-height: 1.55; color: #6B5C50; margin: 0; padding: 16px 22px; background: #F4ECDA; border-bottom: 1px solid #E6DCC8;">Essendo un regalo: incartiamo a mano, il biglietto lo scriviamo noi, nessun prezzo dentro la scatola.</p>
+        </sc-if>
+
+        <div style="padding: 26px 22px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: #8C7F70;">CI METTEREMMO ANCHE, SE VUOI</div>
+        <div style="border-top: 1px solid #E6DCC8;">
+          <sc-for list="{{ MA.extras }}" as="x" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 16px 22px; border-bottom: 1px solid #E6DCC8; font-family: Archivo, sans-serif;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-size: 16.5px; color: #211B15; margin-bottom: 3px;">{{ x.name }}</div>
+                <div style="font-size: 12.5px; line-height: 1.45; color: #6B5C50;">{{ x.w }} · {{ x.nota }}</div>
+              </div>
+              <span style="font-size: 14.5px; color: #5C5147; white-space: nowrap;">{{ x.priceStr }}</span>
+              <sc-if value="{{ x.notInCart }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ x.add }}" style="min-height: 46px; background: none; border: 1px solid #D5C9B4; padding: 0 14px; font-family: Archivo, sans-serif; font-size: 13px; cursor: pointer; white-space: nowrap; color: #211B15;">Aggiungi</button>
+              </sc-if>
+              <sc-if value="{{ x.inCart }}" hint-placeholder-val="{{ false }}">
+                <span style="display: flex; align-items: center; border: 1px solid #D5C9B4; background: #FFFDF8;">
+                    <button type="button" onClick="{{ x.dec }}" style="width: 42px; height: 44px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 17px; color: #5C5147; cursor: pointer;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-family: Archivo, sans-serif; font-size: 15px; color: #211B15;">{{ x.q }}</span>
+                    <button type="button" onClick="{{ x.inc }}" style="width: 42px; height: 44px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 17px; color: #5C5147; cursor: pointer;">+</button>
+                  </span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <button type="button" onClick="{{ MA.restart }}" style="margin: 22px; min-height: 44px; background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Rifacciamo le domande</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ MA.hasCart }}" hint-placeholder-val="{{ false }}">
+      <div style="position: sticky; bottom: 0; background: #FAF5EA; border-top: 1px solid #E0D4BE; padding: 14px 22px 44px; display: flex; align-items: center; gap: 16px;">
+        <div style="flex: 0 0 auto;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #8C7F70; margin-bottom: 3px;">{{ MA.count }} PEZZI</div>
+          <div style="font-family: Newsreader, Georgia, serif; font-size: 28px; line-height: 1; color: #211B15;">{{ MA.totalStr }}</div>
+        </div>
+        <button type="button" style="flex: 1; min-height: 52px; background: #8F2C24; color: #FDF8EE; border: none; font-family: Archivo, sans-serif; font-size: 15.5px; cursor: pointer;">Nel carrello</button>
+      </div>
+    </sc-if>
+
+  </div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>La visita guidata — foto a tutto schermo, prodotti impilati a tutta larghezza, percorso in basso</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+  <div style="min-height: 100%; background: #FAF5EA; display: flex; flex-direction: column;">
+
+    <sc-if value="{{ MT.isStop }}" hint-placeholder-val="{{ true }}">
+      <div style="flex: 1;">
+
+        <sc-if value="{{ MT.ph0 }}" hint-placeholder-val="{{ true }}">
+          <div style="position: relative; height: 400px; overflow: hidden;">
+            <img src="assets/img/bottega-bancone.jpg" alt="Il bancone della bottega di Spoleto" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 104px; background: linear-gradient(to bottom, rgba(250,245,234,0.96), rgba(250,245,234,0.72) 48%, rgba(250,245,234,0));"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 120px 22px 24px; background: linear-gradient(to top, rgba(20,14,10,0.8), rgba(20,14,10,0.1) 60%, rgba(20,14,10,0));">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F0DFC8; margin-bottom: 10px;">{{ MT.stopLabel }} · {{ MT.stopWhere }}</div>
+              <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.02; letter-spacing: -0.02em; color: #FFFDF8; margin: 0;">{{ MT.title }}</h1>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ MT.ph1 }}" hint-placeholder-val="{{ false }}">
+          <div style="position: relative; height: 400px; overflow: hidden;">
+            <img src="assets/img/ciauscolo-1.jpg" alt="Il salame morbido spalmabile, aperto" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 104px; background: linear-gradient(to bottom, rgba(250,245,234,0.96), rgba(250,245,234,0.72) 48%, rgba(250,245,234,0));"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 120px 22px 24px; background: linear-gradient(to top, rgba(20,14,10,0.8), rgba(20,14,10,0.1) 60%, rgba(20,14,10,0));">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F0DFC8; margin-bottom: 10px;">{{ MT.stopLabel }} · {{ MT.stopWhere }}</div>
+              <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.02; letter-spacing: -0.02em; color: #FFFDF8; margin: 0;">{{ MT.title }}</h1>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ MT.ph2 }}" hint-placeholder-val="{{ false }}">
+          <div style="position: relative; height: 400px; overflow: hidden;">
+            <img src="assets/img/pecorino-13-mesi.jpg" alt="La forma di pecorino stagionato 13 mesi" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 104px; background: linear-gradient(to bottom, rgba(250,245,234,0.96), rgba(250,245,234,0.72) 48%, rgba(250,245,234,0));"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 120px 22px 24px; background: linear-gradient(to top, rgba(20,14,10,0.8), rgba(20,14,10,0.1) 60%, rgba(20,14,10,0));">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F0DFC8; margin-bottom: 10px;">{{ MT.stopLabel }} · {{ MT.stopWhere }}</div>
+              <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.02; letter-spacing: -0.02em; color: #FFFDF8; margin: 0;">{{ MT.title }}</h1>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ MT.ph3 }}" hint-placeholder-val="{{ false }}">
+          <div style="position: relative; height: 400px; overflow: hidden;">
+            <img src="assets/img/lenticchie.jpg" alt="Le lenticchie umbre nella confezione" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 104px; background: linear-gradient(to bottom, rgba(250,245,234,0.96), rgba(250,245,234,0.72) 48%, rgba(250,245,234,0));"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 120px 22px 24px; background: linear-gradient(to top, rgba(20,14,10,0.8), rgba(20,14,10,0.1) 60%, rgba(20,14,10,0));">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F0DFC8; margin-bottom: 10px;">{{ MT.stopLabel }} · {{ MT.stopWhere }}</div>
+              <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.02; letter-spacing: -0.02em; color: #FFFDF8; margin: 0;">{{ MT.title }}</h1>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ MT.photoStripe }}" hint-placeholder-val="{{ false }}">
+          <div style="position: relative; height: 400px; background-image: repeating-linear-gradient(135deg, #EFE6D2 0, #EFE6D2 11px, #F7F0DF 11px, #F7F0DF 22px); display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="padding: 70px 22px 0; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #9E8F7B;">{{ MT.photoCaption }}</div>
+            <div style="padding: 0 22px 24px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #8F2C24; margin-bottom: 10px;">{{ MT.stopLabel }} · {{ MT.stopWhere }}</div>
+              <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.02; letter-spacing: -0.02em; color: #211B15; margin: 0;">{{ MT.title }}</h1>
+            </div>
+          </div>
+        </sc-if>
+
+        <p style="font-family: Newsreader, Georgia, serif; font-size: 21px; line-height: 1.5; color: #3B322A; margin: 0; padding: 26px 22px 24px;">{{ MT.text }}</p>
+
+        <div style="padding: 20px 22px 10px; border-top: 1px solid #E6DCC8; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: #8C7F70;">SU QUESTO SCAFFALE</div>
+        <div style="border-top: 1px solid #E6DCC8;">
+          <sc-for list="{{ MT.items }}" as="x" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 18px 22px; border-bottom: 1px solid #E6DCC8; font-family: Archivo, sans-serif;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-family: Newsreader, Georgia, serif; font-size: 20px; line-height: 1.2; color: #211B15; margin-bottom: 4px;">{{ x.name }}</div>
+                <div style="font-size: 12.5px; line-height: 1.45; color: #6B5C50; margin-bottom: 4px;">{{ x.w }} · {{ x.nota }}</div>
+                <div style="font-size: 14.5px; color: #211B15;">{{ x.priceStr }}</div>
+              </div>
+              <sc-if value="{{ x.notInCart }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ x.add }}" style="flex: 0 0 auto; min-height: 46px; padding: 0 14px; background: none; border: 1px solid #D5C9B4; font-family: Archivo, sans-serif; font-size: 13.5px; cursor: pointer; color: #211B15; white-space: nowrap;">Nel cesto</button>
+              </sc-if>
+              <sc-if value="{{ x.inCart }}" hint-placeholder-val="{{ false }}">
+                <span style="display: flex; align-items: center; border: 1px solid #D5C9B4; background: #FFFDF8;">
+                    <button type="button" onClick="{{ x.dec }}" style="width: 42px; height: 44px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 17px; color: #5C5147; cursor: pointer;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-family: Archivo, sans-serif; font-size: 15px; color: #211B15;">{{ x.q }}</span>
+                    <button type="button" onClick="{{ x.inc }}" style="width: 42px; height: 44px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 17px; color: #5C5147; cursor: pointer;">+</button>
+                  </span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ MT.isEnd }}" hint-placeholder-val="{{ false }}">
+      <div style="flex: 1; animation: riseIn 380ms cubic-bezier(0.2,0.8,0.2,1) both;">
+        <div style="position: relative; height: 300px; overflow: hidden;">
+          <img src="assets/img/tagliere-bancone.jpg" alt="Un tagliere di salumi e pecorino preparato al bancone" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 104px; background: linear-gradient(to bottom, rgba(250,245,234,0.96), rgba(250,245,234,0.72) 48%, rgba(250,245,234,0));"></div>
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 90px 22px 22px; background: linear-gradient(to top, rgba(20,14,10,0.78), rgba(20,14,10,0));">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F0DFC8; margin-bottom: 10px;">FINE DEL GIRO</div>
+            <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.04; letter-spacing: -0.02em; color: #FFFDF8; margin: 0;">{{ MT.endTitle }}</h1>
+          </div>
+        </div>
+
+        <p style="font-family: Newsreader, Georgia, serif; font-size: 21px; line-height: 1.5; color: #3B322A; margin: 0; padding: 26px 22px 22px;">{{ MT.endText }}</p>
+
+        <sc-if value="{{ MT.hasBasket }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="padding: 0 22px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: #8C7F70;">QUELLO CHE HAI PRESO</div>
+            <div style="border-top: 1px solid #E6DCC8;">
+              <sc-for list="{{ MT.basketFull }}" as="x" hint-placeholder-count="2">
+                <div style="display: flex; align-items: center; gap: 14px; padding: 16px 22px; border-bottom: 1px solid #E6DCC8; font-family: Archivo, sans-serif;">
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-family: Newsreader, Georgia, serif; font-size: 19px; line-height: 1.2; color: #211B15; margin-bottom: 4px;">{{ x.name }}</div>
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; color: #8C7F70;">{{ x.where }}</div>
+                  </div>
+                  <span style="font-size: 14.5px; color: #211B15; white-space: nowrap;">{{ x.priceStr }}</span>
+                  <button type="button" onClick="{{ x.toggle }}" style="min-width: 44px; min-height: 44px; background: none; border: 1px solid #D5C9B4; font-family: Archivo, sans-serif; font-size: 12.5px; cursor: pointer; color: #5C5147;">Togli</button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <button type="button" onClick="{{ MT.restart }}" style="margin: 22px; min-height: 44px; background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;">Rifai il giro dall'inizio</button>
+      </div>
+    </sc-if>
+
+    <div style="position: sticky; bottom: 0; background: #FAF5EA; border-top: 1px solid #E0D4BE; padding: 0 22px 44px;">
+      <div style="display: flex; gap: 5px;">
+        <sc-for list="{{ MT.route }}" as="t" hint-placeholder-count="6">
+          <button type="button" onClick="{{ t.go }}" title="{{ t.label }}" style="flex: 1; min-height: 44px; display: flex; align-items: center; background: none; border: none; padding: 0; cursor: pointer;">
+            <span style="width: 100%; height: 4px; background: {{ t.segBg }};"></span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 4px;">
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #8C7F70; margin-bottom: 3px;">{{ MT.countLabel }}</div>
+          <div style="font-family: Newsreader, Georgia, serif; font-size: 26px; line-height: 1; color: #211B15;">{{ MT.totalStr }}</div>
+        </div>
+        <sc-if value="{{ MT.isStop }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ MT.next }}" style="flex: 0 1 196px; min-height: 52px; padding: 0 16px; background: #211B15; color: #FAF5EA; border: none; font-family: Archivo, sans-serif; font-size: 14.5px; cursor: pointer; line-height: 1.25; text-align: left;">{{ MT.nextShort }}</button>
+        </sc-if>
+        <sc-if value="{{ MT.isEnd }}" hint-placeholder-val="{{ false }}">
+          <button type="button" style="flex: 0 1 170px; min-height: 52px; background: #8F2C24; color: #FDF8EE; border: none; font-family: Archivo, sans-serif; font-size: 15px; cursor: pointer;">Al carrello</button>
+        </sc-if>
+      </div>
+    </div>
+
+  </div>
+</x-import>
+</div>
+
+</div>
+<p class="dv-next">Prova poi: «in <a class="dv-oid" href="#2b">2b</a> fai scorrere le tappe come storie, col dito» · «in <a class="dv-oid" href="#2a">2a</a> metti la foto del prodotto in ogni riga» · «porta la tipografia di <a class="dv-oid" href="#2a">2a</a> anche sul desktop».</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">«Fatti guidare nella scelta» — due versioni</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Le domande — quattro, una per volta, e la scatola si riempie a destra</div>
+<div class="dv-card" style="width: 1180px;">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 40px; background: #FAF5EA; border-bottom: 1px solid #E6DCC8;">
+    <div>
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 25px; letter-spacing: -0.01em; color: #211B15;">Wild Italy</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.22em; color: #8C7F70; margin-top: 2px;">BOTTEGA · SPOLETO</div>
+    </div>
+    <div style="display: flex; gap: 26px; font-family: Archivo, sans-serif; font-size: 14.5px; color: #41382F;">
+      <span>Selvaggina</span><span>Salumi</span><span>Formaggi</span><span>Tartufo</span><span>Vini</span><span>Dispensa</span><span style="color: #8F2C24; font-weight: 600;">Box &amp; degustazioni</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; font-family: Archivo, sans-serif; font-size: 14px; color: #41382F;">
+      <span>Cerca</span><span>Account</span>
+      <span style="border: 1px solid #D9CDB8; padding: 7px 13px;">Carrello · {{ A.count }}</span>
+    </div>
+  </div>
+
+  <div style="padding: 22px 40px 0; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #A0917F;">BOTTEGA / FATTI GUIDARE NELLA SCELTA</div>
+
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 28px 56px; padding: 26px 40px 30px;">
+    <div style="flex: 1 1 520px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #8F2C24; margin-bottom: 16px;">FATTI GUIDARE</div>
+      <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 60px; line-height: 0.98; letter-spacing: -0.02em; color: #211B15; margin: 0 0 16px;">Quattro domande,<br />come al bancone</h1>
+      <p style="font-family: Archivo, sans-serif; font-size: 17.5px; line-height: 1.6; color: #5C5147; margin: 0; max-width: 50ch;">Le stesse che ti faremmo entrando in bottega. Alla fine ti diciamo cosa metteremmo nella tua scatola, e perché. Se non ti torna, si cambia.</p>
+    </div>
+    <div style="flex: 0 1 260px; border-left: 1px solid #E6DCC8; padding-left: 22px; font-family: Archivo, sans-serif; font-size: 14px; line-height: 1.6; color: #5C5147;">
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 21px; color: #211B15; margin-bottom: 6px;">Ci vuole un minuto.</div>
+      Nessun filtro da riempire: rispondi e ti portiamo noi al prodotto.
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; padding: 0 40px 40px;">
+
+    <div style="flex: 1 1 560px; min-width: 0; background: #FFFDF8; border: 1px solid #E6DCC8; padding: 36px;">
+
+      <sc-if value="{{ A.isQuestion }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 30px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #8C7F70; white-space: nowrap;">{{ A.stepLabel }}</div>
+            <div style="flex: 1; height: 2px; background: #EBE1CE; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: 0; bottom: 0; left: 0; background: #8F2C24; transition: width 320ms cubic-bezier(0.2,0.8,0.2,1); width: {{ A.progressPct }};"></div>
+            </div>
+          </div>
+
+          <h2 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.08; letter-spacing: -0.015em; color: #211B15; margin: 0 0 10px;">{{ A.qTitle }}</h2>
+          <p style="font-family: Archivo, sans-serif; font-size: 15px; line-height: 1.6; color: #5C5147; margin: 0 0 28px; max-width: 46ch;">{{ A.qHint }}</p>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ A.options }}" as="opt" hint-placeholder-count="3">
+              <button type="button" onClick="{{ opt.pick }}" style="display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; background: #FBF6EC; border: 1px solid #E6DCC8; padding: 17px 20px; cursor: pointer; color: #211B15; font-family: Archivo, sans-serif; transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;" style-hover="background: #F4EBD9; border-color: #8F2C24; transform: translateX(3px);">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8F2C24; min-width: 16px;">{{ opt.num }}</span>
+                <span style="flex: 1; min-width: 0;">
+                  <span style="display: block; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 3px;">{{ opt.label }}</span>
+                  <span style="display: block; font-size: 13.5px; line-height: 1.5; color: #6B5C50;">{{ opt.sub }}</span>
+                </span>
+                <span style="font-size: 15px; color: #B8A994;">→</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ A.canBack }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ A.back }}" style="margin-top: 22px; background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;" style-hover="color: #211B15;">Torna alla domanda prima</button>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ A.isResult }}" hint-placeholder-val="{{ false }}">
+        <div style="animation: riseIn 420ms cubic-bezier(0.2,0.8,0.2,1) both;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8F2C24; margin-bottom: 18px;">ECCO COSA FAREMMO NOI</div>
+
+          <p style="font-family: Newsreader, Georgia, serif; font-size: 26px; line-height: 1.35; letter-spacing: -0.01em; color: #211B15; margin: 0 0 30px; padding-left: 20px; border-left: 2px solid #8F2C24;">{{ A.note }}</p>
+
+          <div style="border: 1px solid #E6DCC8; background: #FBF6EC; padding: 24px;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; margin-bottom: 4px;">
+              <h3 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 27px; letter-spacing: -0.01em; color: #211B15; margin: 0;">Dal banco tiriamo giù questi</h3>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #A0917F;">{{ A.qty }}</div>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8C7F70; margin-bottom: 14px;">{{ A.meta }}</div>
+
+            <sc-for list="{{ A.chosen }}" as="p" hint-placeholder-count="3">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 15px 0; border-top: 1px solid #EAE0CE; font-family: Archivo, sans-serif;">
+                <div style="flex: 1 1 220px; min-width: 0;">
+                  <div style="font-size: 17px; letter-spacing: -0.01em; color: #211B15; margin-bottom: 3px;">{{ p.name }}</div>
+                  <div style="font-size: 13.5px; line-height: 1.5; color: #6B5C50;">{{ p.w }} · {{ p.nota }}</div>
+                </div>
+                <span style="font-size: 15px; color: #5C5147; white-space: nowrap;">{{ p.priceStr }}</span>
+                <span style="display: flex; align-items: center; border: 1px solid #D5C9B4; background: #FFFDF8;">
+                    <button type="button" onClick="{{ p.dec }}" style="width: 34px; height: 38px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 16px; color: #5C5147; cursor: pointer;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-family: Archivo, sans-serif; font-size: 15px; color: #211B15;">{{ p.q }}</span>
+                    <button type="button" onClick="{{ p.inc }}" style="width: 34px; height: 38px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 16px; color: #5C5147; cursor: pointer;">+</button>
+                  </span>
+              </div>
+            </sc-for>
+
+            <sc-if value="{{ A.noneChosen }}" hint-placeholder-val="{{ false }}">
+              <p style="font-family: Archivo, sans-serif; font-size: 14.5px; line-height: 1.6; color: #6B5C50; margin: 14px 0 0; padding-top: 14px; border-top: 1px solid #EAE0CE;">Hai tolto tutto. Riaggiungi qui sotto quello che ti va, o rifai le domande.</p>
+            </sc-if>
+
+            <sc-if value="{{ A.giftNote }}" hint-placeholder-val="{{ false }}">
+              <p style="font-family: Archivo, sans-serif; font-size: 13.5px; line-height: 1.6; color: #6B5C50; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid #EAE0CE;">Essendo un regalo: incartiamo a mano e scriviamo noi il biglietto con la tua dedica, senza prezzi dentro la scatola.</p>
+            </sc-if>
+          </div>
+
+          <div style="margin-top: 30px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8C7F70; margin-bottom: 4px;">CI METTEREMMO ANCHE, SE VUOI</div>
+            <sc-for list="{{ A.extras }}" as="x" hint-placeholder-count="3">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 16px 0; border-bottom: 1px solid #EDE4D2;">
+                <div style="flex: 1 1 220px; min-width: 0; font-family: Archivo, sans-serif;">
+                  <div style="font-size: 16.5px; letter-spacing: -0.01em; color: #211B15; margin-bottom: 3px;">{{ x.name }}</div>
+                  <div style="font-size: 13.5px; line-height: 1.5; color: #6B5C50;">{{ x.w }} · {{ x.nota }}</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 14px; font-family: Archivo, sans-serif;">
+                  <span style="font-size: 15px; color: #5C5147; white-space: nowrap;">{{ x.priceStr }}</span>
+                  <sc-if value="{{ x.notInCart }}" hint-placeholder-val="{{ true }}">
+                    <button type="button" onClick="{{ x.add }}" style="background: none; border: 1px solid #D5C9B4; padding: 10px 16px; font-family: Archivo, sans-serif; font-size: 13px; cursor: pointer; white-space: nowrap; color: #211B15;" style-hover="border-color: #8F2C24; color: #8F2C24;">Aggiungi</button>
+                  </sc-if>
+                  <sc-if value="{{ x.inCart }}" hint-placeholder-val="{{ false }}">
+                    <span style="display: flex; align-items: center; border: 1px solid #D5C9B4; background: #FFFDF8;">
+                    <button type="button" onClick="{{ x.dec }}" style="width: 34px; height: 38px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 16px; color: #5C5147; cursor: pointer;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-family: Archivo, sans-serif; font-size: 15px; color: #211B15;">{{ x.q }}</span>
+                    <button type="button" onClick="{{ x.inc }}" style="width: 34px; height: 38px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 16px; color: #5C5147; cursor: pointer;">+</button>
+                  </span>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: 24px;">
+            <button type="button" onClick="{{ A.restart }}" style="background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;" style-hover="color: #211B15;">Non ci siamo: rifacciamo le domande</button>
+            <a href="box.html" style="font-family: Archivo, sans-serif; font-size: 13.5px;">Oppure guarda i box già pronti →</a>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+
+    <div style="flex: 0 1 330px; min-width: 0; border: 1px solid #E6DCC8; background: #F4ECDA; padding: 26px;">
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #211B15; margin-bottom: 16px;">La tua scatola</div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px;">
+        <sc-for list="{{ A.chips }}" as="c" hint-placeholder-count="1">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.12em; background: #FFFDF8; border: 1px solid #DFD3BE; padding: 6px 9px; color: #5C5147;">{{ c.label }}</span>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ A.cartEmpty }}" hint-placeholder-val="{{ true }}">
+        <p style="font-family: Archivo, sans-serif; font-size: 14px; line-height: 1.6; color: #6B5C50; margin: 0; padding: 16px 0; border-top: 1px solid #E3D8C3; border-bottom: 1px solid #E3D8C3;">Qui compare la selezione, mano a mano che rispondi. Poi togli quello che non ti serve.</p>
+      </sc-if>
+
+      <sc-if value="{{ A.hasCart }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <sc-for list="{{ A.cart }}" as="line" hint-placeholder-count="2">
+            <div style="display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #E3D8C3; font-family: Archivo, sans-serif; font-size: 14.5px; line-height: 1.4;">
+              <span style="color: #211B15;">{{ line.name }}{{ line.qtyLabel }}</span>
+              <span style="color: #5C5147; white-space: nowrap;">{{ line.priceStr }}</span>
+            </div>
+          </sc-for>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; padding: 16px 0 0;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #8C7F70;">TOTALE</span>
+            <span style="font-family: Newsreader, Georgia, serif; font-size: 30px; color: #211B15; line-height: 1;">{{ A.totalStr }}</span>
+          </div>
+          <button type="button" style="width: 100%; margin-top: 18px; background: #8F2C24; color: #FDF8EE; border: none; padding: 15px 18px; font-family: Archivo, sans-serif; font-size: 15px; cursor: pointer;" style-hover="background: #6E211B;">Metti tutto nel carrello</button>
+        </div>
+      </sc-if>
+
+      <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E3D8C3; display: flex; flex-direction: column; gap: 9px; font-family: Archivo, sans-serif; font-size: 13px; line-height: 1.5; color: #6B5C50;">
+        <span>Tagliamo e confezioniamo sottovuoto il giorno della spedizione.</span>
+        <span>Corriere refrigerato in 24/48h, in tutta Italia.</span>
+        <span>Una scheda di assaggio per ogni prodotto, dentro la scatola.</span>
+      </div>
+
+      <a href="https://wa.me/393349206466" style="display: inline-block; margin-top: 18px; font-family: Archivo, sans-serif; font-size: 13.5px;">Preferisci chiedere a noi? Scrivici →</a>
+    </div>
+
+  </div>
+
+  <div style="border-top: 1px solid #E6DCC8; padding: 28px 40px 36px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px 24px; margin-bottom: 20px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8C7F70;">SE HAI GIÀ LE IDEE CHIARE</div>
+      <a href="categoria.html?c=selvaggina" style="font-family: Archivo, sans-serif; font-size: 13.5px;">Tutta la bottega, scaffale per scaffale →</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: #E6DCC8; border: 1px solid #E6DCC8;">
+      <a href="selezione.html?s=guida" style="display: block; background: #FFFDF8; padding: 24px 22px; text-decoration: none;">
+        <div style="font-family: Newsreader, Georgia, serif; font-size: 21px; color: #211B15; margin-bottom: 7px;">Da dove partire</div>
+        <div style="font-family: Archivo, sans-serif; font-size: 13.5px; line-height: 1.6; color: #6B5C50;">I cinque prodotti che facciamo assaggiare a chi entra per la prima volta.</div>
+      </a>
+      <a href="selezione.html?s=sotto-20" style="display: block; background: #FFFDF8; padding: 24px 22px; text-decoration: none;">
+        <div style="font-family: Newsreader, Georgia, serif; font-size: 21px; color: #211B15; margin-bottom: 7px;">Sotto i 20 €</div>
+        <div style="font-family: Archivo, sans-serif; font-size: 13.5px; line-height: 1.6; color: #6B5C50;">Pezzi singoli e piccoli assaggi, per provare senza impegno.</div>
+      </a>
+      <a href="box.html" style="display: block; background: #FFFDF8; padding: 24px 22px; text-decoration: none;">
+        <div style="font-family: Newsreader, Georgia, serif; font-size: 21px; color: #211B15; margin-bottom: 7px;">Idea regalo</div>
+        <div style="font-family: Archivo, sans-serif; font-size: 13.5px; line-height: 1.6; color: #6B5C50;">Box confezionati a mano, con biglietto e dedica su richiesta.</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>La visita guidata — cinque tappe fra gli scaffali, riempi il cesto strada facendo</div>
+<div class="dv-card" style="width: 1180px;">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 40px; background: #FAF5EA; border-bottom: 1px solid #E6DCC8;">
+    <div>
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 25px; letter-spacing: -0.01em; color: #211B15;">Wild Italy</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.22em; color: #8C7F70; margin-top: 2px;">BOTTEGA · SPOLETO</div>
+    </div>
+    <div style="display: flex; gap: 26px; font-family: Archivo, sans-serif; font-size: 14.5px; color: #41382F;">
+      <span>Selvaggina</span><span>Salumi</span><span>Formaggi</span><span>Tartufo</span><span>Vini</span><span>Dispensa</span><span style="color: #8F2C24; font-weight: 600;">Box &amp; degustazioni</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; font-family: Archivo, sans-serif; font-size: 14px; color: #41382F;">
+      <span>Cerca</span><span>Account</span>
+      <span style="border: 1px solid #D9CDB8; padding: 7px 13px;">Carrello · {{ T.count }}</span>
+    </div>
+  </div>
+
+  <div style="padding: 22px 40px 0; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #A0917F;">BOTTEGA / FATTI GUIDARE / LA VISITA</div>
+
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 48px; padding: 26px 40px 30px;">
+    <div style="flex: 1 1 560px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #8F2C24; margin-bottom: 16px;">FATTI GUIDARE · VISITA GUIDATA</div>
+      <h1 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 58px; line-height: 0.99; letter-spacing: -0.02em; color: #211B15; margin: 0 0 16px;">Ti porto in giro io,<br />scaffale per scaffale</h1>
+      <p style="font-family: Archivo, sans-serif; font-size: 17.5px; line-height: 1.6; color: #5C5147; margin: 0; max-width: 54ch;">Cinque tappe, come quando entri e ti facciamo il giro del banco. Ti raccontiamo cos'è e da dove viene; quello che ti convince lo metti nel cesto e vai avanti. Niente domande, nessuna fretta.</p>
+    </div>
+    <div style="flex: 0 1 210px; border-left: 1px solid #E6DCC8; padding-left: 22px; font-family: Archivo, sans-serif; font-size: 14px; line-height: 1.6; color: #5C5147;">
+      <div style="font-family: Newsreader, Georgia, serif; font-size: 21px; color: #211B15; margin-bottom: 6px;">Sei minuti di giro.</div>
+      Puoi anche saltare una tappa: il percorso è lì a sinistra.
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; align-items: stretch;">
+
+    <div style="flex: 0 1 300px; min-width: 0; border-top: 1px solid #E6DCC8; border-right: 1px solid #E6DCC8; background: #F4ECDA; padding: 28px 26px 30px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8C7F70; margin-bottom: 14px;">IL PERCORSO</div>
+
+      <div style="display: flex; flex-direction: column; gap: 2px; margin-bottom: 26px;">
+        <sc-for list="{{ T.route }}" as="t" hint-placeholder-count="6">
+          <button type="button" onClick="{{ t.go }}" style="display: flex; align-items: baseline; gap: 12px; width: 100%; text-align: left; padding: 11px 12px; border: none; border-left-width: 2px; border-left-style: solid; cursor: pointer; font-family: Archivo, sans-serif; transition: background 140ms ease; background: {{ t.bg }}; border-left-color: {{ t.bar }};" style-hover="background: #FBF6EC;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: {{ t.num_fg }};">{{ t.num }}</span>
+            <span style="flex: 1; min-width: 0; font-size: 15px; line-height: 1.35; color: {{ t.fg }};">{{ t.label }}</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8F2C24;">{{ t.badge }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="border-top: 1px solid #E3D8C3; padding-top: 20px;">
+        <div style="font-family: Newsreader, Georgia, serif; font-size: 23px; color: #211B15; margin-bottom: 12px;">Nel cesto</div>
+
+        <sc-if value="{{ T.basketEmpty }}" hint-placeholder-val="{{ true }}">
+          <p style="font-family: Archivo, sans-serif; font-size: 13.5px; line-height: 1.6; color: #6B5C50; margin: 0;">Ancora vuoto. Aggiungi quello che ti va mentre giri: si paga tutto insieme alla fine.</p>
+        </sc-if>
+
+        <sc-if value="{{ T.hasBasket }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <sc-for list="{{ T.basket }}" as="line" hint-placeholder-count="2">
+              <div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #E3D8C3; font-family: Archivo, sans-serif; font-size: 14px; line-height: 1.4;">
+                <span style="color: #211B15;">{{ line.name }}{{ line.qtyLabel }}</span>
+                <span style="color: #5C5147; white-space: nowrap;">{{ line.priceStr }}</span>
+              </div>
+            </sc-for>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 14px 0 0;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #8C7F70;">TOTALE</span>
+              <span style="font-family: Newsreader, Georgia, serif; font-size: 28px; line-height: 1; color: #211B15;">{{ T.totalStr }}</span>
+            </div>
+            <button type="button" style="width: 100%; margin-top: 16px; background: #8F2C24; color: #FDF8EE; border: none; padding: 14px 18px; font-family: Archivo, sans-serif; font-size: 15px; cursor: pointer;" style-hover="background: #6E211B;">Vai al carrello</button>
+          </div>
+        </sc-if>
+
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #E3D8C3; display: flex; flex-direction: column; gap: 8px; font-family: Archivo, sans-serif; font-size: 12.5px; line-height: 1.5; color: #6B5C50;">
+          <span>Sottovuoto il giorno della spedizione.</span>
+          <span>Refrigerato in 24/48h, in tutta Italia.</span>
+          <span>Scheda di assaggio per ogni pezzo.</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 620px; min-width: 0; border-top: 1px solid #E6DCC8; background: #FFFDF8;">
+
+      <sc-if value="{{ T.isStop }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <sc-if value="{{ T.ph0 }}" hint-placeholder-val="{{ true }}">
+            <div style="height: 260px; overflow: hidden; border-bottom: 1px solid #E6DCC8;">
+              <img src="assets/img/bottega-bancone.jpg" alt="Il bancone della bottega di Spoleto" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            </div>
+          </sc-if>
+          <sc-if value="{{ T.ph1 }}" hint-placeholder-val="{{ false }}">
+            <div style="height: 260px; overflow: hidden; border-bottom: 1px solid #E6DCC8;">
+              <img src="assets/img/ciauscolo-1.jpg" alt="Il salame morbido spalmabile, aperto" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            </div>
+          </sc-if>
+          <sc-if value="{{ T.ph2 }}" hint-placeholder-val="{{ false }}">
+            <div style="height: 260px; overflow: hidden; border-bottom: 1px solid #E6DCC8;">
+              <img src="assets/img/pecorino-13-mesi.jpg" alt="La forma di pecorino stagionato 13 mesi" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            </div>
+          </sc-if>
+          <sc-if value="{{ T.ph3 }}" hint-placeholder-val="{{ false }}">
+            <div style="height: 260px; overflow: hidden; border-bottom: 1px solid #E6DCC8;">
+              <img src="assets/img/lenticchie.jpg" alt="Le lenticchie umbre nella confezione" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            </div>
+          </sc-if>
+          <sc-if value="{{ T.photoStripe }}" hint-placeholder-val="{{ false }}">
+            <div style="height: 260px; background-image: repeating-linear-gradient(135deg, #EFE6D2 0, #EFE6D2 10px, #F7F0DF 10px, #F7F0DF 20px); border-bottom: 1px solid #E6DCC8; display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #9E8F7B;">{{ T.photoCaption }}</span>
+            </div>
+          </sc-if>
+
+          <div style="padding: 30px 40px 36px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; margin-bottom: 14px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8F2C24;">{{ T.stopLabel }}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #A0917F;">{{ T.stopWhere }}</div>
+            </div>
+
+            <h2 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.015em; color: #211B15; margin: 0 0 16px;">{{ T.title }}</h2>
+            <p style="font-family: Newsreader, Georgia, serif; font-size: 22px; line-height: 1.5; color: #3B322A; margin: 0 0 30px; max-width: 50ch;">{{ T.text }}</p>
+
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8C7F70; margin-bottom: 2px;">SU QUESTO SCAFFALE</div>
+            <sc-for list="{{ T.items }}" as="x" hint-placeholder-count="3">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 16px 0; border-bottom: 1px solid #EDE4D2;">
+                <div style="flex: 1 1 240px; min-width: 0; font-family: Archivo, sans-serif;">
+                  <div style="font-size: 17px; letter-spacing: -0.01em; color: #211B15; margin-bottom: 3px;">{{ x.name }}</div>
+                  <div style="font-size: 13.5px; line-height: 1.5; color: #6B5C50;">{{ x.w }} · {{ x.nota }}</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 14px; font-family: Archivo, sans-serif;">
+                  <span style="font-size: 15px; color: #5C5147; white-space: nowrap;">{{ x.priceStr }}</span>
+                  <sc-if value="{{ x.notInCart }}" hint-placeholder-val="{{ true }}">
+                    <button type="button" onClick="{{ x.add }}" style="border: 1px solid #D5C9B4; padding: 11px 16px; font-family: Archivo, sans-serif; font-size: 13.5px; cursor: pointer; white-space: nowrap; background: none; color: #211B15;" style-hover="border-color: #8F2C24; color: #8F2C24;">Metti nel cesto</button>
+                  </sc-if>
+                  <sc-if value="{{ x.inCart }}" hint-placeholder-val="{{ false }}">
+                    <span style="display: flex; align-items: center; border: 1px solid #D5C9B4; background: #FFFDF8;">
+                    <button type="button" onClick="{{ x.dec }}" style="width: 36px; height: 40px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 16px; color: #5C5147; cursor: pointer;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-family: Archivo, sans-serif; font-size: 15px; color: #211B15;">{{ x.q }}</span>
+                    <button type="button" onClick="{{ x.inc }}" style="width: 36px; height: 40px; background: none; border: none; font-family: Archivo, sans-serif; font-size: 16px; color: #5C5147; cursor: pointer;">+</button>
+                  </span>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px; margin-top: 28px;">
+              <sc-if value="{{ T.canBack }}" hint-placeholder-val="{{ false }}">
+                <button type="button" onClick="{{ T.back }}" style="background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;" style-hover="color: #211B15;">← Tappa precedente</button>
+              </sc-if>
+              <button type="button" onClick="{{ T.next }}" style="margin-left: auto; display: inline-flex; align-items: center; gap: 12px; background: #211B15; color: #FAF5EA; border: none; padding: 15px 22px; font-family: Archivo, sans-serif; font-size: 15px; cursor: pointer;" style-hover="background: #8F2C24;">{{ T.nextLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ T.isEnd }}" hint-placeholder-val="{{ false }}">
+        <div style="animation: riseIn 420ms cubic-bezier(0.2,0.8,0.2,1) both;">
+          <div style="height: 220px; overflow: hidden; border-bottom: 1px solid #E6DCC8;">
+            <img src="assets/img/tagliere-bancone.jpg" alt="Un tagliere di salumi e pecorino preparato al bancone" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          </div>
+          <div style="padding: 30px 40px 36px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8F2C24; margin-bottom: 14px;">FINE DEL GIRO</div>
+            <h2 style="font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.015em; color: #211B15; margin: 0 0 16px;">{{ T.endTitle }}</h2>
+            <p style="font-family: Newsreader, Georgia, serif; font-size: 22px; line-height: 1.5; color: #3B322A; margin: 0 0 28px; max-width: 50ch;">{{ T.endText }}</p>
+
+            <sc-if value="{{ T.hasBasket }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #8C7F70; margin-bottom: 2px;">QUELLO CHE HAI PRESO</div>
+                <sc-for list="{{ T.basketFull }}" as="x" hint-placeholder-count="2">
+                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 15px 0; border-bottom: 1px solid #EDE4D2; font-family: Archivo, sans-serif;">
+                    <div style="flex: 1 1 240px; min-width: 0;">
+                      <div style="font-size: 17px; color: #211B15; margin-bottom: 3px;">{{ x.name }}</div>
+                      <div style="font-size: 13px; color: #8C7F70; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.08em;">{{ x.where }}</div>
+                    </div>
+                    <span style="font-size: 15px; color: #5C5147; white-space: nowrap;">{{ x.priceStr }}</span>
+                    <button type="button" onClick="{{ x.toggle }}" style="background: none; border: 1px solid #D5C9B4; padding: 9px 14px; font-family: Archivo, sans-serif; font-size: 13px; cursor: pointer; color: #5C5147;" style-hover="border-color: #8F2C24; color: #8F2C24;">Togli</button>
+                  </div>
+                </sc-for>
+
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 26px; padding: 20px 22px; background: #F4ECDA; border: 1px solid #E6DCC8;">
+                  <div>
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #8C7F70; margin-bottom: 4px;">{{ T.countLabel }}</div>
+                    <div style="font-family: Newsreader, Georgia, serif; font-size: 32px; line-height: 1; color: #211B15;">{{ T.totalStr }}</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 18px;">
+                    <a href="https://wa.me/393349206466" style="font-family: Archivo, sans-serif; font-size: 13.5px;">Chiedi a noi →</a>
+                    <button type="button" style="background: #8F2C24; color: #FDF8EE; border: none; padding: 15px 24px; font-family: Archivo, sans-serif; font-size: 15px; cursor: pointer;" style-hover="background: #6E211B;">Vai al carrello</button>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 18px 26px; align-items: center; margin-top: 26px;">
+              <button type="button" onClick="{{ T.restart }}" style="background: none; border: none; padding: 0; font-family: Archivo, sans-serif; font-size: 13.5px; color: #8C7F70; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;" style-hover="color: #211B15;">Rifai il giro dall'inizio</button>
+              <a href="#1a" style="font-family: Archivo, sans-serif; font-size: 13.5px;">Preferisci che scegliamo noi? Rispondi a quattro domande →</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">Prezzi e nomi dei prodotti sono segnaposto: mandami il catalogo e li sostituisco. Prova poi: «tieni <a class="dv-oid" href="#1b">1b</a> ma con due tappe invece di cinque» · «in <a class="dv-oid" href="#1b">1b</a> metti le foto grandi a pagina piena» · «fammi vedere <a class="dv-oid" href="#1a">1a</a> e <a class="dv-oid" href="#1b">1b</a> su mobile».</p>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:2480,&quot;height&quot;:1800}}">
+const EUR = (n) => n.toFixed(2).replace('.', ',') + ' €';
+
+// Catalogo reale del sito (assets/js/catalogo.js) — nomi, prezzi e pesi come in bottega.
+const P = {
+  cervo: { name: 'Salame al cervo', w: '350 g circa', price: 12.9, slug: 'salame-di-cervo', nota: 'Il più dolce dei tre: da qui si comincia.' },
+  capriolo: { name: 'Norcinetta al capriolo', w: '250 g circa', price: 9.9, slug: 'salame-di-capriolo', nota: 'Vivace, con un pizzico di peperoncino.' },
+  cinghiale: { name: 'Salame al cinghiale', w: '350 g circa', price: 11.9, slug: 'salame-di-cinghiale', nota: 'Deciso e rustico, chiusura lunga e speziata.' },
+  cinghialeTartufo: { name: 'Salame al cinghiale e tartufo', w: '350 g circa', price: 14.9, slug: 'salame-cinghiale-tartufo', nota: 'Il tartufo estivo macinato dentro l\'impasto.' },
+  ubriaco: { name: 'Salame ubriaco', w: '350 g circa', price: 10.9, slug: 'salame-ubriaco', nota: 'Grana grossa, settimane a macerare nel vino rosso.' },
+  spalmabile: { name: 'Salame morbido spalmabile', w: '450 g circa', price: 12.9, slug: 'salame-spalmabile', nota: 'Si spalma sul pane: una settimana sola di stagionatura.' },
+  fegato: { name: 'Salamella di fegato', w: '450 g circa', price: 12.9, slug: 'salamella-di-fegato', nota: 'Gusto antico, senza mezze misure.' },
+  maiale: { name: 'Salamella di maiale', w: '350 g circa', price: 11.9, slug: 'salamella-di-maiale', nota: 'Macinatura fine e gusto dolce: il classico.' },
+  mulo: { name: 'Coglioni di mulo', w: '300 g circa', price: 9, slug: 'coglione-del-mulo', nota: 'Il lardello pepato al centro, stagionatura lunga.' },
+  tascabile: { name: 'Tascabile', w: '1 kg circa', price: 28, slug: 'tascabile', nota: 'La parte più magra, dalla noce della spalla.' },
+  pecorino: { name: 'Pecorino stagionato 13 mesi', w: '1 kg circa', price: 37, slug: 'pecorino-13-mesi', nota: 'Tredici mesi: piccante e asciutto, da tagliere o da grattugiare.' },
+  salsa: { name: 'Salsa tartufata', w: '130 g', price: 6, slug: 'salsa-tartufata', nota: 'Sulla bruschetta, o a condire la pasta.' },
+  olioNero: { name: 'Condimento al tartufo nero pregiato', w: '100 ml', price: 7, slug: 'olio-tartufo-nero', nota: 'Un filo a crudo su uova e risotti.' },
+  olioBianco: { name: 'Condimento al tartufo bianco pregiato', w: '100 ml', price: 7, slug: 'olio-tartufo-bianco', nota: 'Più pungente del nero: poche gocce bastano.' },
+  lenticchie: { name: 'Lenticchie umbre', w: '500 g', price: 6.8, slug: 'lenticchie-umbre', nota: 'Piccole, quindi più delicate: 25 minuti e sono pronte.' },
+  zuppa: { name: 'Zuppa rapida', w: '500 g', price: 6.2, slug: 'zuppa-rapida', nota: 'Legumi e cereali, mezz\'ora: la cena d\'inverno.' },
+  sagrantino: { name: 'Sagrantino di Montefalco DOCG', w: '750 ml', price: 24, slug: 'sagrantino-montefalco', nota: 'Tannino deciso, regge la dolcezza del cervo.' }
+};
+
+// Nessun prodotto inventato: si sceglie solo fra quelli già in bottega (P).
+const PICK = {
+  salumi: ['cervo', 'cinghiale', 'capriolo', 'ubriaco', 'mulo', 'spalmabile', 'maiale', 'tascabile', 'sagrantino'],
+  formaggi: ['pecorino', 'salsa', 'olioNero', 'cinghialeTartufo', 'olioBianco', 'sagrantino'],
+  misto: ['cervo', 'salsa', 'pecorino', 'cinghiale', 'lenticchie', 'sagrantino', 'spalmabile', 'olioNero']
+};
+const CAP = { basso: 30, medio: 60, alto: 120 };
+const FLOOR = { basso: 17, medio: 38, alto: 70 };
+
+const STEPS = [
+  { key: 'chi', title: 'Per chi stai scegliendo?', hint: 'Un regalo lo prepariamo diverso: carta, biglietto e nessun prezzo in vista.',
+    options: [
+      { v: 'me', label: 'Per me, per casa', sub: 'Sottovuoto pratico, da aprire quando vuoi', chip: 'PER CASA' },
+      { v: 'regalo', label: 'È un regalo', sub: 'Confezione a mano e biglietto con dedica', chip: 'REGALO' }
+    ] },
+  { key: 'occasione', title: 'Che occasione è?', hint: 'Ci serve per le quantità: meglio tre cose giuste che sei assaggi finiti subito.',
+    options: [
+      { v: 'aperitivo', label: 'Aperitivo in due', sub: 'Poca roba, ma quella buona', chip: 'APERITIVO' },
+      { v: 'cena', label: 'Cena, tagliere in tavola', sub: 'Quattro persone che si siedono', chip: 'CENA' },
+      { v: 'festa', label: 'Festa o Natale', sub: 'Tavola lunga, e qualcosa che resta in dispensa', chip: 'FESTA' }
+    ] },
+  { key: 'gusto', title: 'Cosa ti piace di più?', hint: 'Se non lo sai ancora, «un po\' di tutto» è quello che prepariamo più spesso.',
+    options: [
+      { v: 'salumi', label: 'Solo salumi', sub: 'Selvaggina e norcineria tradizionale', chip: 'SALUMI' },
+      { v: 'formaggi', label: 'Pecorino e tartufo', sub: 'Il pecorino di 13 mesi, salse e condimenti', chip: 'PECORINO E TARTUFO' },
+      { v: 'misto', label: 'Un po\' di tutto', sub: 'Il tagliere classico della bottega', chip: 'MISTO' }
+    ] },
+  { key: 'budget', title: 'Quanto vuoi spendere?', hint: 'Serve solo per le quantità. Nessuna cifra è quella sbagliata.',
+    options: [
+      { v: 'basso', label: 'Fino a 30 €', sub: 'Si assaggia: due o tre pezzi, scelti bene', chip: 'FINO A 30 €' },
+      { v: 'medio', label: '30–60 €', sub: 'Un tagliere vero, per una sera', chip: '30–60 €' },
+      { v: 'alto', label: 'Oltre 60 €', sub: 'Si apparecchia per tutti, vino compreso', chip: 'OLTRE 60 €' }
+    ] }
+];
+
+const EXTRA_ORDER = {
+  aperitivo: ['spalmabile', 'salsa', 'sagrantino', 'cervo'],
+  cena: ['sagrantino', 'pecorino', 'cinghiale', 'lenticchie'],
+  festa: ['sagrantino', 'tascabile', 'pecorino', 'zuppa'],
+  '': ['sagrantino', 'salsa', 'pecorino', 'cervo']
+};
+
+const QTY = { aperitivo: 'QUANTITÀ PER DUE', cena: 'QUANTITÀ PER QUATTRO', festa: 'QUANTITÀ PER UNA TAVOLA LUNGA', '': 'QUANTITÀ DA BANCO' };
+
+const NOTE_1 = { me: 'Per casa facciamo così: ', regalo: 'Se è un regalo puntiamo sul colpo d\'occhio: ' };
+const NOTE_2 = {
+  salumi: 'solo salumi, messi in ordine di carattere — si assaggia dal più dolce al più deciso.',
+  formaggi: 'niente salumi: il pecorino e il tartufo, che è la parte che sorprende chi non conosce l\'Umbria.',
+  misto: 'è il tagliere che prepariamo più spesso al banco.'
+};
+const NOTE_3 = {
+  aperitivo: ' Per un aperitivo in due bastano queste quantità: meglio finire tutto che ritrovarlo in frigo.',
+  cena: ' Per una cena il vino ci sta: il Sagrantino di Montefalco regge anche il salume più deciso.',
+  festa: ' Per le feste mettiamo dentro qualcosa da tenere in dispensa, che dura oltre la serata.',
+  '': ''
+};
+
+const TOUR = [
+  { label: 'Il banco della selvaggina', where: 'ENTRANDO, SUBITO A DESTRA', title: 'Si parte sempre da qui',
+    text: 'Sono i tre salumi per cui la gente torna, e li mettiamo sempre in quest\'ordine: il cervo è il più dolce, la norcinetta al capriolo ha il pizzico di peperoncino, il cinghiale chiude lungo e speziato. Se è la prima volta, taglia sottile e comincia dal cervo.',
+    img: 'assets/img/bottega-bancone.jpg', alt: 'Il bancone della bottega di Spoleto',
+    items: ['cervo', 'capriolo', 'cinghiale'] },
+  { label: 'I salumi tradizionali', where: 'LA PARETE DIETRO LA BILANCIA', title: 'Quelli di sempre',
+    text: 'Qui non c\'è selvaggina, c\'è Norcia. Il salame ubriaco passa settimane a macerare nel vino rosso; quello morbido si spalma sul pane ed è pronto in una settimana; i coglioni di mulo hanno il lardello pepato nel cuore. Il tascabile è il pezzo grosso, da affettare piano.',
+    img: 'assets/img/ciauscolo-1.jpg', alt: 'Il salame morbido spalmabile, aperto',
+    items: ['ubriaco', 'spalmabile', 'mulo', 'tascabile'] },
+  { label: 'Pecorino e tartufo', where: 'VETRINA REFRIGERATA, IN MEZZO', title: 'La parte che sorprende',
+    text: 'Il pecorino sta tredici mesi a stagionare e si sente: piccante, asciutto, va a braccetto col salame più dolce. Il tartufo invece te lo porti in dispensa — la salsa sulla bruschetta è già una cena, e un filo di condimento sulle uova non si dimentica.',
+    img: 'assets/img/pecorino-13-mesi.jpg', alt: 'La forma di pecorino stagionato 13 mesi',
+    items: ['pecorino', 'salsa', 'cinghialeTartufo', 'olioNero'] },
+  { label: 'La dispensa', where: 'SCAFFALE DI LEGNO, A SINISTRA', title: 'La roba che dura',
+    text: 'Le due cose che finiscono nel cesto per ultime e in tavola per prime. Le lenticchie umbre sono piccole, quindi più delicate: venticinque minuti e sono pronte. La zuppa rapida è legumi e cereali, mezz\'ora, e d\'inverno risolve la sera.',
+    img: 'assets/img/lenticchie.jpg', alt: 'Le lenticchie umbre nella confezione',
+    items: ['lenticchie', 'zuppa'] },
+  { label: 'Gli scaffali dei vini', where: 'ULTIMA PARETE, VERSO LA CASSA', title: 'Con cosa lo bevi',
+    text: 'Montefalco è a mezz\'ora da qui. Il Sagrantino ha il tannino giusto per reggere la dolcezza del cervo senza farsi mangiare: è l\'unica bottiglia che teniamo in bottega, e basta quella.',
+    photo: 'FOTO: bottiglie di Montefalco sullo scaffale',
+    items: ['sagrantino'] }
+];
+
+const SHORT = ['Selvaggina', 'Tradizionali', 'Pecorino', 'Dispensa', 'Vini'];
+
+class Component extends DCLogic {
+  state = { aStep: 0, aAns: {}, aAdd: {}, aOff: {}, tStop: 0, tAdd: {}, mStep: 0, mAns: {}, mAdd: {}, mOff: {}, mtStop: 0, mtAdd: {} };
+
+  rec(ans) {
+    const gusto = ans.gusto || 'misto';
+    const budget = ans.budget || 'basso';
+    const regalo = ans.chi === 'regalo';
+    const fav = (EXTRA_ORDER[ans.occasione || ''] || EXTRA_ORDER['']).slice();
+    if (regalo) fav.unshift('sagrantino');
+
+    // ordine di scelta: catalogo del gusto, con i preferiti dell'occasione spostati avanti
+    const order = PICK[gusto].slice();
+    fav.slice().reverse().forEach((k) => {
+      const at = order.indexOf(k);
+      if (at > 1) { order.splice(at, 1); order.splice(1, 0, k); }
+    });
+
+    const chosen = [];
+    let total = 0;
+    order.forEach((k) => {
+      if (total >= FLOOR[budget] && chosen.length >= 2) return;
+      if (total + P[k].price <= CAP[budget]) { chosen.push(k); total += P[k].price; }
+    });
+
+    const keys = [];
+    order.concat(fav).forEach((k) => {
+      if (chosen.indexOf(k) < 0 && keys.indexOf(k) < 0 && keys.length < 3) keys.push(k);
+    });
+
+    const names = chosen.map((k) => P[k].name);
+    const elenco = names.length > 1
+      ? ' Nella scatola: ' + names.slice(0, -1).join(', ') + ' e ' + names[names.length - 1] + '.'
+      : (names.length ? ' Nella scatola: ' + names[0] + '.' : '');
+    const note = (NOTE_1[ans.chi] || 'Al banco faremmo così: ') + NOTE_2[gusto] + (NOTE_3[ans.occasione || ''] || '') + elenco;
+    const meta = chosen.length + ' PEZZI DAL BANCO · SCHEDE DI ASSAGGIO · ' + (regalo ? 'CARTA E BIGLIETTO' : 'SOTTOVUOTO');
+    return { chosen, keys, note, meta, regalo, qty: QTY[ans.occasione || ''] || QTY[''] };
+  }
+
+  render1a(ns) {
+    const _st = this.state;
+    const stepI = _st[ns + 'Step'] || 0;
+    const ans = _st[ns + 'Ans'] || {};
+    const q = _st[ns + 'Qty'] || {};
+    const set = (o) => this.setState(o);
+    const setQ = (k, n) => set({ [ns + 'Qty']: Object.assign({}, q, { [k]: Math.max(0, n) }) });
+    const step = STEPS[stepI];
+    const done = stepI >= STEPS.length;
+    const r = this.rec(ans);
+    const qOf = (k, base) => (q[k] === undefined ? base : q[k]);
+    const keep = r.chosen.filter((k) => qOf(k, 1) > 0);
+    const added = r.keys.filter((k) => qOf(k, 0) > 0);
+    const lines = keep.concat(added);
+    const total = lines.reduce((sum, k) => sum + P[k].price * qOf(k, keep.indexOf(k) >= 0 ? 1 : 0), 0);
+    const pieces = lines.reduce((sum, k) => sum + qOf(k, keep.indexOf(k) >= 0 ? 1 : 0), 0);
+    const row = (k, base) => {
+      const n = qOf(k, base);
+      return {
+        name: P[k].name, nota: P[k].nota, w: P[k].w, priceStr: EUR(P[k].price), q: n,
+        inc: () => setQ(k, n + 1), dec: () => setQ(k, n - 1),
+        add: () => setQ(k, 1), toggle: () => setQ(k, n > 0 ? 0 : 1),
+        inCart: n > 0, notInCart: n === 0,
+        action: n > 0 ? 'Togli' : 'Aggiungi',
+        fg: n > 0 ? '#8F2C24' : '#211B15',
+        bc: n > 0 ? '#8F2C24' : '#D5C9B4'
+      };
+    };
+    return {
+      isQuestion: !done,
+      isResult: done,
+      isFirst: stepI === 0,
+      dots: STEPS.map((x, n) => ({ bg: n < stepI ? '#C79B93' : (n === stepI ? '#8F2C24' : '#DFD3BE') })),
+      stepLabel: done ? '' : 'DOMANDA ' + (stepI + 1) + ' DI ' + STEPS.length,
+      progressPct: Math.round((stepI / STEPS.length) * 100) + '%',
+      qTitle: step ? step.title : '',
+      qHint: step ? step.hint : '',
+      canBack: stepI > 0,
+      back: () => set({ [ns + 'Step']: stepI - 1 }),
+      restart: () => set({ [ns + 'Step']: 0, [ns + 'Ans']: {}, [ns + 'Qty']: {} }),
+      options: step ? step.options.map((o, i) => ({
+        num: '0' + (i + 1), label: o.label, sub: o.sub,
+        pick: () => set({ [ns + 'Ans']: Object.assign({}, ans, { [step.key]: o.v }), [ns + 'Step']: stepI + 1 })
+      })) : [],
+      chips: STEPS.filter((x) => ans[x.key]).map((x) => ({ label: x.options.find((o) => o.v === ans[x.key]).chip })),
+      note: r.note,
+      meta: r.meta,
+      qty: r.qty,
+      giftNote: r.regalo,
+      chosen: done ? keep.map((k) => row(k, 1)) : [],
+      hasChosen: done && keep.length > 0,
+      noneChosen: done && keep.length === 0,
+      extras: done ? r.keys.map((k) => row(k, 0)) : [],
+      cart: done ? lines.map((k) => {
+        const n = qOf(k, keep.indexOf(k) >= 0 ? 1 : 0);
+        return { name: P[k].name, qtyLabel: n > 1 ? ' × ' + n : '', priceStr: EUR(P[k].price * n) };
+      }) : [],
+      hasCart: done && lines.length > 0,
+      cartEmpty: !done || lines.length === 0,
+      totalStr: EUR(total),
+      count: done ? pieces : 0
+    };
+  }
+
+  render1b(ns) {
+    const _st = this.state;
+    const i = _st[ns + 'Stop'] || 0;
+    const q = _st[ns + 'Add'] || {};
+    const set = (o) => this.setState(o);
+    const setQ = (k, n) => set({ [ns + 'Add']: Object.assign({}, q, { [k]: Math.max(0, n) }) });
+    const end = i >= TOUR.length;
+    const stop = TOUR[i];
+
+    const taken = [];
+    TOUR.forEach((t) => t.items.forEach((k) => { if (q[k] > 0) taken.push({ k: k, n: q[k], where: t.label }); }));
+    const total = taken.reduce((sum, x) => sum + P[x.k].price * x.n, 0);
+    const pieces = taken.reduce((sum, x) => sum + x.n, 0);
+
+    const route = TOUR.map((t, n) => {
+      const cur = n === i;
+      const count = t.items.reduce((sum, k) => sum + (q[k] || 0), 0);
+      return {
+        num: '0' + (n + 1),
+        label: t.label,
+        short: SHORT[n],
+        badge: count ? '· ' + count : '',
+        segBg: cur ? '#8F2C24' : (count ? '#C79B93' : '#DFD3BE'),
+        pillBg: cur ? '#8F2C24' : '#FFFDF8',
+        pillBc: cur ? '#8F2C24' : '#DFD3BE',
+        pillFg: cur ? '#FDF8EE' : '#41382F',
+        bg: cur ? '#FFFDF8' : 'transparent',
+        bar: cur ? '#8F2C24' : 'transparent',
+        fg: cur ? '#211B15' : '#5C5147',
+        num_fg: cur ? '#8F2C24' : '#B8A994',
+        go: () => set({ [ns + 'Stop']: n })
+      };
+    });
+    route.push({
+      num: '—', label: 'Il cesto e la cassa', short: 'Cesto', badge: pieces ? '· ' + pieces : '',
+      segBg: end ? '#8F2C24' : '#DFD3BE',
+      pillBg: end ? '#8F2C24' : '#FFFDF8', pillBc: end ? '#8F2C24' : '#DFD3BE', pillFg: end ? '#FDF8EE' : '#41382F',
+      bg: end ? '#FFFDF8' : 'transparent', bar: end ? '#8F2C24' : 'transparent',
+      fg: end ? '#211B15' : '#5C5147', num_fg: end ? '#8F2C24' : '#B8A994',
+      go: () => set({ [ns + 'Stop']: TOUR.length })
+    });
+
+    return {
+      isStop: !end,
+      isEnd: end,
+      route: route,
+      stopLabel: end ? '' : 'TAPPA 0' + (i + 1) + ' DI 0' + TOUR.length,
+      stopWhere: end ? '' : stop.where,
+      title: end ? '' : stop.title,
+      text: end ? '' : stop.text,
+      ph0: !end && i === 0,
+      ph1: !end && i === 1,
+      ph2: !end && i === 2,
+      ph3: !end && i === 3,
+      photoStripe: !end && !stop.img,
+      photoCaption: end ? '' : (stop.photo || ''),
+      items: end ? [] : stop.items.map((k) => {
+        const n = q[k] || 0;
+        return {
+          name: P[k].name, nota: P[k].nota, w: P[k].w, priceStr: EUR(P[k].price), q: n,
+          inCart: n > 0, notInCart: n === 0,
+          inc: () => setQ(k, n + 1), dec: () => setQ(k, n - 1),
+          add: () => setQ(k, 1), toggle: () => setQ(k, n > 0 ? 0 : 1),
+          action: n > 0 ? 'Nel cesto ✓' : 'Metti nel cesto',
+          actionShort: n > 0 ? '✓ Nel cesto' : '+ Nel cesto',
+          photoCaption: 'FOTO: ' + P[k].name.toLowerCase(),
+          bg: n > 0 ? '#8F2C24' : 'transparent',
+          fg: n > 0 ? '#FDF8EE' : '#211B15',
+          bc: n > 0 ? '#8F2C24' : '#D5C9B4'
+        };
+      }),
+      canBack: i > 0 && !end,
+      back: () => set({ [ns + 'Stop']: i - 1 }),
+      next: () => set({ [ns + 'Stop']: i + 1 }),
+      nextLabel: end ? '' : (i === TOUR.length - 1 ? 'Chiudi il giro e vedi il cesto →' : 'Avanti: ' + TOUR[i + 1].label + ' →'),
+      nextShort: end ? '' : (i === TOUR.length - 1 ? 'Vedi il cesto →' : 'Avanti: ' + SHORT[i + 1] + ' →'),
+      restart: () => set({ [ns + 'Stop']: 0, [ns + 'Add']: {} }),
+      basket: taken.map((x) => ({ name: P[x.k].name, qtyLabel: x.n > 1 ? ' × ' + x.n : '', priceStr: EUR(P[x.k].price * x.n) })),
+      basketFull: taken.map((x) => ({
+        name: P[x.k].name,
+        where: x.where.toUpperCase() + (x.n > 1 ? ' · × ' + x.n : ''),
+        priceStr: EUR(P[x.k].price * x.n),
+        toggle: () => setQ(x.k, 0)
+      })),
+      hasBasket: taken.length > 0,
+      basketEmpty: taken.length === 0,
+      totalStr: EUR(total),
+      count: pieces,
+      countLabel: pieces === 1 ? 'UN PEZZO NEL CESTO' : pieces + ' PEZZI NEL CESTO',
+      endTitle: taken.length ? 'Fatto: questo è il tuo cesto' : 'Giro finito, cesto vuoto',
+      endText: taken.length
+        ? 'Lo confezioniamo così come l\'hai messo insieme: sottovuoto il giorno della spedizione, con la scheda di assaggio di ogni pezzo. Se vuoi cambiare qualcosa, si toglie qui.'
+        : 'Capita, e non è un problema: a volte serve solo vedere com\'è fatta la bottega. Rifai il giro quando vuoi, oppure lascia scegliere noi con quattro domande.'
+    };
+  }
+
+  renderVals() {
+    return {
+      A: this.render1a('a'), T: this.render1b('t'),
+      MA: this.render1a('m'), MT: this.render1b('mt')
+    };
+  }
+}
+
+</script>
+</body>
+</html>
