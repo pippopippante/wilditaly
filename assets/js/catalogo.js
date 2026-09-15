@@ -18,9 +18,9 @@ window.CATALOGO = (function () {
       nome: "Salumi alla selvaggina",
       titolo: "Salumi alla selvaggina",
       intro:
-        "Salami di suino con carne di cervo, capriolo o cinghiale. Tre caratteri diversi: si parte dal più dolce e si arriva al più deciso. Ogni scheda ti dice che sapore aspettarti.",
+        "Salami di suino con carne di cervo, capriolo o cinghiale, tartufo compreso. Caratteri diversi: si parte dal più dolce e si arriva al più deciso. Ogni scheda ti dice che sapore aspettarti.",
       breve: "Al cervo, al capriolo, al cinghiale.",
-      breveLunga: "Salami al cervo, al capriolo e al cinghiale: tre caratteri diversi.",
+      breveLunga: "Salami al cervo, al capriolo e al cinghiale, uno anche col tartufo.",
       foto: "FOTO: salame al cervo affettato",
       img: "assets/img/salame-cervo-1.jpg",
       inVetrina: 1,
@@ -57,9 +57,9 @@ window.CATALOGO = (function () {
       nav: "Tartufo",
       nome: "Tartufo e salse",
       titolo: "Tartufo e salse",
-      intro: "Tartufo estivo in salsa e nel salame, condimenti aromatizzati al tartufo.",
-      breve: "Salsa tartufata, salame e condimenti al tartufo.",
-      breveLunga: "Tartufo estivo in salsa e nel salame, condimenti aromatizzati al tartufo.",
+      intro: "Tartufo estivo in salsa e condimenti aromatizzati al tartufo.",
+      breve: "Salsa tartufata e condimenti al tartufo.",
+      breveLunga: "Tartufo estivo in salsa e condimenti aromatizzati al tartufo.",
       foto: "FOTO: tartufo nero su tagliere",
       img: "assets/img/salsa-tartufata.jpg",
       imgAlt: "Barattolo di salsa tartufata",
@@ -122,14 +122,14 @@ window.CATALOGO = (function () {
       img: "assets/img/salame-cervo-1.jpg",
       galleriaImg: ["assets/img/salame-cervo-1.jpg", "assets/img/salame-cervo-2.jpg"],
       descrizione:
-        "Salame di suino con carne di cervo: al gusto pieno e sapido del salame, il cervo aggiunge una nota più selvatica. Un salame da gourmet e appassionati, ottimo per fare colpo in tavola.",
+        "Compatto, magro e pulito al taglio, senza palline di pepe, cartilagini o pezzi di grasso evidenti. Al morso è morbido e uniforme. Il gusto parte dolce e delicato, poi lascia lentamente spazio a una piacevole nota affumicata. È un salame particolare ma mai aggressivo, facile da apprezzare anche per chi si avvicina per la prima volta ai salumi di selvaggina.",
       nota: "Il più dolce dei tre",
       notaBancone: "«Cervo: il più dolce dei tre.»",
       profilo: [
         { nome: "DOLCEZZA", valore: 3 },
+        { nome: "PARTE GRASSA", valore: 1 },
         { nome: "SAPIDITÀ", valore: 2 }
       ],
-      schede: { FORMATO: "Intero, 350 g circa" },
       galleria: [
         "FOTO 1: salame intero su tagliere",
         "FOTO 2: affettato",
@@ -157,15 +157,15 @@ window.CATALOGO = (function () {
       img: "assets/img/salame-capriolo-1.jpg",
       galleriaImg: ["assets/img/salame-capriolo-1.jpg", "assets/img/salame-capriolo-2.jpg"],
       descrizione:
-        "Salame di suino con carne di capriolo, dal gusto vivace, con un pizzico di peperoncino che ne esalta il finale. Difficile da trovare: per chi non lo conosce sarà una piacevole scoperta.",
+        "Dolciastro, morbido e piacevole al primo momento, ricorda il cervo ma con un carattere più vivace. Nel finale arriva una leggera nota di peperoncino che accende il gusto senza coprirlo, lasciando una sensazione più decisa e dinamica in bocca.",
       nota: "Vivace, con un pizzico di peperoncino",
       notaBancone: "«Capriolo: vivace, con un pizzico di peperoncino.»",
       profilo: [
         { nome: "DOLCEZZA", valore: 2 },
+        { nome: "PARTE GRASSA", valore: 2 },
         { nome: "SAPIDITÀ", valore: 3 }
       ],
       galleria: ["FOTO 1: norcinetta al capriolo su tagliere", "FOTO 2: affettato", "FOTO 3: dettaglio grana"],
-      schede: { FORMATO: "Intero, 250 g circa" },
       ingredienti:
         "Carne di suino, carne di capriolo (10% minimo), LATTE scremato in polvere, sale, saccarosio, destrosio, aromi, pepe, peperoncino, antiossidanti: E300, E301, esaltatore di sapidità: E621, conservanti: E252, E250, correttore di pH: E262. Allergeni: latte; può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -186,15 +186,15 @@ window.CATALOGO = (function () {
       img: "assets/img/salame-cinghiale-1.jpg",
       galleriaImg: ["assets/img/salame-cinghiale-1.jpg", "assets/img/salame-cinghiale-2.jpg"],
       descrizione:
-        "Salame di suino con carne di cinghiale, dal sapore generoso: il carattere più deciso dei tre. Da tagliere, con pane sciapo.",
+        "Sapido, pieno e deciso fin dal primo morso. Il gusto del cinghiale è intenso, rustico e diretto, con una presenza che si sente subito e resta a lungo sul palato. È uno dei salami più saporiti della selezione, con un carattere forte ma equilibrato, pensato per chi cerca un gusto netto e riconoscibile.",
       nota: "Deciso e rustico, chiusura lunga e speziata",
       notaBancone: "«Cinghiale: deciso e rustico, chiusura lunga e speziata.»",
       profilo: [
         { nome: "DOLCEZZA", valore: 1 },
+        { nome: "PARTE GRASSA", valore: 3 },
         { nome: "SAPIDITÀ", valore: 4 }
       ],
       galleria: ["FOTO 1: salame al cinghiale su tagliere", "FOTO 2: affettato", "FOTO 3: dettaglio grana"],
-      schede: { FORMATO: "Intero, 350 g circa" },
       ingredienti:
         "Carne di suino, carne di cinghiale (6,5% minimo), LATTE scremato in polvere, sale, saccarosio, destrosio, pepe, antiossidanti: E300, esaltatore di sapidità: E621, aglio, aromi, conservanti: E252, E250. Allergeni: latte; può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -366,8 +366,8 @@ window.CATALOGO = (function () {
     {
       slug: "salame-cinghiale-tartufo",
       nome: "Salame al cinghiale e tartufo",
-      categoria: "tartufo",
-      occhiello: "TARTUFO E SALSE",
+      categoria: "selvaggina",
+      occhiello: "SELVAGGINA",
       prezzo: 14.9,
       peso: "350 g circa",
       grammi: 350,
@@ -375,7 +375,7 @@ window.CATALOGO = (function () {
       img: "assets/img/salame-cinghiale-tartufo-1.jpg",
       galleriaImg: ["assets/img/salame-cinghiale-tartufo-1.jpg", "assets/img/salame-cinghiale-tartufo-2.jpg"],
       descrizione:
-        "Tartufo estivo aggiunto direttamente nella macinatura, con carne di cinghiale su una base di maiale selezionato. Prima il sapido del cinghiale, poi resta in bocca la fragranza del tartufo.",
+        "Sapido e deciso fin dal primo assaggio, con il gusto del cinghiale che arriva subito pieno e intenso. La fetta è pulita, senza palline di pepe né lardello, con una consistenza compatta e uniforme. Nel finale emerge lentamente il tartufo, naturale e persistente, che resta sul palato senza coprire la carne. È uno dei salami più saporiti della selezione, ricco ma equilibrato.",
       ingredienti:
         "Carne di suino, carne di cinghiale (6,5% minimo), tartufo estivo (Tuber aestivum Vitt.) 2% max, LATTE scremato in polvere, sale, saccarosio, destrosio, aromi, pepe, aglio, antiossidanti: E300, esaltatore di sapidità: E621, conservanti: E252, E250, correttore di pH: E262. Allergeni: latte; può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -662,10 +662,10 @@ window.CATALOGO = (function () {
       breve: "Selvaggina",
       dove: "Entrando, subito a destra",
       titolo: "Si parte sempre da qui",
-      testo: "I tre per cui la gente torna, dal più dolce al più deciso.",
+      testo: "Quelli per cui la gente torna, dal più dolce al più deciso.",
       img: "assets/img/bottega-bancone.jpg",
       alt: "Il bancone della bottega di Spoleto",
-      prodotti: ["salame-di-cervo", "salame-di-capriolo", "salame-di-cinghiale"]
+      prodotti: ["salame-di-cervo", "salame-di-capriolo", "salame-di-cinghiale", "salame-cinghiale-tartufo"]
     },
     {
       label: "I salumi tradizionali",
@@ -685,7 +685,7 @@ window.CATALOGO = (function () {
       testo: "Vetrina refrigerata e scaffale del tartufo, uno di fianco all'altro.",
       img: "assets/img/pecorino-13-mesi.jpg",
       alt: "La forma di pecorino stagionato 13 mesi",
-      prodotti: ["pecorino-13-mesi", "salsa-tartufata", "salame-cinghiale-tartufo", "olio-tartufo-nero"]
+      prodotti: ["pecorino-13-mesi", "salsa-tartufata", "olio-tartufo-nero"]
     },
     {
       label: "La dispensa",
@@ -708,11 +708,12 @@ window.CATALOGO = (function () {
     }
   ];
 
-  /* nota che segue il peso nelle righe della visita.
-     Cervo: niente "affumicato", l'etichetta non lo dice. */
+  /* nota che segue il peso nelle righe della visita (testi del cliente) */
   const noteVisita = {
-    "salame-di-cervo": "Il più dolce dei tre. Taglialo sottile. Se non hai mai assaggiato la selvaggina, si comincia da qui.",
-    "salame-di-capriolo": "La norcinetta: un pizzico di peperoncino la tiene vivace. Sta in mezzo, fra la dolcezza del cervo e il cinghiale.",
+    "salame-di-cervo":
+      "Dolce e delicato, con un piacevole retrogusto affumicato. È il più morbido dei tre sapori ed è il nostro salame più venduto.",
+    "salame-di-capriolo":
+      "Dolciastro all'inizio, poi più vivace: una leggera nota di peperoncino arriva nel finale senza coprire il gusto della carne.",
     "salame-di-cinghiale": "Il più deciso: rustico, grana larga, e la chiusura resta lunga e speziata in bocca.",
     "salame-ubriaco": "Grana grossa e settimane a macerare nel vino rosso: da lì il nome e il colore scuro della fetta.",
     "salame-spalmabile": "Una settimana sola di stagionatura, e infatti si spalma sul pane invece di affettarsi.",
@@ -720,7 +721,8 @@ window.CATALOGO = (function () {
     tascabile: "Dalla noce della spalla: il pezzo grosso del banco, da affettare piano.",
     "pecorino-13-mesi": "Tredici mesi, solo latte di pecora: piccante e asciutto. Da tagliere, o grattugiato. Con il salame di cervo va a braccetto.",
     "salsa-tartufata": "Tartufo estivo: sulla bruschetta è già una cena, oppure a condire la pasta.",
-    "salame-cinghiale-tartufo": "Il tartufo estivo macinato dentro l'impasto, non aggiunto dopo: saporito, il più pieno del banco.",
+    "salame-cinghiale-tartufo":
+      "Più saporito e deciso, con il carattere del cinghiale e un retrogusto naturale di tartufo che rimane piacevolmente in bocca.",
     "olio-tartufo-nero": "Un filo a crudo, mai in cottura: su bruschette, uova, risotti.",
     "lenticchie-umbre": "Piccole, quindi più delicate delle altre: 25–30 minuti senza ammollo e sono pronte.",
     "zuppa-rapida": "Legumi e cereali già insieme: mezz'ora e la cena d'inverno è risolta."

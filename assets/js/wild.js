@@ -28,8 +28,6 @@
   /* ------------------------------------------------------------ formati */
   const euro = (n) =>
     Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-  const euroKg = (n, u) =>
-    Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €/" + (u || "kg");
 
   /* ------------------------------------------------------------- icone */
   const SPRITE = `
@@ -79,9 +77,15 @@
         /* storage non disponibile: il carrello resta in memoria */
       }
       render.carrello();
+      render.add();
       if (render.guida) render.guida();
     },
     id: (slug, formato) => slug + "::" + (formato || ""),
+    qta(slug, formato) {
+      const id = this.id(slug, formato);
+      const r = this.righe.find((x) => this.id(x.slug, x.formato) === id);
+      return r ? r.qta : 0;
+    },
     aggiungi(slug, formato, qta) {
       const p = C.get(slug);
       if (!p || p.inArrivo) return;
@@ -345,6 +349,17 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
   /* ------------------------------------------------------------- render */
   const render = {
+    /* riallinea ogni pulsante-contatore in pagina alla quantita nel carrello */
+    add() {
+      $$("[data-addq]").forEach((el) => {
+        const n = Cart.qta(el.dataset.addq);
+        el.classList.toggle("addq--on", n > 0);
+        $(".addq__go", el).hidden = n > 0;
+        const st = $(".addq__s", el);
+        st.hidden = !n;
+        if (n) $(".addq__n", st).textContent = n;
+      });
+    },
     carrello() {
       const n = Cart.pezzi();
       $$("[data-cart-n]").forEach((e) => (e.textContent = n));
@@ -401,6 +416,23 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     }
   };
 
+  /* --------------------------------------------------------- pulsante +/- */
+  /* "Aggiungi al carrello" e il contatore - n + occupano la stessa scatola:
+     al clic il pulsante cambia contenuto, mai misura (richiesta del cliente). */
+  function addq(p, cls, label) {
+    const n = Cart.qta(p.slug);
+    const id = Cart.id(p.slug, null);
+    return `
+<span class="addq btn ${cls}${n ? " addq--on" : ""}" data-addq="${p.slug}">
+  <button type="button" class="addq__go" data-add="${p.slug}" aria-label="Aggiungi ${esc(p.nome)} al carrello"${n ? " hidden" : ""}>${label}</button>
+  <span class="addq__s"${n ? "" : " hidden"}>
+    <button type="button" data-qta="${id}" data-d="-1" aria-label="Uno in meno di ${esc(p.nome)}">${ico("minus")}</button>
+    <span class="addq__n">${n || 1}</span>
+    <button type="button" data-qta="${id}" data-d="1" aria-label="Uno in piu di ${esc(p.nome)}">${ico("plus")}</button>
+  </span>
+</span>`;
+  }
+
   /* --------------------------------------------------------- schede card */
   function prodCard(p) {
     const craft = p.artigianale && CONFIG.mostraBadgeArtigianale
@@ -420,7 +452,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       <span class="price">${euro(p.prezzo)}</span>
       <span class="meta">${esc(p.peso || "")}</span>
     </div>
-    <button class="btn btn--dark btn--sm btn--block prod__cta" data-add="${p.slug}" aria-label="Aggiungi ${esc(p.nome)} al carrello">Aggiungi<span class="prod__cta-x"> al carrello</span></button>
+    ${addq(p, "btn--dark btn--sm btn--block prod__cta", `Aggiungi<span class="prod__cta-x"> al carrello</span>`)}
   </div>
 </article>`;
   }
@@ -657,9 +689,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <span>Confezioni regalo e degustazioni ${ico("right")}</span>
 </a>`;
 
-    const sc = $('[data-mount="scorciatoie"]');
-    if (sc) sc.innerHTML = C.scorciatoie.map((s) => `<a class="chip" href="${s.href}">${esc(s.t)}</a>`).join("");
-
     /* recensioni: la barretta sotto il carosello segue lo scorrimento,
        le frecce (solo con il mouse) spostano di una scheda */
     const rv = $("[data-revs]");
@@ -725,7 +754,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
         ${p.prezzoPieno ? `<span class="price--old" style="font-size:14px">${euro(p.prezzoPieno)}</span>` : ""}
         ${risp > 0 ? `<span class="save">RISPARMI ${euro(risp)}</span>` : ""}
       </div>
-      <button class="btn btn--dark btn--block" style="margin-top:16px" data-add="${p.slug}">Aggiungi al carrello</button>
+      ${addq(p, "btn--dark btn--block addq--mt", "Aggiungi al carrello")}
     </div>
   </div>
 </article>`;
@@ -869,7 +898,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 <div class="gv-bar" data-gv="bar"></div>`;
     const parti = $$("[data-gv]", host).map((el) => ({ el: el, nome: el.dataset.gv, html: "" }));
 
-    const qta = (slug) => (Cart.righe.find((r) => r.slug === slug && !r.formato) || {}).qta || 0;
+    const qta = (slug) => Cart.qta(slug);
     const nn = (n) => "0" + n;
 
     /* "Nel cesto" oppure − n +: stesso riquadro .gv-ctl, stesse misure */
@@ -1158,16 +1187,6 @@ ${
       })
       .join("");
 
-    /* ------- schede tecniche */
-    const facts = p.schede
-      ? `<div class="facts">${Object.keys(p.schede)
-          .map(
-            (k) =>
-              `<div><div class="eyebrow">${esc(k)}</div><div class="facts__v">${esc(p.schede[k])}</div></div>`
-          )
-          .join("")}</div>`
-      : "";
-
     /* ------- profilo di gusto */
     const tasting = p.notaBancone
       ? `
@@ -1207,10 +1226,6 @@ ${
       : "";
 
     const old = p.prezzoPieno ? `<span class="price--old">${euro(p.prezzoPieno)}</span>` : "";
-    /* prezzo per unità di misura: obbligatorio nelle offerte online */
-    const q = p.grammi || p.ml;
-    const kg = q ? ` · ${euroKg((p.prezzo / q) * 1000, p.ml ? "l" : "kg")}` : "";
-
     host.innerHTML = `
 <div class="wrap">
   <nav class="crumbs" aria-label="Percorso">
@@ -1259,13 +1274,12 @@ ${
           : `
       <div class="pdp__price">
         <span class="price" data-prezzo>${euro(prezzoCorrente())}</span>${old}
-        <span class="meta" data-peso>${esc(pesoCorrente())}${kg}</span>
+        <span class="meta" data-peso>${esc(pesoCorrente())}</span>
       </div>`
       }
 
       ${p.descrizione ? `<p class="body body--lg" style="margin-top:14px">${esc(p.descrizione)}</p>` : ""}
       ${tasting}
-      ${facts}
       ${p.inArrivo ? "" : formati}
 
       ${
@@ -1305,7 +1319,7 @@ ${
       <span class="price" style="font-size:22px">${euro(a.prezzo)}</span>
       ${a.prezzoPieno ? `<span class="price--old">${euro(a.prezzoPieno)}</span>` : ""}
     </div>
-    <button class="btn btn--dark btn--sm btn--block" style="margin-top:14px" data-add="${a.slug}">Aggiungi</button>
+    ${addq(a, "btn--dark btn--sm btn--block addq--mt2", "Aggiungi")}
   </div>
 </article>`
         )
@@ -1319,7 +1333,7 @@ ${
       const e = $("[data-prezzo]");
       if (e) e.textContent = euro(prezzoCorrente());
       const w = $("[data-peso]");
-      if (w) w.textContent = pesoCorrente() + kg;
+      if (w) w.textContent = pesoCorrente();
       const bb = $("[data-buybar-label]");
       if (bb) bb.textContent = "Aggiungi · " + euro(prezzoCorrente() * qta);
     };

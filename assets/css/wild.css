@@ -427,9 +427,6 @@ input,select,textarea{font:inherit;color:inherit}
 .hero__cta{display:flex;flex-direction:column;gap:10px}
 @media (min-width:560px){ .hero__cta{flex-direction:row;gap:14px} .hero__cta .btn{flex:0 0 auto} }
 
-.shortcuts{background:var(--sand);border-bottom:1px solid var(--line);padding:18px 0}
-.shortcuts .eyebrow{padding-left:var(--pad);margin-bottom:12px}
-@media (min-width:1120px){ .shortcuts{display:none} }
 
 /* ------------------------------------------------------------- caroselli */
 .rail{
@@ -505,6 +502,20 @@ input,select,textarea{font:inherit;color:inherit}
 .price{font-family:var(--serif);font-size:24px;color:var(--wine);line-height:1}
 .price--old{font-size:13px;color:#9A8A73;text-decoration:line-through}
 .prod__cta{margin-top:16px}
+
+/* Pulsante-contatore: "Aggiungi al carrello" e - n + nella stessa scatola,
+   stessa larghezza e stessa altezza prima e dopo il clic. */
+.addq{display:flex;padding:0;overflow:hidden}
+.addq--mt{margin-top:16px}
+.addq--mt2{margin-top:14px}
+.addq__go,.addq__s{flex:1;align-self:stretch;min-width:0}
+.addq__go[hidden],.addq__s[hidden]{display:none}
+.addq__go{display:flex;align-items:center;justify-content:center;gap:0;padding:0 16px;color:inherit}
+.addq__s{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.addq__s button{display:flex;align-items:center;justify-content:center}
+.addq__s button:hover{background:rgba(255,255,255,.14)}
+.addq__s .ico{width:16px;height:16px}
+.addq__n{display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:0;font-variant-numeric:tabular-nums}
 /* nelle card strette (caroselli su telefono) il pulsante dice solo "Aggiungi" */
 .prod{container-type:inline-size}
 @container (max-width:280px){ .prod__cta-x{display:none} }
@@ -720,12 +731,10 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:1120px){ .tasting{padding:28px 30px;margin-top:26px} }
 .tasting__bars{margin-top:18px;display:flex;flex-direction:column;gap:10px}
 .tbar{display:flex;align-items:center;gap:12px}
-.tbar__l{font-size:11px;letter-spacing:.1em;color:#E3CFA6;width:96px;flex:0 0 auto}
+.tbar__l{font-size:11px;letter-spacing:.1em;color:#E3CFA6;width:112px;flex:0 0 auto;white-space:nowrap}
 .stars{color:var(--gold);font-size:17px;letter-spacing:.14em;line-height:1}
 .stars__off{color:#7A5A30}
 
-.facts{display:flex;flex-wrap:wrap;gap:24px 32px;margin-top:26px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.facts__v{font-size:15px;margin-top:6px}
 
 .formats{display:flex;gap:10px;margin-top:10px}
 .formats button{
