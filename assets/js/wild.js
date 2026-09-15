@@ -198,7 +198,7 @@
     /* la barra annuncio si vede SOLO su telefono (vedi .announce in wild.css):
        l'ha chiesto l'utente, non rimetterla su tablet e PC */
     return `
-${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuoto e a casa tua in 48h</div>' : ""}
+${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuoto e a casa tua in circa 48 ore</div>' : ""}
 <header class="hdr">
   ${document.body.dataset.pagina === "prodotto" ? ctxBarHtml() : ""}
   <div class="hdr__bar">
@@ -309,7 +309,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       <span class="meta">Totale · IVA inclusa</span>
       <span class="cart-tot__v" data-cart-tot>0,00 €</span>
     </div>
-    <p class="meta" style="margin-bottom:14px">Spedizione refrigerata calcolata alla cassa.</p>
+    <p class="meta" style="margin-bottom:14px">Spedizione calcolata alla cassa.</p>
     <button class="btn btn--wine btn--block" data-soon="Cassa">Vai alla cassa</button>
   </div>
 </aside>
@@ -968,7 +968,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
         ? `
 <p class="gv-text">${
             presi.length
-              ? "Lo confezioniamo così come l'hai messo insieme: sottovuoto, con imballo isotermico. Se vuoi cambiare qualcosa, si toglie qui."
+              ? "Lo confezioniamo così come l'hai messo insieme: sottovuoto. Se vuoi cambiare qualcosa, si toglie qui."
               : "Capita, e non è un problema: a volte serve solo vedere com'è fatta la bottega. Rifai il giro quando vuoi, oppure guarda da dove partiremmo noi."
           }</p>
 ${
@@ -1280,7 +1280,7 @@ ${
         </span>
         <button class="btn btn--wine" style="flex:1;min-width:220px" data-buy>Aggiungi al carrello</button>
       </div>
-      <p class="buy__note">Spedizione refrigerata · consegna in 24/48h</p>`
+      <p class="buy__note">Spedizione sottovuoto · consegna in circa 48 ore</p>`
       }
 
       ${accHtml ? `<div class="acc">${accHtml}</div>` : ""}

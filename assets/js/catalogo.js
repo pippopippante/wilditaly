@@ -26,7 +26,7 @@ window.CATALOGO = (function () {
       inVetrina: 1,
       helper: {
         occhiello: "NON SAI DA DOVE INIZIARE?",
-        testo: "Prendi la degustazione: i tre salami insieme, con le schede di assaggio.",
+        testo: "Prendi la degustazione: i tre salami insieme.",
         cta: "Vedi la degustazione",
         href: "prodotto.html?p=degustazione-selvaggina"
       }
@@ -98,7 +98,7 @@ window.CATALOGO = (function () {
 
   /* --------------------------------------------------------- testi comuni */
   const conservazioneSalumi =
-    "Conservare lontano da fonti di calore. Spediamo in confezione sottovuoto con imballo isotermico; ordini entro le 12:00 partono lo stesso giorno.";
+    "Conservare lontano da fonti di calore. Spediamo in confezione sottovuoto; la consegna avviene normalmente in circa 48 ore.";
 
   const perWild = {
     testo:
@@ -489,17 +489,16 @@ window.CATALOGO = (function () {
       prezzo: 49,
       foto: "FOTO: tre salami + pecorino",
       descrizione:
-        "Il cervo accanto al capriolo e al cinghiale: è così che si capisce quanto è dolce. Con pecorino stagionato e le tre schede di assaggio.",
-      descrizioneBreve: "Cervo, capriolo, cinghiale + pecorino stagionato. Con schede di assaggio.",
+        "Il cervo accanto al capriolo e al cinghiale: è così che si capisce quanto è dolce. Con pecorino stagionato.",
+      descrizioneBreve: "Cervo, capriolo, cinghiale + pecorino stagionato.",
       notaAbbinamento: "Accanto a capriolo e cinghiale si capisce quanto è dolce.",
       contenuto: [
         { t: "Salame al cervo, 350 g", n: "dolce" },
         { t: "Norcinetta al capriolo, 250 g", n: "vivace, peperoncino" },
         { t: "Salame al cinghiale, 350 g", n: "deciso, speziato" },
-        { t: "Pecorino stagionato, 250 g" },
-        { t: "Tre schede di assaggio stampate" }
+        { t: "Pecorino stagionato, 250 g" }
       ],
-      galleria: ["FOTO 1: tre salami + pecorino", "FOTO 2: schede di assaggio", "FOTO 3: confezione aperta"],
+      galleria: ["FOTO 1: tre salami + pecorino", "FOTO 2: confezione aperta"],
       conservazione: conservazioneSalumi
     },
     {

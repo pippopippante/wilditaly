@@ -533,7 +533,8 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:1120px){ .about .ph{height:340px} }
 
 .steps{display:grid;gap:0}
-@media (min-width:760px){ .steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)} }
+/* auto-fit: i passi restano larghi uguali anche se non sono tre */
+@media (min-width:760px){ .steps{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap)} }
 .step{display:flex;gap:16px;border-top:1px solid var(--line);padding:16px 0}
 .step:last-child{border-bottom:1px solid var(--line)}
 .step__n{font-family:var(--serif);font-size:30px;color:var(--brass-soft);line-height:1;flex:0 0 auto}
@@ -625,6 +626,10 @@ input,select,textarea{font:inherit;color:inherit}
 .shop__cta{display:flex;gap:10px;margin-top:16px}
 .shop__cta .btn{flex:1}
 @media (min-width:1120px){ .shop .shop__cta{display:none} }
+/* il numero è testo, non un bottone: si tocca e parte la chiamata */
+.shop__tel{margin-top:10px;font-family:var(--serif);font-size:26px;line-height:1.2;color:var(--wine)}
+.shop__tel a{display:inline-block;padding:7px 0} /* area di tocco da 44 px */
+@media (min-width:760px){ .shop__tel{font-size:30px} }
 .shop__hours{margin-top:20px;font-size:14px;line-height:1.9;color:var(--ink-soft)}
 
 /* --------------------------------------------------------------- footer */

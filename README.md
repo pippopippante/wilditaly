@@ -109,6 +109,10 @@ Fonti: le foto `-2` delle etichette e `sito vecchio/prodotti_sito_vecchio.md`. N
 non conferma: provenienze, "artigianale", "affumicato", "magro", anno di fondazione. Niente prezzi barrati
 inventati.
 
+Sulla spedizione la bottega ha confermato due cose: i prodotti partono **sottovuoto** e la
+consegna avviene normalmente in **circa 48 ore**. Corriere refrigerato, imballo isotermico e
+orari di partenza degli ordini erano inventati dal mockup: tolti da tutte le pagine.
+
 ## Carrello
 
 Client-side, salvato in `localStorage` (`wilditaly:carrello`). Gestisce quantità,
