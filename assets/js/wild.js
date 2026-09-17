@@ -1235,15 +1235,21 @@ ${
 
 <div class="wrap sec sec--tight">
   <div class="pdp">
-    <div>
-      <div class="ph ph--2 gallery__main" data-gal-main>
+    <div class="gallery">
+      <div class="ph ph--2 gallery__main${galImg ? " gallery__main--foto" : ""}" data-gal-main>
         ${
           galImg
-            ? `<img src="${esc(galImg[0])}" alt="${esc(gal[0])}" data-gal-img>`
+            ? `<img src="${esc(galImg[0])}" alt="${esc(gal[0])}" data-gal-img><span class="gallery__lens" data-gal-lens hidden></span>`
             : `<span class="ph__note" data-gal-note>${esc(gal[0])}</span>`
         }
         ${craft}
         <span class="gallery__count"><span data-gal-i>1</span> / ${gal.length}</span>
+        ${
+          gal.length > 1
+            ? `<button type="button" class="zoom__nav zoom__nav--prev" data-gal-step="-1" aria-label="Foto precedente">‹</button>
+        <button type="button" class="zoom__nav zoom__nav--next" data-gal-step="1" aria-label="Foto successiva">›</button>`
+            : ""
+        }
         <div class="gallery__dots" data-gal-dots>
           ${gal.map((g, i) => `<button type="button" data-g="${i}" aria-label="Foto ${i + 1}"${i === 0 ? ' aria-current="true"' : ""}></button>`).join("")}
         </div>
@@ -1262,6 +1268,7 @@ ${
           )
           .join("")}
       </div>
+      ${galImg ? `<div class="gallery__pane" data-gal-pane hidden></div>` : ""}
       ${
         galImg
           ? `<dialog class="zoom" data-zoom aria-label="Foto ingrandite">
@@ -1392,6 +1399,73 @@ ${
       });
     }
 
+    const mostraGal = (n) => {
+      const i = (galCur = (n + gal.length) % gal.length);
+      const img = $("[data-gal-img]");
+      if (img) {
+        img.src = galImg[i];
+        img.alt = gal[i];
+      } else {
+        $("[data-gal-note]").textContent = gal[i];
+      }
+      $("[data-gal-i]").textContent = i + 1;
+      $$("[data-gal-dots] button", host).forEach((b, k) => b.setAttribute("aria-current", k === i ? "true" : "false"));
+      $$("[data-gal-thumbs] button", host).forEach((b, k) => b.setAttribute("aria-current", k === i ? "true" : "false"));
+    };
+
+    /* ------- come Amazon: su PC la miniatura cambia foto al passaggio del mouse e sulla foto
+       compare la lente con l'ingrandimento a fianco; su telefono si scorre col dito */
+    const galMain = $("[data-gal-main]", host);
+    const galImgEl = $("[data-gal-img]", host);
+    if (galImgEl) {
+      const lens = $("[data-gal-lens]", host);
+      const pane = $("[data-gal-pane]", host);
+      const ZOOM = 2.5;
+      const puoLente = () => matchMedia("(hover:hover) and (min-width:1120px)").matches;
+      const nascondi = () => (lens.hidden = pane.hidden = true);
+      $("[data-gal-thumbs]", host).addEventListener("mouseover", (e) => {
+        const t = e.target.closest("[data-g]");
+        if (t && puoLente() && +t.dataset.g !== galCur) mostraGal(+t.dataset.g);
+      });
+      galMain.addEventListener("mousemove", (e) => {
+        if (!puoLente() || e.target.closest("button") || !galImgEl.naturalWidth) return nascondi();
+        /* riquadro reale della foto dentro il box (object-fit: contain) */
+        const box = galMain.getBoundingClientRect();
+        const s = Math.min(box.width / galImgEl.naturalWidth, box.height / galImgEl.naturalHeight);
+        const rw = galImgEl.naturalWidth * s;
+        const rh = galImgEl.naturalHeight * s;
+        const ox = (box.width - rw) / 2;
+        const oy = (box.height - rh) / 2;
+        const x = e.clientX - box.left - ox;
+        const y = e.clientY - box.top - oy;
+        if (x < 0 || y < 0 || x > rw || y > rh) return nascondi();
+        pane.hidden = lens.hidden = false;
+        const lw = Math.min(rw, pane.clientWidth / ZOOM);
+        const lh = Math.min(rh, pane.clientHeight / ZOOM);
+        const lx = Math.max(0, Math.min(rw - lw, x - lw / 2));
+        const ly = Math.max(0, Math.min(rh - lh, y - lh / 2));
+        Object.assign(lens.style, { width: lw + "px", height: lh + "px", left: ox + lx + "px", top: oy + ly + "px" });
+        Object.assign(pane.style, {
+          backgroundImage: `url("${galImgEl.src}")`,
+          backgroundSize: `${rw * ZOOM}px ${rh * ZOOM}px`,
+          backgroundPosition: `${-lx * ZOOM}px ${-ly * ZOOM}px`
+        });
+      });
+      galMain.addEventListener("mouseleave", nascondi);
+
+      let x0 = null;
+      galMain.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), { passive: true });
+      galMain.addEventListener("touchend", (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        x0 = null;
+        if (Math.abs(dx) > 40 && gal.length > 1) {
+          mostraGal(galCur + (dx < 0 ? 1 : -1));
+          e.preventDefault(); /* niente click: lo scorrimento non apre lo zoom */
+        }
+      });
+    }
+
     host.addEventListener("click", (e) => {
       const f = e.target.closest("[data-formato]");
       if (f) {
@@ -1408,23 +1482,8 @@ ${
         return;
       }
       if (e.target.closest("[data-gal-img]")) return apriZoom(galCur);
-      const g = e.target.closest("[data-g]");
-      if (g) {
-        const i = (galCur = +g.dataset.g);
-        const img = $("[data-gal-img]");
-        if (img) {
-          img.src = galImg[i];
-          img.alt = gal[i];
-        } else {
-          $("[data-gal-note]").textContent = gal[i];
-        }
-        $("[data-gal-i]").textContent = i + 1;
-        $$("[data-gal-dots] button", host).forEach((b, k) => b.setAttribute("aria-current", k === i ? "true" : "false"));
-        $$("[data-gal-thumbs] button", host).forEach((b, k) =>
-          b.setAttribute("aria-current", k === i ? "true" : "false")
-        );
-        return;
-      }
+      const g = e.target.closest("[data-g], [data-gal-step]");
+      if (g) return mostraGal(g.dataset.g ? +g.dataset.g : galCur + +g.dataset.galStep);
       if (e.target.closest("[data-buy]")) {
         Cart.aggiungi(p.slug, formato, qta);
         toast(p.nome + " nel carrello", "Vedi");

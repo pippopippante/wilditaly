@@ -715,7 +715,21 @@ input,select,textarea{font:inherit;color:inherit}
   background:linear-gradient(var(--dot),var(--dot)) center/24px 3px no-repeat;
 }
 .gallery__dots button[aria-current="true"]{--dot:var(--wine)}
+/* foto vere: sempre intere, mai tagliate (come Amazon) */
+.gallery{position:relative}
+.gallery__main--foto,.gallery__main--foto~.gallery__thumbs .ph{background:var(--card)}
+.gallery__main--foto>img,.gallery__main--foto~.gallery__thumbs img{object-fit:contain}
 .gallery__main>img{cursor:zoom-in}
+.gallery__main .zoom__nav{width:40px;height:40px;font-size:26px}
+.gallery__lens{
+  position:absolute;pointer-events:none;
+  background:rgba(255,252,245,.35);border:1px solid rgba(42,33,26,.45);
+}
+.gallery__lens[hidden],.gallery__pane[hidden]{display:none}
+.gallery__pane{
+  position:absolute;top:0;left:calc(100% + 56px);width:calc(100% / 1.05);height:560px;z-index:5;
+  background:var(--card) no-repeat;border:1px solid var(--line);box-shadow:0 12px 32px rgba(42,33,26,.18);
+}
 /* foto a tutto schermo; ingrandita = dimensione reale del file, si scorre col dito */
 .zoom{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--night)}
 .zoom::backdrop{background:var(--night)}
