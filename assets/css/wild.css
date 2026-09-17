@@ -754,6 +754,10 @@ input,select,textarea{font:inherit;color:inherit}
   .gallery__thumbs button:nth-child(4){display:none}
   .gallery__dots{display:none}
 }
+/* miniature di foto vere: prendono la forma della foto, intere, senza fasce né ritagli */
+.gallery__main--foto~.gallery__thumbs{display:flex;flex-wrap:wrap;background:none;padding:8px 0 0}
+.gallery__main--foto~.gallery__thumbs button{width:auto;background:none}
+.gallery__main--foto~.gallery__thumbs button>img{position:static;display:block;width:auto;height:100%}
 
 .pdp__price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:12px}
 .pdp__price .price{font-size:clamp(2rem,1.6rem + 1.6vw,2.75rem)}
