@@ -1262,6 +1262,21 @@ ${
           )
           .join("")}
       </div>
+      ${
+        galImg
+          ? `<dialog class="zoom" data-zoom aria-label="Foto ingrandite">
+        <div class="zoom__stage" data-zoom-stage><img src="${esc(galImg[0])}" alt="" data-zoom-img></div>
+        <button type="button" class="zoom__x" data-zoom-close aria-label="Chiudi">×</button>
+        ${
+          galImg.length > 1
+            ? `<button type="button" class="zoom__nav zoom__nav--prev" data-zoom-step="-1" aria-label="Foto precedente">‹</button>
+        <button type="button" class="zoom__nav zoom__nav--next" data-zoom-step="1" aria-label="Foto successiva">›</button>`
+            : ""
+        }
+        <span class="gallery__count"><span data-zoom-i>1</span> / ${galImg.length}</span>
+      </dialog>`
+          : ""
+      }
     </div>
 
     <div>
@@ -1338,6 +1353,45 @@ ${
       if (bb) bb.textContent = "Aggiungi · " + euro(prezzoCorrente() * qta);
     };
 
+    /* ------- foto a tutto schermo: frecce, tocco per ingrandire, pinch nativo su mobile */
+    let galCur = 0;
+    const zoom = $("[data-zoom]", host);
+    const mostraZoom = (i) => {
+      galCur = (i + galImg.length) % galImg.length;
+      zoom.classList.remove("is-zoom");
+      $("[data-zoom-img]", zoom).src = galImg[galCur];
+      $("[data-zoom-i]", zoom).textContent = galCur + 1;
+    };
+    const apriZoom = (i) => {
+      if (!zoom) return;
+      mostraZoom(i);
+      zoom.showModal();
+      document.body.classList.add("is-locked");
+    };
+    if (zoom) {
+      zoom.addEventListener("close", () => document.body.classList.remove("is-locked"));
+      zoom.addEventListener("click", (e) => {
+        const step = e.target.closest("[data-zoom-step]");
+        if (step) return mostraZoom(galCur + +step.dataset.zoomStep);
+        if (e.target.closest("[data-zoom-close]")) return zoom.close();
+        const img = e.target.closest("[data-zoom-img]");
+        if (!img) return zoom.close();
+        /* tocco sulla foto: ingrandisce centrando il punto toccato, secondo tocco torna intera */
+        const stage = $("[data-zoom-stage]", zoom);
+        const r = img.getBoundingClientRect();
+        const fx = (e.clientX - r.left) / r.width;
+        const fy = (e.clientY - r.top) / r.height;
+        if (zoom.classList.toggle("is-zoom")) {
+          stage.scrollLeft = fx * img.offsetWidth - stage.clientWidth / 2;
+          stage.scrollTop = fy * img.offsetHeight - stage.clientHeight / 2;
+        }
+      });
+      zoom.addEventListener("keydown", (e) => {
+        if (galImg.length > 1 && (e.key === "ArrowLeft" || e.key === "ArrowRight"))
+          mostraZoom(galCur + (e.key === "ArrowRight" ? 1 : -1));
+      });
+    }
+
     host.addEventListener("click", (e) => {
       const f = e.target.closest("[data-formato]");
       if (f) {
@@ -1353,9 +1407,10 @@ ${
         aggiorna();
         return;
       }
+      if (e.target.closest("[data-gal-img]")) return apriZoom(galCur);
       const g = e.target.closest("[data-g]");
       if (g) {
-        const i = +g.dataset.g;
+        const i = (galCur = +g.dataset.g);
         const img = $("[data-gal-img]");
         if (img) {
           img.src = galImg[i];

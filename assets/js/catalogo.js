@@ -71,7 +71,9 @@ window.CATALOGO = (function () {
       nome: "Vini di Montefalco",
       titolo: "Vini di Montefalco",
       intro: "Sagrantino, Montefalco Rosso e bianchi di collina: quello che beviamo con i nostri salumi.",
-      foto: "FOTO: bottiglie di Montefalco"
+      foto: "FOTO: bottiglie di Montefalco",
+      img: "assets/img/grechetto-napolini-1.jpg",
+      imgAlt: "Bottiglia di Grechetto Clara Vinea Napolini"
     },
     {
       slug: "dispensa",
@@ -216,6 +218,54 @@ window.CATALOGO = (function () {
       nota: "Tannino deciso, regge la dolcezza del cervo",
       galleria: ["FOTO 1: bottiglia", "FOTO 2: etichetta"],
       abbinamenti: ["salame-di-cervo", "degustazione-selvaggina"]
+    },
+    /* Napolini: dati letti a mano sull'etichetta (annata 2025). Prezzi ancora da
+       confermare col cliente; l'elenco ingredienti completo è dietro il QR. */
+    {
+      slug: "grechetto-napolini",
+      nome: "Clara Vinea · Grechetto Colli Martani DOC",
+      denominazione: "Colli Martani Denominazione di Origine Controllata Grechetto, annata 2025, 13,5% vol",
+      categoria: "vini",
+      occhiello: "VINI DI MONTEFALCO · UMBRIA",
+      prezzo: 14,
+      peso: "750 ml",
+      ml: 750,
+      foto: "FOTO: bottiglia di Grechetto Napolini",
+      img: "assets/img/grechetto-napolini-1.jpg",
+      galleriaImg: ["assets/img/grechetto-napolini-1.jpg", "assets/img/grechetto-napolini-2.jpg"],
+      descrizione:
+        "Il bianco dei Colli Martani, da uve Grechetto, fatto dalla famiglia Napolini a Montefalco. Annata 2025, 13,5% vol.",
+      nota: "Grechetto dei Colli Martani",
+      ingredienti: "Uve Grechetto. Allergeni: contiene solfiti.",
+      valori: "Per 100 ml: energia 302 kJ / 73 kcal",
+      produttore: {
+        testo:
+          "Prodotto e imbottigliato all'origine dall'Az. Agr. Napolini di Scattini Tiziana, Montefalco (PG). Vignaioli Indipendenti."
+      },
+      abbinamenti: ["pecorino-13-mesi", "salame-di-cervo"]
+    },
+    {
+      slug: "vigna-rosa-napolini",
+      nome: "Vigna Rosa · Umbria IGT Rosato",
+      denominazione: "Umbria Indicazione Geografica Tipica Rosato, annata 2025, 13,5% vol",
+      categoria: "vini",
+      occhiello: "VINI DI MONTEFALCO · UMBRIA",
+      prezzo: 12,
+      peso: "750 ml",
+      ml: 750,
+      foto: "FOTO: bottiglia di Vigna Rosa Napolini",
+      img: "assets/img/vigna-rosa-napolini-1.jpg",
+      galleriaImg: ["assets/img/vigna-rosa-napolini-1.jpg", "assets/img/vigna-rosa-napolini-2.jpg"],
+      descrizione:
+        "Il rosato della famiglia Napolini, vignaioli indipendenti di Montefalco. Umbria IGT, annata 2025, 13,5% vol",
+      nota: "Rosato umbro",
+      ingredienti: "Allergeni: contiene solfiti.",
+      valori: "Per 100 ml: energia 333 kJ / 80 kcal",
+      produttore: {
+        testo:
+          "Prodotto e imbottigliato all'origine dall'Az. Agr. Napolini di Scattini Tiziana, Montefalco (PG). Vignaioli Indipendenti."
+      },
+      abbinamenti: ["salame-spalmabile", "salame-di-capriolo"]
     },
 
     /* ------------------------------------------- dal vecchio sito (etichette) */
@@ -704,7 +754,7 @@ window.CATALOGO = (function () {
       titolo: "Con cosa lo bevi",
       testo: "Montefalco è a mezz'ora da qui.",
       foto: "FOTO: bottiglie di Montefalco sullo scaffale",
-      prodotti: ["sagrantino-montefalco"]
+      prodotti: ["sagrantino-montefalco", "grechetto-napolini", "vigna-rosa-napolini"]
     }
   ];
 
