@@ -800,11 +800,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
     const lista = C.byCat(slug);
     const griglia = $("[data-cat-grid]");
-    const filtri = $("[data-cat-filters]");
-    const conta = $("[data-cat-count]");
 
     if (!lista.length) {
-      filtri.remove();
       griglia.innerHTML = `
 <div class="empty">
   <div class="h3">Questo scaffale non è ancora online</div>
@@ -815,27 +812,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       return;
     }
 
-    const note = Array.from(new Set(lista.map((p) => p.nota).filter(Boolean)));
-    $("[data-f-nota]").innerHTML =
-      '<option value="">Nota di gusto</option>' +
-      note.map((n) => `<option value="${esc(n)}">${esc(n)}</option>`).join("");
-    $("[data-f-nota]").hidden = !note.length;
-
-    function disegna() {
-      const fn = $("[data-f-nota]").value;
-      const ord = $("[data-f-ordine]").value;
-      let out = lista.filter((p) => !fn || p.nota === fn);
-      if (ord === "prezzo-su") out = out.slice().sort((a, b) => a.prezzo - b.prezzo);
-      if (ord === "prezzo-giu") out = out.slice().sort((a, b) => b.prezzo - a.prezzo);
-      if (ord === "nome") out = out.slice().sort((a, b) => a.nome.localeCompare(b.nome, "it"));
-      conta.textContent = out.length + (out.length === 1 ? " prodotto" : " prodotti");
-      griglia.innerHTML = out.length
-        ? out.map(prodCard).join("")
-        : '<div class="empty"><div class="h3">Nessun prodotto con questo filtro</div></div>';
-    }
-
-    $$("select", filtri).forEach((s) => s.addEventListener("change", disegna));
-    disegna();
+    /* niente filtri né ordinamenti: per categoria i prodotti sono pochi */
+    griglia.innerHTML = lista.map(prodCard).join("");
   }
 
   /* ---- selezione: guida alla scelta, idee regalo, sotto i 20 € */
