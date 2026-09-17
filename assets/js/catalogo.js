@@ -70,7 +70,7 @@ window.CATALOGO = (function () {
       nav: "Vini",
       nome: "Vini di Montefalco",
       titolo: "Vini di Montefalco",
-      intro: "Sagrantino, Montefalco Rosso e bianchi di collina: quello che beviamo con i nostri salumi.",
+      intro: "I vini della famiglia Napolini, vignaioli di Montefalco: il rosso, il bianco e il rosato che beviamo con i nostri salumi.",
       foto: "FOTO: bottiglie di Montefalco",
       img: "assets/img/grechetto-napolini-1.jpg",
       imgAlt: "Bottiglia di Grechetto Clara Vinea Napolini"
@@ -144,7 +144,7 @@ window.CATALOGO = (function () {
         "Per 100 g: energia 1758 kJ / 424 kcal · grassi 36,0 g (saturi 13,0 g) · carboidrati 3,3 g (zuccheri 2,9 g) · proteine 22,0 g · sale 3,76 g",
       conservazione: conservazioneSalumi,
       produttore: perWild,
-      abbinamenti: ["degustazione-selvaggina", "sagrantino-montefalco"]
+      abbinamenti: ["degustazione-selvaggina", "napos-rosso"]
     },
     {
       slug: "salame-di-capriolo",
@@ -174,7 +174,7 @@ window.CATALOGO = (function () {
         "Per 100 g: energia 1758 kJ / 424 kcal · grassi 36,0 g (saturi 13,0 g) · carboidrati 3,3 g (zuccheri 2,9 g) · proteine 22,0 g · sale 3,76 g",
       conservazione: conservazioneSalumi,
       produttore: perWild,
-      abbinamenti: ["degustazione-selvaggina", "sagrantino-montefalco"]
+      abbinamenti: ["degustazione-selvaggina", "napos-rosso"]
     },
     {
       slug: "salame-di-cinghiale",
@@ -203,31 +203,40 @@ window.CATALOGO = (function () {
         "Per 100 g: energia 1758 kJ / 424 kcal · grassi 36,0 g (saturi 13,0 g) · carboidrati 3,3 g (zuccheri 2,9 g) · proteine 22,0 g · sale 3,76 g",
       conservazione: conservazioneSalumi,
       produttore: perWild,
-      abbinamenti: ["degustazione-selvaggina", "sagrantino-montefalco"]
+      abbinamenti: ["degustazione-selvaggina", "napos-rosso"]
     },
+    /* Napolini: dati letti a mano sulle etichette. Per ora in bottega ci sono questi tre
+       vini, 9 € l'uno; l'elenco ingredienti completo è dietro il QR dell'etichetta. */
     {
-      slug: "sagrantino-montefalco",
-      nome: "Sagrantino di Montefalco DOCG",
+      slug: "napos-rosso",
+      nome: "Napo's · Umbria IGT Rosso",
+      denominazione: "Umbria Indicazione Geografica Tipica Rosso, annata 2024, 14% vol",
       categoria: "vini",
       occhiello: "VINI DI MONTEFALCO · UMBRIA",
-      prezzo: 24,
+      prezzo: 9,
       peso: "750 ml",
       ml: 750,
-      foto: "FOTO: bottiglia",
-      descrizione: "Tannino deciso, regge la dolcezza del cervo.",
-      nota: "Tannino deciso, regge la dolcezza del cervo",
-      galleria: ["FOTO 1: bottiglia", "FOTO 2: etichetta"],
-      abbinamenti: ["salame-di-cervo", "degustazione-selvaggina"]
+      foto: "FOTO: bottiglia di Napo's rosso",
+      img: "assets/img/napos-napolini-1.jpg",
+      galleriaImg: ["assets/img/napos-napolini-1.jpg", "assets/img/napos-napolini-2.jpg"],
+      descrizione:
+        "Il rosso della famiglia Napolini: sangiovese, merlot e sagrantino dalle vigne di Montefalco. Annata 2024, 14% vol.",
+      nota: "Sangiovese, merlot e sagrantino",
+      ingredienti: "Uve sangiovese, merlot e sagrantino. Allergeni: contiene solfiti.",
+      valori: "Per 100 ml: energia 318 kJ / 77 kcal",
+      produttore: {
+        testo:
+          "Prodotto e imbottigliato all'origine dall'Az. Agr. Napolini di Scattini Tiziana, Montefalco (PG). Vignaioli Indipendenti."
+      },
+      abbinamenti: ["salame-di-cervo", "pecorino-13-mesi"]
     },
-    /* Napolini: dati letti a mano sull'etichetta (annata 2025). Prezzi ancora da
-       confermare col cliente; l'elenco ingredienti completo è dietro il QR. */
     {
       slug: "grechetto-napolini",
       nome: "Clara Vinea · Grechetto Colli Martani DOC",
       denominazione: "Colli Martani Denominazione di Origine Controllata Grechetto, annata 2025, 13,5% vol",
       categoria: "vini",
       occhiello: "VINI DI MONTEFALCO · UMBRIA",
-      prezzo: 14,
+      prezzo: 9,
       peso: "750 ml",
       ml: 750,
       foto: "FOTO: bottiglia di Grechetto Napolini",
@@ -250,7 +259,7 @@ window.CATALOGO = (function () {
       denominazione: "Umbria Indicazione Geografica Tipica Rosato, annata 2025, 13,5% vol",
       categoria: "vini",
       occhiello: "VINI DI MONTEFALCO · UMBRIA",
-      prezzo: 12,
+      prezzo: 9,
       peso: "750 ml",
       ml: 750,
       foto: "FOTO: bottiglia di Vigna Rosa Napolini",
@@ -635,7 +644,7 @@ window.CATALOGO = (function () {
         {
           titolo: "Per un aperitivo con gli amici",
           testo: "Uno da spalmare, uno da affettare e uno da versare.",
-          prodotti: ["salame-spalmabile", "salame-ubriaco", "sagrantino-montefalco"]
+          prodotti: ["salame-spalmabile", "salame-ubriaco", "napos-rosso"]
         },
         {
           titolo: "Vuoi qualcosa da cucinare",
@@ -667,8 +676,8 @@ window.CATALOGO = (function () {
         },
         {
           titolo: "Per chi ama il vino",
-          testo: "Il Sagrantino e quello che ci va accanto.",
-          prodotti: ["sagrantino-montefalco", "box-umbria", "pecorino-13-mesi"]
+          testo: "Il rosso di Montefalco e quello che ci va accanto.",
+          prodotti: ["napos-rosso", "box-umbria", "pecorino-13-mesi"]
         }
       ]
     },
@@ -754,7 +763,7 @@ window.CATALOGO = (function () {
       titolo: "Con cosa lo bevi",
       testo: "Montefalco è a mezz'ora da qui.",
       foto: "FOTO: bottiglie di Montefalco sullo scaffale",
-      prodotti: ["sagrantino-montefalco", "grechetto-napolini", "vigna-rosa-napolini"]
+      prodotti: ["napos-rosso", "grechetto-napolini", "vigna-rosa-napolini"]
     }
   ];
 

@@ -332,7 +332,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 <div class="search" data-panel="cerca" aria-hidden="true" role="dialog" aria-label="Cerca nella bottega">
   <div class="search__head">
     ${ico("search")}
-    <input class="search__input" type="search" data-search-input placeholder="Cerca: cervo, tartufo, Sagrantino…" aria-label="Cerca un prodotto">
+    <input class="search__input" type="search" data-search-input placeholder="Cerca: cervo, tartufo, vino…" aria-label="Cerca un prodotto">
     <button class="iconbtn" data-close aria-label="Chiudi la ricerca">${ico("close")}</button>
   </div>
   <div class="search__body">
