@@ -232,7 +232,6 @@ window.CATALOGO = (function () {
       ml: 750,
       foto: "FOTO: bottiglia di Grechetto Napolini",
       img: "assets/img/grechetto-napolini-1.jpg",
-      fotoVerticali: true,
       galleriaImg: ["assets/img/grechetto-napolini-1.jpg", "assets/img/grechetto-napolini-2.jpg"],
       descrizione:
         "Il bianco dei Colli Martani, da uve Grechetto, fatto dalla famiglia Napolini a Montefalco. Annata 2025, 13,5% vol.",
@@ -256,7 +255,6 @@ window.CATALOGO = (function () {
       ml: 750,
       foto: "FOTO: bottiglia di Vigna Rosa Napolini",
       img: "assets/img/vigna-rosa-napolini-1.jpg",
-      fotoVerticali: true,
       galleriaImg: ["assets/img/vigna-rosa-napolini-1.jpg", "assets/img/vigna-rosa-napolini-2.jpg"],
       descrizione:
         "Il rosato della famiglia Napolini, vignaioli indipendenti di Montefalco. Umbria IGT, annata 2025, 13,5% vol",
