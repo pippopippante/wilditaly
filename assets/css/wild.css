@@ -715,10 +715,10 @@ input,select,textarea{font:inherit;color:inherit}
   background:linear-gradient(var(--dot),var(--dot)) center/24px 3px no-repeat;
 }
 .gallery__dots button[aria-current="true"]{--dot:var(--wine)}
-/* foto vere: sempre intere, mai tagliate (come Amazon) */
 .gallery{position:relative}
-.gallery__main--foto,.gallery__main--foto~.gallery__thumbs .ph{background:var(--card)}
-.gallery__main--foto>img,.gallery__main--foto~.gallery__thumbs img{object-fit:contain}
+/* foto vere: intere nel riquadro grande, le fasce ai lati hanno il colore della pagina */
+.gallery__main--foto>img{object-fit:contain}
+.gallery__main--foto{background:var(--paper)}
 .gallery__main>img{cursor:zoom-in}
 .gallery__main .zoom__nav{width:40px;height:40px;font-size:26px}
 .gallery__lens{
