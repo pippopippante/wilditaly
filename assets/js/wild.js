@@ -1234,7 +1234,7 @@ ${
 </div>
 
 <div class="wrap sec sec--tight">
-  <div class="pdp">
+  <div class="pdp${p.fotoVerticali ? " pdp--verticale" : ""}">
     <div>
       <div class="ph ph--2 gallery__main" data-gal-main>
         ${
