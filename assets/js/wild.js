@@ -12,6 +12,17 @@
   const WA = "https://wa.me/" + C.bottega.telHref.replace(/\D/g, "");
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.prototype.slice.call((r || document).querySelectorAll(s));
+
+  /* schede prodotto: le foto verticali (bottiglie) si vedono intere invece di essere tagliate */
+  document.addEventListener(
+    "load",
+    (e) => {
+      const img = e.target;
+      if (img.tagName === "IMG" && img.closest(".prod .ph") && img.naturalHeight > img.naturalWidth * 1.1)
+        img.parentNode.classList.add("ph--intera");
+    },
+    true
+  );
   const esc = (s) =>
     String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])

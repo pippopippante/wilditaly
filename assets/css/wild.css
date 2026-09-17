@@ -490,6 +490,8 @@ input,select,textarea{font:inherit;color:inherit}
 .prod{background:var(--card);border:1px solid #E6DACA;display:flex;flex-direction:column}
 .prod .ph{height:260px}
 @media (min-width:760px){ .prod .ph{height:340px} }
+.prod .ph--intera{background:var(--paper)}
+.prod .ph--intera>img{object-fit:contain}
 .prod__b{padding:20px 20px 24px;display:flex;flex-direction:column;flex:1}
 @media (min-width:760px){ .prod__b{padding:22px 22px 26px} }
 .prod__n{font-family:var(--serif);font-size:26px;line-height:1.15;color:var(--ink-strong)}
