@@ -446,7 +446,7 @@ window.CATALOGO = (function () {
       galleriaImg: ["assets/img/pecorino-13-mesi.jpg", "assets/img/pecorino-13-mesi-etichetta.jpeg"],
       galleria: ["FOTO 1: pecorino stagionato 13 mesi", "FOTO 2: etichetta"],
       descrizione:
-        "Pecorino Campagnolo di Amatrice, solo latte di pecora. Tredici mesi di stagionatura lo rendono piccante e dalla pasta secca: da grattugiare o per chi ama i sapori forti.",
+        "Pecorino Campagnolo di Amatrice, prodotto esclusivamente con latte di pecora proveniente da pascoli di montagna. Un latte naturalmente più ricco e saporito, che dona al formaggio un gusto intenso e pieno. I 13 mesi di stagionatura concentrano ulteriormente gli aromi, rendendo la pasta asciutta, friabile e piacevolmente piccante, con un sapore deciso che persiste a lungo in bocca.",
       ingredienti:
         "LATTE ovino pastorizzato (origine UE), caglio, fermenti lattici, sale. Trattato in superficie con olio di semi di girasole e aceto di vino bianco. Crosta non edibile. Allergeni: latte.",
       valori:
@@ -563,7 +563,8 @@ window.CATALOGO = (function () {
       ml: 100,
       foto: "FOTO: bottiglietta di olio al tartufo bianco",
       img: "assets/img/olio-tartufo-bianco.jpg",
-      descrizione: "Condimento a base di olio extra vergine di oliva italiano, aromatizzato al tartufo bianco pregiato.",
+      descrizione:
+        "Il profumo intenso e raffinato del tartufo bianco incontra l’olio extravergine di oliva italiano in un condimento aromatico e persistente. Ne basta poco per trasformare un piatto semplice e regalargli subito una nota di tartufo decisa ed elegante.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
       valori: "Per 100 ml: energia 3447 kJ / 825 kcal · grassi 92 g (saturi 15 g) · carboidrati 0 g · proteine 0 g · sale 0 g",
       conservazione: "Lontano da fonti di calore e dalla luce diretta.",
