@@ -46,8 +46,8 @@ window.CATALOGO = (function () {
       nav: "Formaggi",
       nome: "Formaggi",
       titolo: "Formaggi",
-      intro: "Pecorino stagionato 13 mesi, solo latte di pecora.",
-      breve: "Pecorino stagionato 13 mesi, solo latte di pecora.",
+      intro: "Pecorino stagionato 13 mesi, solo latte di pecora, e formaggio misto al tartufo di Bettona.",
+      breve: "Pecorino stagionato e formaggio al tartufo.",
       foto: "FOTO: pecorini a scalare",
       img: "assets/img/pecorino-13-mesi.jpg",
       inVetrina: 3
@@ -57,9 +57,9 @@ window.CATALOGO = (function () {
       nav: "Tartufo",
       nome: "Tartufo e salse",
       titolo: "Tartufo e salse",
-      intro: "Tartufo estivo in salsa e condimenti aromatizzati al tartufo.",
-      breve: "Salsa tartufata e condimenti al tartufo.",
-      breveLunga: "Tartufo estivo in salsa e condimenti aromatizzati al tartufo.",
+      intro: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, e condimenti aromatizzati al tartufo.",
+      breve: "Salse, sugo, purè, miele e condimenti al tartufo.",
+      breveLunga: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, e condimenti aromatizzati al tartufo.",
       foto: "FOTO: tartufo nero su tagliere",
       img: "assets/img/salsa-tartufata.jpg",
       imgAlt: "Barattolo di salsa tartufata",
@@ -80,7 +80,7 @@ window.CATALOGO = (function () {
       nav: "Dispensa",
       nome: "Dispensa",
       titolo: "Dispensa",
-      intro: "Legumi umbri e zuppe da cuocere: la parte della bottega che riempie la credenza.",
+      intro: "Legumi umbri, farro, zuppe da cuocere e ciambelline al vino fatte a mano: la parte della bottega che riempie la credenza.",
       foto: "FOTO: scaffale dispensa",
       img: "assets/img/zuppa-rapida.jpg",
       imgAlt: "Confezione di zuppa rapida di legumi"
@@ -108,6 +108,9 @@ window.CATALOGO = (function () {
   };
   const fortunati = {
     testo: "Fortunati Stocchi S.r.l., Via Filippo da Campello 24, 06042 Campello sul Clitunno (PG)."
+  };
+  const marcheseGrillo = {
+    testo: "Prodotto e confezionato dall'Azienda agricola Il Marchese del Grillo, Strada della Fontanella 18, Oriolo Romano (VT)."
   };
 
   /* ----------------------------------------------------------- prodotti */
@@ -276,6 +279,29 @@ window.CATALOGO = (function () {
       },
       abbinamenti: ["salame-spalmabile", "salame-di-capriolo"]
     },
+    {
+      /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
+      slug: "sagrantino-passito-napolini",
+      nome: "Montefalco Sagrantino Passito DOCG",
+      denominazione: "Montefalco Sagrantino Passito Denominazione di Origine Controllata e Garantita, annata 2021, 13,5% vol",
+      categoria: "vini",
+      occhiello: "VINI DI MONTEFALCO · UMBRIA",
+      prezzo: 22,
+      peso: "500 ml",
+      ml: 500,
+      foto: "FOTO: bottiglia di Sagrantino Passito Napolini",
+      img: "assets/img/sagrantino-passito-napolini-1.jpeg",
+      galleriaImg: ["assets/img/sagrantino-passito-napolini-1.jpeg", "assets/img/sagrantino-passito-napolini-2.jpeg"],
+      galleria: ["FOTO 1: bottiglia, fronte", "FOTO 2: retroetichetta"],
+      descrizione:
+        "Il Sagrantino passito della famiglia Napolini, vignaioli di Montefalco. DOCG, annata 2021, 13,5% vol, bottiglia da 50 cl.",
+      nota: "Sagrantino passito",
+      ingredienti: "Allergeni: contiene solfiti.",
+      produttore: {
+        testo:
+          "Imbottigliato nella zona di produzione, Montefalco (PG), da Napolini di Scattini Tiziana, PG/7713."
+      }
+    },
 
     /* ------------------------------------------- dal vecchio sito (etichette) */
     {
@@ -341,19 +367,22 @@ window.CATALOGO = (function () {
       produttore: perWild
     },
     {
-      slug: "salamella-di-maiale",
-      nome: "Salamella di maiale",
+      /* sul vecchio sito era "Salamella di maiale": l'etichetta dice Nursino, salame stagionato */
+      slug: "nursino",
+      nome: "Nursino",
+      denominazione: "Nursino, salame stagionato",
       categoria: "salumi",
       occhiello: "SALUMI TRADIZIONALI",
       prezzo: 11.9,
       peso: "350 g circa",
       grammi: 350,
-      foto: "FOTO: salamella di maiale",
+      foto: "FOTO: nursino",
       img: "assets/img/salamella-maiale.jpg",
-      descrizione:
-        "Insaccato a salamella di buona stagionatura, macinatura fine e gusto dolce. Un classico per chi ama il salame.",
+      galleriaImg: ["assets/img/salamella-maiale.jpg", "assets/img/nursino-etichetta.jpeg"],
+      galleria: ["FOTO 1: nursino", "FOTO 2: etichetta"],
+      descrizione: "Salame stagionato di suino, macinatura fine e gusto dolce. Un classico per chi ama il salame.",
       ingredienti:
-        "Carne di suino, LATTE scremato in polvere, sale, saccarosio, destrosio, aromi, pepe, antiossidanti: E300, E301, esaltatore di sapidità: E621, aglio, conservanti: E252, E250. Allergeni: latte; può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
+        "Carne di suino, LATTE scremato in polvere, sale, saccarosio, destrosio, aromi, pepe, antiossidanti: E300, E301, esaltatore di sapidità: E621, aglio, conservanti: E252, E250. Allergeni: latte; tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
         "Per 100 g: energia 1796 kJ / 434 kcal · grassi 37,5 g (saturi 13,4 g) · carboidrati 3,1 g (zuccheri 2,9 g) · proteine 20,8 g · sale 3,7 g",
       conservazione: conservazioneSalumi,
@@ -423,6 +452,27 @@ window.CATALOGO = (function () {
       produttore: { testo: "Petrucchi S.r.l., Via A. M. Ricci 11, 02100 Rieti (RI) — stabilimento IT 12 215 CE." }
     },
     {
+      /* dati dall'etichetta; in etichetta "da vendere a peso": peso e prezzo indicativi,
+         da confermare col cliente */
+      slug: "formaggio-tartufo-mazzatosta",
+      nome: "Formaggio misto al tartufo",
+      denominazione: "Formaggio misto (vaccino - ovino) al tartufo",
+      categoria: "formaggi",
+      occhiello: "FORMAGGI · BETTONA",
+      prezzo: 12,
+      peso: "500 g circa",
+      grammi: 500,
+      foto: "FOTO: formaggio misto al tartufo",
+      img: "assets/img/formaggio-tartufo-mazzatosta-1.jpeg",
+      descrizione: "Formaggio di latte vaccino e ovino con tartufo estivo, dal Caseificio Mazzatosta di Bettona.",
+      ingredienti:
+        "LATTE vaccino, LATTE ovino, tartufo (Tuber aestivum Vitt.) (1%), fermenti lattici, caglio, lipasi di capretto, sale, aroma. Trattato in superficie con conservante: E235. Crosta non edibile. Origine del latte: Italia. Allergeni: latte.",
+      valori:
+        "Per 100 g: energia 1707 kJ / 402 kcal · grassi 32 g (saturi 19 g) · carboidrati 1,2 g (zuccheri 1,2 g) · proteine 27 g · sale 1,3 g",
+      conservazione: "Conservare tra 0 e +4 °C.",
+      produttore: { testo: "Caseificio Mazzatosta S.r.l., Via Sala 35, Passaggio di Bettona (PG) — stabilimento IT 10 12 CE." }
+    },
+    {
       slug: "salame-cinghiale-tartufo",
       nome: "Salame al cinghiale e tartufo",
       categoria: "selvaggina",
@@ -450,8 +500,25 @@ window.CATALOGO = (function () {
       prezzo: 6,
       peso: "130 g",
       grammi: 130,
+      /* prezzo del vasetto da 80 g indicativo, da confermare col cliente */
+      formati: [
+        { nome: "Vasetto grande", peso: "130 g", prezzo: 6 },
+        { nome: "Vasetto piccolo", peso: "80 g", prezzo: 4.5 }
+      ],
       foto: "FOTO: barattolo di salsa tartufata",
       img: "assets/img/salsa-tartufata.jpg",
+      galleriaImg: [
+        "assets/img/salsa-tartufata.jpg",
+        "assets/img/salsa-tartufata-130-1.jpg",
+        "assets/img/salsa-tartufata-80-1.jpg",
+        "assets/img/salsa-tartufata-130-3.jpg"
+      ],
+      galleria: [
+        "FOTO 1: barattolo di salsa tartufata",
+        "FOTO 2: vasetto da 130 g",
+        "FOTO 3: vasetto da 80 g",
+        "FOTO 4: etichetta con gli ingredienti"
+      ],
       descrizione: "Tartufo estivo e funghi champignon: sulle bruschette o per condire la pasta.",
       ingredienti:
         "Funghi coltivati (Agaricus bisporus), olio extra vergine di oliva, tartufo estivo 5% (Tuber aestivum Vitt.), olive nere, carote, SEDANO, prezzemolo, preparato per brodo (esaltatore di sapidità: glutammato monosodico), cipolla disidratata, LATTOSIO, spezie, sale, aromi. Allergeni: sedano, latte (lattosio). Senza conservanti. Funghi e tartufi di origine UE.",
@@ -500,6 +567,73 @@ window.CATALOGO = (function () {
       produttore: fortunati
     },
     {
+      /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
+      slug: "pure-tartufo-estivo",
+      nome: "Purè di patate con tartufo estivo",
+      denominazione: "Preparato per purè di patate al tartufo",
+      categoria: "tartufo",
+      occhiello: "TARTUFO E SALSE",
+      prezzo: 7.9,
+      peso: "200 g",
+      grammi: 200,
+      foto: "FOTO: confezione di purè al tartufo",
+      img: "assets/img/pure-tartufo-1.jpeg",
+      galleriaImg: ["assets/img/pure-tartufo-1.jpeg", "assets/img/pure-tartufo-2.jpeg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
+      descrizione: "Preparato per purè di patate con tartufo estivo: 4 porzioni. Senza conservanti e glutammati aggiunti.",
+      ingredienti:
+        "Patate disidratate 98%, tartufo estivo (Tuber aestivum Vitt.) 1%, sale, emulsionante: mono e digliceridi degli acidi grassi, aroma.",
+      valori:
+        "Per 100 g: energia 1473 kJ / 347 kcal · grassi 0,5 g (saturi 0,1 g) · carboidrati 75,0 g (zuccheri 2,0 g) · proteine 7,5 g · sale 1,0 g",
+      conservazione: "A temperatura ambiente, lontano da fonti di calore.",
+      produttore: { testo: "Tartufi Alfonso Fortunati, Via Filippo da Campello 24, 06042 Campello sul Clitunno (PG)." }
+    },
+    {
+      /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
+      slug: "sugo-pomodoro-tartufo",
+      nome: "Sugo di pomodoro e tartufo",
+      categoria: "tartufo",
+      occhiello: "TARTUFO E SALSE",
+      prezzo: 6.5,
+      peso: "180 g",
+      grammi: 180,
+      foto: "FOTO: vasetto di sugo di pomodoro e tartufo",
+      img: "assets/img/sugo-pomodoro-tartufo-1.jpeg",
+      galleriaImg: [
+        "assets/img/sugo-pomodoro-tartufo-1.jpeg",
+        "assets/img/sugo-pomodoro-tartufo-2.jpeg",
+        "assets/img/sugo-pomodoro-tartufo-3.jpeg"
+      ],
+      galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore e peso"],
+      descrizione: "Polpa di pomodoro italiano e tartufo estivo: pronto per condire la pasta. Senza conservanti.",
+      ingredienti:
+        "Polpa di pomodoro italiano 86%, olio extra vergine di oliva italiano, tartufo estivo (Tuber aestivum Vitt.) 5%, sale, aromi naturali, spezie, zucchero. Origine del pomodoro: Italia.",
+      valori:
+        "Per 100 g: energia 662 kJ / 158 kcal · grassi 6,4 g (saturi 1,0 g) · carboidrati 17,6 g (zuccheri 17,6 g) · proteine 3,7 g · sale 2,0 g",
+      produttore: fortunati
+    },
+    {
+      /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
+      slug: "miele-tartufo",
+      nome: "Miele e tartufo",
+      denominazione: "Prodotto gastronomico: miele con tartufo estivo",
+      categoria: "tartufo",
+      occhiello: "TARTUFO E SALSE",
+      prezzo: 8.5,
+      peso: "120 g",
+      grammi: 120,
+      foto: "FOTO: vasetto di miele e tartufo",
+      img: "assets/img/miele-tartufo-1.jpeg",
+      galleriaImg: ["assets/img/miele-tartufo-1.jpeg", "assets/img/miele-tartufo-3.jpeg", "assets/img/miele-tartufo-2.jpeg"],
+      galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore"],
+      descrizione: "Miele con pezzetti di tartufo estivo, in vasetto da 120 g.",
+      ingredienti: "Miele 98%, tartufi estivi (Tuber aestivum Vitt.) 1%, aroma. Origine del tartufo: UE.",
+      valori:
+        "Per 100 g: energia 1396,6 kJ / 328,6 kcal · grassi 0 g (saturi 0 g) · carboidrati 81 g (zuccheri 81 g) · proteine 0,5 g · sale 0 g",
+      conservazione: "Al riparo dalla luce diretta e da fonti di calore.",
+      produttore: fortunati
+    },
+    {
       slug: "lenticchie-umbre",
       nome: "Lenticchie umbre",
       categoria: "dispensa",
@@ -526,13 +660,167 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di zuppa rapida di legumi",
-      img: "assets/img/zuppa-rapida.jpg",
+      img: "assets/img/zuppa-rapida-1.jpeg",
+      galleriaImg: ["assets/img/zuppa-rapida-1.jpeg", "assets/img/zuppa-rapida-2.jpeg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
       descrizione: "Legumi misti e orzo per una zuppa invernale, pronta in circa 30 minuti di cottura.",
       ingredienti:
         "Lenticchie, ORZO perlato, fagioli, azuki verdi, piselli. Allergeni: glutine (orzo); può contenere SOIA. Made in Italy.",
       valori:
         "Per 100 g: energia 1512 kJ / 357 kcal · grassi 0,9 g (saturi 0,2 g) · carboidrati 67,3 g (zuccheri 1,7 g) · proteine 14,5 g · sale 0,07 g",
       produttore: fortunati
+    },
+    {
+      /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
+      slug: "farro-umbro-perlato",
+      nome: "Farro umbro perlato",
+      categoria: "dispensa",
+      occhiello: "DISPENSA · UMBRIA",
+      prezzo: 6.5,
+      peso: "500 g",
+      grammi: 500,
+      foto: "FOTO: confezione di farro umbro perlato",
+      img: "assets/img/farro-umbro-1.jpeg",
+      galleriaImg: ["assets/img/farro-umbro-1.jpeg", "assets/img/farro-umbro-2.jpeg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
+      descrizione:
+        "Farro perlato umbro, cuoce in 20 minuti. Sul retro la ricetta del farro all'antica, con sedano, carota, cipolla, carne e pomodoro.",
+      ingredienti: "Farro umbro perlato. Contiene glutine.",
+      valori:
+        "Per 100 g: energia 1389 kJ / 327 kcal · grassi 2,0 g (saturi 0,3 g) · carboidrati 63,7 g (zuccheri 1,9 g) · proteine 13,7 g · sale 0,02 g",
+      produttore: fortunati
+    },
+    {
+      /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
+      slug: "fagioli-cannellini",
+      nome: "Fagioli cannellini italiani",
+      categoria: "dispensa",
+      occhiello: "DISPENSA",
+      prezzo: 6.8,
+      peso: "500 g",
+      grammi: 500,
+      foto: "FOTO: confezione di fagioli cannellini",
+      img: "assets/img/fagioli-cannellini-1.jpeg",
+      galleriaImg: ["assets/img/fagioli-cannellini-1.jpeg", "assets/img/fagioli-cannellini-2.jpeg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
+      descrizione:
+        "Cannellini italiani secchi. Vanno lasciati in ammollo 12 ore, poi lessati in acqua per circa 50 minuti, salando verso fine cottura. Sul retro la ricetta dei fagioli all'uccelletto.",
+      ingredienti: "Fagioli cannellini. Prodotto in Italia.",
+      valori:
+        "Per 100 g: energia 1163 kJ / 274 kcal · grassi 0,8 g (saturi 0,1 g) · carboidrati 43,1 g (zuccheri 3 g) · proteine 23,6 g · sale 0,01 g",
+      produttore: fortunati
+    },
+
+    /* ciambelline del Marchese del Grillo: dati dalle etichette, prezzi indicativi
+       da confermare col cliente */
+    {
+      slug: "ciambelline-cereali",
+      nome: "Ciambelline ai cereali",
+      categoria: "dispensa",
+      occhiello: "DISPENSA · CIAMBELLINE",
+      prezzo: 5.5,
+      peso: "200 g",
+      grammi: 200,
+      foto: "FOTO: sacchetto di ciambelline ai cereali",
+      img: "assets/img/ciambelline-cereali-1.jpg",
+      galleriaImg: [
+        "assets/img/ciambelline-cereali-1.jpg",
+        "assets/img/ciambelline-cereali-2.jpeg",
+        "assets/img/ciambelline-cereali-3.jpeg"
+      ],
+      galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, fronte", "FOTO 3: etichetta, retro"],
+      descrizione: "Ciambelline al vino rosso fatte a mano, con farine di cereali, semi e fiocchi d'avena.",
+      ingredienti:
+        "CEREALI 61% (farina di GRANO TENERO tipo \"0\", farina di SEGALE, semi di SESAMO, semi di GIRASOLE, semi di LINO, farina di AVENA, farina di ORZO, sale, MAIS soffiato, estratto di malto d'ORZO, farina di GRANO TENERO maltato, farina di GRANO TENERO di tipo 1 macinata a pietra, agente di trattamento della farina (acido ascorbico, alfa amilasi)), fiocchi di AVENA, VINO rosso, zucchero, olio di semi di girasole altoleico, AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma]. La farina, il vino e lo zucchero sono di origine italiana. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 1,4%.",
+      valori:
+        "Per 100 g: energia 1843 kJ / 441 kcal · grassi 17 g (saturi 2,3 g) · carboidrati 48 g (zuccheri 17 g) · fibre 0 g · proteine 8,9 g · sale 0,72 g",
+      conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
+      produttore: marcheseGrillo
+    },
+    {
+      slug: "ciambelline-cacao-menta",
+      nome: "Ciambelline cacao e menta",
+      categoria: "dispensa",
+      occhiello: "DISPENSA · CIAMBELLINE",
+      prezzo: 5.5,
+      peso: "200 g",
+      grammi: 200,
+      foto: "FOTO: sacchetto di ciambelline cacao e menta",
+      img: "assets/img/ciambelline-cacao-menta-1.jpeg",
+      galleriaImg: ["assets/img/ciambelline-cacao-menta-1.jpeg", "assets/img/ciambelline-cacao-menta-2.jpeg"],
+      galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
+      descrizione: "Ciambelline al vino rosso fatte a mano, con cacao amaro e foglie di menta.",
+      ingredienti:
+        "Farina di GRANO TENERO tipo 1 macinata a pietra, VINO rosso, zucchero, olio di semi di girasole altoleico, cacao amaro (16%), AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma], menta foglie (0,00025%), Mentha piperita oil. La farina e il vino sono di origine italiana. Può contenere tracce di FRUTTA SECCA, UOVA, LATTE. Titolo alcolometrico 1,7%.",
+      valori:
+        "Per 100 g: energia 1612 kJ / 385 kcal · grassi 17,00 g (saturi 2,30 g) · carboidrati 48,00 g (zuccheri 17,00 g) · fibre 0,00 g · proteine 7,00 g · sale 0,00 g",
+      conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
+      produttore: marcheseGrillo
+    },
+    {
+      slug: "ciambelline-frutti-bosco",
+      nome: "Ciambelline ai frutti di bosco",
+      categoria: "dispensa",
+      occhiello: "DISPENSA · CIAMBELLINE",
+      prezzo: 5.5,
+      peso: "200 g",
+      grammi: 200,
+      foto: "FOTO: sacchetto di ciambelline ai frutti di bosco",
+      img: "assets/img/ciambelline-frutti-bosco-1.jpeg",
+      galleriaImg: ["assets/img/ciambelline-frutti-bosco-1.jpeg", "assets/img/ciambelline-frutti-bosco-2.jpeg"],
+      galleria: ["FOTO 1: etichetta, fronte", "FOTO 2: etichetta, retro"],
+      descrizione: "Ciambelline al vino rosso fatte a mano, con karkadè, uva passa, sambuco, mirtillo e ribes nero.",
+      ingredienti:
+        "Farina di GRANO TENERO tipo 1 macinata a pietra, VINO rosso (contiene SOLFITI), zucchero, olio di semi di girasole altoleico, frutti di bosco (karkadè fiori, uva passa, sambuco bacche, mirtillo frutti, ribes nero frutti 2,98%), aromi, AGENTI LIEVITANTI (tartrati di potassio 45,8%, carbonati di sodio, amido di mais, aroma). La farina e il vino sono di origine italiana. Può contenere tracce di FRUTTA SECCA, UOVA, LATTE.",
+      valori:
+        "Per 100 g: energia 1587 kJ / 379 kcal · grassi 14,21 g (saturi 1,59 g) · carboidrati 52,65 g (zuccheri 18,50 g) · fibre 1,58 g · proteine 6,05 g · sale 0,01 g",
+      conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
+      produttore: marcheseGrillo
+    },
+    {
+      slug: "ciambelline-sambuca-caffe",
+      nome: "Ciambelline sambuca e caffè",
+      categoria: "dispensa",
+      occhiello: "DISPENSA · CIAMBELLINE",
+      prezzo: 5.5,
+      peso: "200 g",
+      grammi: 200,
+      foto: "FOTO: sacchetto di ciambelline sambuca e caffè",
+      img: "assets/img/ciambelline-sambuca-caffe-1.jpeg",
+      galleriaImg: ["assets/img/ciambelline-sambuca-caffe-1.jpeg", "assets/img/ciambelline-sambuca-caffe-2.jpeg"],
+      galleria: ["FOTO 1: etichetta, fronte", "FOTO 2: etichetta, retro"],
+      descrizione: "Ciambelline al vino rosso fatte a mano, con sambuca e caffè in polvere e in chicchi.",
+      ingredienti:
+        "Farina di GRANO TENERO tipo 1 macinata a pietra, zucchero, olio di semi di girasole altoleico, sambuca 0,1% (alcool, zuccheri, acqua e aromi naturali), VINO rosso, caffè polvere e chicchi, AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma], Illicium verum fruit/seed oil. La farina e il vino sono di origine italiana. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 0,3%.",
+      valori:
+        "Per 100 g: energia 1692 kJ / 403 kcal · grassi 17 g (saturi 2,5 g) · carboidrati 56 g (zuccheri 22 g) · fibre 0 g · proteine 6,5 g · sale 0 g",
+      conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
+      produttore: marcheseGrillo
+    },
+    {
+      /* proteine: in etichetta il valore è coperto dall'occhiello, "6,5" da ricontrollare */
+      slug: "snacks-anice",
+      nome: "Snacks gusto dolce all'anice",
+      categoria: "dispensa",
+      occhiello: "DISPENSA",
+      /* prezzo indicativo, da confermare col cliente */
+      prezzo: 4.5,
+      peso: "80 g",
+      grammi: 80,
+      foto: "FOTO: sacchetto di snacks all'anice",
+      img: "assets/img/snacks-anice-1.jpeg",
+      galleriaImg: ["assets/img/snacks-anice-1.jpeg", "assets/img/snacks-anice-2.jpeg"],
+      galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
+      descrizione: "Sfoglie dolci all'anice, prodotte artigianalmente.",
+      ingredienti:
+        "Zucchero, farina di GRANO TENERO tipo \"0\", UOVA, aromi. Può contenere tracce di FRUTTA SECCA A GUSCIO, LATTE.",
+      valori:
+        "Per 100 g: energia 1673 kJ / 394 kcal · grassi 23 g (saturi 0 g) · carboidrati 87 g (zuccheri 50 g) · proteine 6,5 g · sale 0 g",
+      conservazione: "In luogo fresco e asciutto. Prodotto artigianalmente, soggetto a calo di peso.",
+      produttore: {
+        testo:
+          "Prodotto e confezionato in Strada della Fontanella 18, Oriolo Romano (VT). Distribuito dall'Azienda agricola Il Marchese del Grillo."
+      }
     },
 
     /* ------------------------------------------------------------- box */
@@ -704,7 +992,7 @@ window.CATALOGO = (function () {
             "olio-tartufo-bianco",
             "coglione-del-mulo",
             "salamella-di-fegato",
-            "salamella-di-maiale"
+            "nursino"
           ]
         }
       ]
