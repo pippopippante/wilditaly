@@ -23,6 +23,7 @@ npx serve .        # oppure: python -m http.server
 | `selezione.html?s=<slug>` | non nel mockup — `guida` (fatti guidare), `regalo` (idee regalo), `sotto-20`; dati in `selezioni` di `catalogo.js` |
 | `guida.html` | "Fatti guidare": la visita guidata, versione b di `design/Fatti guidare.dc.html` (progetto `f2739665-509a-4897-a51c-9b998182b4b4`), 1b desktop + 2b mobile; tappe in `visita` di `catalogo.js`, il cesto è il carrello |
 | `info.html` | spedizioni / conservazione / resi / contatti |
+| `catalogo.html` | "Catalogo completo": tutti i prodotti in un listino per categoria, con ricerca e filtri «senza latte» / «senza solfiti» (dagli allergeni in etichetta; le box non passano mai). Vista "listino" di `design/Catalogo completo.dc.html` (progetto `2b827df0-7514-4854-ac07-1450b157bbff`); vetrina e colonne non implementate. Voce "Catalogo" nella navigazione, subito dopo Dispensa, e link nel footer |
 
 `1b` (direzione editoriale) e `1f`/`1g` (mobile del turno 1) non sono implementate:
 la prima è la direzione non scelta, le seconde sono superate da 2a/2b.
@@ -47,7 +48,8 @@ e i due `<script>` in fondo.
 
 - `< 1120px` — layout mobile/tablet: menu a scomparsa, ricerca dalla lente nell'header,
   barra di navigazione fissa in basso (4 voci: Bottega, Cerca, Carrello, Account; tap target 48–56 px).
-- `>= 1120px` — layout desktop: navigazione orizzontale, griglie a 3–4 colonne.
+- `>= 1120px` — layout desktop: navigazione orizzontale, griglie a 3–4 colonne. Fra 1120 e 1279 px
+  i margini scendono a 48 px e Cerca/Account restano solo icona, se no le 8 voci non stanno su una riga.
 
 Sulla scheda prodotto sotto i 1120 px l'intestazione diventa contestuale
 (indietro · nome · condividi · carrello) e compare la barra di acquisto fissa,

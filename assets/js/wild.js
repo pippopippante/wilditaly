@@ -185,9 +185,13 @@
         const href = c.pagina || "categoria.html?c=" + c.slug;
         const cur = pag === c.slug ? ' aria-current="page"' : "";
         const cls = c.inNavEvidenza ? ' class="is-featured"' : "";
-        return `<a href="${href}"${cur}${cls}>${esc(dove === "menu" ? c.nome : c.nav)}${
+        const a = `<a href="${href}"${cur}${cls}>${esc(dove === "menu" ? c.nome : c.nav)}${
           dove === "menu" ? ico("right") : ""
         }</a>`;
+        /* il catalogo completo sta subito dopo la dispensa */
+        if (c.slug !== "dispensa") return a;
+        const curCat = document.body.dataset.pagina === "catalogo" ? ' aria-current="page"' : "";
+        return a + `<a href="catalogo.html"${curCat}>${dove === "menu" ? "Catalogo completo" + ico("right") : "Catalogo"}</a>`;
       })
       .join("");
   }
@@ -256,6 +260,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     <div class="ftr__col">
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">BOTTEGA</div>
       ${cats}
+      <a href="catalogo.html">Catalogo completo</a>
     </div>
     <div class="ftr__col">
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">SERVIZIO</div>
@@ -618,18 +623,19 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   }
 
   /* --------------------------------------------------------------- ricerca */
+  /* testo in cui cercano sia la ricerca dell'header sia il catalogo completo */
+  const chiave = (p) =>
+    [p.nome, p.descrizione, p.nota, p.categoria, (C.cat(p.categoria) || {}).nome]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
   function initSearch() {
     const input = $("[data-search-input]");
     const out = $("[data-search-out]");
     if (!input || !out) return;
 
-    const indice = C.prodotti.map((p) => ({
-      p: p,
-      k: [p.nome, p.descrizione, p.nota, p.categoria, (C.cat(p.categoria) || {}).nome]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase()
-    }));
+    const indice = C.prodotti.map((p) => ({ p: p, k: chiave(p) }));
 
     function cerca() {
       const q = input.value.trim().toLowerCase();
@@ -814,6 +820,94 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
     /* niente filtri né ordinamenti: per categoria i prodotti sono pochi */
     griglia.innerHTML = lista.map(prodCard).join("");
+  }
+
+  /* ---- catalogo completo: vista "listino" di "Catalogo completo.dc.html".
+     Le righe si disegnano una volta sola; ricerca e filtri le nascondono soltanto. */
+  function mountCatalogo() {
+    const lista = $("[data-ls-lista]");
+    const q = $("[data-ls-q]");
+    const bottoni = $$("[data-ls-f]");
+    /* allergeni dichiarati in etichetta, tracce comprese. Chi non ha ingredienti
+       (le box) non passa mai un filtro: dentro ci sono salumi e pecorino. */
+    const allergeni = { latte: /latte|lattosio/i, solfiti: /solfiti/i };
+    const senza = (p, f) => !!p.ingredienti && !allergeni[f].test(p.ingredienti);
+
+    const wa = WA + "?text=" + encodeURIComponent("Buongiorno, scrivo dal catalogo del sito: vorrei chiedere di ");
+    $$("[data-ls-wa]").forEach((a) => (a.href = wa));
+    $$("[data-ls-tel]").forEach((a) => {
+      a.href = C.bottega.telHref;
+      a.textContent = C.bottega.tel;
+    });
+
+    const riga = (p) => `
+<a class="ls-riga" href="prodotto.html?p=${p.slug}" data-ls-riga="${p.slug}">
+  ${ph("", "ls-riga__ph ph--2", "", p.img)}
+  <span>
+    <span class="ls-riga__n">${esc(p.nome)}</span>
+    <span class="ls-riga__nota">${esc(p.nota || p.descrizioneBreve || p.denominazione || p.descrizione || "")}</span>
+  </span>
+  <span class="ls-riga__p">
+    <span class="ls-riga__prezzo">${euro(p.prezzo)}</span>
+    <span class="ls-riga__peso">${esc(p.formati ? p.formati[0].peso : p.peso || "")}</span>
+  </span>
+</a>`;
+
+    lista.innerHTML = C.categorie
+      .map((c) => {
+        const ps = C.byCat(c.slug);
+        return ps.length
+          ? `
+<section class="ls-sez" data-ls-sez>
+  <div class="ls-sez__head"><h2 class="ls-sez__t">${esc(c.nome)}</h2><span class="ls-sez__n" data-ls-sez-n></span></div>
+  <div class="ls-griglia">${ps.map(riga).join("")}</div>
+</section>`
+          : "";
+      })
+      .join("");
+
+    const righe = $$("[data-ls-riga]", lista).map((el) => ({ el: el, p: C.get(el.dataset.lsRiga) }));
+
+    function filtra() {
+      const parole = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const attivi = bottoni.filter((b) => b.getAttribute("aria-pressed") === "true").map((b) => b.dataset.lsF);
+      let visibili = 0;
+      righe.forEach((r) => {
+        const k = chiave(r.p);
+        const ok = parole.every((w) => k.indexOf(w) > -1) && attivi.every((f) => senza(r.p, f));
+        r.el.hidden = !ok;
+        if (ok) visibili++;
+      });
+      $$("[data-ls-sez]", lista).forEach((s) => {
+        const n = $$("[data-ls-riga]:not([hidden])", s).length;
+        s.hidden = !n;
+        $("[data-ls-sez-n]", s).textContent = n;
+      });
+      $("[data-ls-n]").textContent =
+        parole.length || attivi.length ? `${visibili} di ${righe.length} prodotti` : `${righe.length} prodotti`;
+      $("[data-ls-vuoto]").hidden = visibili > 0;
+    }
+
+    q.addEventListener("input", filtra);
+    bottoni.forEach((b) =>
+      b.addEventListener("click", () => {
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") !== "true");
+        filtra();
+      })
+    );
+    $("[data-ls-azzera]").addEventListener("click", () => {
+      q.value = "";
+      bottoni.forEach((b) => b.setAttribute("aria-pressed", "false"));
+      filtra();
+      q.focus();
+    });
+    filtra();
+
+    /* la barra di ricerca resta fissa sotto l'header (da tablet in su, vedi wild.css) */
+    const hdr = $(".hdr");
+    const alto = () => document.documentElement.style.setProperty("--hdr-h", hdr.offsetHeight + "px");
+    alto();
+    window.addEventListener("resize", alto);
   }
 
   /* ---- selezione: guida alla scelta, idee regalo, sotto i 20 € */
@@ -1602,6 +1696,7 @@ ${
     if (pagina === "prodotto") mountProdotto();
     if (pagina === "selezione") mountSelezione();
     if (pagina === "guida") mountGuida();
+    if (pagina === "catalogo") mountCatalogo();
 
     $$(".rail").forEach(initRail);
     initAcc();

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Wild Italy · codice di Emanuele Parmegiani -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogo completo · Wild Italy</title>
+<meta name="description" content="Tutti i prodotti della bottega Wild Italy di Spoleto in una pagina: prezzi, pesi e nota di gusto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/wild.css">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta property="og:site_name" content="Wild Italy">
+<meta property="og:image" content="https://pippopippante.github.io/wilditaly/assets/img/logo.jpeg">
+</head>
+<body data-pagina="catalogo">
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<main id="main">
+
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Percorso"><a href="index.html">Bottega</a> / Catalogo completo</nav>
+    <div class="ls-head">
+      <div>
+        <div class="eyebrow eyebrow--wine">TUTTA LA BOTTEGA, IN UNA PAGINA</div>
+        <h1 class="h1">Catalogo completo</h1>
+        <p class="body body--lg measure">Prezzi, pesi e nota di gusto di ogni prodotto. Scorri tutto in un minuto, poi apri la scheda di quello che ti interessa.</p>
+      </div>
+      <div class="ls-contatti">
+        <a class="ls-wa" data-ls-wa target="_blank" rel="noopener">Chiedi su WhatsApp</a>
+        <p>oppure <a data-ls-tel></a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ls-bar">
+    <label class="ls-cerca">
+      <span data-ico="search"></span>
+      <span class="sr">Cerca nel catalogo</span>
+      <input type="search" data-ls-q placeholder="Cerca: tartufo, cervo, pecorino…">
+    </label>
+    <div class="ls-filtri" role="group" aria-label="Allergeni">
+      <button type="button" class="ls-chip" data-ls-f="latte" aria-pressed="false">senza latte</button>
+      <button type="button" class="ls-chip" data-ls-f="solfiti" aria-pressed="false">senza solfiti</button>
+    </div>
+    <p class="ls-n" aria-live="polite" data-ls-n></p>
+  </div>
+
+  <div class="wrap" data-ls-lista></div>
+
+  <div class="wrap" data-ls-vuoto hidden>
+    <div class="empty" style="margin-top:28px">
+      <div class="h3">Nessun prodotto con questi filtri.</div>
+      <button type="button" class="btn btn--wineline btn--sm" style="margin-top:12px" data-ls-azzera>Azzera ricerca e filtri</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ls-piede">
+      <p>Salumi e formaggi sono a peso variabile: i pesi indicati sono medi, il prezzo è quello del pezzo intero.
+      I filtri «senza latte» e «senza solfiti» seguono gli allergeni dichiarati in etichetta, tracce comprese.
+      Ingredienti, valori nutrizionali e conservazione stanno nella scheda di ogni prodotto.
+      Prezzi aggiornati al 18 settembre 2026.</p>
+      <p>Non trovi quello che cerchi?<br><a data-ls-tel></a> · <a data-ls-wa target="_blank" rel="noopener">WhatsApp</a></p>
+    </div>
+  </div>
+
+</main>
+
+<script src="assets/js/catalogo.js"></script>
+<script src="assets/js/wild.js"></script>
+</body>
+</html>

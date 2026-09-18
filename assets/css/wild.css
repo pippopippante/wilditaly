@@ -273,8 +273,9 @@ input,select,textarea{font:inherit;color:inherit}
   .brand__txt{align-items:flex-start}
   .brand__name{font-size:28px}
   .brand__sub{font-size:10px;letter-spacing:.24em;margin-top:4px}
-  .hdr__nav{display:flex;gap:clamp(14px,1.5vw,28px);font-size:14px;letter-spacing:.04em;color:var(--ink-soft)}
-  .hdr__nav a{padding-bottom:3px;border-bottom:2px solid transparent}
+  /* 8 voci col catalogo: lo spazio fra le voci scende a 12 px a 1120 e sale a 28 px sui grandi */
+  .hdr__nav{display:flex;gap:clamp(12px,2.2vw - 12px,28px);font-size:14px;letter-spacing:.04em;color:var(--ink-soft)}
+  .hdr__nav a{padding-bottom:3px;border-bottom:2px solid transparent;white-space:nowrap}
   .hdr__nav a:hover{color:var(--wine)}
   .hdr__nav a[aria-current="page"]{border-bottom-color:var(--wine)}
   .hdr__nav .is-featured{color:var(--wine);font-weight:600}
@@ -283,8 +284,16 @@ input,select,textarea{font:inherit;color:inherit}
   .hdr__side .txtbtn:hover{color:var(--wine)}
   .sr-lg{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:nowrap}
   .menu-toggle,.cart-icon-btn{display:none}
-  .cart-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--brass);padding:6px 12px;font-size:13px}
+  .cart-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--brass);padding:6px 12px;font-size:13px;white-space:nowrap}
   .cart-pill:hover{border-color:var(--wine);color:var(--wine)}
+}
+/* fra 1120 e 1279 px le voci non ci stanno tutte su una riga: Cerca e Account restano solo icona */
+@media (min-width:1120px) and (max-width:1279px){
+  :root{--pad:48px}
+  .hdr__bar{gap:12px}
+  .hdr__side{gap:12px}
+  .hdr__side .txtbtn{min-width:36px;min-height:44px;justify-content:center}
+  .hdr__side .sr-lg{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 }
 
 .crumbs{
@@ -985,6 +994,103 @@ button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
   .gv-totbox__v{font-family:var(--serif);font-size:32px;line-height:1;color:var(--ink-strong);margin-top:4px}
   .gv-totbox__go{display:flex;align-items:center;gap:18px}
   .gv-links{padding:18px 0 0}
+}
+
+/* --------------------------------------------- catalogo completo (listino) */
+/* Vista "listino" di "Catalogo completo.dc.html". */
+.ls-head{
+  display:flex;flex-wrap:wrap;gap:16px clamp(16px,4vw,48px);align-items:flex-end;justify-content:space-between;
+  padding:clamp(18px,3vw,30px) 0 clamp(14px,2vw,20px);
+}
+.ls-head .h1{margin-top:10px}
+.ls-head .body{margin-top:12px}
+.ls-contatti{display:flex;flex-direction:column;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink-soft)}
+/* ottone più scuro del mockup (#B08A3E): col testo chiaro arrivava a 3:1, così è 4,6:1 */
+.ls-wa{
+  display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:11px 18px;border-radius:3px;
+  background:#8E6E2F;color:var(--card);font-size:14px;font-weight:600;letter-spacing:.02em;
+}
+.ls-wa::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--paper)}
+.ls-wa:hover{background:#735822}
+.ls-contatti a:not(.ls-wa),.ls-piede a{color:var(--wine);font-weight:600;border-bottom:1px solid var(--line-strong)}
+
+/* Su telefono la barra non resta fissa: con l'header e la barra in basso
+   si mangerebbe un terzo dello schermo. */
+.ls-bar{
+  display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding-top:10px;padding-bottom:10px;
+  background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line-strong);
+}
+@media (min-width:760px){ .ls-bar{position:sticky;top:var(--hdr-h,0px);z-index:30} }
+.ls-cerca{
+  flex:1 1 210px;min-width:0;display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;
+  background:var(--card);border:1px solid var(--line);border-radius:3px;
+}
+.ls-cerca:focus-within{border-color:var(--wine)}
+.ls-cerca .ico{width:16px;height:16px;color:var(--meta)}
+/* 16 px: sotto, iPhone ingrandisce la pagina quando tocchi il campo */
+.ls-cerca input{flex:1;min-width:0;height:42px;border:0;outline:0;background:none;font-size:16px}
+.ls-cerca input::placeholder{color:var(--meta)}
+.ls-filtri{display:flex;gap:8px}
+.ls-chip{
+  height:44px;padding:0 14px;border-radius:22px;border:1px solid var(--line-strong);
+  font-size:13px;color:var(--ink-soft);white-space:nowrap;
+}
+.ls-chip[aria-pressed="true"]{background:var(--wine);border-color:var(--wine);color:var(--card)}
+@media (min-width:760px){ .ls-chip{height:36px;border-radius:18px} }
+.ls-n{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+.ls-sez{padding-top:clamp(18px,2.6vw,30px)}
+.ls-sez[hidden],.ls-riga[hidden]{display:none}
+.ls-sez__head{
+  display:flex;align-items:baseline;gap:12px;
+  border-bottom:1px solid var(--line-strong);padding-bottom:8px;margin-bottom:4px;
+}
+.ls-sez__t{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.4vw,27px);line-height:1.1;color:var(--ink-strong)}
+.ls-sez__n{font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.ls-griglia{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));
+  column-gap:clamp(18px,3vw,44px);
+}
+/* il nome va a capo invece di troncarsi: i due oli al tartufo altrimenti sono identici */
+.ls-riga{
+  display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;
+  padding:7px 8px;border-bottom:1px solid var(--sand);
+}
+.ls-riga:hover{background:var(--card)}
+.ls-riga__ph{width:44px;height:44px;border-radius:2px}
+.ls-riga__n{display:block;font-size:14px;font-weight:600;line-height:1.3}
+.ls-riga__nota{display:block;font-size:12px;line-height:1.35;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ls-riga__p{text-align:right}
+.ls-riga__prezzo{display:block;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--wine);white-space:nowrap}
+.ls-riga__peso{display:block;font-size:12px;color:var(--muted);white-space:nowrap}
+
+.ls-piede{
+  display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-start;
+  margin-top:clamp(30px,5vw,56px);padding:18px 0 clamp(34px,5vw,64px);border-top:1px solid var(--line-strong);
+  font-size:13px;line-height:1.55;color:var(--ink-soft);
+}
+.ls-piede p:first-child{max-width:640px;font-size:12px}
+
+/* da tablet in su le misure del mockup (14/12 px, foto da 44) si leggevano male: tutto più grande */
+@media (min-width:760px){
+  .ls-contatti{font-size:14px}
+  .ls-wa{font-size:15px;min-height:48px}
+  .ls-cerca{height:48px}
+  .ls-cerca input{height:46px}
+  .ls-chip{height:40px;border-radius:20px;padding:0 16px;font-size:14px}
+  .ls-n{font-size:13px}
+  .ls-sez{padding-top:clamp(30px,3.4vw,48px)}
+  .ls-sez__t{font-size:clamp(26px,2.6vw,34px)}
+  .ls-sez__n{font-size:14px}
+  .ls-griglia{grid-template-columns:repeat(auto-fill,minmax(min(460px,100%),1fr))}
+  .ls-riga{grid-template-columns:64px minmax(0,1fr) auto;gap:16px;padding:12px 10px}
+  .ls-riga__ph{width:64px;height:64px}
+  .ls-riga__n{font-size:17px}
+  .ls-riga__nota{font-size:14px;margin-top:3px}
+  .ls-riga__prezzo{font-size:17px}
+  .ls-riga__peso{font-size:14px;margin-top:2px}
+  .ls-piede{font-size:15px}
+  .ls-piede p:first-child{font-size:14px}
 }
 
 /* ---------------------------------------------------------------- toast */
