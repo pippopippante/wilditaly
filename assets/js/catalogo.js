@@ -435,6 +435,7 @@ window.CATALOGO = (function () {
     {
       slug: "pecorino-13-mesi",
       nome: "Pecorino stagionato 13 mesi",
+      denominazione: "Pecorino del Pastorello stagionato «Campagnolo di Amatrice»",
       categoria: "formaggi",
       occhiello: "FORMAGGI",
       prezzo: 37,
@@ -442,14 +443,16 @@ window.CATALOGO = (function () {
       grammi: 1000,
       foto: "FOTO: pecorino stagionato 13 mesi",
       img: "assets/img/pecorino-13-mesi.jpg",
+      galleriaImg: ["assets/img/pecorino-13-mesi.jpg", "assets/img/pecorino-13-mesi-etichetta.jpeg"],
+      galleria: ["FOTO 1: pecorino stagionato 13 mesi", "FOTO 2: etichetta"],
       descrizione:
         "Pecorino Campagnolo di Amatrice, solo latte di pecora. Tredici mesi di stagionatura lo rendono piccante e dalla pasta secca: da grattugiare o per chi ama i sapori forti.",
       ingredienti:
-        "LATTE di pecora, caglio, fermenti lattici, sale. Trattamento crosta: olio di semi di girasole e aceto di vino bianco. Crosta non edibile. Allergeni: latte.",
+        "LATTE ovino pastorizzato (origine UE), caglio, fermenti lattici, sale. Trattato in superficie con olio di semi di girasole e aceto di vino bianco. Crosta non edibile. Allergeni: latte.",
       valori:
-        "Per 100 g: energia 1627 kJ / 389 kcal · grassi 30,0 g (saturi 20,4 g) · carboidrati 0,3 g (zuccheri 0,3 g) · proteine 29,1 g · sale 1,6 g",
+        "Per 100 g: energia 1627 kJ / 388,8 kcal · grassi 30,00 g (saturi 20,40 g) · carboidrati 0,30 g (zuccheri 0,30 g) · proteine 29,10 g · sale 1,60 g",
       conservazione: "In luogo fresco e asciutto, al riparo dalla luce e da fonti di calore.",
-      produttore: { testo: "Petrucchi S.r.l., Via A. M. Ricci 11, 02100 Rieti (RI) — stabilimento IT 12 215 CE." }
+      produttore: { testo: "F.lli Petrucci S.r.l., Via A. M. Ricci 111, 02100 Rieti (RI) — stabilimento IT 12 215 CE." }
     },
     {
       /* dati dall'etichetta; in etichetta "da vendere a peso": peso e prezzo indicativi,
