@@ -1261,7 +1261,7 @@ ${
       ${
         galImg
           ? `<dialog class="zoom" data-zoom aria-label="Foto ingrandite">
-        <div class="zoom__stage" data-zoom-stage><img src="${esc(galImg[0])}" alt="" data-zoom-img></div>
+        <div class="zoom__stage" data-zoom-stage><img src="${esc(galImg[0])}" alt="" draggable="false" data-zoom-img></div>
         <button type="button" class="zoom__x" data-zoom-close aria-label="Chiudi">×</button>
         ${
           galImg.length > 1
@@ -1349,13 +1349,36 @@ ${
       if (bb) bb.textContent = "Aggiungi · " + euro(prezzoCorrente() * qta);
     };
 
-    /* ------- foto a tutto schermo: frecce, tocco per ingrandire, pinch nativo su mobile */
+    /* ------- foto a tutto schermo: frecce, tocco per ingrandire, pinch e trascinamento fatti qui.
+       Il pinch nativo ingrandiva tutta la pagina e poi il riquadro scorrevole bloccava lo spostamento */
     let galCur = 0;
     const zoom = $("[data-zoom]", host);
+    const zImg = zoom && $("[data-zoom-img]", zoom);
+    const stage = zoom && $("[data-zoom-stage]", zoom);
+    let zs = 1, zx = 0, zy = 0; /* scala e spostamento della foto */
+    const zSet = (s, x, y) => {
+      zs = Math.min(5, Math.max(1, s));
+      const w = zImg.offsetWidth * zs, h = zImg.offsetHeight * zs;
+      const bx = zImg.offsetLeft, by = zImg.offsetTop;
+      const sw = stage.clientWidth, sh = stage.clientHeight;
+      /* la foto non esce dai bordi: se è più piccola dello schermo resta al centro */
+      zx = w <= sw ? (sw - w) / 2 - bx : Math.min(-bx, Math.max(sw - w - bx, x));
+      zy = h <= sh ? (sh - h) / 2 - by : Math.min(-by, Math.max(sh - h - by, y));
+      zImg.style.transform = zs > 1 ? `translate(${zx}px,${zy}px) scale(${zs})` : "";
+      zoom.classList.toggle("is-zoom", zs > 1);
+    };
+    /* nuova scala tenendo fermo sotto il dito il punto (px, py) della foto, px/py relativi allo stage */
+    const zAt = (ns, px, py, qx = px, qy = py) => {
+      ns = Math.min(5, Math.max(1, ns));
+      const bx = zImg.offsetLeft, by = zImg.offsetTop;
+      zSet(ns, qx - bx - ((px - bx - zx) * ns) / zs, qy - by - ((py - by - zy) * ns) / zs);
+    };
     const mostraZoom = (i) => {
       galCur = (i + galImg.length) % galImg.length;
+      zs = 1;
+      zImg.style.transform = "";
       zoom.classList.remove("is-zoom");
-      $("[data-zoom-img]", zoom).src = galImg[galCur];
+      zImg.src = galImg[galCur];
       $("[data-zoom-i]", zoom).textContent = galCur + 1;
     };
     const apriZoom = (i) => {
@@ -1366,21 +1389,53 @@ ${
     };
     if (zoom) {
       zoom.addEventListener("close", () => document.body.classList.remove("is-locked"));
+      /* uno o due dita (o il mouse): il centro sposta la foto, la distanza tra le dita la scala */
+      const pts = new Map();
+      let prev = null, mosso = false, due = false, x0 = 0, y0 = 0;
+      const centro = () => {
+        const v = [...pts.values()];
+        const r = stage.getBoundingClientRect();
+        return {
+          x: v.reduce((t, p) => t + p.x, 0) / v.length - r.left,
+          y: v.reduce((t, p) => t + p.y, 0) / v.length - r.top,
+          d: v.length > 1 ? Math.hypot(v[0].x - v[1].x, v[0].y - v[1].y) : 0
+        };
+      };
+      stage.addEventListener("pointerdown", (e) => {
+        if (!pts.size) [mosso, due, x0, y0] = [false, false, e.clientX, e.clientY];
+        pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (pts.size > 1) mosso = due = true;
+        prev = centro();
+      });
+      stage.addEventListener("pointermove", (e) => {
+        if (!pts.has(e.pointerId)) return;
+        pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (Math.hypot(e.clientX - x0, e.clientY - y0) > 8) mosso = true;
+        const c = centro();
+        if (zs > 1 || pts.size > 1) zAt(c.d && prev.d ? (zs * c.d) / prev.d : zs, prev.x, prev.y, c.x, c.y);
+        prev = c;
+      });
+      const giu = (e) => {
+        if (!pts.delete(e.pointerId)) return;
+        if (pts.size) return (prev = centro());
+        /* foto intera: scorrendo col dito si passa alla successiva, come nella galleria */
+        const dx = e.clientX - x0;
+        if (zs === 1 && !due && galImg.length > 1 && Math.abs(dx) > 40) mostraZoom(galCur + (dx < 0 ? 1 : -1));
+      };
+      stage.addEventListener("pointerup", giu);
+      stage.addEventListener("pointercancel", giu);
+      zoom.addEventListener("gesturestart", (e) => e.preventDefault()); /* Safari iOS: niente zoom della pagina */
+
       zoom.addEventListener("click", (e) => {
         const step = e.target.closest("[data-zoom-step]");
         if (step) return mostraZoom(galCur + +step.dataset.zoomStep);
         if (e.target.closest("[data-zoom-close]")) return zoom.close();
-        const img = e.target.closest("[data-zoom-img]");
-        if (!img) return zoom.close();
-        /* tocco sulla foto: ingrandisce centrando il punto toccato, secondo tocco torna intera */
-        const stage = $("[data-zoom-stage]", zoom);
-        const r = img.getBoundingClientRect();
-        const fx = (e.clientX - r.left) / r.width;
-        const fy = (e.clientY - r.top) / r.height;
-        if (zoom.classList.toggle("is-zoom")) {
-          stage.scrollLeft = fx * img.offsetWidth - stage.clientWidth / 2;
-          stage.scrollTop = fy * img.offsetHeight - stage.clientHeight / 2;
-        }
+        if (mosso) return; /* fine di un trascinamento o di un pinch, non un tocco */
+        if (!e.target.closest("[data-zoom-img]")) return zoom.close();
+        /* tocco sulla foto: ingrandisce sul punto toccato, secondo tocco torna intera */
+        const r = stage.getBoundingClientRect();
+        if (zs > 1) zSet(1, 0, 0);
+        else zAt(2.5, e.clientX - r.left, e.clientY - r.top);
       });
       zoom.addEventListener("keydown", (e) => {
         if (galImg.length > 1 && (e.key === "ArrowLeft" || e.key === "ArrowRight"))

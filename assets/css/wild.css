@@ -723,12 +723,13 @@ input,select,textarea{font:inherit;color:inherit}
   position:absolute;top:0;left:calc(100% + 56px);width:calc(100% / 1.05);height:560px;z-index:5;
   background:var(--card) no-repeat;border:1px solid var(--line);box-shadow:0 12px 32px rgba(42,33,26,.18);
 }
-/* foto a tutto schermo; ingrandita = dimensione reale del file, si scorre col dito */
-.zoom{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--night)}
+/* foto a tutto schermo; pinch, trascinamento e tocco li gestisce wild.js (touch-action:none:
+   il browser non ingrandisce la pagina) */
+.zoom{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--night);touch-action:none}
 .zoom::backdrop{background:var(--night)}
-.zoom__stage{position:absolute;inset:0;overflow:auto;display:grid;overscroll-behavior:contain}
-.zoom__stage img{margin:auto;max-width:100vw;max-height:100vh;max-height:100dvh;cursor:zoom-in}
-.zoom.is-zoom .zoom__stage img{max-width:none;max-height:none;cursor:zoom-out}
+.zoom__stage{position:absolute;inset:0;overflow:hidden;display:grid}
+.zoom__stage img{margin:auto;max-width:100vw;max-height:100vh;max-height:100dvh;cursor:zoom-in;transform-origin:0 0;user-select:none;-webkit-user-select:none}
+.zoom.is-zoom .zoom__stage img{cursor:zoom-out}
 .zoom__x,.zoom__nav{
   position:absolute;width:48px;height:48px;display:grid;place-items:center;
   background:rgba(43,32,21,.8);color:#EFE2C8;font-size:30px;line-height:1;
