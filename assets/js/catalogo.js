@@ -46,10 +46,10 @@ window.CATALOGO = (function () {
       nav: "Formaggi",
       nome: "Formaggi",
       titolo: "Formaggi",
-      intro: "Pecorino stagionato 13 mesi, solo latte di pecora, e formaggio misto al tartufo di Bettona.",
+      intro: "Pecorino stagionato 12 mesi, solo latte di pecora, e formaggio misto al tartufo di Bettona.",
       breve: "Pecorino stagionato e formaggio al tartufo.",
       foto: "FOTO: pecorini a scalare",
-      img: "assets/img/pecorino-13-mesi.jpg",
+      img: "assets/img/pecorino-12-mesi.jpg",
       inVetrina: 3
     },
     {
@@ -231,7 +231,7 @@ window.CATALOGO = (function () {
         testo:
           "Prodotto e imbottigliato all'origine dall'Az. Agr. Napolini di Scattini Tiziana, Montefalco (PG). Vignaioli Indipendenti."
       },
-      abbinamenti: ["salame-di-cervo", "pecorino-13-mesi"]
+      abbinamenti: ["salame-di-cervo", "pecorino-12-mesi"]
     },
     {
       slug: "grechetto-napolini",
@@ -254,7 +254,7 @@ window.CATALOGO = (function () {
         testo:
           "Prodotto e imbottigliato all'origine dall'Az. Agr. Napolini di Scattini Tiziana, Montefalco (PG). Vignaioli Indipendenti."
       },
-      abbinamenti: ["pecorino-13-mesi", "salame-di-cervo"]
+      abbinamenti: ["pecorino-12-mesi", "salame-di-cervo"]
     },
     {
       slug: "vigna-rosa-napolini",
@@ -307,6 +307,7 @@ window.CATALOGO = (function () {
     {
       slug: "salame-ubriaco",
       nome: "Salame ubriaco",
+      claim: "Rustico, intenso, generoso.",
       categoria: "salumi",
       occhiello: "SALUMI TRADIZIONALI",
       prezzo: 10.9,
@@ -316,7 +317,7 @@ window.CATALOGO = (function () {
       img: "assets/img/salame-ubriaco-1.jpg",
       galleriaImg: ["assets/img/salame-ubriaco-1.jpg", "assets/img/salame-ubriaco-2.jpg"],
       descrizione:
-        "Impasto a grana grossa lasciato macerare per settimane nel vino rosso. La stagionatura attenua l'alcol e lascia i sentori di un generoso vino dell'Umbria.",
+        "È il salame della tradizione appenninica per eccellenza, ispirato a quelli che un tempo si preparavano in casa con pochi ingredienti e tanto carattere: lardello tagliato al coltello, pepe in grani e vino rosso. La grana grossa regala una consistenza carnosa e succulenta; il lardello si scioglie lentamente in bocca, il pepe accende il gusto e il vino rosso lascia una nota calda e aromatica nel finale. È il più saporito dei nostri salami tradizionali, pensato per chi cerca un gusto deciso, autentico e persistente.",
       ingredienti:
         "Carne di suino, sale, saccarosio, destrosio, pepe, vino, finocchio, aglio, antiossidanti: E300, E301, esaltatore di sapidità: E621, correttore di pH: E262, conservanti: E252, E250. Allergeni: può contenere tracce di latte e di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -338,7 +339,7 @@ window.CATALOGO = (function () {
       img: "assets/img/ciauscolo-1.jpg",
       galleriaImg: ["assets/img/ciauscolo-1.jpg", "assets/img/ciauscolo-2.jpg"],
       descrizione:
-        "Il salame morbido da spalmare, dalla tradizione delle campagne marchigiane: tagli scelti della pancia del suino, stagionati appena una settimana. Sul pane, per tartine e crostini.",
+        "Una morbida macinatura di carne di maiale non stagionata, dalla consistenza cremosa e naturalmente spalmabile. È uno dei salumi più delicati della tradizione dell'Appennino: il gusto è dolce, rotondo e piacevole, senza note aggressive. La sua caratteristica più riconoscibile è la morbidezza: basta appoggiarlo sul pane perché si lasci spalmare facilmente, liberando tutta la sua parte aromatica. In bocca è vellutato e succulento, con una delicata nota speziata che arriva solo nel finale. Da spalmare sul pane e gustare lentamente: semplice, morbido e genuino, è uno di quei sapori della tradizione che conquistano proprio per la loro delicatezza.",
       ingredienti:
         "Grasso di suino, carne di suino, sale, saccarosio, destrosio, pepe, peperoncino, aglio, antiossidanti: E300, E301, esaltatore di sapidità: E621, conservanti: E252, E250. Allergeni: può contenere tracce di LATTE e di SOLFITI. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -401,7 +402,7 @@ window.CATALOGO = (function () {
       img: "assets/img/coglione-mulo-2.jpg",
       galleriaImg: ["assets/img/coglione-mulo-2.jpg", "assets/img/coglione-mulo-1.jpg"],
       descrizione:
-        "Salume di antichissime origini, nato sulle montagne dell'Italia centrale: pasta a grana fine con al centro un lardello di grasso di maiale pepato. Stagionatura medio-lunga, per chi cerca sapori forti.",
+        "Il nome incuriosisce, ma tranquilli: il mulo si è salvato. L'insaccato è prodotto esclusivamente con carne di maiale e prende questo nome soltanto dalla sua particolare forma. Ha una macinatura fine, compatta e magra, dal gusto pieno e deciso. A contrastarla c'è un lardello stagionato che attraversa tutto il salame: morbido e ricco, si scioglie lentamente in bocca e accompagna ogni fetta, creando un piacevole equilibrio tra la parte magra della carne e la dolcezza del grasso. Il risultato è un salume intenso, saporito e molto caratteristico, con una consistenza compatta e un finale più morbido e avvolgente.",
       ingredienti:
         "Carne di suino, lardo di suino, LATTE scremato in polvere, sale, saccarosio, destrosio, pepe, aglio, aromi, antiossidanti: E300, E301, esaltatore di sapidità: E621, conservanti: E252, E250, correttore di pH: E262. Allergeni: latte; può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -415,6 +416,7 @@ window.CATALOGO = (function () {
       slug: "tascabile",
       nome: "Tascabile",
       denominazione: "Tascabile, prodotto a base di carne stagionato",
+      claim: "Tutto il sapore del prosciutto di Norcia, stagionato come un salume.",
       categoria: "salumi",
       occhiello: "SALUMI TRADIZIONALI",
       prezzo: 28,
@@ -424,7 +426,7 @@ window.CATALOGO = (function () {
       img: "assets/img/prosciutto-tascabile-1.jpg",
       galleriaImg: ["assets/img/prosciutto-tascabile-1.jpg", "assets/img/prosciutto-tascabile-2.jpg"],
       descrizione:
-        "Ricavato dalla noce della spalla di suini pesanti adulti: la parte più magra, per chi vuole tutto il sapore senza eccessi.",
+        "Nasce da tranci magri di prosciutto di maiale, privati della parte grassa e insaccati nel budello naturale come un vero salume. La carne resta compatta e saporita, mentre pepe e peperoncino aggiungono una nota speziata e leggermente vivace. È proprio la stagionatura all'interno del budello a fare la differenza: concentra i profumi e rende il gusto del prosciutto di Norcia più intenso, profondo e persistente. Al taglio si presenta magro e compatto; in bocca è deciso, aromatico e pulito, con tutta la sapidità del prosciutto e un finale speziato che ne esalta il carattere.",
       ingredienti:
         "Carne di suino, sale, pepe, saccarosio, destrosio, finocchio, aglio, peperoncino, antiossidanti: E300, E301, conservanti: E252, E250. Allergeni: nessuno indicato in etichetta. Carne suina origine Italia.",
       valori:
@@ -433,20 +435,21 @@ window.CATALOGO = (function () {
       produttore: perWild
     },
     {
-      slug: "pecorino-13-mesi",
-      nome: "Pecorino stagionato 13 mesi",
+      slug: "pecorino-12-mesi",
+      nome: "Pecorino stagionato 12 mesi",
+      claim: "Dal pascolo di montagna, un gusto più ricco. Dodici mesi di stagionatura, per chi ama i sapori decisi.",
       denominazione: "Pecorino del Pastorello stagionato «Campagnolo di Amatrice»",
       categoria: "formaggi",
       occhiello: "FORMAGGI",
       prezzo: 37,
       peso: "1 kg circa",
       grammi: 1000,
-      foto: "FOTO: pecorino stagionato 13 mesi",
-      img: "assets/img/pecorino-13-mesi.jpg",
-      galleriaImg: ["assets/img/pecorino-13-mesi.jpg", "assets/img/pecorino-13-mesi-etichetta.jpeg"],
-      galleria: ["FOTO 1: pecorino stagionato 13 mesi", "FOTO 2: etichetta"],
+      foto: "FOTO: pecorino stagionato 12 mesi",
+      img: "assets/img/pecorino-12-mesi.jpg",
+      galleriaImg: ["assets/img/pecorino-12-mesi.jpg", "assets/img/pecorino-12-mesi-etichetta.jpeg"],
+      galleria: ["FOTO 1: pecorino stagionato 12 mesi", "FOTO 2: etichetta"],
       descrizione:
-        "Pecorino Campagnolo di Amatrice, prodotto esclusivamente con latte di pecora proveniente da pascoli di montagna. Un latte naturalmente più ricco e saporito, che dona al formaggio un gusto intenso e pieno. I 13 mesi di stagionatura concentrano ulteriormente gli aromi, rendendo la pasta asciutta, friabile e piacevolmente piccante, con un sapore deciso che persiste a lungo in bocca.",
+        "Un pecorino dal carattere deciso, prodotto con latte di pecora proveniente da pascoli di montagna, dove un'alimentazione più ricca e naturale regala al latte maggiore intensità e aromaticità. Dopo 12 mesi di stagionatura, il gusto diventa profondo, saporito e persistente. La pasta è compatta e leggermente friabile, con una grana tipica dei formaggi ben stagionati e un finale intenso che rimane a lungo in bocca. È il più saporito tra i nostri pecorini, perfetto per chi ama i gusti forti negli antipasti. Ottimo anche con il miele, che ne bilancia la sapidità, oppure da grattugiare per dare carattere ai piatti.",
       ingredienti:
         "LATTE ovino pastorizzato (origine UE), caglio, fermenti lattici, sale. Trattato in superficie con olio di semi di girasole e aceto di vino bianco. Crosta non edibile. Allergeni: latte.",
       valori:
@@ -931,7 +934,7 @@ window.CATALOGO = (function () {
         {
           titolo: "Ti piacciono i sapori decisi",
           testo: "Pepe, stagionature lunghe e tanto carattere.",
-          prodotti: ["salame-di-cinghiale", "coglione-del-mulo", "pecorino-13-mesi"]
+          prodotti: ["salame-di-cinghiale", "coglione-del-mulo", "pecorino-12-mesi"]
         },
         {
           titolo: "Per un aperitivo con gli amici",
@@ -969,7 +972,7 @@ window.CATALOGO = (function () {
         {
           titolo: "Per chi ama il vino",
           testo: "Il rosso di Montefalco e quello che ci va accanto.",
-          prodotti: ["napos-rosso", "box-umbria", "pecorino-13-mesi"]
+          prodotti: ["napos-rosso", "box-umbria", "pecorino-12-mesi"]
         }
       ]
     },
@@ -1034,9 +1037,9 @@ window.CATALOGO = (function () {
       dove: "Vetrina refrigerata, in mezzo",
       titolo: "La parte che sorprende",
       testo: "Vetrina refrigerata e scaffale del tartufo, uno di fianco all'altro.",
-      img: "assets/img/pecorino-13-mesi.jpg",
-      alt: "La forma di pecorino stagionato 13 mesi",
-      prodotti: ["pecorino-13-mesi", "salsa-tartufata", "olio-tartufo-nero"]
+      img: "assets/img/pecorino-12-mesi.jpg",
+      alt: "La forma di pecorino stagionato 12 mesi",
+      prodotti: ["pecorino-12-mesi", "salsa-tartufata", "olio-tartufo-nero"]
     },
     {
       label: "La dispensa",
@@ -1070,7 +1073,7 @@ window.CATALOGO = (function () {
     "salame-spalmabile": "Una settimana sola di stagionatura, e infatti si spalma sul pane invece di affettarsi.",
     "coglione-del-mulo": "Il lardello pepato resta intero nel cuore del salame. Stagionatura medio-lunga.",
     tascabile: "Dalla noce della spalla: il pezzo grosso del banco, da affettare piano.",
-    "pecorino-13-mesi": "Tredici mesi, solo latte di pecora: piccante e asciutto. Da tagliere, o grattugiato. Con il salame di cervo va a braccetto.",
+    "pecorino-12-mesi": "Dodici mesi, solo latte di pecora: piccante e asciutto. Da tagliere, o grattugiato. Con il salame di cervo va a braccetto.",
     "salsa-tartufata": "Tartufo estivo: sulla bruschetta è già una cena, oppure a condire la pasta.",
     "salame-cinghiale-tartufo":
       "Più saporito e deciso, con il carattere del cinghiale e un retrogusto naturale di tartufo che rimane piacevolmente in bocca.",

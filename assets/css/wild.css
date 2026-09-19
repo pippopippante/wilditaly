@@ -762,6 +762,9 @@ input,select,textarea{font:inherit;color:inherit}
 .gallery__main--foto~.gallery__thumbs button{width:auto;background:none}
 .gallery__main--foto~.gallery__thumbs button>img{position:static;display:block;width:auto;height:100%}
 
+/* frase breve d'impatto sotto il nome del prodotto */
+.pdp__claim{font-family:var(--serif);font-style:italic;color:var(--ink-soft);margin-top:12px;max-width:34ch;
+  font-size:clamp(1.0625rem,.98rem + .4vw,1.3125rem);line-height:1.35;text-wrap:pretty}
 .pdp__price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:12px}
 .pdp__price .price{font-size:clamp(2rem,1.6rem + 1.6vw,2.75rem)}
 .tasting{background:var(--wine-deep);padding:22px 20px;margin-top:22px}

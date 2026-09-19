@@ -183,7 +183,7 @@ a:hover{color:#6E211B}
         </sc-if>
         <sc-if value="{{ MT.ph2 }}" hint-placeholder-val="{{ false }}">
           <div style="position: relative; height: 400px; overflow: hidden;">
-            <img src="assets/img/pecorino-13-mesi.jpg" alt="La forma di pecorino stagionato 13 mesi" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+            <img src="assets/img/pecorino-12-mesi.jpg" alt="La forma di pecorino stagionato 12 mesi" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
             <div style="position: absolute; top: 0; left: 0; right: 0; height: 104px; background: linear-gradient(to bottom, rgba(250,245,234,0.96), rgba(250,245,234,0.72) 48%, rgba(250,245,234,0));"></div>
             <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 120px 22px 24px; background: linear-gradient(to top, rgba(20,14,10,0.8), rgba(20,14,10,0.1) 60%, rgba(20,14,10,0));">
               <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #F0DFC8; margin-bottom: 10px;">{{ MT.stopLabel }} · {{ MT.stopWhere }}</div>
@@ -604,7 +604,7 @@ a:hover{color:#6E211B}
           </sc-if>
           <sc-if value="{{ T.ph2 }}" hint-placeholder-val="{{ false }}">
             <div style="height: 260px; overflow: hidden; border-bottom: 1px solid #E6DCC8;">
-              <img src="assets/img/pecorino-13-mesi.jpg" alt="La forma di pecorino stagionato 13 mesi" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+              <img src="assets/img/pecorino-12-mesi.jpg" alt="La forma di pecorino stagionato 12 mesi" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
             </div>
           </sc-if>
           <sc-if value="{{ T.ph3 }}" hint-placeholder-val="{{ false }}">
@@ -732,7 +732,7 @@ const P = {
   maiale: { name: 'Salamella di maiale', w: '350 g circa', price: 11.9, slug: 'salamella-di-maiale', nota: 'Macinatura fine e gusto dolce: il classico.' },
   mulo: { name: 'Coglioni di mulo', w: '300 g circa', price: 9, slug: 'coglione-del-mulo', nota: 'Il lardello pepato al centro, stagionatura lunga.' },
   tascabile: { name: 'Tascabile', w: '1 kg circa', price: 28, slug: 'tascabile', nota: 'La parte più magra, dalla noce della spalla.' },
-  pecorino: { name: 'Pecorino stagionato 13 mesi', w: '1 kg circa', price: 37, slug: 'pecorino-13-mesi', nota: 'Tredici mesi: piccante e asciutto, da tagliere o da grattugiare.' },
+  pecorino: { name: 'Pecorino stagionato 12 mesi', w: '1 kg circa', price: 37, slug: 'pecorino-12-mesi', nota: 'Dodici mesi: piccante e asciutto, da tagliere o da grattugiare.' },
   salsa: { name: 'Salsa tartufata', w: '130 g', price: 6, slug: 'salsa-tartufata', nota: 'Sulla bruschetta, o a condire la pasta.' },
   olioNero: { name: 'Condimento al tartufo nero pregiato', w: '100 ml', price: 7, slug: 'olio-tartufo-nero', nota: 'Un filo a crudo su uova e risotti.' },
   olioBianco: { name: 'Condimento al tartufo bianco pregiato', w: '100 ml', price: 7, slug: 'olio-tartufo-bianco', nota: 'Più pungente del nero: poche gocce bastano.' },
@@ -765,7 +765,7 @@ const STEPS = [
   { key: 'gusto', title: 'Cosa ti piace di più?', hint: 'Se non lo sai ancora, «un po\' di tutto» è quello che prepariamo più spesso.',
     options: [
       { v: 'salumi', label: 'Solo salumi', sub: 'Selvaggina e norcineria tradizionale', chip: 'SALUMI' },
-      { v: 'formaggi', label: 'Pecorino e tartufo', sub: 'Il pecorino di 13 mesi, salse e condimenti', chip: 'PECORINO E TARTUFO' },
+      { v: 'formaggi', label: 'Pecorino e tartufo', sub: 'Il pecorino di 12 mesi, salse e condimenti', chip: 'PECORINO E TARTUFO' },
       { v: 'misto', label: 'Un po\' di tutto', sub: 'Il tagliere classico della bottega', chip: 'MISTO' }
     ] },
   { key: 'budget', title: 'Quanto vuoi spendere?', hint: 'Serve solo per le quantità. Nessuna cifra è quella sbagliata.',
@@ -809,7 +809,7 @@ const TOUR = [
     items: ['ubriaco', 'spalmabile', 'mulo', 'tascabile'] },
   { label: 'Pecorino e tartufo', where: 'VETRINA REFRIGERATA, IN MEZZO', title: 'La parte che sorprende',
     text: 'Il pecorino sta tredici mesi a stagionare e si sente: piccante, asciutto, va a braccetto col salame più dolce. Il tartufo invece te lo porti in dispensa — la salsa sulla bruschetta è già una cena, e un filo di condimento sulle uova non si dimentica.',
-    img: 'assets/img/pecorino-13-mesi.jpg', alt: 'La forma di pecorino stagionato 13 mesi',
+    img: 'assets/img/pecorino-12-mesi.jpg', alt: 'La forma di pecorino stagionato 12 mesi',
     items: ['pecorino', 'salsa', 'cinghialeTartufo', 'olioNero'] },
   { label: 'La dispensa', where: 'SCAFFALE DI LEGNO, A SINISTRA', title: 'La roba che dura',
     text: 'Le due cose che finiscono nel cesto per ultime e in tavola per prime. Le lenticchie umbre sono piccole, quindi più delicate: venticinque minuti e sono pronte. La zuppa rapida è legumi e cereali, mezz\'ora, e d\'inverno risolve la sera.',

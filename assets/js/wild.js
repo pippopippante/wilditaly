@@ -1372,6 +1372,7 @@ ${
     <div>
       ${p.occhiello ? `<div class="eyebrow eyebrow--olive">${esc(p.occhiello)}</div>` : ""}
       <h1 class="h1" style="margin-top:8px">${esc(p.nome)}</h1>
+      ${p.claim ? `<p class="pdp__claim">${esc(p.claim)}</p>` : ""}
 
       ${
         p.inArrivo
