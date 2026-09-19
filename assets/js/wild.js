@@ -845,7 +845,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   ${ph("", "ls-riga__ph ph--2", "", p.img)}
   <span>
     <span class="ls-riga__n">${esc(p.nome)}</span>
-    <span class="ls-riga__nota">${esc(p.nota || p.descrizioneBreve || p.denominazione || p.descrizione || "")}</span>
+    <span class="ls-riga__nota">${esc(p.nota || p.claim || p.descrizioneBreve || p.denominazione || p.descrizione || "")}</span>
   </span>
   <span class="ls-riga__p">
     <span class="ls-riga__prezzo">${euro(p.prezzo)}</span>

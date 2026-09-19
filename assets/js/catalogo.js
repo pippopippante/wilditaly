@@ -214,6 +214,7 @@ window.CATALOGO = (function () {
       slug: "napos-rosso",
       nome: "Napo's · Umbria IGT Rosso",
       denominazione: "Umbria Indicazione Geografica Tipica Rosso, annata 2024, 14% vol",
+      claim: "Sagrantino e Sangiovese, il carattere dell'Umbria in un rosso di famiglia.",
       categoria: "vini",
       occhiello: "VINI DI MONTEFALCO · UMBRIA",
       prezzo: 9,
@@ -223,7 +224,7 @@ window.CATALOGO = (function () {
       img: "assets/img/napos-napolini-1.jpg",
       galleriaImg: ["assets/img/napos-napolini-1.jpg", "assets/img/napos-napolini-2.jpg"],
       descrizione:
-        "Il rosso della famiglia Napolini: sangiovese, merlot e sagrantino dalle vigne di Montefalco. Annata 2024, 14% vol.",
+        "Un rosso umbro prodotto da un'azienda familiare, con un taglio di Sagrantino e Sangiovese, due vitigni che raccontano bene il carattere del territorio. Il Sangiovese porta freschezza, frutto e bevibilità; il Sagrantino aggiunge struttura, intensità e un carattere più deciso. Il risultato è un vino pieno, caldo e avvolgente, con un gusto ricco ma piacevole, pensato per accompagnare bene salumi, formaggi stagionati e piatti saporiti. È un vino che conserva il fascino delle produzioni di piccola scala: semplice, autentico e legato alla tradizione familiare umbra.",
       nota: "Sangiovese, merlot e sagrantino",
       ingredienti: "Uve sangiovese, merlot e sagrantino. Allergeni: contiene solfiti.",
       valori: "Per 100 ml: energia 318 kJ / 77 kcal",
@@ -237,6 +238,7 @@ window.CATALOGO = (function () {
       slug: "grechetto-napolini",
       nome: "Clara Vinea · Grechetto Colli Martani DOC",
       denominazione: "Colli Martani Denominazione di Origine Controllata Grechetto, annata 2025, 13,5% vol",
+      claim: "Grechetto in purezza: secco, fresco e con il suo tipico finale mandorlato.",
       categoria: "vini",
       occhiello: "VINI DI MONTEFALCO · UMBRIA",
       prezzo: 9,
@@ -246,7 +248,7 @@ window.CATALOGO = (function () {
       img: "assets/img/grechetto-napolini-1.jpg",
       galleriaImg: ["assets/img/grechetto-napolini-1.jpg", "assets/img/grechetto-napolini-2.jpg"],
       descrizione:
-        "Il bianco dei Colli Martani, da uve Grechetto, fatto dalla famiglia Napolini a Montefalco. Annata 2025, 13,5% vol.",
+        "Un bianco umbro ottenuto da sole uve Grechetto, vitigno tipico del territorio. Al palato è secco, fresco e deciso, con una buona struttura e un gusto pulito. La sua firma arriva nel finale, con la tipica nota mandorlata del Grechetto, leggermente amarognola e molto elegante, che lascia la bocca asciutta e invita al sorso successivo. È un vino semplice da bere ma con personalità, ideale per chi cerca un bianco non dolce, territoriale e riconoscibile.",
       nota: "Grechetto dei Colli Martani",
       ingredienti: "Uve Grechetto. Allergeni: contiene solfiti.",
       valori: "Per 100 ml: energia 302 kJ / 73 kcal",
@@ -260,6 +262,7 @@ window.CATALOGO = (function () {
       slug: "vigna-rosa-napolini",
       nome: "Vigna Rosa · Umbria IGT Rosato",
       denominazione: "Umbria Indicazione Geografica Tipica Rosato, annata 2025, 13,5% vol",
+      claim: "Sangiovese e Sagrantino in versione rosé: fresco, beverino e da servire ben freddo.",
       categoria: "vini",
       occhiello: "VINI DI MONTEFALCO · UMBRIA",
       prezzo: 9,
@@ -269,7 +272,7 @@ window.CATALOGO = (function () {
       img: "assets/img/vigna-rosa-napolini-1.jpg",
       galleriaImg: ["assets/img/vigna-rosa-napolini-1.jpg", "assets/img/vigna-rosa-napolini-2.jpg"],
       descrizione:
-        "Il rosato della famiglia Napolini, vignaioli indipendenti di Montefalco. Umbria IGT, annata 2025, 13,5% vol",
+        "Un rosato fresco e piacevole, ottenuto da Sangiovese e Sagrantino. Il Sangiovese porta una parte più morbida e fruttata, mentre il Sagrantino aggiunge carattere e struttura. Al palato è beverino, fresco e scorrevole, con un gusto semplice ma deciso, pensato per essere servito ben freddo e bevuto con facilità. È il vino giusto per chi cerca qualcosa di leggero e versatile, ma con una personalità tipicamente umbra.",
       nota: "Rosato umbro",
       ingredienti: "Allergeni: contiene solfiti.",
       valori: "Per 100 ml: energia 333 kJ / 80 kcal",
@@ -350,6 +353,7 @@ window.CATALOGO = (function () {
     {
       slug: "salamella-di-fegato",
       nome: "Salamella di fegato",
+      claim: "Il carattere del fegato, reso più delicato dalla carne di maiale e da una stagionatura più intensa.",
       categoria: "salumi",
       occhiello: "SALUMI TRADIZIONALI",
       prezzo: 12.9,
@@ -359,7 +363,7 @@ window.CATALOGO = (function () {
       img: "assets/img/salamella-fegato-1.jpg",
       galleriaImg: ["assets/img/salamella-fegato-1.jpg", "assets/img/salamella-fegato-2.jpg"],
       descrizione:
-        "Fegato di suino insieme ad altre parti del maiale. La forma a salamella permette una stagionatura veloce.",
+        "Un salume tradizionale preparato con fegato di maiale mescolato ad altre parti della carne suina, per ottenere un gusto più morbido, equilibrato e meno intenso rispetto a un prodotto di solo fegato. La caratteristica forma a salamella favorisce una stagionatura più marcata, che asciuga lentamente il prodotto e concentra i sapori senza renderli aggressivi. Al palato è saporita ma armoniosa, con il carattere tipico del fegato ben presente, bilanciato però dalla carne di maiale che ne addolcisce il gusto e rende ogni fetta più piacevole.",
       ingredienti:
         "Carne di suino, fegato di suino (30%), cuore di suino, sale, saccarosio, destrosio, pepe, aglio, finocchio, peperoncino, antiossidanti: E300, E301, esaltatore di sapidità: E621, conservanti: E252, E250. Allergeni: può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -372,6 +376,7 @@ window.CATALOGO = (function () {
       slug: "nursino",
       nome: "Nursino",
       denominazione: "Nursino, salame stagionato",
+      claim: "Magro, delicato, tradizionale: il salame di Norcia nella sua forma più semplice.",
       categoria: "salumi",
       occhiello: "SALUMI TRADIZIONALI",
       prezzo: 11.9,
@@ -381,7 +386,8 @@ window.CATALOGO = (function () {
       img: "assets/img/salamella-maiale.jpg",
       galleriaImg: ["assets/img/salamella-maiale.jpg", "assets/img/nursino-etichetta.jpeg"],
       galleria: ["FOTO 1: nursino", "FOTO 2: etichetta"],
-      descrizione: "Salame stagionato di suino, macinatura fine e gusto dolce. Un classico per chi ama il salame.",
+      descrizione:
+        "Il salame più tradizionale della nostra selezione, preparato con una macinatura di carne di maiale magra, senza cartilagini e senza parti grasse evidenti. La sua forza è proprio la semplicità: gusto pulito, delicato e armonioso, con una consistenza compatta e piacevole. Non cerca sapori estremi, ma il profilo classico del vero salame di Norcia. È il più delicato tra i nostri salami tradizionali, ideale per chi ama un gusto semplice, autentico e facilmente apprezzabile.",
       ingredienti:
         "Carne di suino, LATTE scremato in polvere, sale, saccarosio, destrosio, aromi, pepe, antiossidanti: E300, E301, esaltatore di sapidità: E621, aglio, conservanti: E252, E250. Allergeni: latte; tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -501,6 +507,7 @@ window.CATALOGO = (function () {
     {
       slug: "salsa-tartufata",
       nome: "Salsa tartufata",
+      claim: "Il profumo del tartufo, pronto da portare in tavola.",
       categoria: "tartufo",
       occhiello: "TARTUFO E SALSE",
       prezzo: 6,
@@ -525,7 +532,8 @@ window.CATALOGO = (function () {
         "FOTO 3: vasetto da 80 g",
         "FOTO 4: etichetta con gli ingredienti"
       ],
-      descrizione: "Tartufo estivo e funghi champignon: sulle bruschette o per condire la pasta.",
+      descrizione:
+        "Una crema intensa e profumata, preparata con funghi champignon e tartufo estivo, pensata per portare in tavola il gusto del tartufo in modo semplice e immediato. La consistenza è morbida e avvolgente: il fungo dà corpo e rotondità, mentre il tartufo arriva con il suo profumo caratteristico, lasciando un gusto sapido, aromatico e persistente. È una delle salse più versatili della nostra selezione: ottima sulle bruschette, sulla pasta, sulle uova, sulla carne o per arricchire un risotto. Ne basta poca per dare subito più carattere al piatto.",
       ingredienti:
         "Funghi coltivati (Agaricus bisporus), olio extra vergine di oliva, tartufo estivo 5% (Tuber aestivum Vitt.), olive nere, carote, SEDANO, prezzemolo, preparato per brodo (esaltatore di sapidità: glutammato monosodico), cipolla disidratata, LATTOSIO, spezie, sale, aromi. Allergeni: sedano, latte (lattosio). Senza conservanti. Funghi e tartufi di origine UE.",
       valori:
@@ -540,6 +548,7 @@ window.CATALOGO = (function () {
       nome: "Condimento aromatizzato al tartufo nero pregiato",
       denominazione:
         "Condimento aromatizzato al profumo del tartufo nero pregiato a base di olio extra vergine di oliva italiano",
+      claim: "Poche gocce a crudo, e il piatto prende subito il profumo del tartufo.",
       categoria: "tartufo",
       occhiello: "TARTUFO E SALSE",
       prezzo: 7,
@@ -548,7 +557,7 @@ window.CATALOGO = (function () {
       foto: "FOTO: bottiglietta di olio al tartufo nero",
       img: "assets/img/olio-tartufo-nero.jpg",
       descrizione:
-        "Condimento a base di olio extra vergine di oliva italiano, aromatizzato al tartufo nero pregiato. Sapore dolce e fungoso: su bruschette, risotti, pasta o carne.",
+        "Un condimento pensato per dare immediatamente profumo e carattere di tartufo ai piatti di tutti i giorni. Si usa in piccole quantità, preferibilmente a crudo e a fine preparazione, dopo l'olio extravergine o direttamente sul piatto caldo: bastano poche gocce per sprigionare l'aroma del tartufo senza coprire gli altri ingredienti. È estremamente versatile, perfetto su pasta, risotti, gnocchi, uova, frittate, patate, funghi, carne, pizza, focaccia e verdure. Ottimo anche su una semplice bruschetta.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
       valori: "Per 100 ml: energia 3447 kJ / 825 kcal · grassi 92 g (saturi 15 g) · carboidrati 0 g · proteine 0 g · sale 0 g",
       conservazione: "Conservare in luogo fresco e asciutto.",
@@ -559,6 +568,7 @@ window.CATALOGO = (function () {
       nome: "Condimento aromatizzato al tartufo bianco pregiato",
       denominazione:
         "Condimento aromatizzato al profumo del tartufo bianco pregiato a base di olio extra vergine di oliva italiano",
+      claim: "Poche gocce, un profumo intenso: tutta l'eleganza del tartufo bianco.",
       categoria: "tartufo",
       occhiello: "TARTUFO E SALSE",
       prezzo: 7,
@@ -567,7 +577,7 @@ window.CATALOGO = (function () {
       foto: "FOTO: bottiglietta di olio al tartufo bianco",
       img: "assets/img/olio-tartufo-bianco.jpg",
       descrizione:
-        "Il profumo intenso e raffinato del tartufo bianco incontra l’olio extravergine di oliva italiano in un condimento aromatico e persistente. Ne basta poco per trasformare un piatto semplice e regalargli subito una nota di tartufo decisa ed elegante.",
+        "Un condimento dal profumo intenso, elegante e immediatamente riconoscibile, pensato per esaltare i piatti con la nota raffinata del tartufo bianco. Va utilizzato soprattutto a crudo e a fine preparazione, in piccole quantità: poche gocce sono sufficienti per sprigionare un aroma deciso e persistente, senza appesantire il piatto. È particolarmente indicato su tagliolini, risotti, uova, fondute, purè di patate, carpacci e bruschette, dove il suo profumo riesce a emergere con grande intensità. Il risultato è un condimento più fine e aromatico, ideale per chi cerca il carattere tipico del tartufo bianco e vuole dare a un piatto semplice una sensazione più ricercata.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
       valori: "Per 100 ml: energia 3447 kJ / 825 kcal · grassi 92 g (saturi 15 g) · carboidrati 0 g · proteine 0 g · sale 0 g",
       conservazione: "Lontano da fonti di calore e dalla luce diretta.",
@@ -643,6 +653,7 @@ window.CATALOGO = (function () {
     {
       slug: "lenticchie-umbre",
       nome: "Lenticchie umbre",
+      claim: "Piccole nel chicco, ricche nel sapore: tutta la semplicità della tradizione umbra.",
       categoria: "dispensa",
       occhiello: "DISPENSA · UMBRIA",
       prezzo: 6.8,
@@ -651,7 +662,7 @@ window.CATALOGO = (function () {
       foto: "FOTO: confezione di lenticchie umbre",
       img: "assets/img/lenticchie.jpg",
       descrizione:
-        "Lenticchie umbre selezionate: piccole, quindi più delicate e saporite. Ottime con salsiccia e zampone. Sciacquare, cuocere in acqua 25–30 minuti e salare a fine cottura.",
+        "Piccole, delicate e naturalmente saporite, le lenticchie umbre sono uno dei prodotti più semplici e autentici della nostra terra. La loro piccola pezzatura permette una cottura uniforme e mantiene il chicco piacevolmente compatto. Al palato hanno un gusto delicato ma pieno, con una nota leggermente terrosa e una consistenza morbida senza diventare farinosa. Sono perfette per i piatti della tradizione, dalle zuppe ai contorni, oppure insieme a salsiccia e zampone, dove assorbono il condimento senza perdere la propria consistenza. Sciacquare, cuocere in acqua 25–30 minuti e salare a fine cottura.",
       ingredienti: "Lenticchie secche umbre. Origine Italia, Umbria.",
       valori:
         "Per 100 g: energia 1470 kJ / 352 kcal · grassi 1,06 g (saturi 0,15 g) · carboidrati 63,4 g (zuccheri 2,03 g) · proteine 24,6 g · sale 0,01 g",
@@ -661,6 +672,7 @@ window.CATALOGO = (function () {
       slug: "zuppa-rapida",
       nome: "Zuppa rapida",
       denominazione: "Zuppa rapida, legumi e cereali",
+      claim: "Tutto il calore di una zuppa tradizionale, pronta in soli 30 minuti.",
       categoria: "dispensa",
       occhiello: "DISPENSA",
       prezzo: 6.2,
@@ -670,7 +682,8 @@ window.CATALOGO = (function () {
       img: "assets/img/zuppa-rapida-1.jpeg",
       galleriaImg: ["assets/img/zuppa-rapida-1.jpeg", "assets/img/zuppa-rapida-2.jpeg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
-      descrizione: "Legumi misti e orzo per una zuppa invernale, pronta in circa 30 minuti di cottura.",
+      descrizione:
+        "Un mix rustico e nutriente di lenticchie, orzo perlato, fagioli azuki verdi e piselli, pensato per portare in tavola una zuppa ricca e completa senza lunghe preparazioni. Durante la cottura ogni ingrediente mantiene la propria consistenza: le lenticchie danno corpo, l'orzo rende la zuppa più morbida e cremosa, mentre fagioli e piselli aggiungono varietà di sapori e consistenze. È una zuppa dal gusto semplice, pieno e genuino, ideale nelle giornate più fresche e pronta in circa 30 minuti.",
       ingredienti:
         "Lenticchie, ORZO perlato, fagioli, azuki verdi, piselli. Allergeni: glutine (orzo); può contenere SOIA. Made in Italy.",
       valori:
