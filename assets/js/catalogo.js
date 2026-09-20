@@ -476,7 +476,8 @@ window.CATALOGO = (function () {
       grammi: 500,
       foto: "FOTO: formaggio misto al tartufo",
       img: "assets/img/formaggio-tartufo-mazzatosta-1.jpeg",
-      descrizione: "Formaggio di latte vaccino e ovino con tartufo estivo, dal Caseificio Mazzatosta di Bettona.",
+      descrizione:
+        "Un formaggio di latte vaccino e ovino, morbido e saporito, arricchito con pezzettini di tartufo estivo distribuiti nella pasta. Il gusto del formaggio resta rotondo e piacevole, mentre il tartufo aggiunge una nota aromatica più intensa e caratteristica, che emerge progressivamente durante l'assaggio. I piccoli pezzi di tartufo rendono ogni fetta più ricca e riconoscibile, creando un equilibrio tra la morbidezza del formaggio e il profumo tipico del tartufo estivo.",
       ingredienti:
         "LATTE vaccino, LATTE ovino, tartufo (Tuber aestivum Vitt.) (1%), fermenti lattici, caglio, lipasi di capretto, sale, aroma. Trattato in superficie con conservante: E235. Crosta non edibile. Origine del latte: Italia. Allergeni: latte.",
       valori:
@@ -587,6 +588,7 @@ window.CATALOGO = (function () {
       /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
       slug: "pure-tartufo-estivo",
       nome: "Purè di patate con tartufo estivo",
+      claim: "La morbidezza del purè incontra il profumo del tartufo estivo.",
       denominazione: "Preparato per purè di patate al tartufo",
       categoria: "tartufo",
       occhiello: "TARTUFO E SALSE",
@@ -597,7 +599,8 @@ window.CATALOGO = (function () {
       img: "assets/img/pure-tartufo-1.jpeg",
       galleriaImg: ["assets/img/pure-tartufo-1.jpeg", "assets/img/pure-tartufo-2.jpeg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
-      descrizione: "Preparato per purè di patate con tartufo estivo: 4 porzioni. Senza conservanti e glutammati aggiunti.",
+      descrizione:
+        "Un purè cremoso e avvolgente, arricchito con tartufo estivo, che dona alla dolcezza naturale della patata una nota aromatica più intensa e raffinata. Facile e veloce da preparare, è perfetto quando vuoi portare in tavola un contorno diverso dal solito senza rinunciare al gusto. La consistenza morbida del purè accompagna bene il profumo del tartufo, creando un sapore equilibrato, delicato ma riconoscibile. Ottimo come contorno per carni, arrosti e secondi piatti, oppure da gustare anche da solo quando vuoi qualcosa di semplice ma più ricercato.",
       ingredienti:
         "Patate disidratate 98%, tartufo estivo (Tuber aestivum Vitt.) 1%, sale, emulsionante: mono e digliceridi degli acidi grassi, aroma.",
       valori:
@@ -609,6 +612,7 @@ window.CATALOGO = (function () {
       /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
       slug: "sugo-pomodoro-tartufo",
       nome: "Sugo di pomodoro e tartufo",
+      claim: "Il gusto pieno del pomodoro italiano incontra il profumo del tartufo estivo.",
       categoria: "tartufo",
       occhiello: "TARTUFO E SALSE",
       prezzo: 6.5,
@@ -622,7 +626,8 @@ window.CATALOGO = (function () {
         "assets/img/sugo-pomodoro-tartufo-3.jpeg"
       ],
       galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore e peso"],
-      descrizione: "Polpa di pomodoro italiano e tartufo estivo: pronto per condire la pasta. Senza conservanti.",
+      descrizione:
+        "Un sugo pronto dal gusto pieno e mediterraneo, preparato con polpa di pomodoro italiano all'86% e arricchito con tartufo estivo al 5%. Il pomodoro dà una base morbida, rotonda e leggermente dolce, mentre il tartufo arriva nel finale con una nota più intensa e aromatica, senza coprire il sapore del sugo. È ideale per chi vuole trasformare in pochi minuti un semplice piatto di pasta in qualcosa di più ricco e particolare. Basta scaldarlo delicatamente e aggiungerlo alla pasta; ottimo anche su gnocchi, polenta o bruschette.",
       ingredienti:
         "Polpa di pomodoro italiano 86%, olio extra vergine di oliva italiano, tartufo estivo (Tuber aestivum Vitt.) 5%, sale, aromi naturali, spezie, zucchero. Origine del pomodoro: Italia.",
       valori:
@@ -633,6 +638,7 @@ window.CATALOGO = (function () {
       /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
       slug: "miele-tartufo",
       nome: "Miele e tartufo",
+      claim: "Dolcezza del miele, profumo del tartufo: il contrasto perfetto sui formaggi.",
       denominazione: "Prodotto gastronomico: miele con tartufo estivo",
       categoria: "tartufo",
       occhiello: "TARTUFO E SALSE",
@@ -643,7 +649,8 @@ window.CATALOGO = (function () {
       img: "assets/img/miele-tartufo-1.jpeg",
       galleriaImg: ["assets/img/miele-tartufo-1.jpeg", "assets/img/miele-tartufo-3.jpeg", "assets/img/miele-tartufo-2.jpeg"],
       galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore"],
-      descrizione: "Miele con pezzetti di tartufo estivo, in vasetto da 120 g.",
+      descrizione:
+        "Un incontro sorprendente tra la dolcezza morbida del miele e il profumo intenso del tartufo estivo, presente anche in piccoli pezzi visibili nel vasetto. Al palato parte dolce e avvolgente, poi arriva la nota aromatica e terrosa del tartufo, creando un contrasto elegante, originale e molto persistente. È ideale soprattutto con pecorini e formaggi stagionati, dove la dolcezza del miele bilancia la sapidità del formaggio e il tartufo aggiunge profondità. Ottimo anche su crostini, ricotta, carni o per dare un tocco particolare a un tagliere.",
       ingredienti: "Miele 98%, tartufi estivi (Tuber aestivum Vitt.) 1%, aroma. Origine del tartufo: UE.",
       valori:
         "Per 100 g: energia 1396,6 kJ / 328,6 kcal · grassi 0 g (saturi 0 g) · carboidrati 81 g (zuccheri 81 g) · proteine 0,5 g · sale 0 g",
@@ -694,6 +701,7 @@ window.CATALOGO = (function () {
       /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
       slug: "farro-umbro-perlato",
       nome: "Farro umbro perlato",
+      claim: "Rustico, versatile e pronto in circa 20 minuti: il farro della tradizione umbra.",
       categoria: "dispensa",
       occhiello: "DISPENSA · UMBRIA",
       prezzo: 6.5,
@@ -704,7 +712,7 @@ window.CATALOGO = (function () {
       galleriaImg: ["assets/img/farro-umbro-1.jpeg", "assets/img/farro-umbro-2.jpeg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
       descrizione:
-        "Farro perlato umbro, cuoce in 20 minuti. Sul retro la ricetta del farro all'antica, con sedano, carota, cipolla, carne e pomodoro.",
+        "Un cereale antico della tradizione umbra, dal gusto rustico e piacevole e dalla consistenza compatta ma morbida dopo la cottura. Essendo perlato, cuoce più velocemente e non richiede lunghe preparazioni: in circa 20 minuti è pronto per essere utilizzato in zuppe, minestre, insalate fredde o come alternativa al riso. Ha un sapore delicatamente tostato e una consistenza che resta piacevole al morso, ideale sia per ricette semplici sia per piatti più ricchi con verdure, legumi, carne o pomodoro.",
       ingredienti: "Farro umbro perlato. Contiene glutine.",
       valori:
         "Per 100 g: energia 1389 kJ / 327 kcal · grassi 2,0 g (saturi 0,3 g) · carboidrati 63,7 g (zuccheri 1,9 g) · proteine 13,7 g · sale 0,02 g",
@@ -714,6 +722,7 @@ window.CATALOGO = (function () {
       /* dati dall'etichetta; prezzo indicativo, da confermare col cliente */
       slug: "fagioli-cannellini",
       nome: "Fagioli cannellini italiani",
+      claim: "Delicati, cremosi e versatili: un classico della cucina italiana.",
       categoria: "dispensa",
       occhiello: "DISPENSA",
       prezzo: 6.8,
@@ -724,7 +733,7 @@ window.CATALOGO = (function () {
       galleriaImg: ["assets/img/fagioli-cannellini-1.jpeg", "assets/img/fagioli-cannellini-2.jpeg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
       descrizione:
-        "Cannellini italiani secchi. Vanno lasciati in ammollo 12 ore, poi lessati in acqua per circa 50 minuti, salando verso fine cottura. Sul retro la ricetta dei fagioli all'uccelletto.",
+        "Fagioli dal gusto delicato e dalla consistenza morbida e cremosa, ideali per le ricette più semplici della tradizione italiana. Dopo la cottura mantengono bene la forma, ma diventano teneri all'interno, con un sapore dolce e armonioso che si presta bene sia a piatti rustici sia a preparazioni più leggere. Perfetti per zuppe, minestre, pasta e fagioli, insalate, contorni oppure semplicemente con un filo d'olio extravergine, sale e pepe.",
       ingredienti: "Fagioli cannellini. Prodotto in Italia.",
       valori:
         "Per 100 g: energia 1163 kJ / 274 kcal · grassi 0,8 g (saturi 0,1 g) · carboidrati 43,1 g (zuccheri 3 g) · proteine 23,6 g · sale 0,01 g",
@@ -736,6 +745,7 @@ window.CATALOGO = (function () {
     {
       slug: "ciambelline-cereali",
       nome: "Ciambelline ai cereali",
+      claim: "Croccanti, rustiche e ricche di cereali: il gusto semplice delle ciambelline fatte a mano.",
       categoria: "dispensa",
       occhiello: "DISPENSA · CIAMBELLINE",
       prezzo: 5.5,
@@ -749,7 +759,8 @@ window.CATALOGO = (function () {
         "assets/img/ciambelline-cereali-3.jpeg"
       ],
       galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, fronte", "FOTO 3: etichetta, retro"],
-      descrizione: "Ciambelline al vino rosso fatte a mano, con farine di cereali, semi e fiocchi d'avena.",
+      descrizione:
+        "Croccanti e rustiche, preparate artigianalmente con un ricco mix di cereali, semi e fiocchi d'avena, con l'aggiunta di vino rosso che dona una nota aromatica particolare. Ogni morso è fragrante e pieno, con il gusto tostato dei cereali e la piacevole croccantezza di semi come sesamo, girasole e lino. Sono ciambelline dal sapore semplice ma intenso, ideali per chi ama prodotti asciutti, genuini e poco stucchevoli. Perfette da gustare da sole, con un bicchiere di vino, oppure come piccolo snack durante la giornata.",
       ingredienti:
         "CEREALI 61% (farina di GRANO TENERO tipo \"0\", farina di SEGALE, semi di SESAMO, semi di GIRASOLE, semi di LINO, farina di AVENA, farina di ORZO, sale, MAIS soffiato, estratto di malto d'ORZO, farina di GRANO TENERO maltato, farina di GRANO TENERO di tipo 1 macinata a pietra, agente di trattamento della farina (acido ascorbico, alfa amilasi)), fiocchi di AVENA, VINO rosso, zucchero, olio di semi di girasole altoleico, AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma]. La farina, il vino e lo zucchero sono di origine italiana. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 1,4%.",
       valori:
@@ -815,6 +826,31 @@ window.CATALOGO = (function () {
       valori:
         "Per 100 g: energia 1692 kJ / 403 kcal · grassi 17 g (saturi 2,5 g) · carboidrati 56 g (zuccheri 22 g) · fibre 0 g · proteine 6,5 g · sale 0 g",
       conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
+      produttore: marcheseGrillo
+    },
+    {
+      /* dati dall'etichetta; peso: sull'etichetta un adesivo da 125 g copre i 200 g stampati.
+         Un ingrediente dopo "Sale" (inizia per "Ac") e' coperto dall'occhiello della confezione:
+         da ricontrollare su una busta integra. Prezzo indicativo, da confermare col cliente */
+      slug: "stuzzichini-tartufo",
+      nome: "Stuzzichini al tartufo",
+      claim: "Croccanti, rustici e profumati al tartufo nero: lo snack perfetto per l'aperitivo.",
+      categoria: "dispensa",
+      occhiello: "DISPENSA",
+      prezzo: 5.5,
+      peso: "125 g",
+      grammi: 125,
+      foto: "FOTO: sacchetto di stuzzichini al tartufo",
+      img: "assets/img/stuzzichini-tartufo-1.jpeg",
+      galleriaImg: ["assets/img/stuzzichini-tartufo-1.jpeg", "assets/img/stuzzichini-tartufo-2.jpeg"],
+      galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
+      descrizione:
+        "Snack artigianali, rustici e croccanti, preparati con farina di grano tenero macinata a pietra, vino bianco e tartufo nero. Al morso risultano friabili e saporiti, con una base semplice e fragrante che lascia spazio alla nota aromatica del tartufo. Il vino bianco aggiunge una sfumatura più profumata e rende il gusto ancora più caratteristico. Perfetti per aperitivi, taglieri, antipasti o semplicemente da sgranocchiare da soli, soprattutto quando vuoi qualcosa di diverso dal solito snack.",
+      ingredienti:
+        "Farina di GRANO TENERO tipo 1 macinata a pietra di origine italiana, VINO bianco, olio di semi di girasole altoleico, TARTUFO NERO (Tuber aestivum, Tuber mesentericum) 1%, sale, aroma. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 1,8%.",
+      valori:
+        "Per 100 g: energia 1977 kJ / 471 kcal · grassi 18,7 g (saturi 2,1 g) · carboidrati 65,8 g (zuccheri 2,05 g) · fibre 1,3 g · proteine 8,9 g · sale 2,2 g",
+      conservazione: "In luogo fresco e asciutto, lontano dalla luce e da fonti di calore. Prodotto fatto a mano, soggetto a calo di peso.",
       produttore: marcheseGrillo
     },
     {
