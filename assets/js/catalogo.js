@@ -57,11 +57,11 @@ window.CATALOGO = (function () {
       nav: "Tartufo",
       nome: "Tartufo e salse",
       titolo: "Tartufo e salse",
-      intro: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, e condimenti aromatizzati al tartufo.",
-      breve: "Salse, sugo, purè, miele e condimenti al tartufo.",
-      breveLunga: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, e condimenti aromatizzati al tartufo.",
+      intro: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, riso e polenta al tartufo, e condimenti aromatizzati al tartufo.",
+      breve: "Salse, sugo, purè, miele, riso e condimenti al tartufo.",
+      breveLunga: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, riso e polenta al tartufo, e condimenti aromatizzati al tartufo.",
       foto: "FOTO: tartufo nero su tagliere",
-      img: "assets/img/salsa-tartufata.jpg",
+      img: "assets/img/salsa-tartufata-foto-1.jpg",
       imgAlt: "Barattolo di salsa tartufata",
       inVetrina: 2
     },
@@ -82,7 +82,7 @@ window.CATALOGO = (function () {
       titolo: "Dispensa",
       intro: "Legumi umbri, farro, zuppe da cuocere e ciambelline al vino fatte a mano: la parte della bottega che riempie la credenza.",
       foto: "FOTO: scaffale dispensa",
-      img: "assets/img/zuppa-rapida.jpg",
+      img: "assets/img/zuppa-rapida-foto-1.jpg",
       imgAlt: "Confezione di zuppa rapida di legumi"
     },
     {
@@ -475,7 +475,8 @@ window.CATALOGO = (function () {
       peso: "500 g circa",
       grammi: 500,
       foto: "FOTO: formaggio misto al tartufo",
-      img: "assets/img/formaggio-tartufo-mazzatosta-1.jpeg",
+      img: "assets/img/formaggio-tartufo-mazzatosta-foto-1.jpg",
+      galleriaImg: ["assets/img/formaggio-tartufo-mazzatosta-foto-1.jpg", "assets/img/formaggio-tartufo-mazzatosta-foto-2.jpg", "assets/img/formaggio-tartufo-mazzatosta-foto-3.jpg"],
       descrizione:
         "Un formaggio di latte vaccino e ovino, morbido e saporito, arricchito con pezzettini di tartufo estivo distribuiti nella pasta. Il gusto del formaggio resta rotondo e piacevole, mentre il tartufo aggiunge una nota aromatica più intensa e caratteristica, che emerge progressivamente durante l'assaggio. I piccoli pezzi di tartufo rendono ogni fetta più ricca e riconoscibile, creando un equilibrio tra la morbidezza del formaggio e il profumo tipico del tartufo estivo.",
       ingredienti:
@@ -520,18 +521,22 @@ window.CATALOGO = (function () {
         { nome: "Vasetto piccolo", peso: "80 g", grammi: 80, prezzo: 4.5 }
       ],
       foto: "FOTO: barattolo di salsa tartufata",
-      img: "assets/img/salsa-tartufata.jpg",
+      img: "assets/img/salsa-tartufata-foto-1.jpg",
       galleriaImg: [
-        "assets/img/salsa-tartufata.jpg",
-        "assets/img/salsa-tartufata-130-1.jpg",
-        "assets/img/salsa-tartufata-80-1.jpg",
-        "assets/img/salsa-tartufata-130-3.jpg"
+        "assets/img/salsa-tartufata-foto-1.jpg",
+        "assets/img/salsa-tartufata-foto-2.jpg",
+        "assets/img/salsa-tartufata-foto-3.jpg",
+        "assets/img/salsa-tartufata-foto-4.jpg",
+        "assets/img/salsa-tartufata-foto-5.jpg",
+        "assets/img/salsa-tartufata-80-1.jpg"
       ],
       galleria: [
-        "FOTO 1: barattolo di salsa tartufata",
-        "FOTO 2: vasetto da 130 g",
-        "FOTO 3: vasetto da 80 g",
-        "FOTO 4: etichetta con gli ingredienti"
+        "FOTO 1: vasetto da 130 g con bruschette e tartufo",
+        "FOTO 2: vasetto da 130 g sul tagliere",
+        "FOTO 3: tagliatelle con salsa tartufata",
+        "FOTO 4: etichetta con gli ingredienti",
+        "FOTO 5: etichetta del produttore",
+        "FOTO 6: vasetto da 80 g"
       ],
       descrizione:
         "Una crema intensa e profumata, preparata con funghi champignon e tartufo estivo, pensata per portare in tavola il gusto del tartufo in modo semplice e immediato. La consistenza è morbida e avvolgente: il fungo dà corpo e rotondità, mentre il tartufo arriva con il suo profumo caratteristico, lasciando un gusto sapido, aromatico e persistente. È una delle salse più versatili della nostra selezione: ottima sulle bruschette, sulla pasta, sulle uova, sulla carne o per arricchire un risotto. Ne basta poca per dare subito più carattere al piatto.",
@@ -646,8 +651,8 @@ window.CATALOGO = (function () {
       peso: "120 g",
       grammi: 120,
       foto: "FOTO: vasetto di miele e tartufo",
-      img: "assets/img/miele-tartufo-1.jpeg",
-      galleriaImg: ["assets/img/miele-tartufo-1.jpeg", "assets/img/miele-tartufo-3.jpeg", "assets/img/miele-tartufo-2.jpeg"],
+      img: "assets/img/miele-tartufo-foto-1.jpg",
+      galleriaImg: ["assets/img/miele-tartufo-foto-1.jpg", "assets/img/miele-tartufo-foto-2.jpg", "assets/img/miele-tartufo-foto-3.jpg"],
       galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore"],
       descrizione:
         "Un incontro sorprendente tra la dolcezza morbida del miele e il profumo intenso del tartufo estivo, presente anche in piccoli pezzi visibili nel vasetto. Al palato parte dolce e avvolgente, poi arriva la nota aromatica e terrosa del tartufo, creando un contrasto elegante, originale e molto persistente. È ideale soprattutto con pecorini e formaggi stagionati, dove la dolcezza del miele bilancia la sapidità del formaggio e il tartufo aggiunge profondità. Ottimo anche su crostini, ricotta, carni o per dare un tocco particolare a un tagliere.",
@@ -655,6 +660,55 @@ window.CATALOGO = (function () {
       valori:
         "Per 100 g: energia 1396,6 kJ / 328,6 kcal · grassi 0 g (saturi 0 g) · carboidrati 81 g (zuccheri 81 g) · proteine 0,5 g · sale 0 g",
       conservazione: "Al riparo dalla luce diretta e da fonti di calore.",
+      produttore: fortunati
+    },
+    {
+      /* dati dall'etichetta in foto (da ricontrollare sulla confezione vera);
+         prezzo indicativo, da confermare col cliente */
+      slug: "riso-carnaroli-tartufo",
+      nome: "Riso Carnaroli al tartufo estivo",
+      denominazione: "Riso Carnaroli con tartufo estivo",
+      claim: "Il risotto al tartufo pronto in 18 minuti, con riso 100% italiano.",
+      categoria: "tartufo",
+      occhiello: "TARTUFO E SALSE",
+      prezzo: 7.5,
+      peso: "200 g",
+      grammi: 200,
+      foto: "FOTO: confezione di riso Carnaroli al tartufo estivo",
+      img: "assets/img/riso-carnaroli-tartufo-1.jpg",
+      galleriaImg: [
+        "assets/img/riso-carnaroli-tartufo-1.jpg",
+        "assets/img/riso-carnaroli-tartufo-2.jpg",
+        "assets/img/riso-carnaroli-tartufo-3.jpg"
+      ],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: risotto nel piatto", "FOTO 3: confezione, retro con etichetta"],
+      descrizione:
+        "Riso superfino Carnaroli italiano già condito con verdure, spezie e tartufo estivo disidratato: basta tostarlo, bagnarlo poco alla volta con acqua calda e in 18–20 minuti il risotto è pronto. Il Carnaroli tiene bene la cottura e resta al dente, mentre il condimento dà un fondo morbido e saporito su cui arriva il profumo del tartufo. Una confezione fa due porzioni; per finire, una noce di burro e una grattata di parmigiano. Senza glutammato aggiunto e senza conservanti.",
+      ingredienti:
+        "Riso superfino Carnaroli italiano 94%, condimento vegetale (sale, fecola di patate, estratto di lievito, maltodestrine di patata, verdure disidratate in proporzione variabile: cipolla, carota, SEDANO, pastinaca; olio di girasole, spezie, aromi naturali), tartufo estivo disidratato (Tuber aestivum Vitt.) 1%, aglio disidratato, aroma. Allergeni: sedano. Origine del riso: Italia.",
+      valori:
+        "Per 100 g: energia 1475 kJ / 347 kcal · grassi 0,6 g (saturi 0,1 g) · carboidrati 78,3 g (zuccheri 1,4 g) · proteine 6,6 g · sale 1,4 g",
+      conservazione: "A temperatura ambiente, lontano da fonti di calore.",
+      produttore: fortunati
+    },
+    {
+      /* etichetta posteriore non ancora fotografata: mancano ingredienti e valori.
+         Prezzo indicativo, da confermare col cliente */
+      slug: "polenta-tartufo-bianco",
+      nome: "Polenta al tartufo bianco",
+      denominazione: "Polenta di mais al tartufo bianco istantanea",
+      claim: "La polenta al profumo di tartufo bianco, pronta in 5 minuti.",
+      categoria: "tartufo",
+      occhiello: "TARTUFO E SALSE",
+      prezzo: 6.5,
+      peso: "300 g",
+      grammi: 300,
+      foto: "FOTO: sacchetto di polenta al tartufo bianco",
+      img: "assets/img/polenta-tartufo-bianco-1.jpg",
+      galleriaImg: ["assets/img/polenta-tartufo-bianco-1.jpg", "assets/img/polenta-tartufo-bianco-2.jpg"],
+      galleria: ["FOTO 1: sacchetto, fronte", "FOTO 2: polenta nel piatto"],
+      descrizione:
+        "Farina di mais istantanea insaporita con tartufo bianco: si versa a pioggia nell'acqua bollente salata, si mescola e in 5 minuti la polenta è pronta, morbida e cremosa. Il mais dà la dolcezza rotonda di sempre, il tartufo aggiunge un profumo elegante che si sente già in cottura. Ottima da sola con un filo d'olio e una grattata di formaggio, oppure accanto a funghi, salsicce e carni in umido.",
       produttore: fortunati
     },
     {
@@ -667,7 +721,9 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di lenticchie umbre",
-      img: "assets/img/lenticchie.jpg",
+      img: "assets/img/lenticchie-umbre-foto-1.jpg",
+      galleriaImg: ["assets/img/lenticchie-umbre-foto-1.jpg", "assets/img/lenticchie-umbre-foto-2.jpg", "assets/img/lenticchie-umbre-foto-3.jpg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: lenticchie cotte", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Piccole, delicate e naturalmente saporite, le lenticchie umbre sono uno dei prodotti più semplici e autentici della nostra terra. La loro piccola pezzatura permette una cottura uniforme e mantiene il chicco piacevolmente compatto. Al palato hanno un gusto delicato ma pieno, con una nota leggermente terrosa e una consistenza morbida senza diventare farinosa. Sono perfette per i piatti della tradizione, dalle zuppe ai contorni, oppure insieme a salsiccia e zampone, dove assorbono il condimento senza perdere la propria consistenza. Sciacquare, cuocere in acqua 25–30 minuti e salare a fine cottura.",
       ingredienti: "Lenticchie secche umbre. Origine Italia, Umbria.",
@@ -686,9 +742,9 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di zuppa rapida di legumi",
-      img: "assets/img/zuppa-rapida-1.jpeg",
-      galleriaImg: ["assets/img/zuppa-rapida-1.jpeg", "assets/img/zuppa-rapida-2.jpeg"],
-      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
+      img: "assets/img/zuppa-rapida-foto-1.jpg",
+      galleriaImg: ["assets/img/zuppa-rapida-foto-1.jpg", "assets/img/zuppa-rapida-foto-2.jpg", "assets/img/zuppa-rapida-foto-3.jpg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: nel piatto", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Un mix rustico e nutriente di lenticchie, orzo perlato, fagioli azuki verdi e piselli, pensato per portare in tavola una zuppa ricca e completa senza lunghe preparazioni. Durante la cottura ogni ingrediente mantiene la propria consistenza: le lenticchie danno corpo, l'orzo rende la zuppa più morbida e cremosa, mentre fagioli e piselli aggiungono varietà di sapori e consistenze. È una zuppa dal gusto semplice, pieno e genuino, ideale nelle giornate più fresche e pronta in circa 30 minuti.",
       ingredienti:
@@ -708,9 +764,9 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di farro umbro perlato",
-      img: "assets/img/farro-umbro-1.jpeg",
-      galleriaImg: ["assets/img/farro-umbro-1.jpeg", "assets/img/farro-umbro-2.jpeg"],
-      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
+      img: "assets/img/farro-umbro-foto-1.jpg",
+      galleriaImg: ["assets/img/farro-umbro-foto-1.jpg", "assets/img/farro-umbro-foto-2.jpg", "assets/img/farro-umbro-foto-3.jpg"],
+      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: nel piatto", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Un cereale antico della tradizione umbra, dal gusto rustico e piacevole e dalla consistenza compatta ma morbida dopo la cottura. Essendo perlato, cuoce più velocemente e non richiede lunghe preparazioni: in circa 20 minuti è pronto per essere utilizzato in zuppe, minestre, insalate fredde o come alternativa al riso. Ha un sapore delicatamente tostato e una consistenza che resta piacevole al morso, ideale sia per ricette semplici sia per piatti più ricchi con verdure, legumi, carne o pomodoro.",
       ingredienti: "Farro umbro perlato. Contiene glutine.",
@@ -729,9 +785,17 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di fagioli cannellini",
-      img: "assets/img/fagioli-cannellini-1.jpeg",
-      galleriaImg: ["assets/img/fagioli-cannellini-1.jpeg", "assets/img/fagioli-cannellini-2.jpeg"],
-      galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
+      img: "assets/img/fagioli-cannellini-foto-1.jpg",
+      galleriaImg: [
+        "assets/img/fagioli-cannellini-foto-1.jpg",
+        "assets/img/fagioli-cannellini-foto-2.jpg",
+        "assets/img/fagioli-cannellini-2.jpeg"
+      ],
+      galleria: [
+        "FOTO 1: confezione, fronte",
+        "FOTO 2: fagioli cotti con olio e rosmarino",
+        "FOTO 3: confezione, retro con etichetta"
+      ],
       descrizione:
         "Fagioli dal gusto delicato e dalla consistenza morbida e cremosa, ideali per le ricette più semplici della tradizione italiana. Dopo la cottura mantengono bene la forma, ma diventano teneri all'interno, con un sapore dolce e armonioso che si presta bene sia a piatti rustici sia a preparazioni più leggere. Perfetti per zuppe, minestre, pasta e fagioli, insalate, contorni oppure semplicemente con un filo d'olio extravergine, sale e pepe.",
       ingredienti: "Fagioli cannellini. Prodotto in Italia.",
@@ -1096,7 +1160,7 @@ window.CATALOGO = (function () {
       dove: "Scaffale di legno, a sinistra",
       titolo: "La roba che dura",
       testo: "Due cose che ti salvano la sera, mezz'ora di cottura.",
-      img: "assets/img/lenticchie.jpg",
+      img: "assets/img/lenticchie-umbre-foto-1.jpg",
       alt: "Le lenticchie umbre nella confezione",
       prodotti: ["lenticchie-umbre", "zuppa-rapida"]
     },
