@@ -789,7 +789,7 @@ window.CATALOGO = (function () {
       galleriaImg: [
         "assets/img/fagioli-cannellini-foto-1.jpg",
         "assets/img/fagioli-cannellini-foto-2.jpg",
-        "assets/img/fagioli-cannellini-2.jpeg"
+        "assets/img/fagioli-cannellini-foto-3.jpg"
       ],
       galleria: [
         "FOTO 1: confezione, fronte",
