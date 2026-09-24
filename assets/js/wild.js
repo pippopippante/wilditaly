@@ -39,6 +39,10 @@
   /* ------------------------------------------------------------ formati */
   const euro = (n) =>
     Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  /* prezzo al kg o al litro (obbligatorio per gli alimenti), da `grammi` / `ml` del catalogo;
+     `x` è il prodotto o il suo formato. Le box non hanno peso: niente prezzo al kg. */
+  const alKg = (prezzo, x) =>
+    x.grammi ? euro((prezzo * 1000) / x.grammi) + "/kg" : x.ml ? euro((prezzo * 1000) / x.ml) + "/l" : "";
 
   /* ------------------------------------------------------------- icone */
   const SPRITE = `
@@ -91,7 +95,11 @@
       render.add();
       if (render.guida) render.guida();
     },
-    id: (slug, formato) => slug + "::" + (formato || ""),
+    /* senza formato vale il primo: la card e la scheda aggiungono la stessa riga */
+    formato: (slug, formato) => formato || (((C.get(slug) || {}).formati || [])[0] || {}).nome || null,
+    id(slug, formato) {
+      return slug + "::" + (this.formato(slug, formato) || "");
+    },
     qta(slug, formato) {
       const id = this.id(slug, formato);
       const r = this.righe.find((x) => this.id(x.slug, x.formato) === id);
@@ -103,7 +111,7 @@
       const id = this.id(slug, formato);
       const r = this.righe.find((x) => this.id(x.slug, x.formato) === id);
       if (r) r.qta += qta || 1;
-      else this.righe.push({ slug: slug, formato: formato || null, qta: qta || 1 });
+      else this.righe.push({ slug: slug, formato: this.formato(slug, formato), qta: qta || 1 });
       this.salva();
     },
     imposta(id, qta) {
@@ -162,6 +170,10 @@
     el.removeAttribute("aria-hidden");
     if (nome !== "cerca") $(".scrim").classList.add("is-open");
     document.body.classList.add("is-locked");
+    /* col pannello aperto il resto della pagina è fuori portata: il Tab resta dentro */
+    $$("body > *").forEach((x) => {
+      if (x !== el && !x.matches(".scrim, .toasts, script")) x.inert = true;
+    });
     aperto = el;
     const f = el.querySelector("input, button, a");
     if (f) setTimeout(() => f.focus(), 60);
@@ -172,6 +184,7 @@
     aperto.classList.remove("is-open");
     aperto.setAttribute("aria-hidden", "true");
     aperto = null;
+    $$("body > [inert]").forEach((x) => (x.inert = false));
     $(".scrim").classList.remove("is-open");
     document.body.classList.remove("is-locked");
     if (!silenzioso && ultimoFocus && ultimoFocus.focus) ultimoFocus.focus();
@@ -247,7 +260,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     const b = C.bottega;
     const cats = C.categorie
       .filter((c) => !c.inNavEvidenza)
-      .slice(0, 4)
       .map((c) => `<a href="categoria.html?c=${c.slug}">${esc(c.nome)}</a>`)
       .join("");
     return `
@@ -259,6 +271,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     </div>
     <div class="ftr__col">
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">BOTTEGA</div>
+      <a href="guida.html">Fatti guidare</a>
       ${cats}
       <a href="catalogo.html">Catalogo completo</a>
     </div>
@@ -301,13 +314,16 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     return `
 <div class="scrim" data-close></div>
 
-<aside class="panel panel--left" data-panel="menu" aria-hidden="true" aria-label="Menu">
+<aside class="panel panel--left" data-panel="menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Menu">
   <div class="panel__head">
     <span class="panel__title">La bottega</span>
     <button class="iconbtn" data-close aria-label="Chiudi il menu">${ico("close")}</button>
   </div>
   <div class="panel__body">
-    <nav class="menu-list" aria-label="Categorie">${navHtml("menu")}</nav>
+    <nav class="menu-list" aria-label="Categorie">
+      <a href="guida.html" class="is-featured">Fatti guidare${ico("right")}</a>
+      ${navHtml("menu")}
+    </nav>
     <div class="menu-extra">
       <a href="storia.html">La nostra storia</a>
       <a href="info.html#spedizioni">Spedizioni e consegne</a>
@@ -318,7 +334,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   </div>
 </aside>
 
-<aside class="panel panel--right" data-panel="carrello" aria-hidden="true" aria-label="Carrello">
+<aside class="panel panel--right" data-panel="carrello" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Carrello">
   <div class="panel__head">
     <span class="panel__title">Carrello</span>
     <button class="iconbtn" data-close aria-label="Chiudi il carrello">${ico("close")}</button>
@@ -329,12 +345,12 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       <span class="meta">Totale · IVA inclusa</span>
       <span class="cart-tot__v" data-cart-tot>0,00 €</span>
     </div>
-    <p class="meta" style="margin-bottom:14px">Spedizione calcolata alla cassa.</p>
+    <p class="meta" style="margin-bottom:14px">Spedizione compresa: <span data-spedizione></span> · sottovuoto, in circa 48 ore.</p>
     <button class="btn btn--wine btn--block" data-soon="Cassa">Vai alla cassa</button>
   </div>
 </aside>
 
-<div class="search" data-panel="cerca" aria-hidden="true" role="dialog" aria-label="Cerca nella bottega">
+<div class="search" data-panel="cerca" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Cerca nella bottega">
   <div class="search__head">
     ${ico("search")}
     <input class="search__input" type="search" data-search-input placeholder="Cerca: cervo, tartufo, vino…" aria-label="Cerca un prodotto">
@@ -351,9 +367,9 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
 <nav class="tabbar" aria-label="Navigazione rapida">
   <a href="index.html" data-tab="home">${ico("shop")}<span>Bottega</span></a>
+  <a href="guida.html" data-tab="guida">${ico("pin")}<span>Guida</span></a>
   <button data-open="cerca">${ico("search")}<span>Cerca</span></button>
   <button data-open="carrello">${ico("bag")}<span>Carrello</span><span class="badge" data-cart-badge hidden>0</span></button>
-  <button data-account>${ico("user")}<span>Account</span></button>
 </nav>
 
 <a class="wa" href="${WA}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
@@ -427,7 +443,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
       if (foot) {
         foot.hidden = false;
-        $("[data-cart-tot]").textContent = euro(Cart.totale());
+        $("[data-cart-tot]").textContent = euro(Cart.totale() + C.bottega.spedizione);
       }
     }
   };
@@ -444,7 +460,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <span class="addq__s"${n ? "" : " hidden"}>
     <button type="button" data-qta="${id}" data-d="-1" aria-label="Uno in meno di ${esc(p.nome)}">${ico("minus")}</button>
     <span class="addq__n">${n || 1}</span>
-    <button type="button" data-qta="${id}" data-d="1" aria-label="Uno in piu di ${esc(p.nome)}">${ico("plus")}</button>
+    <button type="button" data-qta="${id}" data-d="1" aria-label="Uno in più di ${esc(p.nome)}">${ico("plus")}</button>
   </span>
 </span>`;
   }
@@ -466,7 +482,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     ${nota}
     <div class="prod__price">
       <span class="price">${euro(p.prezzo)}</span>
-      <span class="meta">${esc(p.peso || "")}</span>
+      <span class="meta">${[p.peso, alKg(p.prezzo, p)].filter(Boolean).map(esc).join("<br>")}</span>
     </div>
     ${addq(p, "btn--dark btn--sm btn--block prod__cta", `Aggiungi<span class="prod__cta-x"> al carrello</span>`)}
   </div>
@@ -706,43 +722,23 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <span>Confezioni regalo e degustazioni ${ico("right")}</span>
 </a>`;
 
-    /* recensioni: la barretta sotto il carosello segue lo scorrimento,
-       le frecce (solo con il mouse) spostano di una scheda */
+    /* recensioni: carosello, pallini e frecce li fa initRail; qui solo "Leggi di più",
+       sotto i testi davvero tagliati (si misura a font caricati) */
     const rv = $("[data-revs]");
     if (rv) {
-      const sez = rv.closest(".revs");
-      const bar = $(".revs__bar", sez);
-      const [prev, next] = $$("[data-revs-dir]", sez);
-      sez.addEventListener("click", (e) => {
-        const b = e.target.closest("[data-revs-dir]");
-        if (b) rv.scrollBy({ left: b.dataset.revsDir * (rv.firstElementChild.offsetWidth + 16) });
+      rv.addEventListener("click", (e) => {
         const piu = e.target.closest(".rev__piu");
-        if (piu) {
-          const aperta = piu.closest(".rev").classList.toggle("is-aperta");
-          piu.setAttribute("aria-expanded", aperta);
-          piu.textContent = aperta ? "Nascondi" : "Leggi di più";
-        }
+        if (!piu) return;
+        const aperta = piu.closest(".rev").classList.toggle("is-aperta");
+        piu.setAttribute("aria-expanded", aperta);
+        piu.textContent = aperta ? "Nascondi" : "Leggi di più";
       });
-      /* "Leggi di più" solo sotto i testi davvero tagliati: si misura a font caricati */
       document.fonts.ready.then(() =>
         $$(".rev__t", rv).forEach((t) => {
           if (t.scrollHeight > t.clientHeight + 2)
             t.insertAdjacentHTML("afterend", '<button type="button" class="rev__piu" aria-expanded="false">Leggi di più</button>');
         })
       );
-      const segna = () => {
-        /* spente quando la prima / l'ultima scheda si vede tutta: guardare le schede
-           regge a zoom, decimali e al punto in cui lo scroll-snap si ferma */
-        const r = rv.getBoundingClientRect();
-        prev.disabled = rv.firstElementChild.getBoundingClientRect().left >= r.left - 2;
-        next.disabled = rv.lastElementChild.getBoundingClientRect().right <= r.right + 2;
-        bar.hidden = prev.disabled && next.disabled;
-        bar.firstElementChild.style.width = (rv.clientWidth / rv.scrollWidth) * 100 + "%";
-        bar.firstElementChild.style.transform = `translateX(${(rv.scrollLeft / rv.clientWidth) * 100}%)`;
-      };
-      rv.addEventListener("scroll", segna, { passive: true });
-      addEventListener("resize", segna);
-      segna();
     }
   }
 
@@ -779,12 +775,33 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       .join("");
   }
 
+  /* ---- indirizzo sbagliato (?c= o ?p= che non esiste): un titolo vero e due strade per ripartire */
+  function nonTrovato(titolo, testo) {
+    document.title = titolo + " · Wild Italy";
+    const ctx = $("[data-ctx-title]");
+    if (ctx) ctx.textContent = titolo;
+    document.head.insertAdjacentHTML("beforeend", '<meta name="robots" content="noindex">');
+    $("#main").innerHTML = `
+<div class="wrap sec"><div class="empty">
+  <h1 class="h3">${esc(titolo)}</h1>
+  <p class="body measure" style="margin:0 auto">${esc(testo)} Nel catalogo completo trovi tutti i prodotti, con la ricerca.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px">
+    <a class="btn btn--wine btn--sm" href="catalogo.html">Catalogo completo</a>
+    <a class="btn btn--wineline btn--sm" href="index.html">Torna alla bottega</a>
+  </div>
+</div></div>`;
+  }
+
   /* ---- categoria */
   function mountCategoria() {
     const slug = new URLSearchParams(location.search).get("c") || "selvaggina";
     const c = C.cat(slug);
-    if (!c || c.pagina) {
-      location.replace(c && c.pagina ? c.pagina : "categoria.html?c=selvaggina");
+    if (c && c.pagina) {
+      location.replace(c.pagina);
+      return;
+    }
+    if (!c) {
+      nonTrovato("Scaffale non trovato", "Questo scaffale non c'è, o ha cambiato nome.");
       return;
     }
     document.body.dataset.cat = slug;
@@ -850,6 +867,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <span class="ls-riga__p">
     <span class="ls-riga__prezzo">${euro(p.prezzo)}</span>
     <span class="ls-riga__peso">${esc(p.formati ? p.formati[0].peso : p.peso || "")}</span>
+    <span class="ls-riga__peso">${alKg(p.prezzo, p.formati ? p.formati[0] : p)}</span>
   </span>
 </a>`;
 
@@ -970,7 +988,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     if (!host) return;
     const V = C.visita;
     const FINE = V.length;
-    let i = 0;
+    const tappaUrl = /^#tappa-(\d+)$/.exec(location.hash);
+    let i = location.hash === "#fine" ? FINE : tappaUrl ? Math.max(0, Math.min(FINE, tappaUrl[1] - 1)) : 0;
 
     host.innerHTML = `
 <aside class="gv-side" aria-label="Il percorso e il cesto" data-gv="side"></aside>
@@ -1116,7 +1135,7 @@ ${
             .map(C.get)
             .filter(Boolean)
             .map((p) =>
-              riga(p, esc([p.peso, C.noteVisita[p.slug] || p.nota].filter(Boolean).join(" · ")), euro(p.prezzo), ctl(p))
+              riga(p, esc([p.peso, alKg(p.prezzo, p), C.noteVisita[p.slug] || p.nota].filter(Boolean).join(" · ")), euro(p.prezzo), ctl(p))
             )
             .join("")}</div>
 <div class="gv-nav">
@@ -1167,6 +1186,7 @@ ${
 
     function vai(n) {
       i = Math.max(0, Math.min(FINE, n));
+      history.replaceState(null, "", i >= FINE ? "#fine" : i ? "#tappa-" + (i + 1) : location.pathname + location.search);
       disegna(true);
       /* se la tappa è finita sotto l'header, torna al suo inizio */
       const hdr = $(".hdr");
@@ -1194,11 +1214,7 @@ ${
     const p = C.get(slug);
     const host = $("[data-pdp]");
     if (!p) {
-      host.innerHTML = `
-<div class="wrap sec"><div class="empty">
-  <div class="h3">Prodotto non trovato</div>
-  <a class="btn btn--wineline btn--sm" style="margin-top:18px" href="index.html">Torna alla bottega</a>
-</div></div>`;
+      nonTrovato("Prodotto non trovato", "Forse il link è vecchio, o il prodotto non è più in bottega.");
       return;
     }
     const c = C.cat(p.categoria) || {};
@@ -1214,17 +1230,14 @@ ${
       return (p.formati.find((f) => f.nome === formato) || p.formati[0]).prezzo;
     };
     const pesoCorrente = () => {
-      if (!p.formati) return p.peso || "";
-      return (p.formati.find((f) => f.nome === formato) || p.formati[0]).peso;
+      const f = p.formati ? p.formati.find((x) => x.nome === formato) || p.formati[0] : p;
+      return [f.peso, alKg(f.prezzo, f)].filter(Boolean).join(" · ");
     };
 
     /* Con foto vere la galleria mostra solo quelle; altrimenti i segnaposto del mockup. */
     const galImg = p.galleriaImg && p.galleriaImg.length ? p.galleriaImg : p.img ? [p.img] : null;
-    const gal = galImg
-      ? galImg.map((_, i) => `${p.nome}, foto ${i + 1}`)
-      : p.galleria && p.galleria.length
-      ? p.galleria
-      : [p.foto];
+    const gal = galImg ? galImg.map((_, i) => `${p.nome}, foto ${i + 1}`) : [p.foto];
+    const galPiu = gal.length > 1;
     const craft =
       p.artigianale && CONFIG.mostraBadgeArtigianale ? '<span class="gallery__tag">ARTIGIANALE</span>' : "";
 
@@ -1326,18 +1339,18 @@ ${
             : `<span class="ph__note" data-gal-note>${esc(gal[0])}</span>`
         }
         ${craft}
-        <span class="gallery__count"><span data-gal-i>1</span> / ${gal.length}</span>
         ${
-          gal.length > 1
-            ? `<button type="button" class="zoom__nav zoom__nav--prev" data-gal-step="-1" aria-label="Foto precedente">‹</button>
-        <button type="button" class="zoom__nav zoom__nav--next" data-gal-step="1" aria-label="Foto successiva">›</button>`
-            : ""
-        }
+          galPiu
+            ? `<span class="gallery__count"><span data-gal-i>1</span> / ${gal.length}</span>
+        <button type="button" class="zoom__nav zoom__nav--prev" data-gal-step="-1" aria-label="Foto precedente">‹</button>
+        <button type="button" class="zoom__nav zoom__nav--next" data-gal-step="1" aria-label="Foto successiva">›</button>
         <div class="gallery__dots" data-gal-dots>
           ${gal.map((g, i) => `<button type="button" data-g="${i}" aria-label="Foto ${i + 1}"${i === 0 ? ' aria-current="true"' : ""}></button>`).join("")}
-        </div>
+        </div>`
+            : ""
+        }
       </div>
-      <div class="gallery__thumbs" data-gal-thumbs>
+      <div class="gallery__thumbs" data-gal-thumbs${galPiu ? "" : " hidden"}>
         ${gal
           .map(
             (g, i) => `
@@ -1424,6 +1437,7 @@ ${
     <div class="pricerow" style="margin-top:auto;padding-top:14px">
       <span class="price" style="font-size:22px">${euro(a.prezzo)}</span>
       ${a.prezzoPieno ? `<span class="price--old">${euro(a.prezzoPieno)}</span>` : ""}
+      ${alKg(a.prezzo, a) ? `<span class="meta">${alKg(a.prezzo, a)}</span>` : ""}
     </div>
     ${addq(a, "btn--dark btn--sm btn--block addq--mt2", "Aggiungi")}
   </div>
@@ -1684,6 +1698,7 @@ ${
     const main = $("#main");
     main.insertAdjacentHTML("beforebegin", headerHtml());
     main.insertAdjacentHTML("afterend", footerHtml() + panelsHtml());
+    document.body.classList.add("has-chrome");
 
     const tab = $('.tabbar [data-tab="' + pagina + '"]');
     if (tab) tab.setAttribute("aria-current", "page");
@@ -1702,6 +1717,8 @@ ${
     $$(".rail").forEach(initRail);
     initAcc();
     initSearch();
+
+    $$("[data-spedizione]").forEach((e) => (e.textContent = euro(C.bottega.spedizione)));
 
     const anno = $("[data-anno]");
     if (anno) anno.textContent = new Date().getFullYear();

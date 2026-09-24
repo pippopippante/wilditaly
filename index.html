@@ -5,10 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wild Italy</title>
-<meta name="description" content="Salumi di selvaggina, tartufo e formaggi di una bottega storica di Spoleto. Spedizione sottovuoto in tutta Italia, consegna in circa 48 ore.">
+<meta name="description" content="Salumi di selvaggina, tartufo e formaggi di una bottega di Spoleto. Spedizione sottovuoto in tutta Italia, consegna in circa 48 ore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/wild.css">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="rail rail--cat" data-mount="categorie-rail"></div>
-    <div class="dots" role="tablist" aria-label="Specialità"></div>
+    <div class="dots"></div>
   </section>
 
   <!-- ======================================== la bottega scaffale per scaffale -->
@@ -73,10 +73,7 @@
   <section class="sec sec--wood" aria-labelledby="t-box">
     <div class="wrap">
       <div class="sec-head">
-        <div>
-          <p class="eyebrow eyebrow--brass">FATTI GUIDARE</p>
-          <h2 class="h2" id="t-box" style="margin-top:10px">Box e degustazioni</h2>
-        </div>
+        <h2 class="h2" id="t-box">Box e degustazioni</h2>
         <div class="rail-nav">
           <button type="button" data-dir="prev" aria-label="Box precedenti"><span data-ico="left"></span></button>
           <button type="button" data-dir="next" aria-label="Box successivi"><span data-ico="right"></span></button>
@@ -91,124 +88,124 @@
   </section>
 
   <!-- ========================================================= recensioni -->
-  <!-- Sul modello del widget Trustindex di parmax.com, ma con le recensioni della scheda
-       Google della bottega: testi senza modifiche, nomi accorciati. Niente badge
-       "verificato": Google non le verifica. Voto e numero letti il 14/09/2026, vanno
-       aggiornati a mano. -->
-  <section class="revs" aria-labelledby="t-recensioni">
+  <!-- Le recensioni della scheda Google della bottega: testi senza modifiche, nomi accorciati.
+       Niente badge "verificato": Google non le verifica. Voto e numero letti il 14/09/2026,
+       vanno aggiornati a mano. -->
+  <section class="sec revs" aria-labelledby="t-recensioni">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
       <symbol id="g-logo" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></symbol>
     </svg>
-
-    <h2 class="revs__t" id="t-recensioni">Cosa dicono di noi…</h2>
-
-    <div class="revs__sum">
-      <p class="revs__voto">ECCELLENTE</p>
-      <span class="stelle" role="img" aria-label="5,0 stelle su 5"></span>
-      <p class="revs__base">In base a <a href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">523 recensioni</a></p>
-      <p class="revs__g"><svg aria-hidden="true"><use href="#g-logo"/></svg>Google</p>
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="h2" id="t-recensioni">Cosa dicono di noi</h2>
+          <p class="revs__sum">
+            <svg class="revs__g" aria-hidden="true"><use href="#g-logo"/></svg>
+            <span class="revs__voto">5,0</span>
+            <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+            <a class="link-arrow" href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">523 recensioni su Google <span data-ico="right"></span></a>
+          </p>
+        </div>
+        <div class="rail-nav rail-nav--light">
+          <button type="button" data-dir="prev" aria-label="Recensioni precedenti"><span data-ico="left"></span></button>
+          <button type="button" data-dir="next" aria-label="Recensioni successive"><span data-ico="right"></span></button>
+        </div>
+      </div>
     </div>
-
-    <div class="revs__car">
-    <div class="revs__rail" data-revs tabindex="0" role="region" aria-label="Recensioni, scorri di lato">
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#8E24AA" aria-hidden="true">F</span>
-          <div><p class="rev__n">Francesca A.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Siamo stati fermati durante una passeggiata a Spoleto per fare una degustazione gratuita di loro salumi formaggi e addirittura anche il vino! Tutto ottimo, Da provare assolutamente i salumi di cervo e di capriolo! Consiglio vivamente.</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#C2185B" aria-hidden="true">S</span>
-          <div><p class="rev__n">Sara L.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">I proprietari persone squisite ci hanno invitato ad “assaggiare” la mortadella di cinghiale, il salame di cervo e formaggio pecorino. In realtà abbiamo fatto un apericena altroché assaggio, pure offerto del buon vino! Tutto talmente buono che lo abbiamo anche acquistato per continuare a gustarlo a casa nei prossimi giorni! Grazie davvero.</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#0277BD" aria-hidden="true">G</span>
-          <div><p class="rev__n">Giovanni F.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Tutto buonissimo, conquistati dagli assaggi, dentro abbiamo trovato un posto grazioso e con prelibatezze locali. Signori gentili e molto disponibili. Consiglio di fermarsi anche solo per assaggiare, sicuro che non uscirete a mani vuote.</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#00897B" aria-hidden="true">A</span>
-          <div><p class="rev__n">Alessandro D.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Diego è il numero UNO, davvero cordiale e gentile, ci ha fatto assaggiare gratuitamente tutti i prodotti tipici umbri e i suoi vini. Prodotti che valgono davvero e non troverai mai in un supermercato. Prezzi un po' più alti del supermercato ma ne vale davvero la pena.<br>Vendita principalmente di salumi e formaggi umbri (consiglio il pecorino stagionato e il salame ubriaco che sono entrambi molto saporiti, il salame al tartufo è davvero di un altro pianeta 😍).<br>Oltre alla vendita di questi prodotti c'è la possibilità di acquistare panini fatti al momento (consiglio il ciauscolo e pecorino) e poi c'è una bellissima e accogliente saletta con dei tavolini per un buon aperitivo con taglieri e dell'ottimo vino.<br>Siamo andati in circa 15 persone e Diego ci ha riservato tutta la saletta, dandoci la possibilità di creare dei taglieri personalizzati con bruschette per accompagnare e ci ha messo a disposizione una cassa bluetooth per la musica.<br>Nonostante l'orario di chiusura sia indicato alle ore 20, lui non si fa problemi a fermarsi oltre, noi ad esempio siamo rimasti fino alle 22.30</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#5D4037" aria-hidden="true">F</span>
-          <div><p class="rev__n">Felice V.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Facendo un giro per Spoleto siamo incappati in questo posto, ci hanno offerto degli assaggi e abbiamo deciso che saremmo tornati per cena perché i salumi sono davvero buoni!! Per altro il personale è molto cordiale, abbiamo mangiato molto e pagato un prezzo onestissimo<br>Grazie ancora per la vostra gentilezza!!</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#2E7D32" aria-hidden="true">M</span>
-          <div><p class="rev__n">Maurizio L.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Ci siamo fermati per caso in questo locale in cerca di un aperitivo pre cena. Ampia scelta di salumi e formaggi tutti di alta qualità , dal salame di cinghiale al tartufo al pecorino dolce di amatrice, oltre ad una bruschetta con ventricina eccezionale...Il tutto accompagnato da un ottimo vinello rosso umbro. Top!</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#3949AB" aria-hidden="true">S</span>
-          <div><p class="rev__n">Sere</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Tappa obbligatoria se venite a Spoleto!!!!<br>Diego e il suo Papà vi inebrieranno con i profumi e i sapori dei loro prodotti tipici.<br>La simpatia e l'accoglienza regna sovrana!!</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#D84315" aria-hidden="true">P</span>
-          <div><p class="rev__n">Paola L.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Siamo arrivati in questo locale grazie al consiglio di mio nipote e siamo rimasti affascinati! Diego è un ragazzo di una disponibilità unica, cordiale e gentile. Ha aperto il locale apposta per noi, nonostante fosse giorno di chiusura perché gli abbiamo spiegato che eravamo in partenza per la Puglia. Ci ha fatto assaggiare gratuitamente tutti i prodotti tipici umbri e i suoi vini, aprendo anche confezioni solo per noi.  Prodotti veramente buoni, eccezionali, che non si trovano facilmente.<br>Vendita principalmente di salumi e formaggi umbri; notevole il pecorino di Amatrice, il salame al tartufo, la mortadella di cinghiale, il ciauscolo.Ma troverete molto altro e tutto di ottima qualità! Se andate a Spoleto non perdetevi questa esperienza di gusto e gentilezza! Grazie Diego, torneremo presto a trovarti!</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#EF6C00" aria-hidden="true">F</span>
-          <div><p class="rev__n">Francesca D.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Abbiamo fatto una piccola sosta qui e non ci siamo pentite. Il proprietario gioviale ci ha preparato un taglierino con prodotti di alta qualità, e ci abbiamo mangiato abbondantemente in due, ci ha anche offerto un bicchiere di rosso.. Veramente delizioso</p>
-      </article>
-      <article class="rev">
-        <div class="rev__h">
-          <span class="rev__av" style="--c:#455A64" aria-hidden="true">S</span>
-          <div><p class="rev__n">Sabina B.</p><p class="rev__d">Recensione Google</p></div>
-          <svg aria-label="Google" role="img"><use href="#g-logo"/></svg>
-        </div>
-        <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
-        <p class="rev__t">Siamo stati ieri a Spoleto. Appena ci siamo avvicinati alla norcineria siamo stati inebriati dal profumo dei salumi,oltre al personale. Diego e il suo papà sono delle persone  stupende, oltre a tutti i salumi che sono di una bontà infinita. Diego una persona FAVOLOSA, e anche la GENTILEZZA del papà, per non parlare della freschezza degli alimenti, ci ha anche dato alcuni consigli e ci ha spiegato anche l’origine dei salumi. Sicuramente consiglio questo posto perché fa rivivere un po’ della  vera storia umbra e in questo caso Spoleto 💯💯💯</p>
-      </article>
+    <div class="rail rail--rev" data-revs tabindex="0" role="region" aria-label="Recensioni, scorri di lato">
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#8E24AA" aria-hidden="true">F</span>
+        <span class="rev__chi"><span class="rev__n">Francesca A.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Siamo stati fermati durante una passeggiata a Spoleto per fare una degustazione gratuita di loro salumi formaggi e addirittura anche il vino! Tutto ottimo, Da provare assolutamente i salumi di cervo e di capriolo! Consiglio vivamente.</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#C2185B" aria-hidden="true">S</span>
+        <span class="rev__chi"><span class="rev__n">Sara L.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">I proprietari persone squisite ci hanno invitato ad “assaggiare” la mortadella di cinghiale, il salame di cervo e formaggio pecorino. In realtà abbiamo fatto un apericena altroché assaggio, pure offerto del buon vino! Tutto talmente buono che lo abbiamo anche acquistato per continuare a gustarlo a casa nei prossimi giorni! Grazie davvero.</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#0277BD" aria-hidden="true">G</span>
+        <span class="rev__chi"><span class="rev__n">Giovanni F.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Tutto buonissimo, conquistati dagli assaggi, dentro abbiamo trovato un posto grazioso e con prelibatezze locali. Signori gentili e molto disponibili. Consiglio di fermarsi anche solo per assaggiare, sicuro che non uscirete a mani vuote.</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#00796B" aria-hidden="true">A</span>
+        <span class="rev__chi"><span class="rev__n">Alessandro D.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Diego è il numero UNO, davvero cordiale e gentile, ci ha fatto assaggiare gratuitamente tutti i prodotti tipici umbri e i suoi vini. Prodotti che valgono davvero e non troverai mai in un supermercato. Prezzi un po' più alti del supermercato ma ne vale davvero la pena.<br>Vendita principalmente di salumi e formaggi umbri (consiglio il pecorino stagionato e il salame ubriaco che sono entrambi molto saporiti, il salame al tartufo è davvero di un altro pianeta 😍).<br>Oltre alla vendita di questi prodotti c'è la possibilità di acquistare panini fatti al momento (consiglio il ciauscolo e pecorino) e poi c'è una bellissima e accogliente saletta con dei tavolini per un buon aperitivo con taglieri e dell'ottimo vino.<br>Siamo andati in circa 15 persone e Diego ci ha riservato tutta la saletta, dandoci la possibilità di creare dei taglieri personalizzati con bruschette per accompagnare e ci ha messo a disposizione una cassa bluetooth per la musica.<br>Nonostante l'orario di chiusura sia indicato alle ore 20, lui non si fa problemi a fermarsi oltre, noi ad esempio siamo rimasti fino alle 22.30</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#5D4037" aria-hidden="true">F</span>
+        <span class="rev__chi"><span class="rev__n">Felice V.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Facendo un giro per Spoleto siamo incappati in questo posto, ci hanno offerto degli assaggi e abbiamo deciso che saremmo tornati per cena perché i salumi sono davvero buoni!! Per altro il personale è molto cordiale, abbiamo mangiato molto e pagato un prezzo onestissimo<br>Grazie ancora per la vostra gentilezza!!</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#2E7D32" aria-hidden="true">M</span>
+        <span class="rev__chi"><span class="rev__n">Maurizio L.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Ci siamo fermati per caso in questo locale in cerca di un aperitivo pre cena. Ampia scelta di salumi e formaggi tutti di alta qualità , dal salame di cinghiale al tartufo al pecorino dolce di amatrice, oltre ad una bruschetta con ventricina eccezionale...Il tutto accompagnato da un ottimo vinello rosso umbro. Top!</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#3949AB" aria-hidden="true">S</span>
+        <span class="rev__chi"><span class="rev__n">Sere</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Tappa obbligatoria se venite a Spoleto!!!!<br>Diego e il suo Papà vi inebrieranno con i profumi e i sapori dei loro prodotti tipici.<br>La simpatia e l'accoglienza regna sovrana!!</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#BF360C" aria-hidden="true">P</span>
+        <span class="rev__chi"><span class="rev__n">Paola L.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Siamo arrivati in questo locale grazie al consiglio di mio nipote e siamo rimasti affascinati! Diego è un ragazzo di una disponibilità unica, cordiale e gentile. Ha aperto il locale apposta per noi, nonostante fosse giorno di chiusura perché gli abbiamo spiegato che eravamo in partenza per la Puglia. Ci ha fatto assaggiare gratuitamente tutti i prodotti tipici umbri e i suoi vini, aprendo anche confezioni solo per noi.  Prodotti veramente buoni, eccezionali, che non si trovano facilmente.<br>Vendita principalmente di salumi e formaggi umbri; notevole il pecorino di Amatrice, il salame al tartufo, la mortadella di cinghiale, il ciauscolo.Ma troverete molto altro e tutto di ottima qualità! Se andate a Spoleto non perdetevi questa esperienza di gusto e gentilezza! Grazie Diego, torneremo presto a trovarti!</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#B85500" aria-hidden="true">F</span>
+        <span class="rev__chi"><span class="rev__n">Francesca D.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Abbiamo fatto una piccola sosta qui e non ci siamo pentite. Il proprietario gioviale ci ha preparato un taglierino con prodotti di alta qualità, e ci abbiamo mangiato abbondantemente in due, ci ha anche offerto un bicchiere di rosso.. Veramente delizioso</blockquote>
+    </figure>
+    <figure class="rev">
+      <figcaption class="rev__h">
+        <span class="rev__av" style="--c:#455A64" aria-hidden="true">S</span>
+        <span class="rev__chi"><span class="rev__n">Sabina B.</span><span class="rev__d">Recensione Google</span></span>
+        <svg class="rev__g" role="img" aria-label="Google"><use href="#g-logo"/></svg>
+      </figcaption>
+      <span class="stelle" role="img" aria-label="5 stelle su 5"></span>
+      <blockquote class="rev__t">Siamo stati ieri a Spoleto. Appena ci siamo avvicinati alla norcineria siamo stati inebriati dal profumo dei salumi,oltre al personale. Diego e il suo papà sono delle persone  stupende, oltre a tutti i salumi che sono di una bontà infinita. Diego una persona FAVOLOSA, e anche la GENTILEZZA del papà, per non parlare della freschezza degli alimenti, ci ha anche dato alcuni consigli e ci ha spiegato anche l’origine dei salumi. Sicuramente consiglio questo posto perché fa rivivere un po’ della  vera storia umbra e in questo caso Spoleto 💯💯💯</blockquote>
+    </figure>
     </div>
-    <button type="button" class="revs__freccia revs__freccia--prev" data-revs-dir="-1" aria-label="Recensione precedente" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-    <button type="button" class="revs__freccia revs__freccia--next" data-revs-dir="1" aria-label="Recensione successiva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-    </div>
-    <div class="revs__bar" aria-hidden="true"><span></span></div>
-
-    <a class="revs__btn" href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">Tutte le recensioni su Google</a>
-    <p class="revs__nota">Una selezione dalle recensioni della nostra scheda Google, riportate senza modifiche. Google non verifica che chi scrive sia stato cliente. Voto e numero aggiornati a settembre 2026.</p>
+    <div class="dots"></div>
+    <p class="wrap meta revs__nota">Una selezione dalle recensioni della nostra scheda Google, riportate senza modifiche. Google non verifica che chi scrive sia stato cliente. Voto e numero aggiornati a settembre 2026.</p>
   </section>
 
   <!-- ========================================================= il negozio -->

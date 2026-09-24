@@ -47,7 +47,8 @@ e i due `<script>` in fondo.
 ## Breakpoint
 
 - `< 1120px` — layout mobile/tablet: menu a scomparsa, ricerca dalla lente nell'header,
-  barra di navigazione fissa in basso (4 voci: Bottega, Cerca, Carrello, Account; tap target 48–56 px).
+  barra di navigazione fissa in basso (4 voci: Bottega, Guida, Cerca, Carrello; tap target 48–56 px).
+  Account resta solo nell'header finché non è collegato.
 - `>= 1120px` — layout desktop: navigazione orizzontale, griglie a 3–4 colonne. Fra 1120 e 1279 px
   i margini scendono a 48 px e Cerca/Account restano solo icona, se no le 8 voci non stanno su una riga.
 
@@ -67,8 +68,10 @@ Ogni slot foto è un elemento `.ph`: senza foto mostra la didascalia del mockup
   ```
 
 - **Catalogo** (`catalogo.js`): `img` è la foto di card, carrello, ricerca e abbinamenti;
-  `galleriaImg` è la galleria della scheda prodotto (se c'è, mostra solo le foto vere al posto
-  dei segnaposto di `galleria`); senza `galleriaImg` la galleria usa la sola `img`. Il testo
+  `galleriaImg` è la galleria della scheda prodotto; senza `galleriaImg` la galleria usa la sola `img`,
+  e senza foto vere mostra un solo segnaposto (la didascalia `foto`). Contatore, frecce, pallini e
+  miniature compaiono solo con più di una foto. Le didascalie di `galleria` restano nel catalogo
+  come elenco delle foto da fare. Il testo
   alternativo nasce dalla didascalia `foto`; per le categorie `imgAlt` la sostituisce quando la
   foto non corrisponde alla didascalia.
 
@@ -109,7 +112,8 @@ art. 14):
 
 Fonti: le foto `-2` delle etichette e `sito vecchio/prodotti_sito_vecchio.md`. Niente frasi che l'etichetta
 non conferma: provenienze, "artigianale", "affumicato", "magro", anno di fondazione. Niente prezzi barrati
-inventati.
+inventati. Eccezione: le descrizioni dei prodotti (`descrizione`) le scrive Diego a mano e non si toccano,
+nemmeno per queste parole.
 
 Sulla spedizione la bottega ha confermato due cose: i prodotti partono **sottovuoto** e la
 consegna avviene normalmente in **circa 48 ore**. Corriere refrigerato, imballo isotermico e
@@ -120,6 +124,10 @@ orari di partenza degli ordini erano inventati dal mockup: tolti da tutte le pag
 Client-side, salvato in `localStorage` (`wilditaly:carrello`). Gestisce quantità,
 formati e totale. Il pulsante "Vai alla cassa" non è collegato: serve un backend.
 
+La spedizione è una cifra fissa per ordine, `bottega.spedizione` in `catalogo.js` (oggi 15 €,
+quello che paga la bottega al corriere): il totale del carrello la comprende e `info.html` la
+mostra da lì. Quanto far pagare al cliente è ancora da decidere: si cambia solo quel numero.
+
 ## Cosa manca / da decidere con la bottega
 
 Segnalato nel codice e in pagina con il riquadro `DA DEFINIRE`, nella stessa
@@ -129,7 +137,8 @@ convenzione usata dal mockup per le foto:
   da riconfermare con la bottega prima di andare online.
 - **Oli al tartufo**: 100 ml come sulla bottiglia in foto; una riga della pagina vecchia dice 60 ml.
 - **Salame al cinghiale e tartufo**: denominazione in etichetta illeggibile nella foto.
-- **Orari** del negozio (sono quelli del mockup), costi di spedizione, testo legale su resi e recesso,
+- **Orari** del negozio (sono quelli del mockup), costo definitivo della spedizione per il cliente
+  (per ora 15 €) e soglia di spedizione gratuita, testo legale su resi e recesso,
   privacy e cookie.
 - `vini` ha il solo Sagrantino citato nella 2b.
 - **Box Regalo Oro**: nel mockup è una scheda in grigio senza prezzo, qui è marcato

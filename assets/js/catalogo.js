@@ -516,8 +516,8 @@ window.CATALOGO = (function () {
       grammi: 130,
       /* prezzo del vasetto da 80 g indicativo, da confermare col cliente */
       formati: [
-        { nome: "Vasetto grande", peso: "130 g", prezzo: 6 },
-        { nome: "Vasetto piccolo", peso: "80 g", prezzo: 4.5 }
+        { nome: "Vasetto grande", peso: "130 g", grammi: 130, prezzo: 6 },
+        { nome: "Vasetto piccolo", peso: "80 g", grammi: 80, prezzo: 4.5 }
       ],
       foto: "FOTO: barattolo di salsa tartufata",
       img: "assets/img/salsa-tartufata.jpg",
@@ -1138,6 +1138,9 @@ window.CATALOGO = (function () {
     ragioneSociale: "Wild Italy di Parmegiani Diego",
     via: "Via Porta Fuga 26, 06049 Spoleto (PG)",
     orari: "Lun–Sab 8:30–13:30 · 16:00–20:00",
+    /* costo di spedizione per ordine, in euro: 15 è quello che paga la bottega al corriere,
+       quanto far pagare al cliente è ancora da decidere (2026-09-24) */
+    spedizione: 15,
     tel: "+39 334 920 6466",
     telHref: "tel:+393349206466",
     email: "parmegianidiego@gmail.com",
