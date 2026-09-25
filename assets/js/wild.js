@@ -384,7 +384,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     /* riallinea ogni pulsante-contatore in pagina alla quantita nel carrello */
     add() {
       $$("[data-addq]").forEach((el) => {
-        const n = Cart.qta(el.dataset.addq);
+        const n = Cart.qta(el.dataset.addq, el.dataset.f);
         el.classList.toggle("addq--on", n > 0);
         $(".addq__go", el).hidden = n > 0;
         const st = $(".addq__s", el);
@@ -451,11 +451,11 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   /* --------------------------------------------------------- pulsante +/- */
   /* "Aggiungi al carrello" e il contatore - n + occupano la stessa scatola:
      al clic il pulsante cambia contenuto, mai misura (richiesta del cliente). */
-  function addq(p, cls, label) {
-    const n = Cart.qta(p.slug);
-    const id = Cart.id(p.slug, null);
+  function addq(p, cls, label, formato) {
+    const n = Cart.qta(p.slug, formato);
+    const id = Cart.id(p.slug, formato);
     return `
-<span class="addq btn ${cls}${n ? " addq--on" : ""}" data-addq="${p.slug}">
+<span class="addq btn ${cls}${n ? " addq--on" : ""}" data-addq="${p.slug}"${formato ? ` data-f="${esc(formato)}"` : ""}>
   <button type="button" class="addq__go" data-add="${p.slug}" aria-label="Aggiungi ${esc(p.nome)} al carrello"${n ? " hidden" : ""}>${label}</button>
   <span class="addq__s"${n ? "" : " hidden"}>
     <button type="button" data-qta="${id}" data-d="-1" aria-label="Uno in meno di ${esc(p.nome)}">${ico("minus")}</button>
@@ -1224,7 +1224,6 @@ ${
     if (ctxT) ctxT.textContent = p.nome;
 
     let formato = p.formati ? p.formati[0].nome : null;
-    let qta = 1;
     const prezzoCorrente = () => {
       if (!p.formati) return p.prezzo;
       return (p.formati.find((f) => f.nome === formato) || p.formati[0]).prezzo;
@@ -1411,14 +1410,7 @@ ${
         p.inArrivo
           ? `<a class="btn btn--wineline btn--block" style="margin-top:26px" href="info.html#contatti">Avvisami quando arriva</a>`
           : `
-      <div class="buy">
-        <span class="stepper">
-          <button type="button" data-q="-1" aria-label="Riduci la quantità">${ico("minus")}</button>
-          <span class="stepper__n" data-qta>1</span>
-          <button type="button" data-q="1" aria-label="Aumenta la quantità">${ico("plus")}</button>
-        </span>
-        <button class="btn btn--wine" style="flex:1;min-width:220px" data-buy>Aggiungi al carrello</button>
-      </div>
+      <div class="buy" data-buy></div>
       <p class="buy__note">Spedizione sottovuoto · consegna in circa 48 ore</p>`
       }
 
@@ -1460,9 +1452,13 @@ ${
       if (e) e.textContent = euro(prezzoCorrente());
       const w = $("[data-peso]");
       if (w) w.textContent = pesoCorrente();
-      const bb = $("[data-buybar-label]");
-      if (bb) bb.textContent = "Aggiungi · " + euro(prezzoCorrente() * qta);
+      /* stesso pulsante delle card: "Aggiungi", poi − n + del formato scelto */
+      const b = $("[data-buy]", host);
+      if (b) b.innerHTML = addq(p, "btn--wine btn--block", "Aggiungi al carrello", formato);
+      const bb = $("[data-buybar]");
+      if (bb) bb.innerHTML = addq(p, "btn--wine", "Aggiungi · " + euro(prezzoCorrente()), formato);
     };
+    aggiorna();
 
     /* ------- foto a tutto schermo: frecce, tocco per ingrandire, pinch e trascinamento fatti qui.
        Il pinch nativo ingrandiva tutta la pagina e poi il riquadro scorrevole bloccava lo spostamento */
@@ -1667,23 +1663,12 @@ ${
         aggiorna();
         return;
       }
-      const q = e.target.closest("[data-q]");
-      if (q) {
-        qta = Math.max(1, qta + +q.dataset.q);
-        $("[data-qta]").textContent = qta;
-        aggiorna();
-        return;
-      }
       if (e.target.closest("[data-gal-img]")) return apriZoom(galCur);
       /* un clic sulla bottiglia 3D, senza trascinarla, la apre a tutto schermo come le foto */
       if (e.target.closest("[data-gal-3d]") && !zoom.open && giu3d && Math.hypot(e.clientX - giu3d[0], e.clientY - giu3d[1]) < 6)
         return apriZoom(galCur);
       const g = e.target.closest("[data-g], [data-gal-step]");
       if (g) return mostraGal(g.dataset.g ? +g.dataset.g : galCur + +g.dataset.galStep);
-      if (e.target.closest("[data-buy]")) {
-        Cart.aggiungi(p.slug, formato, qta);
-        toast(p.nome + " nel carrello", "Vedi");
-      }
     });
 
     initAcc(host);
@@ -1693,28 +1678,12 @@ ${
     const bar = $("[data-buybar]");
     if (buy && bar) {
       bar.hidden = false;
-      $("[data-buybar-label]").textContent = "Aggiungi · " + euro(prezzoCorrente());
       if ("IntersectionObserver" in window) {
         new IntersectionObserver(
           (ents) => bar.classList.toggle("is-on", !ents[0].isIntersecting),
           { rootMargin: "-120px 0px 0px 0px" }
         ).observe(buy);
       }
-      bar.addEventListener("click", (e) => {
-        const q = e.target.closest("[data-bq]");
-        if (q) {
-          qta = Math.max(1, qta + +q.dataset.bq);
-          $("[data-bqta]").textContent = qta;
-          const m = $("[data-qta]");
-          if (m) m.textContent = qta;
-          aggiorna();
-          return;
-        }
-        if (e.target.closest("[data-buybar-add]")) {
-          Cart.aggiungi(p.slug, formato, qta);
-          toast(p.nome + " nel carrello", "Vedi");
-        }
-      });
     } else if (bar) {
       bar.remove();
     }
@@ -1782,7 +1751,7 @@ ${
       const add = e.target.closest("[data-add]");
       if (add) {
         const p = C.get(add.dataset.add);
-        Cart.aggiungi(add.dataset.add, null, 1);
+        Cart.aggiungi(add.dataset.add, add.closest("[data-addq]").dataset.f, 1);
         toast(p.nome + " nel carrello", "Vedi");
         return;
       }
