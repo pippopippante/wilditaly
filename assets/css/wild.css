@@ -528,6 +528,15 @@ input,select,textarea{font:inherit;color:inherit}
 .price{font-family:var(--serif);font-size:24px;color:var(--wine);line-height:1}
 .price--old{font-size:13px;color:#9A8A73;text-decoration:line-through}
 .prod__cta{margin-top:16px}
+/* telefono, elenchi di prodotti: una scheda per riga ma con la foto più bassa, così appena si apre la pagina
+   si vedono nome e prezzo del primo prodotto e scorrendo spunta sempre il successivo */
+@media (max-width:759px){
+  .grid-3>.prod .ph{height:auto;aspect-ratio:16/10}
+  .grid-3>.prod .prod__b{padding:14px 16px 16px}
+  .grid-3>.prod .prod__n{font-size:22px}
+  .grid-3>.prod .prod__price{padding-top:10px}
+  .grid-3>.prod .prod__cta{margin-top:12px}
+}
 
 /* Pulsante-contatore: "Aggiungi al carrello" e - n + nella stessa scatola,
    stessa larghezza e stessa altezza prima e dopo il clic. */
@@ -677,6 +686,8 @@ input,select,textarea{font:inherit;color:inherit}
 
 /* ------------------------------------------------------- pagina categoria */
 .cat-intro{display:grid;gap:24px;align-items:start}
+.cat-griglia{padding-top:4px}
+@media (min-width:760px){ .cat-griglia{padding-top:36px} }
 @media (min-width:1120px){ .cat-intro{grid-template-columns:minmax(0,1fr) 420px;gap:56px} }
 .helper{background:var(--sand);border-left:3px solid var(--brass-soft);padding:22px 24px}
 .helper__q{font-family:var(--serif);font-size:22px;line-height:1.3;margin-top:10px}
