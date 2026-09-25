@@ -1236,7 +1236,10 @@ ${
 
     /* Con foto vere la galleria mostra solo quelle; altrimenti i segnaposto del mockup. */
     const galImg = p.galleriaImg && p.galleriaImg.length ? p.galleriaImg : p.img ? [p.img] : null;
+    /* i vini misurati hanno in fondo alla galleria anche la bottiglia 3D */
+    const tre = !!(galImg && p.modello3d);
     const gal = galImg ? galImg.map((_, i) => `${p.nome}, foto ${i + 1}`) : [p.foto];
+    if (tre) gal.push(`${p.nome} in 3D`);
     const galPiu = gal.length > 1;
     const craft =
       p.artigianale && CONFIG.mostraBadgeArtigianale ? '<span class="gallery__tag">ARTIGIANALE</span>' : "";
@@ -1338,6 +1341,7 @@ ${
             ? `<img src="${esc(galImg[0])}" alt="${esc(gal[0])}" data-gal-img><span class="gallery__lens" data-gal-lens hidden></span>`
             : `<span class="ph__note" data-gal-note>${esc(gal[0])}</span>`
         }
+        ${tre ? '<div class="gallery__3d" data-gal-3d hidden><span class="meta gallery__hint">Trascina per girare la bottiglia</span></div>' : ""}
         ${craft}
         ${
           galPiu
@@ -1345,7 +1349,7 @@ ${
         <button type="button" class="zoom__nav zoom__nav--prev" data-gal-step="-1" aria-label="Foto precedente">‹</button>
         <button type="button" class="zoom__nav zoom__nav--next" data-gal-step="1" aria-label="Foto successiva">›</button>
         <div class="gallery__dots" data-gal-dots>
-          ${gal.map((g, i) => `<button type="button" data-g="${i}" aria-label="Foto ${i + 1}"${i === 0 ? ' aria-current="true"' : ""}></button>`).join("")}
+          ${gal.map((g, i) => `<button type="button" data-g="${i}" aria-label="${tre && i === galImg.length ? "Bottiglia in 3D" : `Foto ${i + 1}`}"${i === 0 ? ' aria-current="true"' : ""}></button>`).join("")}
         </div>`
             : ""
         }
@@ -1357,7 +1361,9 @@ ${
 <button type="button" class="ph ph--3" data-g="${i}" aria-label="Mostra: ${esc(g)}"${i === 0 ? ' aria-current="true"' : ""}>
   ${
     galImg
-      ? `<img src="${esc(galImg[i])}" alt="" loading="lazy">`
+      ? galImg[i]
+        ? `<img src="${esc(galImg[i])}" alt="" loading="lazy">`
+        : `<img src="${esc(galImg[0])}" alt="" loading="lazy"><span class="gallery__3dtag">3D</span>`
       : `<span class="ph__note">${esc(g.replace(/^FOTO \d+:\s*/, ""))}</span>`
   }
 </button>`
@@ -1371,12 +1377,12 @@ ${
         <div class="zoom__stage" data-zoom-stage><img src="${esc(galImg[0])}" alt="" draggable="false" data-zoom-img></div>
         <button type="button" class="zoom__x" data-zoom-close aria-label="Chiudi">×</button>
         ${
-          galImg.length > 1
+          gal.length > 1
             ? `<button type="button" class="zoom__nav zoom__nav--prev" data-zoom-step="-1" aria-label="Foto precedente">‹</button>
         <button type="button" class="zoom__nav zoom__nav--next" data-zoom-step="1" aria-label="Foto successiva">›</button>`
             : ""
         }
-        <span class="gallery__count"><span data-zoom-i>1</span> / ${galImg.length}</span>
+        <span class="gallery__count"><span data-zoom-i>1</span> / ${gal.length}</span>
       </dialog>`
           : ""
       }
@@ -1483,11 +1489,16 @@ ${
       zSet(ns, qx - bx - ((px - bx - zx) * ns) / zs, qy - by - ((py - by - zy) * ns) / zs);
     };
     const mostraZoom = (i) => {
-      galCur = (i + galImg.length) % galImg.length;
+      galCur = (i + gal.length) % gal.length;
       zs = 1;
       zImg.style.transform = "";
       zoom.classList.remove("is-zoom");
-      zImg.src = galImg[galCur];
+      /* ultima voce: la stessa bottiglia 3D della galleria, spostata qui a tutto schermo */
+      const in3d = tre && galCur === galImg.length;
+      zImg.hidden = in3d;
+      if (in3d) stage.after(box3d);
+      else zImg.src = galImg[galCur];
+      if (tre) apri3d(in3d);
       $("[data-zoom-i]", zoom).textContent = galCur + 1;
     };
     const apriZoom = (i) => {
@@ -1497,7 +1508,13 @@ ${
       document.body.classList.add("is-locked");
     };
     if (zoom) {
-      zoom.addEventListener("close", () => document.body.classList.remove("is-locked"));
+      zoom.addEventListener("close", () => {
+        document.body.classList.remove("is-locked");
+        /* la galleria riparte da dove si era arrivati a tutto schermo; la bottiglia 3D torna al suo posto */
+        if (tre) $("[data-gal-lens]", host).after(box3d);
+        if (vista3d) vista3d.reset(); /* ingrandita a tutto schermo, nella galleria la rotella non la rimpicciolirebbe */
+        mostraGal(galCur);
+      });
       /* uno o due dita (o il mouse): il centro sposta la foto, la distanza tra le dita la scala */
       const pts = new Map();
       let prev = null, mosso = false, due = false, x0 = 0, y0 = 0;
@@ -1529,7 +1546,7 @@ ${
         if (pts.size) return (prev = centro());
         /* foto intera: scorrendo col dito si passa alla successiva, come nella galleria */
         const dx = e.clientX - x0;
-        if (zs === 1 && !due && galImg.length > 1 && Math.abs(dx) > 40) mostraZoom(galCur + (dx < 0 ? 1 : -1));
+        if (zs === 1 && !due && gal.length > 1 && Math.abs(dx) > 40) mostraZoom(galCur + (dx < 0 ? 1 : -1));
       };
       stage.addEventListener("pointerup", giu);
       stage.addEventListener("pointercancel", giu);
@@ -1539,6 +1556,7 @@ ${
         const step = e.target.closest("[data-zoom-step]");
         if (step) return mostraZoom(galCur + +step.dataset.zoomStep);
         if (e.target.closest("[data-zoom-close]")) return zoom.close();
+        if (e.target.closest("[data-gal-3d]")) return; /* sulla bottiglia 3D il mouse la gira */
         if (mosso) return; /* fine di un trascinamento o di un pinch, non un tocco */
         if (!e.target.closest("[data-zoom-img]")) return zoom.close();
         /* tocco sulla foto: ingrandisce sul punto toccato, secondo tocco torna intera */
@@ -1547,17 +1565,36 @@ ${
         else zAt(2.5, e.clientX - r.left, e.clientY - r.top);
       });
       zoom.addEventListener("keydown", (e) => {
-        if (galImg.length > 1 && (e.key === "ArrowLeft" || e.key === "ArrowRight"))
+        if (gal.length > 1 && (e.key === "ArrowLeft" || e.key === "ArrowRight"))
           mostraZoom(galCur + (e.key === "ArrowRight" ? 1 : -1));
       });
     }
+
+    /* la bottiglia 3D si monta la prima volta che la si apre: three.js e le foto si scaricano solo allora */
+    const box3d = $("[data-gal-3d]", host);
+    let montata = false, vista3d = null, giu3d = null;
+    if (box3d) box3d.addEventListener("pointerdown", (e) => (giu3d = [e.clientX, e.clientY]));
+    const apri3d = (vedi) => {
+      box3d.hidden = !vedi;
+      if (!vedi || montata) return;
+      montata = true;
+      import(new URL("assets/js/bottiglia-3d.js", document.baseURI).href)
+        /* ponytail: ?trasparente nel link solo per confrontare le due versioni del vetro; via quando si è scelto */
+        .then((m) => (vista3d = m.monta(box3d, p.modello3d, { inPagina: true, trasparente: new URLSearchParams(location.search).has("trasparente") })))
+        .catch(() => ($(".gallery__hint", box3d).textContent = "La bottiglia 3D non si è caricata, riprova più tardi"));
+    };
 
     const mostraGal = (n) => {
       const i = (galCur = (n + gal.length) % gal.length);
       const img = $("[data-gal-img]");
       if (img) {
-        img.src = galImg[i];
-        img.alt = gal[i];
+        const in3d = tre && i === galImg.length;
+        img.hidden = in3d;
+        if (!in3d) {
+          img.src = galImg[i];
+          img.alt = gal[i];
+        }
+        if (tre) apri3d(in3d);
       } else {
         $("[data-gal-note]").textContent = gal[i];
       }
@@ -1581,7 +1618,7 @@ ${
         if (t && puoLente() && +t.dataset.g !== galCur) mostraGal(+t.dataset.g);
       });
       galMain.addEventListener("mousemove", (e) => {
-        if (!puoLente() || e.target.closest("button") || !galImgEl.naturalWidth) return nascondi();
+        if (!puoLente() || e.target.closest("button") || galImgEl.hidden || !galImgEl.naturalWidth) return nascondi();
         /* riquadro reale della foto dentro il box (object-fit: contain) */
         const box = galMain.getBoundingClientRect();
         const s = Math.min(box.width / galImgEl.naturalWidth, box.height / galImgEl.naturalHeight);
@@ -1607,7 +1644,10 @@ ${
       galMain.addEventListener("mouseleave", nascondi);
 
       let x0 = null;
-      galMain.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), { passive: true });
+      /* sulla bottiglia 3D il dito la gira e non cambia foto */
+      galMain.addEventListener("touchstart", (e) => (x0 = e.target.closest("[data-gal-3d]") ? null : e.touches[0].clientX), {
+        passive: true
+      });
       galMain.addEventListener("touchend", (e) => {
         if (x0 === null) return;
         const dx = e.changedTouches[0].clientX - x0;
@@ -1635,6 +1675,9 @@ ${
         return;
       }
       if (e.target.closest("[data-gal-img]")) return apriZoom(galCur);
+      /* un clic sulla bottiglia 3D, senza trascinarla, la apre a tutto schermo come le foto */
+      if (e.target.closest("[data-gal-3d]") && !zoom.open && giu3d && Math.hypot(e.clientX - giu3d[0], e.clientY - giu3d[1]) < 6)
+        return apriZoom(galCur);
       const g = e.target.closest("[data-g], [data-gal-step]");
       if (g) return mostraGal(g.dataset.g ? +g.dataset.g : galCur + +g.dataset.galStep);
       if (e.target.closest("[data-buy]")) {

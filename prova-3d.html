@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Wild Italy · prova delle bottiglie 3D, non collegata al resto del sito -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prova 3D · Wild Italy</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/wild.css">
+<style>
+  .p3d{height:100svh;background:var(--paper);cursor:grab;touch-action:none}
+  .p3d:active{cursor:grabbing}
+  .p3d__nota{position:fixed;left:0;right:0;top:20px;text-align:center;pointer-events:none}
+  .p3d__nome{position:fixed;left:0;right:0;bottom:56px;text-align:center;pointer-events:none}
+  .p3d__punti{position:fixed;left:0;right:0;bottom:8px;justify-content:center}
+</style>
+<script type="importmap">
+  { "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+  } }
+</script>
+</head>
+<body>
+<div class="p3d" data-3d></div>
+<p class="meta p3d__nota">Trascina per girare la bottiglia · rotella o due dita per avvicinarti</p>
+<p class="meta p3d__nome" data-nome></p>
+<nav class="dots p3d__punti" aria-label="Vini" data-punti></nav>
+
+<script src="assets/js/catalogo.js"></script>
+<script type="module">
+  import { monta } from "./assets/js/bottiglia-3d.js";
+
+  /* le misure delle bottiglie stanno nel catalogo, alla voce modello3d */
+  const BOTTIGLIE = Object.fromEntries(
+    CATALOGO.prodotti.filter((p) => p.modello3d).map((p) => [p.slug, { nome: p.nome, ...p.modello3d }])
+  );
+
+  /* un vino alla volta: i puntini ricaricano la pagina con l'altro */
+  const scelto = BOTTIGLIE[new URLSearchParams(location.search).get("b")] ? new URLSearchParams(location.search).get("b") : "napos-rosso";
+  document.querySelector("[data-nome]").textContent = BOTTIGLIE[scelto].nome;
+  document.querySelector("[data-punti]").innerHTML = Object.entries(BOTTIGLIE)
+    .map(([slug, b]) => `<button type="button" data-b="${slug}" aria-label="${b.nome}"${slug === scelto ? ' aria-current="true"' : ""}></button>`)
+    .join("");
+  document.querySelector("[data-punti]").addEventListener("click", (e) => {
+    const p = e.target.closest("[data-b]");
+    if (p && p.dataset.b !== scelto) location.search = "?b=" + p.dataset.b;
+  });
+  monta(document.querySelector("[data-3d]"), BOTTIGLIE[scelto], { trasparente: new URLSearchParams(location.search).has("trasparente") });
+</script>
+</body>
+</html>

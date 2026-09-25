@@ -719,6 +719,14 @@ input,select,textarea{font:inherit;color:inherit}
   background:rgba(255,252,245,.35);border:1px solid rgba(42,33,26,.45);
 }
 .gallery__lens[hidden],.gallery__pane[hidden]{display:none}
+/* bottiglia 3D, ultima voce della galleria: lo sfondo è quello che il vetro trasparente tinge */
+.gallery__3d{position:absolute;inset:0;background:var(--paper);cursor:grab}
+.gallery__3d:active{cursor:grabbing}
+.gallery__3d>canvas{display:block}
+.gallery__hint{position:absolute;left:0;right:0;top:14px;text-align:center;pointer-events:none}
+/* a tutto schermo: la bottiglia si inclina anche col dito (niente pagina da scorrere) */
+.zoom .gallery__3d>canvas{touch-action:none!important}
+.gallery__3dtag{position:absolute;right:4px;bottom:4px;background:var(--wine);color:#F0EDDF;font-size:10px;letter-spacing:.1em;padding:2px 5px}
 .gallery__pane{
   position:absolute;top:0;left:calc(100% + 56px);width:calc(100% / 1.05);height:560px;z-index:5;
   background:var(--card) no-repeat;border:1px solid var(--line);box-shadow:0 12px 32px rgba(42,33,26,.18);

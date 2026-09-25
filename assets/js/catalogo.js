@@ -224,6 +224,35 @@ window.CATALOGO = (function () {
       foto: "FOTO: bottiglia di Napo's rosso",
       img: "assets/img/definitive/napos-napolini-1.jpg",
       galleriaImg: ["assets/img/definitive/napos-napolini-1.jpg", "assets/img/definitive/napos-napolini-2.jpg"],
+      /* misure prese sulle foto per la bottiglia 3D, l'ultima voce della galleria (assets/js/bottiglia-3d.js):
+         in pixel di ciascuna foto; il profilo sul corpo dritto è una retta, niente onde di un pixel */
+      modello3d: {
+        fronte: {
+          src: "assets/img/definitive/napos-napolini-1.jpg", alto: 190, basso: 2480, cx: [974.5, 958],
+          capsula: [190, 651],
+          curva: [[651, -0.004], [1298, 0.108], [2283, 0.2107]],
+          /* medaglione che sporge sopra l'etichetta; etichetta, coi lati misurati: è incollata appena storta */
+          etichette: [[1195, 1299.5, -0.35, 0.35], [1299.5, 2281.5, [-0.9443, -0.9481], [0.9387, 0.9464]]],
+          /* l'incavo nero in cima all'etichetta, attorno al medaglione, è vetro */
+          trasparente: [1190, 1470, -0.47, 0.47]
+        },
+        retro: {
+          src: "assets/img/definitive/napos-napolini-2.jpg", alto: 190, basso: 2456, cx: [1018.5, 1018.5],
+          curva: [[654, -0.123], [1562, 0.132], [2127, 0.2025]],
+          /* retroetichetta con la fascia nera NAPOLINI a destra */
+          etichette: [[1563.5, 2125.5, [-0.8733, -0.8822], 0.886]]
+        },
+        scritta: { testo: "NAPOLINI", righe: [561, 597], inizio: -64.2, arco: 128.3 },
+        lamina: [135, 32, 43], /* capsula dove la luce la prende di fronte, media delle due foto */
+        oro: [185, 150, 115], /* il corpo delle lettere, fra i bordi sfumati e i lampi */
+        profilo: [
+          [73, 190], [94, 195], [99.5, 200], [105.5, 210], [107, 220], [108.5, 235], [110, 500],
+          [111.5, 760], [113.5, 780], [119.5, 800], [130, 820], [150.5, 840], [178, 860], [200.5, 880],
+          [219.5, 900], [235, 920], [248, 940], [259, 960], [267.5, 980], [274.5, 1000], [279.5, 1020],
+          [283.5, 1040], [285.5, 1060], [286, 1080], [284, 1700], [281, 2380], [281.5, 2404], [277, 2420],
+          [272.5, 2436], [267, 2452], [258, 2468], [253.5, 2480]
+        ]
+      },
       descrizione:
         "Un rosso umbro prodotto da un'azienda familiare, con un taglio di Sagrantino e Sangiovese, due vitigni che raccontano bene il carattere del territorio. Il Sangiovese porta freschezza, frutto e bevibilità; il Sagrantino aggiunge struttura, intensità e un carattere più deciso. Il risultato è un vino pieno, caldo e avvolgente, con un gusto ricco ma piacevole, pensato per accompagnare bene salumi, formaggi stagionati e piatti saporiti. È un vino che conserva il fascino delle produzioni di piccola scala: semplice, autentico e legato alla tradizione familiare umbra.",
       nota: "Sangiovese, merlot e sagrantino",
@@ -248,6 +277,29 @@ window.CATALOGO = (function () {
       foto: "FOTO: bottiglia di Grechetto Napolini",
       img: "assets/img/definitive/grechetto-napolini-1.jpg",
       galleriaImg: ["assets/img/definitive/grechetto-napolini-1.jpg", "assets/img/definitive/grechetto-napolini-2.jpg"],
+      modello3d: {
+        fronte: {
+          src: "assets/img/definitive/grechetto-napolini-1.jpg", alto: 144, basso: 1198, cx: [528.5, 522.6],
+          capsula: [144, 362],
+          curva: [[362, -0.0176], [806.5, 0.1318], [1140, 0.1962]],
+          etichette: [[807.5, 1139, [-0.9045, -0.9061], [0.9323, 0.9348]]]
+        },
+        retro: {
+          src: "assets/img/definitive/grechetto-napolini-2.jpg", alto: 262, basso: 2272, cx: [989.8, 990.2],
+          curva: [[671.5, 0.0662], [1580.7, 0.1461], [2080, 0.2235]],
+          etichette: [[1581.7, 2079, [-0.8006, -0.8021], 0.852]]
+        },
+        /* sulla capsula la scritta non è centrata: comincia poco a sinistra del centro della foto */
+        scritta: { testo: "NAPOLINI", righe: [316, 333], inizio: -34.4, arco: 136 },
+        chiaro: true, /* vino chiaro: il vetro prende dalla foto il suo aspetto punto per punto */
+        lamina: [39, 53, 46],
+        oro: [174, 171, 155],
+        profilo: [
+          [48.5, 144], [51, 152], [52, 168], [55, 172], [55, 200], [52, 208], [57, 372], [63.5, 416], [68, 444],
+          [79.5, 488], [85.5, 508], [90.5, 524], [113, 588], [118, 604], [123, 620], [129, 640], [131, 644],
+          [131.5, 652], [140.5, 696], [147, 796], [145, 1172], [141.5, 1184], [136, 1198]
+        ]
+      },
       descrizione:
         "Un bianco umbro ottenuto da sole uve Grechetto, vitigno tipico del territorio. Al palato è secco, fresco e deciso, con una buona struttura e un gusto pulito. La sua firma arriva nel finale, con la tipica nota mandorlata del Grechetto, leggermente amarognola e molto elegante, che lascia la bocca asciutta e invita al sorso successivo. È un vino semplice da bere ma con personalità, ideale per chi cerca un bianco non dolce, territoriale e riconoscibile.",
       nota: "Grechetto dei Colli Martani",
@@ -272,6 +324,29 @@ window.CATALOGO = (function () {
       foto: "FOTO: bottiglia di Vigna Rosa Napolini",
       img: "assets/img/definitive/vigna-rosa-napolini-1.jpg",
       galleriaImg: ["assets/img/definitive/vigna-rosa-napolini-1.jpg", "assets/img/definitive/vigna-rosa-napolini-2.jpg"],
+      modello3d: {
+        fronte: {
+          src: "assets/img/definitive/vigna-rosa-napolini-1.jpg", alto: 149, basso: 1212, cx: [540.2, 535.6],
+          capsula: [149, 370],
+          curva: [[370, 0.0145], [637, 0.0955], [1136.6, 0.2175]],
+          etichette: [[638.2, 1135.6, [-0.919, -0.913], [0.9449, 0.949]]]
+        },
+        retro: {
+          src: "assets/img/definitive/vigna-rosa-napolini-2.jpg", alto: 159, basso: 1219, cx: [510.2, 506.8],
+          curva: [[377, 0.0199], [782, 0.1291], [1052.4, 0.1973]],
+          etichette: [[783.2, 1051.4, [-0.8664, -0.8669], 0.859]]
+        },
+        /* davanti si legge "POLINI": la scritta finisce poco a destra del centro */
+        scritta: { testo: "NAPOLINI", righe: [321, 339], inizio: -125.3, arco: 150.8 },
+        chiaro: true, /* vino chiaro: il vetro prende dalla foto il suo aspetto punto per punto */
+        lamina: [146, 34, 64],
+        oro: [238, 191, 188],
+        profilo: [
+          [50, 149], [54.5, 173], [56, 177], [57, 205], [53.5, 217], [57.5, 421], [62, 437], [73, 457], [77.5, 461],
+          [80.5, 465], [89.5, 473], [110, 497], [118, 509], [129, 533], [131, 541], [134, 549], [137, 693],
+          [135, 1149], [128.5, 1185], [122.5, 1201], [118.5, 1205], [116.8, 1212]
+        ]
+      },
       descrizione:
         "Un rosato fresco e piacevole, ottenuto da Sangiovese e Sagrantino. Il Sangiovese porta una parte più morbida e fruttata, mentre il Sagrantino aggiunge carattere e struttura. Al palato è beverino, fresco e scorrevole, con un gusto semplice ma deciso, pensato per essere servito ben freddo e bevuto con facilità. È il vino giusto per chi cerca qualcosa di leggero e versatile, ma con una personalità tipicamente umbra.",
       nota: "Rosato umbro",
