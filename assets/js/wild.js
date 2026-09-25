@@ -1443,9 +1443,9 @@ ${
       if (w) w.textContent = pesoCorrente();
       /* stesso pulsante delle card: "Aggiungi", poi − n + del formato scelto */
       const b = $("[data-buy]", host);
-      if (b) b.innerHTML = addq(p, "btn--wine btn--block", "Aggiungi al carrello", formato);
+      if (b) b.innerHTML = addq(p, "btn--wine btn--block", "Aggiungi al carrello · " + euro(prezzoCorrente()), formato);
       const bb = $("[data-buybar]");
-      if (bb) bb.innerHTML = addq(p, "btn--wine", "Aggiungi · " + euro(prezzoCorrente()), formato);
+      if (bb) bb.innerHTML = addq(p, "btn--wine btn--block", "Aggiungi al carrello · " + euro(prezzoCorrente()), formato);
     };
     aggiorna();
 
@@ -1665,12 +1665,25 @@ ${
     const bar = $("[data-buybar]");
     if (buy && bar) {
       bar.hidden = false;
-      if ("IntersectionObserver" in window) {
-        new IntersectionObserver(
-          (ents) => bar.classList.toggle("is-on", !ents[0].isIntersecting),
-          { rootMargin: "-120px 0px 0px 0px" }
-        ).observe(buy);
-      }
+      /* il pulsante della barra resta in basso finché quello della scheda non sale fin lì:
+         da quel punto si vede solo quello della scheda, come se si fosse posato nel suo posto.
+         Tornando su si stacca di nuovo; scendendo oltre resta lì (idea dell'utente) */
+      const posato = () => bar.classList.toggle("is-on", buy.getBoundingClientRect().top > bar.firstElementChild.getBoundingClientRect().top);
+      /* la barra scende di 74 px quando le altre barre escono (0,3 s): si controlla a ogni
+         fotogramma finché scorre o si muove, se no lo scambio arriva in ritardo */
+      let fino = 0;
+      const giro = () => {
+        posato();
+        if (performance.now() < fino) requestAnimationFrame(giro);
+      };
+      const muovi = () => {
+        const fermo = performance.now() >= fino;
+        fino = performance.now() + 400;
+        if (fermo) requestAnimationFrame(giro);
+      };
+      addEventListener("scroll", muovi, { passive: true });
+      addEventListener("resize", muovi);
+      posato();
     } else if (bar) {
       bar.remove();
     }

@@ -808,10 +808,13 @@ input,select,textarea{font:inherit;color:inherit}
   position:fixed;left:0;right:0;bottom:var(--bar-h);z-index:65;
   background:var(--paper);border-top:1px solid var(--line);
   padding:12px var(--pad) 12px;display:flex;gap:12px;align-items:center;
-  transform:translateY(120%);transition:transform .25s ease,bottom .3s ease;
+  visibility:hidden;transition:bottom .3s ease;
 }
-.buybar.is-on{transform:none}
-.buybar .btn{flex:1;padding-left:12px;padding-right:12px;white-space:nowrap;letter-spacing:.06em}
+/* niente animazione: si accende e si spegne quando il pulsante della scheda arriva sotto il suo,
+   così sembra lo stesso pulsante che si posa al suo posto (wild.js, "posato") */
+.buybar.is-on{visibility:visible}
+.buybar .btn{flex:1}
+.buy .btn,.buybar .btn{white-space:nowrap}
 @media (min-width:1120px){ .buybar{display:none} }
 /* scheda su telefono, scorrendo in giù (is-giu, wild.js): header e barra in basso escono, "Aggiungi" scende in fondo */
 @media (max-width:1119px){
