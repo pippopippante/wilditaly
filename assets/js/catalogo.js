@@ -23,7 +23,6 @@ window.CATALOGO = (function () {
       breveLunga: "Salami al cervo, al capriolo e al cinghiale, uno anche col tartufo.",
       foto: "FOTO: salame al cervo affettato",
       img: "assets/img/provvisorie/salame-cervo-1.jpg",
-      inVetrina: 1,
       helper: {
         occhiello: "NON SAI DA DOVE INIZIARE?",
         testo: "Prendi la degustazione: i tre salami insieme.",
@@ -51,7 +50,6 @@ window.CATALOGO = (function () {
       foto: "FOTO: pecorini a scalare",
       img: "assets/img/definitive/formaggio-tartufo-mazzatosta-foto-1.jpg",
       imgAlt: "Formaggio al tartufo tagliato su un tagliere, con la forma intera e tartufi neri",
-      inVetrina: 3
     },
     {
       slug: "tartufo",
@@ -64,7 +62,6 @@ window.CATALOGO = (function () {
       foto: "FOTO: tartufo nero su tagliere",
       img: "assets/img/definitive/salsa-tartufata-foto-1.jpg",
       imgAlt: "Barattolo di salsa tartufata",
-      inVetrina: 2
     },
     {
       slug: "vini",
@@ -1288,6 +1285,10 @@ window.CATALOGO = (function () {
     /* costo di spedizione per ordine, in euro: 15 è quello che paga la bottega al corriere,
        quanto far pagare al cliente è ancora da decidere (2026-09-24) */
     spedizione: 15,
+    /* "Le nostre specialità" in home: prodotti veri, in quest'ordine (tre riempiono la griglia su desktop).
+       Solo prodotti con le foto definitive dello stesso stile (colline, luce calda, legno): una foto diversa stona.
+       Il salame al cervo torna qui quando ha le sue. */
+    specialita: ["salsa-tartufata", "formaggio-tartufo-mazzatosta", "miele-tartufo"],
     tel: "+39 334 920 6466",
     telHref: "tel:+393349206466",
     email: "parmegianidiego@gmail.com",

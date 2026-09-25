@@ -461,20 +461,22 @@ input,select,textarea{font:inherit;color:inherit}
 .rail::-webkit-scrollbar{display:none}
 .rail>*{scroll-snap-align:start;flex:0 0 auto}
 @media (min-width:760px){ .rail{gap:var(--gap)} }
-.rail--cat>*,.rail--sel>*{width:250px}
+.rail--sel>*{width:250px}
 .rail--box>*{width:260px}
+/* specialità in home: le foto definitive sono verticali 4:5, si vedono intere invece di tagliate a quadrato */
+.spec .prod .ph{height:auto;aspect-ratio:4/5}
 .rail--pair>*{width:250px}
 @media (min-width:760px){
-  .rail--cat>*,.rail--sel>*{width:min(340px,72vw)}
+  .rail--sel>*{width:min(340px,72vw)}
   .rail--box>*{width:min(360px,78vw)}
   .rail--pair>*{width:min(340px,72vw)}
 }
 @media (min-width:1120px){ .rail--box>*{width:400px} .rail--pair>*{width:400px} }
 /* su desktop la vetrina delle specialità e le selezioni tornano griglia a 3 (schermata 1a) */
 @media (min-width:1120px){
-  .rail--cat,.rail--sel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
-  .rail--cat>*,.rail--sel>*{width:auto}
-  .rail--cat + .dots,.rail--sel + .dots{display:none}
+  .rail--sel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
+  .rail--sel>*{width:auto}
+  .rail--sel + .dots{display:none}
 }
 /* il pallino visibile è una barretta di 3 px, l'area da toccare è 34×44 */
 .dots{display:flex;flex-wrap:wrap;padding:0 var(--pad)}
@@ -499,13 +501,6 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:1120px){ .sec-head{margin-bottom:28px} }
 
 /* --------------------------------------------------------------- schede */
-.cat-card{background:var(--sand);display:block}
-.cat-card .ph{height:210px}
-@media (min-width:1120px){ .cat-card .ph{height:380px} }
-.cat-card__b{padding:16px 16px 20px}
-@media (min-width:1120px){ .cat-card__b{padding:26px 26px 30px} }
-.cat-card__go{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--wine)}
-.cat-card:hover .cat-card__go{color:#63161F}
 
 .grid-3{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
 .grid-2{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
@@ -532,10 +527,10 @@ input,select,textarea{font:inherit;color:inherit}
    si vedono nome e prezzo del primo prodotto e scorrendo spunta sempre il successivo */
 @media (max-width:759px){
   .grid-3>.prod .ph{height:auto;aspect-ratio:16/10}
-  .grid-3>.prod .prod__b{padding:14px 16px 16px}
-  .grid-3>.prod .prod__n{font-size:22px}
-  .grid-3>.prod .prod__price{padding-top:10px}
-  .grid-3>.prod .prod__cta{margin-top:12px}
+  .grid-3>.prod .prod__b,.spec .prod__b{padding:14px 16px 16px}
+  .grid-3>.prod .prod__n,.spec .prod__n{font-size:22px}
+  .grid-3>.prod .prod__price,.spec .prod__price{padding-top:10px}
+  .grid-3>.prod .prod__cta,.spec .prod__cta{margin-top:12px}
 }
 
 /* Pulsante-contatore: "Aggiungi al carrello" e - n + nella stessa scatola,
@@ -603,9 +598,6 @@ input,select,textarea{font:inherit;color:inherit}
   /* il nome sta sopra la foto: stessa fascia sabbia del telefono, se no non si legge */
   .shelf__i .ph + span{background:var(--sand);padding:14px 20px}
 }
-.shelf__i--wine{background:var(--wine);grid-column:span 2}
-.shelf__i--wine span{color:var(--cream-2);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.shelf__i--wine .ico{color:#E3C79A;width:18px;height:18px;flex:0 0 auto}
 
 /* recensioni: le citazioni della scheda Google, nella voce della bottega (carta, Garamond, ottone).
    Carosello, pallini e frecce sono quelli di .rail (initRail in wild.js). */

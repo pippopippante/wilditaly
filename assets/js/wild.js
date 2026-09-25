@@ -271,9 +271,11 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     </div>
     <div class="ftr__col">
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">BOTTEGA</div>
-      <a href="guida.html">Fatti guidare</a>
-      ${cats}
-      <a href="catalogo.html">Catalogo completo</a>
+      <div class="ftr__links">
+        <a href="guida.html">Fatti guidare</a>
+        ${cats}
+        <a href="catalogo.html">Catalogo completo</a>
+      </div>
     </div>
     <div class="ftr__col">
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">SERVIZIO</div>
@@ -522,19 +524,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 </article>`;
   }
 
-  function catCard(c, testoLungo) {
-    const t = testoLungo ? c.breveLunga || c.breve : c.breve;
-    return `
-<a class="cat-card" href="${c.pagina || "categoria.html?c=" + c.slug}">
-  ${ph(c.imgAlt || c.foto, "", "", c.img)}
-  <div class="cat-card__b">
-    <div class="h3">${esc(c.nome === "Salumi di selvaggina" ? "Selvaggina" : c.nome)}</div>
-    ${t ? `<p class="body" style="margin-top:6px;font-size:14px">${esc(t)}</p>` : ""}
-    <div class="cat-card__go">SCOPRI →</div>
-  </div>
-</a>`;
-  }
-
   /* ------------------------------------------------------------ caroselli */
   function initRail(rail) {
     const dots = rail.parentElement.querySelector(".dots");
@@ -692,11 +681,9 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
   /* ---- home: riempie i mount dal catalogo */
   function mountHome() {
-    const vetrina = C.categorie.filter((c) => c.inVetrina).sort((a, b) => a.inVetrina - b.inVetrina);
-    const rail = $('[data-mount="categorie-rail"]');
-    if (rail) rail.innerHTML = vetrina.map((c) => catCard(c, false)).join("");
-    const grid = $('[data-mount="categorie-grid"]');
-    if (grid) grid.innerHTML = vetrina.map((c) => catCard(c, true)).join("");
+    /* specialità: prodotti veri; le categorie stanno una volta sola, negli scaffali qui sotto */
+    const spec = $('[data-mount="specialita"]');
+    if (spec) spec.innerHTML = C.bottega.specialita.map(C.get).filter(Boolean).map(prodCard).join("");
 
     const box = $('[data-mount="box-rail"]');
     if (box)
@@ -716,11 +703,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   ${ph("", "ph--3", "", c.img)}<span>${esc(c.nome)}</span>
 </a>`
           )
-          .join("") +
-        `
-<a class="shelf__i shelf__i--wine" href="box.html">
-  <span>Confezioni regalo e degustazioni ${ico("right")}</span>
-</a>`;
+          .join("");
 
     /* recensioni: carosello, pallini e frecce li fa initRail; qui solo "Leggi di più",
        sotto i testi davvero tagliati (si misura a font caricati) */
