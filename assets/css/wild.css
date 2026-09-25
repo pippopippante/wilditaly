@@ -312,6 +312,12 @@ input,select,textarea{font:inherit;color:inherit}
   text-transform:uppercase;color:var(--meta);padding-top:16px;
 }
 .crumbs a:hover{color:var(--wine)}
+/* scheda prodotto su telefono: solo "‹ Scaffale", il nome è già nell'header */
+@media (max-width:1119px){
+  body[data-pagina="prodotto"] .crumbs>a:first-child,
+  body[data-pagina="prodotto"] .crumbs__via{display:none}
+  body[data-pagina="prodotto"] .crumbs__cat::before{content:"‹ "}
+}
 
 /* ------------------------------------------------------- pannelli */
 .scrim{
@@ -427,7 +433,8 @@ input,select,textarea{font:inherit;color:inherit}
 .wa svg{width:30px;height:30px}
 @media (max-width:1119px){
   /* sopra la barra acquisto della scheda prodotto e la barra della guida */
-  body:has(.buybar.is-on){--wa-su:77px}
+  /* nella scheda il contatto sta nel riquadro "Chiedi alla bottega": il pulsante fisso copriva il testo (Baymard) */
+  body[data-pagina="prodotto"] .wa{display:none}
   body[data-pagina="guida"]{--wa-su:104px}
 }
 @media (min-width:1120px){
@@ -705,12 +712,6 @@ input,select,textarea{font:inherit;color:inherit}
   position:absolute;top:14px;left:14px;background:var(--olive);color:#F0EDDF;
   font-size:11px;letter-spacing:.14em;padding:6px 10px;
 }
-.gallery__dots{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;padding:0}
-.gallery__dots button{
-  --dot:rgba(42,33,26,.2);width:30px;height:44px;
-  background:linear-gradient(var(--dot),var(--dot)) center/24px 3px no-repeat;
-}
-.gallery__dots button[aria-current="true"]{--dot:var(--wine)}
 .gallery{position:relative}
 /* foto vere: intere nel riquadro grande, le fasce ai lati hanno il colore della pagina */
 .gallery__main--foto>img{object-fit:contain}
@@ -757,7 +758,6 @@ input,select,textarea{font:inherit;color:inherit}
   .gallery__thumbs{grid-template-columns:repeat(3,1fr);gap:14px;padding:14px 0 0;background:none}
   .gallery__thumbs button{height:150px}
   .gallery__thumbs button:nth-child(4){display:none}
-  .gallery__dots{display:none}
 }
 /* miniature di foto vere: prendono la forma della foto, intere, senza fasce né ritagli */
 .gallery__main--foto~.gallery__thumbs{display:flex;flex-wrap:wrap;background:none;padding:8px 0 0}
@@ -808,11 +808,32 @@ input,select,textarea{font:inherit;color:inherit}
   position:fixed;left:0;right:0;bottom:var(--bar-h);z-index:65;
   background:var(--paper);border-top:1px solid var(--line);
   padding:12px var(--pad) 12px;display:flex;gap:12px;align-items:center;
-  transform:translateY(120%);transition:transform .25s ease;
+  transform:translateY(120%);transition:transform .25s ease,bottom .3s ease;
 }
 .buybar.is-on{transform:none}
 .buybar .btn{flex:1;padding-left:12px;padding-right:12px;white-space:nowrap;letter-spacing:.06em}
 @media (min-width:1120px){ .buybar{display:none} }
+/* scheda su telefono, scorrendo in giù (is-giu, wild.js): header e barra in basso escono, "Aggiungi" scende in fondo */
+@media (max-width:1119px){
+  body[data-pagina="prodotto"] .hdr,body[data-pagina="prodotto"] .tabbar{transition:transform .3s ease}
+  body.is-giu .hdr{transform:translateY(-100%)}
+  body.is-giu .tabbar{transform:translateY(100%)}
+  body.is-giu .buybar{bottom:0}
+}
+
+/* "Dubbi? Chiedi alla bottega": WhatsApp e telefono sotto il pulsante */
+.chiedi{margin-top:22px;padding:16px;border:1px solid var(--line);background:var(--sand)}
+.chiedi p{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.chiedi strong{color:var(--ink)}
+.chiedi__btns{display:flex;gap:10px;margin-top:12px}
+.chiedi__btns a{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;
+  border:1px solid var(--ink);color:var(--ink);font-size:14px;font-weight:600;
+}
+.chiedi__btns a:hover{border-color:var(--wine);color:var(--wine)}
+.chiedi__btns svg{width:20px;height:20px}
+.chiedi__btns .chiedi__wa{background:#1F7A45;border-color:#1F7A45;color:#fff}
+.chiedi__btns .chiedi__wa:hover{background:#17613A;color:#fff}
 
 .pair{display:grid;gap:var(--gap);align-items:center}
 @media (min-width:1120px){ .pair{grid-template-columns:280px minmax(0,1fr) auto;background:var(--paper)} }
