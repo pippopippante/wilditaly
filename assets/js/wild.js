@@ -1308,6 +1308,8 @@ ${
       : "";
 
     const old = p.prezzoPieno ? `<span class="price--old">${euro(p.prezzoPieno)}</span>` : "";
+    /* ordine: prezzo, formato e pulsante subito (si decide), poi descrizione e nota (si legge),
+       poi "Dubbi?" (dopo la spiegazione, scelta dell'utente) e le sezioni che si aprono */
     host.innerHTML = `
 <div class="wrap">
   <nav class="crumbs" aria-label="Percorso">
@@ -1383,8 +1385,6 @@ ${
       </div>`
       }
 
-      ${p.descrizione ? `<p class="body body--lg" style="margin-top:14px">${esc(p.descrizione)}</p>` : ""}
-      ${tasting}
       ${p.inArrivo ? "" : formati}
 
       ${
@@ -1394,6 +1394,9 @@ ${
       <div class="buy" data-buy></div>
       <p class="buy__note">Spedizione sottovuoto · consegna in circa 48 ore</p>`
       }
+
+      ${p.descrizione ? `<p class="body body--lg" style="margin-top:26px">${esc(p.descrizione)}</p>` : ""}
+      ${tasting}
 
       <div class="chiedi">
         <p><strong>Dubbi? Chiedi alla bottega.</strong> Ti rispondiamo su formati, abbinamenti e spedizione.</p>
@@ -1660,40 +1663,11 @@ ${
 
     initAcc(host);
 
-    /* ------- barra acquisto fissa su mobile (schermata 2b) */
-    const buy = $("[data-buy]", host);
+    /* ------- su telefono il pulsante sta solo nella barra fissa, sempre visibile (quello
+       nella scheda è nascosto dal CSS): niente che compare e scompare */
     const bar = $("[data-buybar]");
-    if (buy && bar) {
-      bar.hidden = false;
-      /* il pulsante della barra resta in basso finché quello della scheda non sale fin lì:
-         da quel punto si vede solo quello della scheda, come se si fosse posato nel suo posto.
-         Tornando su si stacca di nuovo; scendendo oltre resta lì (idea dell'utente).
-         Passato il suo posto, torna insieme alle altre barre appena si scorre in su (Baymard) */
-      const posato = () => {
-        const r = buy.getBoundingClientRect();
-        /* "sopra" vuol dire anche nascosto sotto l'header */
-        const torna = r.bottom < $(".hdr").getBoundingClientRect().bottom && !document.body.classList.contains("is-giu");
-        bar.classList.toggle("is-on", torna || r.top > bar.firstElementChild.getBoundingClientRect().top);
-        bar.classList.toggle("is-torna", torna);
-      };
-      /* la barra scende di 74 px quando le altre barre escono (0,3 s): si controlla a ogni
-         fotogramma finché scorre o si muove, se no lo scambio arriva in ritardo */
-      let fino = 0;
-      const giro = () => {
-        posato();
-        if (performance.now() < fino) requestAnimationFrame(giro);
-      };
-      const muovi = () => {
-        const fermo = performance.now() >= fino;
-        fino = performance.now() + 400;
-        if (fermo) requestAnimationFrame(giro);
-      };
-      addEventListener("scroll", muovi, { passive: true });
-      addEventListener("resize", muovi);
-      posato();
-    } else if (bar) {
-      bar.remove();
-    }
+    if ($("[data-buy]", host) && bar) bar.hidden = false;
+    else if (bar) bar.remove();
 
     /* ------- su telefono, scorrendo in giù header e barra in basso escono e resta solo
        "Aggiungi"; scorrendo in su tornano (NN/g, sticky headers). Il CSS vale solo sotto i 1120 px */

@@ -317,6 +317,8 @@ input,select,textarea{font:inherit;color:inherit}
   body[data-pagina="prodotto"] .crumbs>a:first-child,
   body[data-pagina="prodotto"] .crumbs__via{display:none}
   body[data-pagina="prodotto"] .crumbs__cat::before{content:"‹ "}
+  /* sottolineato: si capisce che si tocca (Baymard, breadcrumb su telefono) */
+  body[data-pagina="prodotto"] .crumbs__cat{text-decoration:underline;text-underline-offset:3px}
 }
 
 /* ------------------------------------------------------- pannelli */
@@ -808,17 +810,16 @@ input,select,textarea{font:inherit;color:inherit}
   position:fixed;left:0;right:0;bottom:var(--bar-h);z-index:65;
   background:var(--paper);border-top:1px solid var(--line);
   padding:12px var(--pad) 12px;display:flex;gap:12px;align-items:center;
-  visibility:hidden;transition:bottom .3s ease;
+  transition:bottom .3s ease;
 }
-/* niente animazione: si accende e si spegne quando il pulsante della scheda arriva sotto il suo,
-   così sembra lo stesso pulsante che si posa al suo posto (wild.js, "posato") */
-.buybar.is-on{visibility:visible}
-/* quando torna con le altre barre non ha un posto da cui staccarsi: sale dal fondo come loro */
-.buybar.is-torna{animation:buybar-sale .3s ease}
-@keyframes buybar-sale{from{transform:translateY(100%)}}
-.buybar .btn{flex:1}
-.buy .btn,.buybar .btn{white-space:nowrap}
+.buybar .btn{flex:1;white-space:nowrap}
 @media (min-width:1120px){ .buybar{display:none} }
+/* su telefono il pulsante sta solo nella barra, sempre visibile (GrowthRock: +5,2% ordini);
+   in fondo alla pagina serve spazio in più perché la barra non copra il footer */
+@media (max-width:1119px){
+  body[data-pagina="prodotto"] .buy{display:none}
+  body[data-pagina="prodotto"]{padding-bottom:calc(var(--bar-h) + 77px)}
+}
 /* scheda su telefono, scorrendo in giù (is-giu, wild.js): header e barra in basso escono, "Aggiungi" scende in fondo */
 @media (max-width:1119px){
   body[data-pagina="prodotto"] .hdr,body[data-pagina="prodotto"] .tabbar{transition:transform .3s ease}
@@ -827,7 +828,7 @@ input,select,textarea{font:inherit;color:inherit}
   body.is-giu .buybar{bottom:0}
 }
 
-/* "Dubbi? Chiedi alla bottega": WhatsApp e telefono sotto il pulsante */
+/* "Dubbi? Chiedi alla bottega": WhatsApp e telefono dopo la descrizione */
 .chiedi{margin-top:22px;padding:16px;border:1px solid var(--line);background:var(--sand)}
 .chiedi p{font-size:15px;line-height:1.5;color:var(--ink-soft)}
 .chiedi strong{color:var(--ink)}
