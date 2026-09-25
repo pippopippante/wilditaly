@@ -22,7 +22,7 @@ window.CATALOGO = (function () {
       breve: "Al cervo, al capriolo, al cinghiale.",
       breveLunga: "Salami al cervo, al capriolo e al cinghiale, uno anche col tartufo.",
       foto: "FOTO: salame al cervo affettato",
-      img: "assets/img/salame-cervo-1.jpg",
+      img: "assets/img/provvisorie/salame-cervo-1.jpg",
       inVetrina: 1,
       helper: {
         occhiello: "NON SAI DA DOVE INIZIARE?",
@@ -38,7 +38,7 @@ window.CATALOGO = (function () {
       titolo: "Salumi tradizionali",
       intro: "Il banco di sempre: salami, salamelle e tagli da tagliere.",
       foto: "FOTO: banco salumi tradizionali",
-      img: "assets/img/prosciutto-tascabile-1.jpg",
+      img: "assets/img/provvisorie/prosciutto-tascabile-1.jpg",
       imgAlt: "Tascabile affettato sul tagliere"
     },
     {
@@ -49,7 +49,8 @@ window.CATALOGO = (function () {
       intro: "Pecorino stagionato 12 mesi, solo latte di pecora, e formaggio misto al tartufo di Bettona.",
       breve: "Pecorino stagionato e formaggio al tartufo.",
       foto: "FOTO: pecorini a scalare",
-      img: "assets/img/pecorino-12-mesi.jpg",
+      img: "assets/img/definitive/formaggio-tartufo-mazzatosta-foto-1.jpg",
+      imgAlt: "Formaggio al tartufo tagliato su un tagliere, con la forma intera e tartufi neri",
       inVetrina: 3
     },
     {
@@ -61,7 +62,7 @@ window.CATALOGO = (function () {
       breve: "Salse, sugo, purè, miele, riso e condimenti al tartufo.",
       breveLunga: "Tartufo estivo in salsa, nel sugo, nel purè e nel miele, riso e polenta al tartufo, e condimenti aromatizzati al tartufo.",
       foto: "FOTO: tartufo nero su tagliere",
-      img: "assets/img/salsa-tartufata-foto-1.jpg",
+      img: "assets/img/definitive/salsa-tartufata-foto-1.jpg",
       imgAlt: "Barattolo di salsa tartufata",
       inVetrina: 2
     },
@@ -72,7 +73,7 @@ window.CATALOGO = (function () {
       titolo: "Vini di Montefalco",
       intro: "I vini della famiglia Napolini, vignaioli di Montefalco: il rosso, il bianco e il rosato che beviamo con i nostri salumi.",
       foto: "FOTO: bottiglie di Montefalco",
-      img: "assets/img/grechetto-napolini-1.jpg",
+      img: "assets/img/definitive/grechetto-napolini-1.jpg",
       imgAlt: "Bottiglia di Grechetto Clara Vinea Napolini"
     },
     {
@@ -82,7 +83,7 @@ window.CATALOGO = (function () {
       titolo: "Dispensa",
       intro: "Legumi umbri, farro, zuppe da cuocere e ciambelline al vino fatte a mano: la parte della bottega che riempie la credenza.",
       foto: "FOTO: scaffale dispensa",
-      img: "assets/img/zuppa-rapida-foto-1.jpg",
+      img: "assets/img/definitive/zuppa-rapida-foto-1.jpg",
       imgAlt: "Confezione di zuppa rapida di legumi"
     },
     {
@@ -124,8 +125,8 @@ window.CATALOGO = (function () {
       peso: "350 g circa",
       grammi: 350,
       foto: "FOTO: salame al cervo",
-      img: "assets/img/salame-cervo-1.jpg",
-      galleriaImg: ["assets/img/salame-cervo-1.jpg", "assets/img/salame-cervo-2.jpg"],
+      img: "assets/img/provvisorie/salame-cervo-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/salame-cervo-1.jpg", "assets/img/provvisorie/salame-cervo-2.jpg"],
       descrizione:
         "Compatto, magro e pulito al taglio, senza palline di pepe, cartilagini o pezzi di grasso evidenti. Al morso è morbido e uniforme. Il gusto parte dolce e delicato, poi lascia lentamente spazio a una piacevole nota affumicata. È un salame particolare ma mai aggressivo, facile da apprezzare anche per chi si avvicina per la prima volta ai salumi di selvaggina.",
       nota: "Il più dolce dei tre",
@@ -159,8 +160,8 @@ window.CATALOGO = (function () {
       peso: "250 g circa",
       grammi: 250,
       foto: "FOTO: norcinetta al capriolo",
-      img: "assets/img/salame-capriolo-1.jpg",
-      galleriaImg: ["assets/img/salame-capriolo-1.jpg", "assets/img/salame-capriolo-2.jpg"],
+      img: "assets/img/provvisorie/salame-capriolo-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/salame-capriolo-1.jpg", "assets/img/provvisorie/salame-capriolo-2.jpg"],
       descrizione:
         "Dolciastro, morbido e piacevole al primo momento, ricorda il cervo ma con un carattere più vivace. Nel finale arriva una leggera nota di peperoncino che accende il gusto senza coprirlo, lasciando una sensazione più decisa e dinamica in bocca.",
       nota: "Vivace, con un pizzico di peperoncino",
@@ -188,8 +189,8 @@ window.CATALOGO = (function () {
       peso: "350 g circa",
       grammi: 350,
       foto: "FOTO: salame al cinghiale",
-      img: "assets/img/salame-cinghiale-1.jpg",
-      galleriaImg: ["assets/img/salame-cinghiale-1.jpg", "assets/img/salame-cinghiale-2.jpg"],
+      img: "assets/img/provvisorie/salame-cinghiale-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/salame-cinghiale-1.jpg", "assets/img/provvisorie/salame-cinghiale-2.jpg"],
       descrizione:
         "Sapido, pieno e deciso fin dal primo morso. Il gusto del cinghiale è intenso, rustico e diretto, con una presenza che si sente subito e resta a lungo sul palato. È uno dei salami più saporiti della selezione, con un carattere forte ma equilibrato, pensato per chi cerca un gusto netto e riconoscibile.",
       nota: "Deciso e rustico, chiusura lunga e speziata",
@@ -221,8 +222,8 @@ window.CATALOGO = (function () {
       peso: "750 ml",
       ml: 750,
       foto: "FOTO: bottiglia di Napo's rosso",
-      img: "assets/img/napos-napolini-1.jpg",
-      galleriaImg: ["assets/img/napos-napolini-1.jpg", "assets/img/napos-napolini-2.jpg"],
+      img: "assets/img/definitive/napos-napolini-1.jpg",
+      galleriaImg: ["assets/img/definitive/napos-napolini-1.jpg", "assets/img/definitive/napos-napolini-2.jpg"],
       descrizione:
         "Un rosso umbro prodotto da un'azienda familiare, con un taglio di Sagrantino e Sangiovese, due vitigni che raccontano bene il carattere del territorio. Il Sangiovese porta freschezza, frutto e bevibilità; il Sagrantino aggiunge struttura, intensità e un carattere più deciso. Il risultato è un vino pieno, caldo e avvolgente, con un gusto ricco ma piacevole, pensato per accompagnare bene salumi, formaggi stagionati e piatti saporiti. È un vino che conserva il fascino delle produzioni di piccola scala: semplice, autentico e legato alla tradizione familiare umbra.",
       nota: "Sangiovese, merlot e sagrantino",
@@ -245,8 +246,8 @@ window.CATALOGO = (function () {
       peso: "750 ml",
       ml: 750,
       foto: "FOTO: bottiglia di Grechetto Napolini",
-      img: "assets/img/grechetto-napolini-1.jpg",
-      galleriaImg: ["assets/img/grechetto-napolini-1.jpg", "assets/img/grechetto-napolini-2.jpg"],
+      img: "assets/img/definitive/grechetto-napolini-1.jpg",
+      galleriaImg: ["assets/img/definitive/grechetto-napolini-1.jpg", "assets/img/definitive/grechetto-napolini-2.jpg"],
       descrizione:
         "Un bianco umbro ottenuto da sole uve Grechetto, vitigno tipico del territorio. Al palato è secco, fresco e deciso, con una buona struttura e un gusto pulito. La sua firma arriva nel finale, con la tipica nota mandorlata del Grechetto, leggermente amarognola e molto elegante, che lascia la bocca asciutta e invita al sorso successivo. È un vino semplice da bere ma con personalità, ideale per chi cerca un bianco non dolce, territoriale e riconoscibile.",
       nota: "Grechetto dei Colli Martani",
@@ -269,8 +270,8 @@ window.CATALOGO = (function () {
       peso: "750 ml",
       ml: 750,
       foto: "FOTO: bottiglia di Vigna Rosa Napolini",
-      img: "assets/img/vigna-rosa-napolini-1.jpg",
-      galleriaImg: ["assets/img/vigna-rosa-napolini-1.jpg", "assets/img/vigna-rosa-napolini-2.jpg"],
+      img: "assets/img/definitive/vigna-rosa-napolini-1.jpg",
+      galleriaImg: ["assets/img/definitive/vigna-rosa-napolini-1.jpg", "assets/img/definitive/vigna-rosa-napolini-2.jpg"],
       descrizione:
         "Un rosato fresco e piacevole, ottenuto da Sangiovese e Sagrantino. Il Sangiovese porta una parte più morbida e fruttata, mentre il Sagrantino aggiunge carattere e struttura. Al palato è beverino, fresco e scorrevole, con un gusto semplice ma deciso, pensato per essere servito ben freddo e bevuto con facilità. È il vino giusto per chi cerca qualcosa di leggero e versatile, ma con una personalità tipicamente umbra.",
       nota: "Rosato umbro",
@@ -293,8 +294,8 @@ window.CATALOGO = (function () {
       peso: "500 ml",
       ml: 500,
       foto: "FOTO: bottiglia di Sagrantino Passito Napolini",
-      img: "assets/img/sagrantino-passito-napolini-1.jpeg",
-      galleriaImg: ["assets/img/sagrantino-passito-napolini-1.jpeg", "assets/img/sagrantino-passito-napolini-2.jpeg"],
+      img: "assets/img/definitive/sagrantino-passito-napolini-1.jpeg",
+      galleriaImg: ["assets/img/definitive/sagrantino-passito-napolini-1.jpeg", "assets/img/definitive/sagrantino-passito-napolini-2.jpeg"],
       galleria: ["FOTO 1: bottiglia, fronte", "FOTO 2: retroetichetta"],
       descrizione:
         "Il Sagrantino passito della famiglia Napolini, vignaioli di Montefalco. DOCG, annata 2021, 13,5% vol, bottiglia da 50 cl.",
@@ -317,8 +318,8 @@ window.CATALOGO = (function () {
       peso: "350 g circa",
       grammi: 350,
       foto: "FOTO: salame ubriaco al vino rosso",
-      img: "assets/img/salame-ubriaco-1.jpg",
-      galleriaImg: ["assets/img/salame-ubriaco-1.jpg", "assets/img/salame-ubriaco-2.jpg"],
+      img: "assets/img/provvisorie/salame-ubriaco-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/salame-ubriaco-1.jpg", "assets/img/provvisorie/salame-ubriaco-2.jpg"],
       descrizione:
         "È il salame della tradizione appenninica per eccellenza, ispirato a quelli che un tempo si preparavano in casa con pochi ingredienti e tanto carattere: lardello tagliato al coltello, pepe in grani e vino rosso. La grana grossa regala una consistenza carnosa e succulenta; il lardello si scioglie lentamente in bocca, il pepe accende il gusto e il vino rosso lascia una nota calda e aromatica nel finale. È il più saporito dei nostri salami tradizionali, pensato per chi cerca un gusto deciso, autentico e persistente.",
       ingredienti:
@@ -339,8 +340,8 @@ window.CATALOGO = (function () {
       peso: "450 g circa",
       grammi: 450,
       foto: "FOTO: salame morbido spalmabile",
-      img: "assets/img/ciauscolo-1.jpg",
-      galleriaImg: ["assets/img/ciauscolo-1.jpg", "assets/img/ciauscolo-2.jpg"],
+      img: "assets/img/provvisorie/ciauscolo-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/ciauscolo-1.jpg", "assets/img/provvisorie/ciauscolo-2.jpg"],
       descrizione:
         "Una morbida macinatura di carne di maiale non stagionata, dalla consistenza cremosa e naturalmente spalmabile. È uno dei salumi più delicati della tradizione dell'Appennino: il gusto è dolce, rotondo e piacevole, senza note aggressive. La sua caratteristica più riconoscibile è la morbidezza: basta appoggiarlo sul pane perché si lasci spalmare facilmente, liberando tutta la sua parte aromatica. In bocca è vellutato e succulento, con una delicata nota speziata che arriva solo nel finale. Da spalmare sul pane e gustare lentamente: semplice, morbido e genuino, è uno di quei sapori della tradizione che conquistano proprio per la loro delicatezza.",
       ingredienti:
@@ -360,8 +361,8 @@ window.CATALOGO = (function () {
       peso: "450 g circa",
       grammi: 450,
       foto: "FOTO: salamella di fegato",
-      img: "assets/img/salamella-fegato-1.jpg",
-      galleriaImg: ["assets/img/salamella-fegato-1.jpg", "assets/img/salamella-fegato-2.jpg"],
+      img: "assets/img/provvisorie/salamella-fegato-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/salamella-fegato-1.jpg", "assets/img/provvisorie/salamella-fegato-2.jpg"],
       descrizione:
         "Un salume tradizionale preparato con fegato di maiale mescolato ad altre parti della carne suina, per ottenere un gusto più morbido, equilibrato e meno intenso rispetto a un prodotto di solo fegato. La caratteristica forma a salamella favorisce una stagionatura più marcata, che asciuga lentamente il prodotto e concentra i sapori senza renderli aggressivi. Al palato è saporita ma armoniosa, con il carattere tipico del fegato ben presente, bilanciato però dalla carne di maiale che ne addolcisce il gusto e rende ogni fetta più piacevole.",
       ingredienti:
@@ -383,8 +384,8 @@ window.CATALOGO = (function () {
       peso: "350 g circa",
       grammi: 350,
       foto: "FOTO: nursino",
-      img: "assets/img/salamella-maiale.jpg",
-      galleriaImg: ["assets/img/salamella-maiale.jpg", "assets/img/nursino-etichetta.jpeg"],
+      img: "assets/img/provvisorie/salamella-maiale.jpg",
+      galleriaImg: ["assets/img/provvisorie/salamella-maiale.jpg", "assets/img/provvisorie/nursino-etichetta.jpeg"],
       galleria: ["FOTO 1: nursino", "FOTO 2: etichetta"],
       descrizione:
         "Il salame più tradizionale della nostra selezione, preparato con una macinatura di carne di maiale magra, senza cartilagini e senza parti grasse evidenti. La sua forza è proprio la semplicità: gusto pulito, delicato e armonioso, con una consistenza compatta e piacevole. Non cerca sapori estremi, ma il profilo classico del vero salame di Norcia. È il più delicato tra i nostri salami tradizionali, ideale per chi ama un gusto semplice, autentico e facilmente apprezzabile.",
@@ -405,8 +406,8 @@ window.CATALOGO = (function () {
       peso: "300 g circa",
       grammi: 300,
       foto: "FOTO: coglioni di mulo",
-      img: "assets/img/coglione-mulo-2.jpg",
-      galleriaImg: ["assets/img/coglione-mulo-2.jpg", "assets/img/coglione-mulo-1.jpg"],
+      img: "assets/img/provvisorie/coglione-mulo-2.jpg",
+      galleriaImg: ["assets/img/provvisorie/coglione-mulo-2.jpg", "assets/img/provvisorie/coglione-mulo-1.jpg"],
       descrizione:
         "Il nome incuriosisce, ma tranquilli: il mulo si è salvato. L'insaccato è prodotto esclusivamente con carne di maiale e prende questo nome soltanto dalla sua particolare forma. Ha una macinatura fine, compatta e magra, dal gusto pieno e deciso. A contrastarla c'è un lardello stagionato che attraversa tutto il salame: morbido e ricco, si scioglie lentamente in bocca e accompagna ogni fetta, creando un piacevole equilibrio tra la parte magra della carne e la dolcezza del grasso. Il risultato è un salume intenso, saporito e molto caratteristico, con una consistenza compatta e un finale più morbido e avvolgente.",
       ingredienti:
@@ -429,8 +430,8 @@ window.CATALOGO = (function () {
       peso: "1 kg circa",
       grammi: 1000,
       foto: "FOTO: tascabile affettato",
-      img: "assets/img/prosciutto-tascabile-1.jpg",
-      galleriaImg: ["assets/img/prosciutto-tascabile-1.jpg", "assets/img/prosciutto-tascabile-2.jpg"],
+      img: "assets/img/provvisorie/prosciutto-tascabile-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/prosciutto-tascabile-1.jpg", "assets/img/provvisorie/prosciutto-tascabile-2.jpg"],
       descrizione:
         "Nasce da tranci magri di prosciutto di maiale, privati della parte grassa e insaccati nel budello naturale come un vero salume. La carne resta compatta e saporita, mentre pepe e peperoncino aggiungono una nota speziata e leggermente vivace. È proprio la stagionatura all'interno del budello a fare la differenza: concentra i profumi e rende il gusto del prosciutto di Norcia più intenso, profondo e persistente. Al taglio si presenta magro e compatto; in bocca è deciso, aromatico e pulito, con tutta la sapidità del prosciutto e un finale speziato che ne esalta il carattere.",
       ingredienti:
@@ -451,8 +452,8 @@ window.CATALOGO = (function () {
       peso: "1 kg circa",
       grammi: 1000,
       foto: "FOTO: pecorino stagionato 12 mesi",
-      img: "assets/img/pecorino-12-mesi.jpg",
-      galleriaImg: ["assets/img/pecorino-12-mesi.jpg", "assets/img/pecorino-12-mesi-etichetta.jpeg"],
+      img: "assets/img/provvisorie/pecorino-12-mesi.jpg",
+      galleriaImg: ["assets/img/provvisorie/pecorino-12-mesi.jpg", "assets/img/provvisorie/pecorino-12-mesi-etichetta.jpeg"],
       galleria: ["FOTO 1: pecorino stagionato 12 mesi", "FOTO 2: etichetta"],
       descrizione:
         "Un pecorino dal carattere deciso, prodotto con latte di pecora proveniente da pascoli di montagna, dove un'alimentazione più ricca e naturale regala al latte maggiore intensità e aromaticità. Dopo 12 mesi di stagionatura, il gusto diventa profondo, saporito e persistente. La pasta è compatta e leggermente friabile, con una grana tipica dei formaggi ben stagionati e un finale intenso che rimane a lungo in bocca. È il più saporito tra i nostri pecorini, perfetto per chi ama i gusti forti negli antipasti. Ottimo anche con il miele, che ne bilancia la sapidità, oppure da grattugiare per dare carattere ai piatti.",
@@ -475,8 +476,8 @@ window.CATALOGO = (function () {
       peso: "500 g circa",
       grammi: 500,
       foto: "FOTO: formaggio misto al tartufo",
-      img: "assets/img/formaggio-tartufo-mazzatosta-foto-1.jpg",
-      galleriaImg: ["assets/img/formaggio-tartufo-mazzatosta-foto-1.jpg", "assets/img/formaggio-tartufo-mazzatosta-foto-2.jpg", "assets/img/formaggio-tartufo-mazzatosta-foto-3.jpg"],
+      img: "assets/img/definitive/formaggio-tartufo-mazzatosta-foto-1.jpg",
+      galleriaImg: ["assets/img/definitive/formaggio-tartufo-mazzatosta-foto-1.jpg", "assets/img/definitive/formaggio-tartufo-mazzatosta-foto-2.jpg", "assets/img/definitive/formaggio-tartufo-mazzatosta-foto-3.jpg"],
       descrizione:
         "Un formaggio di latte vaccino e ovino, morbido e saporito, arricchito con pezzettini di tartufo estivo distribuiti nella pasta. Il gusto del formaggio resta rotondo e piacevole, mentre il tartufo aggiunge una nota aromatica più intensa e caratteristica, che emerge progressivamente durante l'assaggio. I piccoli pezzi di tartufo rendono ogni fetta più ricca e riconoscibile, creando un equilibrio tra la morbidezza del formaggio e il profumo tipico del tartufo estivo.",
       ingredienti:
@@ -495,8 +496,8 @@ window.CATALOGO = (function () {
       peso: "350 g circa",
       grammi: 350,
       foto: "FOTO: salame al cinghiale e tartufo",
-      img: "assets/img/salame-cinghiale-tartufo-1.jpg",
-      galleriaImg: ["assets/img/salame-cinghiale-tartufo-1.jpg", "assets/img/salame-cinghiale-tartufo-2.jpg"],
+      img: "assets/img/provvisorie/salame-cinghiale-tartufo-1.jpg",
+      galleriaImg: ["assets/img/provvisorie/salame-cinghiale-tartufo-1.jpg", "assets/img/provvisorie/salame-cinghiale-tartufo-2.jpg"],
       descrizione:
         "Sapido e deciso fin dal primo assaggio, con il gusto del cinghiale che arriva subito pieno e intenso. La fetta è pulita, senza palline di pepe né lardello, con una consistenza compatta e uniforme. Nel finale emerge lentamente il tartufo, naturale e persistente, che resta sul palato senza coprire la carne. È uno dei salami più saporiti della selezione, ricco ma equilibrato.",
       ingredienti:
@@ -521,14 +522,14 @@ window.CATALOGO = (function () {
         { nome: "Vasetto piccolo", peso: "80 g", grammi: 80, prezzo: 4.5 }
       ],
       foto: "FOTO: barattolo di salsa tartufata",
-      img: "assets/img/salsa-tartufata-foto-1.jpg",
+      img: "assets/img/definitive/salsa-tartufata-foto-1.jpg",
       galleriaImg: [
-        "assets/img/salsa-tartufata-foto-1.jpg",
-        "assets/img/salsa-tartufata-foto-2.jpg",
-        "assets/img/salsa-tartufata-foto-3.jpg",
-        "assets/img/salsa-tartufata-foto-4.jpg",
-        "assets/img/salsa-tartufata-foto-5.jpg",
-        "assets/img/salsa-tartufata-80-1.jpg"
+        "assets/img/definitive/salsa-tartufata-foto-1.jpg",
+        "assets/img/definitive/salsa-tartufata-foto-2.jpg",
+        "assets/img/definitive/salsa-tartufata-foto-3.jpg",
+        "assets/img/definitive/salsa-tartufata-foto-4.jpg",
+        "assets/img/definitive/salsa-tartufata-foto-5.jpg",
+        "assets/img/provvisorie/salsa-tartufata-80-1.jpg"
       ],
       galleria: [
         "FOTO 1: vasetto da 130 g con bruschette e tartufo",
@@ -561,7 +562,7 @@ window.CATALOGO = (function () {
       peso: "100 ml",
       ml: 100,
       foto: "FOTO: bottiglietta di olio al tartufo nero",
-      img: "assets/img/olio-tartufo-nero.jpg",
+      img: "assets/img/provvisorie/olio-tartufo-nero.jpg",
       descrizione:
         "Un condimento pensato per dare immediatamente profumo e carattere di tartufo ai piatti di tutti i giorni. Si usa in piccole quantità, preferibilmente a crudo e a fine preparazione, dopo l'olio extravergine o direttamente sul piatto caldo: bastano poche gocce per sprigionare l'aroma del tartufo senza coprire gli altri ingredienti. È estremamente versatile, perfetto su pasta, risotti, gnocchi, uova, frittate, patate, funghi, carne, pizza, focaccia e verdure. Ottimo anche su una semplice bruschetta.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
@@ -581,7 +582,7 @@ window.CATALOGO = (function () {
       peso: "100 ml",
       ml: 100,
       foto: "FOTO: bottiglietta di olio al tartufo bianco",
-      img: "assets/img/olio-tartufo-bianco.jpg",
+      img: "assets/img/provvisorie/olio-tartufo-bianco.jpg",
       descrizione:
         "Un condimento dal profumo intenso, elegante e immediatamente riconoscibile, pensato per esaltare i piatti con la nota raffinata del tartufo bianco. Va utilizzato soprattutto a crudo e a fine preparazione, in piccole quantità: poche gocce sono sufficienti per sprigionare un aroma deciso e persistente, senza appesantire il piatto. È particolarmente indicato su tagliolini, risotti, uova, fondute, purè di patate, carpacci e bruschette, dove il suo profumo riesce a emergere con grande intensità. Il risultato è un condimento più fine e aromatico, ideale per chi cerca il carattere tipico del tartufo bianco e vuole dare a un piatto semplice una sensazione più ricercata.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
@@ -601,8 +602,8 @@ window.CATALOGO = (function () {
       peso: "200 g",
       grammi: 200,
       foto: "FOTO: confezione di purè al tartufo",
-      img: "assets/img/pure-tartufo-1.jpeg",
-      galleriaImg: ["assets/img/pure-tartufo-1.jpeg", "assets/img/pure-tartufo-2.jpeg"],
+      img: "assets/img/provvisorie/pure-tartufo-1.jpeg",
+      galleriaImg: ["assets/img/provvisorie/pure-tartufo-1.jpeg", "assets/img/provvisorie/pure-tartufo-2.jpeg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: confezione, retro con etichetta"],
       descrizione:
         "Un purè cremoso e avvolgente, arricchito con tartufo estivo, che dona alla dolcezza naturale della patata una nota aromatica più intensa e raffinata. Facile e veloce da preparare, è perfetto quando vuoi portare in tavola un contorno diverso dal solito senza rinunciare al gusto. La consistenza morbida del purè accompagna bene il profumo del tartufo, creando un sapore equilibrato, delicato ma riconoscibile. Ottimo come contorno per carni, arrosti e secondi piatti, oppure da gustare anche da solo quando vuoi qualcosa di semplice ma più ricercato.",
@@ -624,11 +625,11 @@ window.CATALOGO = (function () {
       peso: "180 g",
       grammi: 180,
       foto: "FOTO: vasetto di sugo di pomodoro e tartufo",
-      img: "assets/img/sugo-pomodoro-tartufo-1.jpeg",
+      img: "assets/img/provvisorie/sugo-pomodoro-tartufo-1.jpeg",
       galleriaImg: [
-        "assets/img/sugo-pomodoro-tartufo-1.jpeg",
-        "assets/img/sugo-pomodoro-tartufo-2.jpeg",
-        "assets/img/sugo-pomodoro-tartufo-3.jpeg"
+        "assets/img/provvisorie/sugo-pomodoro-tartufo-1.jpeg",
+        "assets/img/provvisorie/sugo-pomodoro-tartufo-2.jpeg",
+        "assets/img/provvisorie/sugo-pomodoro-tartufo-3.jpeg"
       ],
       galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore e peso"],
       descrizione:
@@ -651,8 +652,8 @@ window.CATALOGO = (function () {
       peso: "120 g",
       grammi: 120,
       foto: "FOTO: vasetto di miele e tartufo",
-      img: "assets/img/miele-tartufo-foto-1.jpg",
-      galleriaImg: ["assets/img/miele-tartufo-foto-1.jpg", "assets/img/miele-tartufo-foto-2.jpg", "assets/img/miele-tartufo-foto-3.jpg"],
+      img: "assets/img/definitive/miele-tartufo-foto-1.jpg",
+      galleriaImg: ["assets/img/definitive/miele-tartufo-foto-1.jpg", "assets/img/definitive/miele-tartufo-foto-2.jpg", "assets/img/definitive/miele-tartufo-foto-3.jpg"],
       galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore"],
       descrizione:
         "Un incontro sorprendente tra la dolcezza morbida del miele e il profumo intenso del tartufo estivo, presente anche in piccoli pezzi visibili nel vasetto. Al palato parte dolce e avvolgente, poi arriva la nota aromatica e terrosa del tartufo, creando un contrasto elegante, originale e molto persistente. È ideale soprattutto con pecorini e formaggi stagionati, dove la dolcezza del miele bilancia la sapidità del formaggio e il tartufo aggiunge profondità. Ottimo anche su crostini, ricotta, carni o per dare un tocco particolare a un tagliere.",
@@ -675,11 +676,11 @@ window.CATALOGO = (function () {
       peso: "200 g",
       grammi: 200,
       foto: "FOTO: confezione di riso Carnaroli al tartufo estivo",
-      img: "assets/img/riso-carnaroli-tartufo-1.jpg",
+      img: "assets/img/definitive/riso-carnaroli-tartufo-1.jpg",
       galleriaImg: [
-        "assets/img/riso-carnaroli-tartufo-1.jpg",
-        "assets/img/riso-carnaroli-tartufo-2.jpg",
-        "assets/img/riso-carnaroli-tartufo-3.jpg"
+        "assets/img/definitive/riso-carnaroli-tartufo-1.jpg",
+        "assets/img/definitive/riso-carnaroli-tartufo-2.jpg",
+        "assets/img/definitive/riso-carnaroli-tartufo-3.jpg"
       ],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: risotto nel piatto", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
@@ -692,8 +693,7 @@ window.CATALOGO = (function () {
       produttore: fortunati
     },
     {
-      /* etichetta posteriore non ancora fotografata: mancano ingredienti e valori.
-         Prezzo indicativo, da confermare col cliente */
+      /* prezzo indicativo, da confermare col cliente */
       slug: "polenta-tartufo-bianco",
       nome: "Polenta al tartufo bianco",
       denominazione: "Polenta di mais al tartufo bianco istantanea",
@@ -704,11 +704,19 @@ window.CATALOGO = (function () {
       peso: "300 g",
       grammi: 300,
       foto: "FOTO: sacchetto di polenta al tartufo bianco",
-      img: "assets/img/polenta-tartufo-bianco-1.jpg",
-      galleriaImg: ["assets/img/polenta-tartufo-bianco-1.jpg", "assets/img/polenta-tartufo-bianco-2.jpg"],
-      galleria: ["FOTO 1: sacchetto, fronte", "FOTO 2: polenta nel piatto"],
+      img: "assets/img/definitive/polenta-tartufo-bianco-1.jpg",
+      galleriaImg: [
+        "assets/img/definitive/polenta-tartufo-bianco-1.jpg",
+        "assets/img/definitive/polenta-tartufo-bianco-2.jpg",
+        "assets/img/definitive/polenta-tartufo-bianco-3.jpg"
+      ],
+      galleria: ["FOTO 1: sacchetto, fronte", "FOTO 2: polenta nel piatto", "FOTO 3: sacchetto, retro con etichetta"],
       descrizione:
-        "Farina di mais istantanea insaporita con tartufo bianco: si versa a pioggia nell'acqua bollente salata, si mescola e in 5 minuti la polenta è pronta, morbida e cremosa. Il mais dà la dolcezza rotonda di sempre, il tartufo aggiunge un profumo elegante che si sente già in cottura. Ottima da sola con un filo d'olio e una grattata di formaggio, oppure accanto a funghi, salsicce e carni in umido.",
+        "Farina di mais istantanea insaporita con funghi champignon e tartufo bianco: si versa a pioggia nell'acqua bollente salata, si mescola e in 5 minuti la polenta è pronta, morbida e cremosa. Il mais dà la dolcezza rotonda di sempre, il tartufo aggiunge un profumo elegante che si sente già in cottura. Ottima da sola con un filo d'olio e una grattata di formaggio, oppure accanto a funghi, salsicce e carni in umido.",
+      ingredienti:
+        "Farina di mais precotta, funghi champignon disidratati (Agaricus bisporus), aroma, tartufo bianco disidratato (Tuber magnatum Pico) 0,001%. Prodotto in Italia.",
+      valori:
+        "Per 100 g: energia 1643 kJ / 388 kcal · grassi 2,7 g (saturi 0,4 g) · carboidrati 80 g (zuccheri 1,7 g) · proteine 9,3 g · sale 0 g",
       produttore: fortunati
     },
     {
@@ -721,8 +729,8 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di lenticchie umbre",
-      img: "assets/img/lenticchie-umbre-foto-1.jpg",
-      galleriaImg: ["assets/img/lenticchie-umbre-foto-1.jpg", "assets/img/lenticchie-umbre-foto-2.jpg", "assets/img/lenticchie-umbre-foto-3.jpg"],
+      img: "assets/img/definitive/lenticchie-umbre-foto-1.jpg",
+      galleriaImg: ["assets/img/definitive/lenticchie-umbre-foto-1.jpg", "assets/img/definitive/lenticchie-umbre-foto-2.jpg", "assets/img/definitive/lenticchie-umbre-foto-3.jpg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: lenticchie cotte", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Piccole, delicate e naturalmente saporite, le lenticchie umbre sono uno dei prodotti più semplici e autentici della nostra terra. La loro piccola pezzatura permette una cottura uniforme e mantiene il chicco piacevolmente compatto. Al palato hanno un gusto delicato ma pieno, con una nota leggermente terrosa e una consistenza morbida senza diventare farinosa. Sono perfette per i piatti della tradizione, dalle zuppe ai contorni, oppure insieme a salsiccia e zampone, dove assorbono il condimento senza perdere la propria consistenza. Sciacquare, cuocere in acqua 25–30 minuti e salare a fine cottura.",
@@ -742,8 +750,8 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di zuppa rapida di legumi",
-      img: "assets/img/zuppa-rapida-foto-1.jpg",
-      galleriaImg: ["assets/img/zuppa-rapida-foto-1.jpg", "assets/img/zuppa-rapida-foto-2.jpg", "assets/img/zuppa-rapida-foto-3.jpg"],
+      img: "assets/img/definitive/zuppa-rapida-foto-1.jpg",
+      galleriaImg: ["assets/img/definitive/zuppa-rapida-foto-1.jpg", "assets/img/definitive/zuppa-rapida-foto-2.jpg", "assets/img/definitive/zuppa-rapida-foto-3.jpg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: nel piatto", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Un mix rustico e nutriente di lenticchie, orzo perlato, fagioli azuki verdi e piselli, pensato per portare in tavola una zuppa ricca e completa senza lunghe preparazioni. Durante la cottura ogni ingrediente mantiene la propria consistenza: le lenticchie danno corpo, l'orzo rende la zuppa più morbida e cremosa, mentre fagioli e piselli aggiungono varietà di sapori e consistenze. È una zuppa dal gusto semplice, pieno e genuino, ideale nelle giornate più fresche e pronta in circa 30 minuti.",
@@ -764,8 +772,8 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di farro umbro perlato",
-      img: "assets/img/farro-umbro-foto-1.jpg",
-      galleriaImg: ["assets/img/farro-umbro-foto-1.jpg", "assets/img/farro-umbro-foto-2.jpg", "assets/img/farro-umbro-foto-3.jpg"],
+      img: "assets/img/definitive/farro-umbro-foto-1.jpg",
+      galleriaImg: ["assets/img/definitive/farro-umbro-foto-1.jpg", "assets/img/definitive/farro-umbro-foto-2.jpg", "assets/img/definitive/farro-umbro-foto-3.jpg"],
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: nel piatto", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Un cereale antico della tradizione umbra, dal gusto rustico e piacevole e dalla consistenza compatta ma morbida dopo la cottura. Essendo perlato, cuoce più velocemente e non richiede lunghe preparazioni: in circa 20 minuti è pronto per essere utilizzato in zuppe, minestre, insalate fredde o come alternativa al riso. Ha un sapore delicatamente tostato e una consistenza che resta piacevole al morso, ideale sia per ricette semplici sia per piatti più ricchi con verdure, legumi, carne o pomodoro.",
@@ -785,11 +793,11 @@ window.CATALOGO = (function () {
       peso: "500 g",
       grammi: 500,
       foto: "FOTO: confezione di fagioli cannellini",
-      img: "assets/img/fagioli-cannellini-foto-1.jpg",
+      img: "assets/img/definitive/fagioli-cannellini-foto-1.jpg",
       galleriaImg: [
-        "assets/img/fagioli-cannellini-foto-1.jpg",
-        "assets/img/fagioli-cannellini-foto-2.jpg",
-        "assets/img/fagioli-cannellini-foto-3.jpg"
+        "assets/img/definitive/fagioli-cannellini-foto-1.jpg",
+        "assets/img/definitive/fagioli-cannellini-foto-2.jpg",
+        "assets/img/definitive/fagioli-cannellini-foto-3.jpg"
       ],
       galleria: [
         "FOTO 1: confezione, fronte",
@@ -816,11 +824,11 @@ window.CATALOGO = (function () {
       peso: "200 g",
       grammi: 200,
       foto: "FOTO: sacchetto di ciambelline ai cereali",
-      img: "assets/img/ciambelline-cereali-1.jpg",
+      img: "assets/img/provvisorie/ciambelline-cereali-1.jpg",
       galleriaImg: [
-        "assets/img/ciambelline-cereali-1.jpg",
-        "assets/img/ciambelline-cereali-2.jpeg",
-        "assets/img/ciambelline-cereali-3.jpeg"
+        "assets/img/provvisorie/ciambelline-cereali-1.jpg",
+        "assets/img/provvisorie/ciambelline-cereali-2.jpeg",
+        "assets/img/provvisorie/ciambelline-cereali-3.jpeg"
       ],
       galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, fronte", "FOTO 3: etichetta, retro"],
       descrizione:
@@ -841,8 +849,8 @@ window.CATALOGO = (function () {
       peso: "200 g",
       grammi: 200,
       foto: "FOTO: sacchetto di ciambelline cacao e menta",
-      img: "assets/img/ciambelline-cacao-menta-1.jpeg",
-      galleriaImg: ["assets/img/ciambelline-cacao-menta-1.jpeg", "assets/img/ciambelline-cacao-menta-2.jpeg"],
+      img: "assets/img/provvisorie/ciambelline-cacao-menta-1.jpeg",
+      galleriaImg: ["assets/img/provvisorie/ciambelline-cacao-menta-1.jpeg", "assets/img/provvisorie/ciambelline-cacao-menta-2.jpeg"],
       galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
       descrizione: "Ciambelline al vino rosso fatte a mano, con cacao amaro e foglie di menta.",
       ingredienti:
@@ -861,8 +869,8 @@ window.CATALOGO = (function () {
       peso: "200 g",
       grammi: 200,
       foto: "FOTO: sacchetto di ciambelline ai frutti di bosco",
-      img: "assets/img/ciambelline-frutti-bosco-1.jpeg",
-      galleriaImg: ["assets/img/ciambelline-frutti-bosco-1.jpeg", "assets/img/ciambelline-frutti-bosco-2.jpeg"],
+      img: "assets/img/provvisorie/ciambelline-frutti-bosco-1.jpeg",
+      galleriaImg: ["assets/img/provvisorie/ciambelline-frutti-bosco-1.jpeg", "assets/img/provvisorie/ciambelline-frutti-bosco-2.jpeg"],
       galleria: ["FOTO 1: etichetta, fronte", "FOTO 2: etichetta, retro"],
       descrizione: "Ciambelline al vino rosso fatte a mano, con karkadè, uva passa, sambuco, mirtillo e ribes nero.",
       ingredienti:
@@ -881,8 +889,8 @@ window.CATALOGO = (function () {
       peso: "200 g",
       grammi: 200,
       foto: "FOTO: sacchetto di ciambelline sambuca e caffè",
-      img: "assets/img/ciambelline-sambuca-caffe-1.jpeg",
-      galleriaImg: ["assets/img/ciambelline-sambuca-caffe-1.jpeg", "assets/img/ciambelline-sambuca-caffe-2.jpeg"],
+      img: "assets/img/provvisorie/ciambelline-sambuca-caffe-1.jpeg",
+      galleriaImg: ["assets/img/provvisorie/ciambelline-sambuca-caffe-1.jpeg", "assets/img/provvisorie/ciambelline-sambuca-caffe-2.jpeg"],
       galleria: ["FOTO 1: etichetta, fronte", "FOTO 2: etichetta, retro"],
       descrizione: "Ciambelline al vino rosso fatte a mano, con sambuca e caffè in polvere e in chicchi.",
       ingredienti:
@@ -905,8 +913,8 @@ window.CATALOGO = (function () {
       peso: "125 g",
       grammi: 125,
       foto: "FOTO: sacchetto di stuzzichini al tartufo",
-      img: "assets/img/stuzzichini-tartufo-1.jpeg",
-      galleriaImg: ["assets/img/stuzzichini-tartufo-1.jpeg", "assets/img/stuzzichini-tartufo-2.jpeg"],
+      img: "assets/img/provvisorie/stuzzichini-tartufo-1.jpeg",
+      galleriaImg: ["assets/img/provvisorie/stuzzichini-tartufo-1.jpeg", "assets/img/provvisorie/stuzzichini-tartufo-2.jpeg"],
       galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
       descrizione:
         "Snack artigianali, rustici e croccanti, preparati con farina di grano tenero macinata a pietra, vino bianco e tartufo nero. Al morso risultano friabili e saporiti, con una base semplice e fragrante che lascia spazio alla nota aromatica del tartufo. Il vino bianco aggiunge una sfumatura più profumata e rende il gusto ancora più caratteristico. Perfetti per aperitivi, taglieri, antipasti o semplicemente da sgranocchiare da soli, soprattutto quando vuoi qualcosa di diverso dal solito snack.",
@@ -928,8 +936,8 @@ window.CATALOGO = (function () {
       peso: "80 g",
       grammi: 80,
       foto: "FOTO: sacchetto di snacks all'anice",
-      img: "assets/img/snacks-anice-1.jpeg",
-      galleriaImg: ["assets/img/snacks-anice-1.jpeg", "assets/img/snacks-anice-2.jpeg"],
+      img: "assets/img/provvisorie/snacks-anice-1.jpeg",
+      galleriaImg: ["assets/img/provvisorie/snacks-anice-1.jpeg", "assets/img/provvisorie/snacks-anice-2.jpeg"],
       galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
       descrizione: "Sfoglie dolci all'anice, prodotte artigianalmente.",
       ingredienti:
@@ -1130,7 +1138,7 @@ window.CATALOGO = (function () {
       dove: "Entrando, subito a destra",
       titolo: "Si parte sempre da qui",
       testo: "Quelli per cui la gente torna, dal più dolce al più deciso.",
-      img: "assets/img/bottega-bancone.jpg",
+      img: "assets/img/provvisorie/bottega-bancone.jpg",
       alt: "Il bancone della bottega di Spoleto",
       prodotti: ["salame-di-cervo", "salame-di-capriolo", "salame-di-cinghiale", "salame-cinghiale-tartufo"]
     },
@@ -1140,7 +1148,7 @@ window.CATALOGO = (function () {
       dove: "La parete dietro la bilancia",
       titolo: "Quelli di sempre",
       testo: "Il banco del maiale: niente selvaggina, quelli di sempre.",
-      img: "assets/img/ciauscolo-1.jpg",
+      img: "assets/img/provvisorie/ciauscolo-1.jpg",
       alt: "Il salame morbido spalmabile, aperto",
       prodotti: ["salame-ubriaco", "salame-spalmabile", "coglione-del-mulo", "tascabile"]
     },
@@ -1150,8 +1158,8 @@ window.CATALOGO = (function () {
       dove: "Vetrina refrigerata, in mezzo",
       titolo: "La parte che sorprende",
       testo: "Vetrina refrigerata e scaffale del tartufo, uno di fianco all'altro.",
-      img: "assets/img/pecorino-12-mesi.jpg",
-      alt: "La forma di pecorino stagionato 12 mesi",
+      img: "assets/img/definitive/salsa-tartufata-foto-2.jpg",
+      alt: "Il vasetto di salsa tartufata sul tagliere, tra i tartufi neri",
       prodotti: ["pecorino-12-mesi", "salsa-tartufata", "olio-tartufo-nero"]
     },
     {
@@ -1160,7 +1168,7 @@ window.CATALOGO = (function () {
       dove: "Scaffale di legno, a sinistra",
       titolo: "La roba che dura",
       testo: "Due cose che ti salvano la sera, mezz'ora di cottura.",
-      img: "assets/img/lenticchie-umbre-foto-1.jpg",
+      img: "assets/img/definitive/lenticchie-umbre-foto-1.jpg",
       alt: "Le lenticchie umbre nella confezione",
       prodotti: ["lenticchie-umbre", "zuppa-rapida"]
     },

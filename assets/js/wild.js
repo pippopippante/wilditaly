@@ -1078,7 +1078,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 </div>`;
 
       const foto = fine
-        ? { img: "assets/img/tagliere-bancone.jpg", alt: "Un tagliere di salumi e pecorino preparato al bancone" }
+        ? { img: "assets/img/provvisorie/tagliere-bancone.jpg", alt: "Un tagliere di salumi e pecorino preparato al bancone" }
         : t;
       html.hero = `
 <div class="gv-hero${foto.img ? "" : " gv-hero--noimg"}${fine ? " gv-hero--fine" : ""}">

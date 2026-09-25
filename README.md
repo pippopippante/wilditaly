@@ -34,9 +34,15 @@ la prima è la direzione non scelta, le seconde sono superate da 2a/2b.
 assets/css/wild.css     sistema di design (token, componenti, breakpoint)
 assets/js/catalogo.js   dati: categorie, prodotti, box, dati della bottega
 assets/js/wild.js       chrome condiviso + comportamenti
-assets/img/             cartella per le foto definitive
+assets/img/definitive/  foto nuove del cliente, quelle che restano
+assets/img/provvisorie/ foto vecchie e segnaposto (telefono, web), da sostituire
+assets/img/             solo logo e favicon
 design/                 copia del documento di design di partenza
 ```
+
+Un prodotto è a posto con le foto quando ne ha tre in `definitive/`: confezione di fronte,
+confezione di retro (etichetta), e confezione di fronte con accanto il piatto già cucinato.
+In galleria vanno in quest'ordine: fronte, piatto, retro.
 
 `wild.js` costruisce da solo header, footer, menu, carrello, ricerca, barra di
 navigazione mobile e il pulsante WhatsApp fisso in basso a destra (numero da `bottega.telHref`
@@ -64,7 +70,7 @@ Ogni slot foto è un elemento `.ph`: senza foto mostra la didascalia del mockup
 - **Pagine statiche**: basta inserire un `<img>` dentro lo slot, il CSS lo fa combaciare:
 
   ```html
-  <div class="ph"><img src="assets/img/salame-cervo-1.jpg" alt="Salame al cervo affettato"></div>
+  <div class="ph"><img src="assets/img/provvisorie/salame-cervo-1.jpg" alt="Salame al cervo affettato"></div>
   ```
 
 - **Catalogo** (`catalogo.js`): `img` è la foto di card, carrello, ricerca e abbinamenti;
