@@ -1667,8 +1667,15 @@ ${
       bar.hidden = false;
       /* il pulsante della barra resta in basso finché quello della scheda non sale fin lì:
          da quel punto si vede solo quello della scheda, come se si fosse posato nel suo posto.
-         Tornando su si stacca di nuovo; scendendo oltre resta lì (idea dell'utente) */
-      const posato = () => bar.classList.toggle("is-on", buy.getBoundingClientRect().top > bar.firstElementChild.getBoundingClientRect().top);
+         Tornando su si stacca di nuovo; scendendo oltre resta lì (idea dell'utente).
+         Passato il suo posto, torna insieme alle altre barre appena si scorre in su (Baymard) */
+      const posato = () => {
+        const r = buy.getBoundingClientRect();
+        /* "sopra" vuol dire anche nascosto sotto l'header */
+        const torna = r.bottom < $(".hdr").getBoundingClientRect().bottom && !document.body.classList.contains("is-giu");
+        bar.classList.toggle("is-on", torna || r.top > bar.firstElementChild.getBoundingClientRect().top);
+        bar.classList.toggle("is-torna", torna);
+      };
       /* la barra scende di 74 px quando le altre barre escono (0,3 s): si controlla a ogni
          fotogramma finché scorre o si muove, se no lo scambio arriva in ritardo */
       let fino = 0;

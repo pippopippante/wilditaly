@@ -813,6 +813,9 @@ input,select,textarea{font:inherit;color:inherit}
 /* niente animazione: si accende e si spegne quando il pulsante della scheda arriva sotto il suo,
    così sembra lo stesso pulsante che si posa al suo posto (wild.js, "posato") */
 .buybar.is-on{visibility:visible}
+/* quando torna con le altre barre non ha un posto da cui staccarsi: sale dal fondo come loro */
+.buybar.is-torna{animation:buybar-sale .3s ease}
+@keyframes buybar-sale{from{transform:translateY(100%)}}
 .buybar .btn{flex:1}
 .buy .btn,.buybar .btn{white-space:nowrap}
 @media (min-width:1120px){ .buybar{display:none} }
