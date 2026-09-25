@@ -47,7 +47,7 @@
     const p = e.target.closest("[data-b]");
     if (p && p.dataset.b !== scelto) location.search = "?b=" + p.dataset.b;
   });
-  monta(document.querySelector("[data-3d]"), BOTTIGLIE[scelto], { trasparente: new URLSearchParams(location.search).has("trasparente") });
+  monta(document.querySelector("[data-3d]"), BOTTIGLIE[scelto]);
 </script>
 </body>
 </html>

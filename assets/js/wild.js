@@ -1575,8 +1575,7 @@ ${
       if (!vedi || montata) return;
       montata = true;
       import(new URL("assets/js/bottiglia-3d.js", document.baseURI).href)
-        /* ponytail: ?trasparente nel link solo per confrontare le due versioni del vetro; via quando si è scelto */
-        .then((m) => (vista3d = m.monta(box3d, p.modello3d, { inPagina: true, trasparente: new URLSearchParams(location.search).has("trasparente") })))
+        .then((m) => (vista3d = m.monta(box3d, p.modello3d, { inPagina: true })))
         .catch(() => ($(".gallery__hint", box3d).textContent = "La bottiglia 3D non si è caricata, riprova più tardi"));
     };
 

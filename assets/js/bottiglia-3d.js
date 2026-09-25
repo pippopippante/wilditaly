@@ -6,7 +6,6 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const CENTRO = 0.47; /* altezza del perno di rotazione, con la bottiglia alta 1 */
-const VELO = 0.5; /* vini chiari: quanto il vetro copre quello che c'è dietro, 0 trasparente del tutto, 1 opaco */
 const liscia = THREE.MathUtils.smoothstep;
 const LIN = Array.from({ length: 256 }, (_, i) => ((i / 255 + 0.055) / 1.055) ** 2.4);
 const srgb = (c) => 255 * (c <= 0.0031308 ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055);
@@ -235,10 +234,8 @@ function telaVetro(img, b, raggio, alt) {
    colore delle foto che ha accanto nella galleria. Mappa 64 × righe: in orizzontale il punto della bottiglia visto
    dalla camera, dal bordo sinistro al destro (il vino più carico al centro, i lampi dello studio, i bordi scuri); in
    verticale le righe dal fondo della capsula al piede. Ogni riga è una linea dritta sul vetro, quindi nella foto
-   scende al centro (la curva). Le righe coperte dalle etichette prendono il corpo libero sopra l'etichetta.
-   trasparente: al posto del colore, quanto il vetro lascia passare dello sfondo grigio della foto (foto / sfondo
-   ai lati, in luce lineare), e il vetro tinge quello che c'è dietro. */
-function mappaVetro(img, b, raggio, alt, trasparente) {
+   scende al centro (la curva). Le righe coperte dalle etichette prendono il corpo libero sopra l'etichetta. */
+function mappaVetro(img, b, raggio, alt) {
   const f = b.fronte, z = f.capsula[1], N = 64, hh = f.basso - z + 1;
   const cx = (y) => f.cx[0] + ((f.cx[1] - f.cx[0]) * (y - f.alto)) / (f.basso - f.alto);
   const xa = Math.max(0, Math.floor(Math.min(...f.cx) - raggio.max - 60));
@@ -256,10 +253,9 @@ function mappaVetro(img, b, raggio, alt, trasparente) {
   };
   const riga = (R) => {
     const r = raggio((R - f.alto) / alt), piega = interpola(f.curva, R) * r, c = cx(R);
-    const dietro = trasparente && [0, 1, 2].map((k) => (LIN[Math.round(pix(c - r - 40, R)[k])] + LIN[Math.round(pix(c + r + 40, R)[k])]) / 2);
     return Array.from({ length: N }, (_, i) => {
-      const s = (-1 + ((i + 0.5) * 2) / N) * 0.96, col = pix(c + s * r, R + piega * Math.sqrt(1 - s * s));
-      return trasparente ? col.map((v, k) => SRGB[Math.min(4095, Math.round((LIN[Math.round(v)] / dietro[k]) * 4095))]) : col;
+      const s = (-1 + ((i + 0.5) * 2) / N) * 0.96;
+      return pix(c + s * r, R + piega * Math.sqrt(1 - s * s));
     });
   };
   const coperta = (R) => f.etichette.some(([a, b2]) => R > a - 6 && R < b2 + 6);
@@ -278,7 +274,7 @@ function mappaVetro(img, b, raggio, alt, trasparente) {
 }
 
 /* il materiale del vetro chiaro; la mappa arriva quando la foto è letta, fino ad allora il vetro non si vede */
-function vetroChiaro(trasparente) {
+function vetroChiaro() {
   return new THREE.ShaderMaterial({
     uniforms: { mappa: { value: null } },
     vertexShader: `varying vec3 vN; varying float vY;
@@ -289,13 +285,7 @@ function vetroChiaro(trasparente) {
         gl_FragColor = vec4(texture2D(mappa, vec2(clamp(normalize(vN).x, -0.999, 0.999) * 0.5 + 0.5, vY)).rgb, 1.0);
         #include <colorspace_fragment>
       }`,
-    visible: false,
-    ...(trasparente && {
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.MultiplyBlending,
-      premultipliedAlpha: true
-    })
+    visible: false
   });
 }
 
@@ -311,17 +301,15 @@ function vetroChiaro(trasparente) {
    b.lamina, b.oro: colori [r, g, b] 0–255 di capsula e scritta, letti sulle foto (la lamina dove la luce la prende
    di fronte). Il vetro scuro lo legge da solo, riga per riga.
    b.chiaro (vini chiari): il vetro prende dalla foto di fronte il suo aspetto punto per punto (mappaVetro).
-   trasparente (vini chiari): il vetro tinge quello che c'è dietro invece di essere dipinto come nella foto.
    inPagina: la bottiglia sta in una pagina che scorre (la galleria del prodotto) e non a tutto schermo.
    Restituisce i controlli della vista. */
-export function monta(el, b, { inPagina = false, trasparente = false } = {}) {
+export function monta(el, b, { inPagina = false } = {}) {
   /* il carattere della capsula si scarica subito, insieme alle foto, e non quando serve */
   document.fonts.load(font(100)).catch(() => {});
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  /* lo sfondo della pagina dentro la scena: il vetro trasparente tinge quello che c'è dietro, e dietro c'è questo */
-  const sfondo = new THREE.Color(getComputedStyle(el).backgroundColor);
-  renderer.setClearColor(sfondo, 1);
+  /* lo sfondo della pagina dentro la scena */
+  renderer.setClearColor(new THREE.Color(getComputedStyle(el).backgroundColor), 1);
   el.append(renderer.domElement);
 
   const scene = new THREE.Scene();
@@ -366,9 +354,8 @@ export function monta(el, b, { inPagina = false, trasparente = false } = {}) {
   /* vetro: prima un colore scuro qualsiasi, poi (letta la foto) il colore di ogni riga; il fondo, con la
      rientranza, prende quello dell'ultima riga */
   const chiaro = !!b.chiaro;
-  trasparente = chiaro && trasparente;
   const vetro = chiaro
-    ? vetroChiaro(trasparente)
+    ? vetroChiaro()
     : new THREE.MeshStandardMaterial({ color: 0x0c0a08, roughness: 0.05, envMap, side: THREE.DoubleSide });
   const vetroFondo = chiaro ? vetro : vetro.clone();
   const rb = prof.at(-1)[0];
@@ -447,12 +434,6 @@ export function monta(el, b, { inPagina = false, trasparente = false } = {}) {
   const cp = corpo.attributes.position;
   for (let i = 0; i < cp.count; i++) corpo.attributes.uv.setY(i, cp.getY(i) / (f0.basso - z)); /* v = altezza */
   bottiglia.add(Object.assign(new THREE.Mesh(corpo, vetro), { renderOrder: 2 }));
-  /* vino chiaro: prima del vetro un velo del colore dello sfondo, che copre in parte il retro dell'etichetta e
-     l'ombra visti attraverso; dove dietro c'è solo lo sfondo non cambia niente */
-  if (trasparente) {
-    const velo = new THREE.MeshBasicMaterial({ color: sfondo, transparent: true, opacity: VELO, depthWrite: false });
-    bottiglia.add(Object.assign(new THREE.Mesh(corpo, velo), { renderOrder: 1 }));
-  }
 
   /* Le etichette sono fogli appoggiati sul vetro, tagliati lungo i bordi misurati: il bordo è quello di un oggetto
      vero e resta netto a qualsiasi ingrandimento, invece di sfumare dentro una foto allargata.
@@ -489,8 +470,6 @@ export function monta(el, b, { inPagina = false, trasparente = false } = {}) {
     geo.computeVertexNormals();
     /* carta: opaca, prende solo le luci; alphaTest per i buchi (l'incavo dove si vede il vetro) */
     bottiglia.add(new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ map: p.mappa, alphaTest: 0.5 })));
-    /* il retro della carta: col vino chiaro si vede attraverso la bottiglia */
-    if (trasparente) bottiglia.add(new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color: 0xe9e3d6, side: THREE.BackSide })));
   };
 
   const meta = (foto, verso) => {
@@ -503,7 +482,7 @@ export function monta(el, b, { inPagina = false, trasparente = false } = {}) {
       if (verso > 0) {
         if (!chiaro) colora(telaVetro(img, b, raggio, alt));
         else {
-          vetro.uniforms.mappa.value = Object.assign(new THREE.CanvasTexture(mappaVetro(img, b, raggio, alt, trasparente)), {
+          vetro.uniforms.mappa.value = Object.assign(new THREE.CanvasTexture(mappaVetro(img, b, raggio, alt)), {
             colorSpace: THREE.SRGBColorSpace
           });
           vetro.visible = true;
