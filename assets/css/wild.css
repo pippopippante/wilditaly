@@ -827,9 +827,6 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .pdp2__cont{margin-top:22px;font-size:13px;color:var(--ink-soft)}
 .pdp2__cont strong{letter-spacing:.06em}
 .pdp2__cont a{color:var(--wine);text-decoration:underline;text-underline-offset:3px}
-.pdp2__fatti{margin:22px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.pdp2__fatti li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--ink-soft)}
-.pdp2__fatti li::before{content:"—";color:var(--olive)}
 
 /* barra in basso su telefono: solo il pulsante, a tutta larghezza */
 .buybar{

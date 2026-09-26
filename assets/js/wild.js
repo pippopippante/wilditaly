@@ -1501,11 +1501,7 @@ ${valori
       allergeni
         ? `<p class="pdp2__cont only-d"><strong>CONTIENE:</strong> ${esc(allergeni)} · <a href="#etichetta">ingredienti e valori</a></p>`
         : ""
-    }
-    <ul class="pdp2__fatti only-m">
-      <li>Spedizione sottovuoto, consegna in circa 48 ore</li>
-      ${allergeni ? `<li>Contiene: ${esc(allergeni)}</li>` : ""}
-    </ul>`
+    }`
     }
     ${chiedi("only-d")}
     ${galImg ? '<div class="gallery__pane" data-gal-pane hidden></div>' : ""}
