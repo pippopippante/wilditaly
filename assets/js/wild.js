@@ -1228,7 +1228,11 @@ ${
     /* ------- dati dell'etichetta: gli allergeni escono dagli ingredienti e vanno in "Contiene" */
     const mA = (p.ingredienti || "").match(/Allergeni:\s*([^.]+)\./);
     const allergeni = mA ? mA[1].trim().replace(/^contiene\s+/i, "") : ""; /* "Contiene: contiene solfiti" nei vini */
-    const ingrHtml = esc((p.ingredienti || "").replace(/\s*Allergeni:[^.]*\./, "").trim()).replace(
+    /* se nessun allergene è evidenziato negli ingredienti (i vini: "contiene solfiti") la frase dell'etichetta
+       resta, altrimenti su telefono non si vedrebbe da nessuna parte (Reg. UE 1169/2011, art. 14 e 21) */
+    const tieniAll = allergeni && !/^nessun/i.test(allergeni) && !/\b[A-ZÀÈÉÌÒÙ]{3,}\b/.test(p.ingredienti);
+    const ingrTesto = tieniAll ? p.ingredienti : (p.ingredienti || "").replace(/\s*Allergeni:[^.]*\./, "").trim();
+    const ingrHtml = esc(ingrTesto).replace(
       /\b[A-ZÀÈÉÌÒÙ]{3,}(?:\s+[A-ZÀÈÉÌÒÙ]{2,})*\b/g,
       "<strong>$&</strong>"
     );
