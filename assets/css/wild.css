@@ -710,20 +710,23 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .pdp-h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.875rem,1.4rem + 1.6vw,2.75rem);line-height:1.1;color:var(--ink-strong)}
 
 /* foto e scheda d'acquisto: su computer le foto a sinistra, la scheda a destra resta ferma scorrendo */
-.pdp2{display:grid;gap:22px;align-items:start;padding-bottom:28px}
+.pdp2{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:start;padding-bottom:28px}
 @media (min-width:1120px){
   .pdp2{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(32px,4.5vw,80px);padding-top:28px;padding-bottom:clamp(56px,6vw,96px)}
 }
 
-/* ---- galleria: su telefono a tutta larghezza e quadrata, su computer alta 640 px con le miniature a lato */
-.pdp2__gal{position:relative;display:flex;flex-direction:column;margin:0 calc(-1 * var(--pad))}
+/* ---- galleria: su telefono a tutta larghezza e quadrata con le miniature sotto (Baymard: meglio dei
+   pallini, fanno vedere cosa c'è nelle altre foto); su computer alta 640 px con le miniature a lato */
+.pdp2__gal{position:relative;display:flex;flex-direction:column-reverse;margin:0 calc(-1 * var(--pad))}
 @media (min-width:1120px){ .pdp2__gal{flex-direction:row;gap:10px;margin:0} }
-.gallery__thumbs{display:none}
+.gallery__thumbs{display:flex;gap:8px;min-width:0;padding:10px var(--pad) 0;overflow-x:auto;scrollbar-width:none}
+.gallery__thumbs::-webkit-scrollbar{display:none}
+.gallery__thumbs button{position:relative;flex:0 0 auto;width:64px;height:64px;background:var(--sand);overflow:hidden}
+.gallery__thumbs img{width:100%;height:100%;object-fit:cover}
+.gallery__thumbs button[aria-current="true"]{outline:2px solid var(--wine);outline-offset:-2px}
 @media (min-width:1120px){
-  .gallery__thumbs{display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
-  .gallery__thumbs button{position:relative;width:84px;height:84px;background:var(--sand);overflow:hidden}
-  .gallery__thumbs img{width:100%;height:100%;object-fit:cover}
-  .gallery__thumbs button[aria-current="true"]{outline:2px solid var(--wine);outline-offset:-2px}
+  .gallery__thumbs{flex-direction:column;flex:0 0 auto;padding:0;overflow:visible}
+  .gallery__thumbs button{width:84px;height:84px}
 }
 .gallery__main{position:relative;flex:1 1 auto;min-width:0;aspect-ratio:1/1;overflow:hidden;touch-action:pan-y}
 .gallery__main:not(.ph){background:var(--paper)}
@@ -750,10 +753,6 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
   .gallery__main .zoom__nav--prev{left:12px}
   .gallery__main .zoom__nav--next{right:12px}
 }
-.gallery__dots{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:center}
-.gallery__dots button{width:36px;height:36px;display:grid;place-items:center}
-.gallery__dots span{width:24px;height:3px;background:rgba(42,33,26,.2);transition:background .2s ease}
-.gallery__dots [aria-current="true"] span{background:var(--wine)}
 .gallery__lens{
   position:absolute;pointer-events:none;
   background:rgba(255,252,245,.35);border:1px solid rgba(42,33,26,.45);
@@ -899,8 +898,10 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 @media (min-width:1120px){ .band__bars{margin-top:28px;padding-top:22px;border-top:1px solid rgba(216,176,94,.3);max-width:360px} }
 .tbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .tbar__l{font-family:var(--label);font-size:11px;letter-spacing:.1em;color:#E3CFA6}
-.stars{color:var(--gold);font-size:17px;letter-spacing:.14em;line-height:1}
-.stars__off{color:#7A5A30}
+/* pallini e non stelle: le stelle si leggono come un voto (sessione 23) */
+.pallini{display:flex;gap:6px}
+.pallini i{width:10px;height:10px;border-radius:50%;background:#7A5A30}
+.pallini i.on{background:var(--gold)}
 .band__d{margin-top:22px;padding-top:20px;border-top:1px solid rgba(216,176,94,.3);font-family:var(--serif);font-size:19px;line-height:1.55;color:#EFE1C5;text-wrap:pretty}
 @media (min-width:1120px){ .band__d{margin:0;padding:34px 0 0;border:0;font-size:clamp(1.1875rem,1.05rem + .5vw,1.4375rem);line-height:1.6} }
 /* senza nota del bancone resta solo il racconto */

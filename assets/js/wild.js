@@ -1336,7 +1336,7 @@ ${valori
             (t) => `
 <div class="tbar">
   <span class="tbar__l">${esc(t.nome)}</span>
-  <span class="stars" role="img" aria-label="${t.valore} su 5">${"★".repeat(t.valore)}<span class="stars__off">${"★".repeat(5 - t.valore)}</span></span>
+  <span class="pallini" role="img" aria-label="livello ${t.valore} su 5">${[1, 2, 3, 4, 5].map((k) => `<i${k <= t.valore ? ' class="on"' : ""}></i>`).join("")}</span>
 </div>`
           )
           .join("")}</div>`
@@ -1469,13 +1469,6 @@ ${valori
           : ""
       }
     </div>
-    ${
-      galPiu
-        ? `<div class="gallery__dots only-m">${gal
-            .map((g, i) => `<button type="button" data-g="${i}" aria-label="Foto ${i + 1}" aria-current="${i === 0}"><span></span></button>`)
-            .join("")}</div>`
-        : ""
-    }
     ${
       galImg
         ? `<dialog class="zoom" data-zoom aria-label="Foto ingrandite">
@@ -1698,6 +1691,14 @@ ${abbHtml}`;
       const gi = $("[data-gal-i]", host);
       if (gi) gi.textContent = i + 1;
       $$("[data-g]", host).forEach((b) => b.setAttribute("aria-current", String(+b.dataset.g === i)));
+      /* su telefono la fila delle miniature scorre fino a quella della foto mostrata */
+      const row = $("[data-gal-thumbs]", host);
+      if (row && row.scrollWidth > row.clientWidth) {
+        const b = row.children[i], x = b.offsetLeft - row.offsetLeft, m = 20;
+        if (x - m < row.scrollLeft) row.scrollTo({ left: x - m, behavior: "smooth" });
+        else if (x + b.offsetWidth + m > row.scrollLeft + row.clientWidth)
+          row.scrollTo({ left: x + b.offsetWidth + m - row.clientWidth, behavior: "smooth" });
+      }
     };
 
     /* ------- come Amazon: su PC la miniatura cambia foto al passaggio del mouse e sulla foto
