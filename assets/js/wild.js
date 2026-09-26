@@ -615,6 +615,20 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   }
 
   /* ---------------------------------------------------------- fisarmoniche */
+  /* su computer il tondo WhatsApp copriva "EN": in fondo alla pagina si ferma 16 px sopra IT/EN */
+  function initWa() {
+    const wa = $(".wa"), lang = $(".lang"), pc = matchMedia("(min-width:1120px)");
+    const su = () => {
+      if (!pc.matches) return (wa.style.transform = "");
+      const fondo = innerHeight - parseFloat(getComputedStyle(wa).bottom);
+      const lift = Math.max(0, fondo - lang.getBoundingClientRect().top + 16);
+      wa.style.transform = lift ? `translateY(${-lift}px)` : "";
+    };
+    addEventListener("scroll", su, { passive: true });
+    addEventListener("resize", su);
+    su();
+  }
+
   function initAcc(root) {
     $$(".acc__t", root || document).forEach((b) => {
       if (b.dataset.on) return;
@@ -1836,6 +1850,7 @@ ${abbHtml}`;
     $$(".rail").forEach(initRail);
     initAcc();
     initSearch();
+    initWa();
 
     $$("[data-spedizione]").forEach((e) => (e.textContent = euro(C.bottega.spedizione)));
 
