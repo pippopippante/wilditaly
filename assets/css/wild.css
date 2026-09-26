@@ -103,7 +103,7 @@ input,select,textarea{font:inherit;color:inherit}
   outline:2px solid var(--focus,var(--wine));
   outline-offset:2px;
 }
-.sec--wood,.ftr,.tasting,.hero,.toast,.zoom{--focus:var(--gold)}
+.sec--wood,.ftr,.band,.hero,.toast,.zoom{--focus:var(--gold)}
 .skip{
   position:absolute;left:-9999px;top:0;z-index:200;
   background:var(--wine);color:var(--cream);padding:12px 18px;
@@ -312,14 +312,11 @@ input,select,textarea{font:inherit;color:inherit}
   text-transform:uppercase;color:var(--meta);padding-top:16px;
 }
 .crumbs a:hover{color:var(--wine)}
-/* scheda prodotto su telefono: solo "‹ Scaffale", il nome è già nell'header */
-@media (max-width:1119px){
-  body[data-pagina="prodotto"] .crumbs>a:first-child,
-  body[data-pagina="prodotto"] .crumbs__via{display:none}
-  body[data-pagina="prodotto"] .crumbs__cat::before{content:"‹ "}
-  /* sottolineato: si capisce che si tocca (Baymard, breadcrumb su telefono) */
-  body[data-pagina="prodotto"] .crumbs__cat{text-decoration:underline;text-underline-offset:3px}
-}
+/* scheda prodotto su telefono: solo "‹ Scaffale", il nome è già nell'header;
+   sottolineato, si capisce che si tocca (Baymard, breadcrumb su telefono) */
+body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
+.crumbs__cat::before{content:"‹ "}
+.crumbs__cat{text-decoration:underline;text-underline-offset:3px}
 
 /* ------------------------------------------------------- pannelli */
 .scrim{
@@ -706,26 +703,57 @@ input,select,textarea{font:inherit;color:inherit}
 .empty .h3{margin-bottom:8px}
 
 /* -------------------------------------------------------- pagina prodotto */
-.pdp{display:grid;gap:28px;align-items:start}
-@media (min-width:1120px){ .pdp{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px} }
+/* un solo markup per computer e telefono: .only-d si vede da 1120 px in su, .only-m sotto */
+@media (max-width:1119px){ .only-d{display:none!important} }
+@media (min-width:1120px){ .only-m{display:none!important} }
 
-.gallery__main{position:relative;height:430px}
-@media (min-width:760px){ .gallery__main{height:520px} }
-@media (min-width:1120px){ .gallery__main{height:560px} }
+.pdp-h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.875rem,1.4rem + 1.6vw,2.75rem);line-height:1.1;color:var(--ink-strong)}
+
+/* foto e scheda d'acquisto: su computer le foto a sinistra, la scheda a destra resta ferma scorrendo */
+.pdp2{display:grid;gap:22px;align-items:start;padding-bottom:28px}
+@media (min-width:1120px){
+  .pdp2{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(32px,4.5vw,80px);padding-top:28px;padding-bottom:clamp(56px,6vw,96px)}
+}
+
+/* ---- galleria: su telefono a tutta larghezza e quadrata, su computer alta 640 px con le miniature a lato */
+.pdp2__gal{position:relative;display:flex;flex-direction:column;margin:0 calc(-1 * var(--pad))}
+@media (min-width:1120px){ .pdp2__gal{flex-direction:row;gap:10px;margin:0} }
+.gallery__thumbs{display:none}
+@media (min-width:1120px){
+  .gallery__thumbs{display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
+  .gallery__thumbs button{position:relative;width:84px;height:84px;background:var(--sand);overflow:hidden}
+  .gallery__thumbs img{width:100%;height:100%;object-fit:cover}
+  .gallery__thumbs button[aria-current="true"]{outline:2px solid var(--wine);outline-offset:-2px}
+}
+.gallery__main{position:relative;flex:1 1 auto;min-width:0;aspect-ratio:1/1;overflow:hidden;touch-action:pan-y}
+.gallery__main:not(.ph){background:var(--paper)}
+@media (min-width:1120px){ .gallery__main{aspect-ratio:auto;height:640px} }
+.gallery__track{display:flex;height:100%;transition:transform .3s ease}
+@media (prefers-reduced-motion:reduce){ .gallery__track{transition:none} }
+.gallery__slide{position:relative;flex:0 0 100%;height:100%;display:grid;place-items:center}
+/* su telefono la foto sta intera; su computer riempie il riquadro e i bordi si tagliano un po' */
+.gallery__slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;cursor:zoom-in;user-select:none;-webkit-user-select:none}
+@media (min-width:1120px){ .gallery__slide img{object-fit:cover} }
 .gallery__count{
   position:absolute;top:14px;right:14px;background:rgba(43,32,21,.8);
-  color:#EFE2C8;font-size:11px;padding:5px 10px;
+  color:#EFE2C8;font-size:11px;letter-spacing:.06em;padding:5px 10px;pointer-events:none;
 }
 .gallery__tag{
   position:absolute;top:14px;left:14px;background:var(--olive);color:#F0EDDF;
   font-size:11px;letter-spacing:.14em;padding:6px 10px;
 }
-.gallery{position:relative}
-/* foto vere: intere nel riquadro grande, le fasce ai lati hanno il colore della pagina */
-.gallery__main--foto>img{object-fit:contain}
-.gallery__main--foto{background:var(--paper)}
-.gallery__main>img{cursor:zoom-in}
-.gallery__main .zoom__nav{width:40px;height:40px;font-size:26px}
+.gallery__main .zoom__nav{width:40px;height:40px;font-size:24px;background:rgba(43,32,21,.7)}
+.gallery__main .zoom__nav--prev{left:8px}
+.gallery__main .zoom__nav--next{right:8px}
+@media (min-width:1120px){
+  .gallery__main .zoom__nav{width:44px;height:44px;font-size:26px;background:rgba(43,32,21,.8)}
+  .gallery__main .zoom__nav--prev{left:12px}
+  .gallery__main .zoom__nav--next{right:12px}
+}
+.gallery__dots{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:center}
+.gallery__dots button{width:36px;height:36px;display:grid;place-items:center}
+.gallery__dots span{width:24px;height:3px;background:rgba(42,33,26,.2);transition:background .2s ease}
+.gallery__dots [aria-current="true"] span{background:var(--wine)}
 .gallery__lens{
   position:absolute;pointer-events:none;
   background:rgba(255,252,245,.35);border:1px solid rgba(42,33,26,.45);
@@ -739,8 +767,9 @@ input,select,textarea{font:inherit;color:inherit}
 /* a tutto schermo: la bottiglia si inclina anche col dito (niente pagina da scorrere) */
 .zoom .gallery__3d>canvas{touch-action:none!important}
 .gallery__3dtag{position:absolute;right:4px;bottom:4px;background:var(--wine);color:#F0EDDF;font-size:10px;letter-spacing:.1em;padding:2px 5px}
+/* l'ingrandimento della lente copre la scheda d'acquisto, alto quanto la foto */
 .gallery__pane{
-  position:absolute;top:0;left:calc(100% + 56px);width:calc(100% / 1.05);height:560px;z-index:5;
+  position:absolute;top:0;left:0;right:0;height:640px;z-index:5;
   background:var(--card) no-repeat;border:1px solid var(--line);box-shadow:0 12px 32px rgba(42,33,26,.18);
 }
 /* foto a tutto schermo; pinch, trascinamento e tocco li gestisce wild.js (touch-action:none:
@@ -759,73 +788,71 @@ input,select,textarea{font:inherit;color:inherit}
 .zoom__nav--prev{left:10px}
 .zoom__nav--next{right:10px}
 .zoom.is-zoom .zoom__nav{display:none}
-.gallery__thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:6px;background:var(--sand)}
-.gallery__thumbs button{height:70px;position:relative}
-.gallery__thumbs button[aria-current="true"]{outline:2px solid var(--wine);outline-offset:-2px}
+
+/* ---- scheda d'acquisto */
+.pdp2__buy{display:flex;flex-direction:column}
+@media (min-width:1120px){ .pdp2__buy{position:sticky;top:var(--pdp-top,112px)} }
+.pdp2__crumbs{padding-top:0;display:flex;gap:8px;flex-wrap:wrap;text-transform:none;letter-spacing:.06em}
+.pdp2__occ{margin-top:22px}
+.pdp2__h1{font-family:var(--serif);font-weight:500;font-size:38px;line-height:1.05;color:var(--ink-strong);text-wrap:balance}
 @media (min-width:1120px){
-  .gallery__thumbs{grid-template-columns:repeat(3,1fr);gap:14px;padding:14px 0 0;background:none}
-  .gallery__thumbs button{height:150px}
-  .gallery__thumbs button:nth-child(4){display:none}
+  .pdp2__h1{margin-top:8px;font-size:clamp(2.5rem,1.4rem + 2.8vw,4rem);line-height:1.02}
+  .pdp2__crumbs+.pdp2__h1{margin-top:22px}
 }
-/* miniature di foto vere: prendono la forma della foto, intere, senza fasce né ritagli */
-.gallery__main--foto~.gallery__thumbs{display:flex;flex-wrap:wrap;background:none;padding:8px 0 0}
-.gallery__main--foto~.gallery__thumbs button{width:auto;background:none}
-.gallery__main--foto~.gallery__thumbs button>img{position:static;display:block;width:auto;height:100%}
-.gallery .gallery__thumbs[hidden]{display:none} /* una foto sola: niente miniature */
+.pdp2__sub{margin-top:10px;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.3;color:var(--wine);text-wrap:pretty}
+@media (min-width:1120px){ .pdp2__sub{margin-top:14px;font-size:clamp(1.25rem,1.05rem + .6vw,1.5rem)} }
+.pdp2__price{margin-top:16px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+@media (min-width:1120px){ .pdp2__price{margin-top:24px;justify-content:space-between;gap:14px} }
+.pdp2__prezzo{font-family:var(--serif);font-size:34px;line-height:1;color:var(--ink-strong)}
+@media (min-width:1120px){ .pdp2__prezzo{font-size:clamp(2.25rem,1.8rem + 1.2vw,2.875rem)} }
+.pdp2__arrivo{margin-top:16px;font-size:15px;line-height:1.7;color:var(--muted)}
+@media (min-width:1120px){ .pdp2__arrivo{margin-top:20px;font-size:16px} }
+.pdp2__avvisami{margin-top:20px;min-height:58px}
 
-/* frase breve d'impatto sotto il nome del prodotto */
-.pdp__claim{font-family:var(--serif);font-style:italic;color:var(--ink-soft);margin-top:12px;max-width:34ch;
-  font-size:clamp(1.0625rem,.98rem + .4vw,1.3125rem);line-height:1.35;text-wrap:pretty}
-.pdp__price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:12px}
-.pdp__price .price{font-size:clamp(2rem,1.6rem + 1.6vw,2.75rem)}
-.tasting{background:var(--wine-deep);padding:22px 20px;margin-top:22px}
-@media (min-width:1120px){ .tasting{padding:28px 30px;margin-top:26px} }
-.tasting__bars{margin-top:18px;display:flex;flex-direction:column;gap:10px}
-.tbar{display:flex;align-items:center;gap:12px}
-.tbar__l{font-size:11px;letter-spacing:.1em;color:#E3CFA6;width:112px;flex:0 0 auto;white-space:nowrap}
-.stars{color:var(--gold);font-size:17px;letter-spacing:.14em;line-height:1}
-.stars__off{color:#7A5A30}
-
-
+.pdp2__fmt{margin-top:22px}
+@media (min-width:1120px){ .pdp2__fmt{margin-top:18px} }
 .formats{display:flex;gap:10px;margin-top:10px}
+@media (min-width:1120px){ .formats{margin-top:0;flex-wrap:wrap} }
 .formats button{
-  flex:1;text-align:center;border:1px solid var(--line-strong);
-  padding:14px 8px;font-size:14px;line-height:1.35;min-height:56px;background:var(--paper);
+  flex:1 1 0;text-align:center;border:1px solid var(--line-strong);
+  padding:12px 6px;font-size:14px;line-height:1.3;min-height:56px;background:var(--card);
 }
-.formats button small{display:block;font-size:12px;color:var(--meta-2);margin-top:2px}
+@media (min-width:1120px){ .formats button{flex:1 1 120px;min-height:52px;padding:10px} }
+.formats button small{display:block;font-size:12px;color:var(--meta-2)}
 .formats button[aria-pressed="true"]{border:2px solid var(--wine);background:#F3EADA}
 
-
-.buy{display:flex;align-items:flex-end;gap:16px;margin-top:26px;flex-wrap:wrap}
+/* quantità e "Aggiungi": − n + a misura fissa, il pulsante prende il resto */
+.buy2{display:flex;gap:10px;margin-top:18px}
+.qty{display:flex;align-items:center;flex:0 0 auto;height:58px;border:1px solid var(--line-strong);background:var(--card)}
+.qty button{width:46px;height:100%;font-size:20px;color:var(--ink-soft)}
+.qty button:hover{color:var(--wine)}
+.qty__n{min-width:26px;text-align:center;font-size:16px;font-variant-numeric:tabular-nums}
+.buy2__go{flex:1 1 auto;min-width:0;height:58px;padding:0 16px;font-size:14px;letter-spacing:.08em;white-space:nowrap}
+.buy2__go.is-added,.buy2__go.is-added:hover{background:var(--olive)}
 .buy__note{margin-top:12px;font-size:13px;color:var(--muted);text-align:center}
+.pdp2__cont{margin-top:22px;font-size:13px;color:var(--ink-soft)}
+.pdp2__cont strong{letter-spacing:.06em}
+.pdp2__cont a{color:var(--wine);text-decoration:underline;text-underline-offset:3px}
+.pdp2__fatti{margin:22px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.pdp2__fatti li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--ink-soft)}
+.pdp2__fatti li::before{content:"—";color:var(--olive)}
 
-.acc{margin-top:26px}
-.acc__i{border-top:1px solid var(--line)}
-.acc__i:last-child{border-bottom:1px solid var(--line)}
-.acc__t{
-  display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;
-  padding:18px 0;font-family:var(--serif);font-size:21px;text-align:left;color:var(--ink-strong);
-}
-.acc__t .ico{width:16px;height:16px;color:var(--meta);flex:0 0 auto;transition:transform .2s ease}
-.acc__t[aria-expanded="true"] .ico{transform:rotate(180deg)}
-.acc__p{padding:0 0 18px;font-size:14px;line-height:1.8;color:var(--muted)}
-.acc__p[hidden]{display:none}
-
-/* barra acquisto fissa mobile (2b) */
+/* barra in basso su telefono: − n + con le righe fra i numeri */
 .buybar{
   position:fixed;left:0;right:0;bottom:var(--bar-h);z-index:65;
   background:var(--paper);border-top:1px solid var(--line);
-  padding:12px var(--pad) 12px;display:flex;gap:12px;align-items:center;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;
   transition:bottom .3s ease;
 }
-.buybar .btn{flex:1;white-space:nowrap}
+.buybar>.btn{flex:1;white-space:nowrap}
+.buy2--bar{flex:1;margin:0;gap:12px}
+.buy2--bar .qty{height:52px;background:none}
+.buy2--bar .qty button{width:44px}
+.buy2--bar .qty__n{width:34px;align-self:stretch;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line-strong);border-right:1px solid var(--line-strong);font-size:15px}
+.buy2--bar .buy2__go{height:52px;font-size:13px}
 @media (min-width:1120px){ .buybar{display:none} }
-/* su telefono il pulsante sta solo nella barra, sempre visibile (GrowthRock: +5,2% ordini);
-   in fondo alla pagina serve spazio in più perché la barra non copra il footer */
-@media (max-width:1119px){
-  body[data-pagina="prodotto"] .buy{display:none}
-  body[data-pagina="prodotto"]{padding-bottom:calc(var(--bar-h) + 77px)}
-}
+/* in fondo alla pagina serve spazio in più perché la barra non copra il footer */
+@media (max-width:1119px){ body[data-pagina="prodotto"]{padding-bottom:calc(var(--bar-h) + 77px)} }
 /* scheda su telefono, scorrendo in giù (is-giu, wild.js): header e barra in basso escono, "Aggiungi" scende in fondo */
 @media (max-width:1119px){
   body[data-pagina="prodotto"] .hdr,body[data-pagina="prodotto"] .tabbar{transition:transform .3s ease}
@@ -834,8 +861,9 @@ input,select,textarea{font:inherit;color:inherit}
   body.is-giu .buybar{bottom:0}
 }
 
-/* "Dubbi? Chiedi alla bottega": WhatsApp e telefono dopo la descrizione */
-.chiedi{margin-top:22px;padding:16px;border:1px solid var(--line);background:var(--sand)}
+/* "Dubbi? Chiedi alla bottega": su computer nella scheda d'acquisto, su telefono dopo l'etichetta */
+.chiedi{padding:16px;border:1px solid var(--line);background:var(--sand)}
+.chiedi--m{margin:22px var(--pad) 0}
 .chiedi p{font-size:15px;line-height:1.5;color:var(--ink-soft)}
 .chiedi strong{color:var(--ink)}
 .chiedi__btns{display:flex;gap:10px;margin-top:12px}
@@ -847,6 +875,102 @@ input,select,textarea{font:inherit;color:inherit}
 .chiedi__btns svg{width:20px;height:20px}
 .chiedi__btns .chiedi__wa{background:#1F7A45;border-color:#1F7A45;color:#fff}
 .chiedi__btns .chiedi__wa:hover{background:#17613A;color:#fff}
+.chiedi--m .chiedi__btns .ico{display:none}
+.chiedi__tel{display:none}
+@media (min-width:1120px){
+  .pdp2__buy .chiedi{margin-top:26px;padding:20px 22px;display:flex;flex-direction:column;gap:16px}
+  .pdp2__buy .chiedi p{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
+  .pdp2__buy .chiedi strong{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.2;color:var(--ink-strong)}
+  .pdp2__buy .chiedi__btns{display:grid;grid-template-columns:1fr 1fr;margin-top:0}
+  .pdp2__buy .chiedi__btns a{min-height:50px}
+  .pdp2__buy .chiedi__btns a:not(.chiedi__wa){background:var(--paper)}
+  .chiedi__tel{display:block;font-size:12px;color:var(--meta)}
+}
+
+/* ---- la nota del bancone e il racconto, sulla fascia bordeaux a tutta larghezza */
+.band{background:var(--wine-deep);--focus:var(--gold)}
+.band__in{padding-top:28px;padding-bottom:30px}
+@media (min-width:1120px){
+  .band__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(28px,5vw,96px);align-items:start;padding-top:clamp(56px,6vw,104px);padding-bottom:clamp(56px,6vw,104px)}
+}
+.band__q{margin-top:12px;font-family:var(--serif);font-style:italic;font-size:28px;line-height:1.25;color:#F7EFDF;text-wrap:pretty}
+@media (min-width:1120px){ .band__q{margin-top:18px;font-size:clamp(2rem,1.4rem + 1.8vw,3.25rem);line-height:1.15;text-wrap:balance} }
+.band__bars{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+@media (min-width:1120px){ .band__bars{margin-top:28px;padding-top:22px;border-top:1px solid rgba(216,176,94,.3);max-width:360px} }
+.tbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tbar__l{font-family:var(--label);font-size:11px;letter-spacing:.1em;color:#E3CFA6}
+.stars{color:var(--gold);font-size:17px;letter-spacing:.14em;line-height:1}
+.stars__off{color:#7A5A30}
+.band__d{margin-top:22px;padding-top:20px;border-top:1px solid rgba(216,176,94,.3);font-family:var(--serif);font-size:19px;line-height:1.55;color:#EFE1C5;text-wrap:pretty}
+@media (min-width:1120px){ .band__d{margin:0;padding:34px 0 0;border:0;font-size:clamp(1.1875rem,1.05rem + .5vw,1.4375rem);line-height:1.6} }
+/* senza nota del bancone resta solo il racconto */
+.band--solo .band__d{margin:0;padding-top:0;border:0}
+@media (min-width:1120px){ .band--solo .band__in{display:block} .band--solo .band__d{max-width:68ch} }
+
+/* ---- in etichetta: su computer come un'etichetta vera, su telefono a sezioni che si aprono */
+.etk{padding:30px 0 8px;scroll-margin-top:80px}
+@media (min-width:1120px){ .etk{padding:clamp(56px,6vw,104px) 0} }
+.etk__top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.etk__box{margin-top:28px;border:1px solid var(--ink-strong);background:var(--card);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.etk__l{padding:clamp(22px,2.4vw,36px);border-right:1px solid var(--ink-strong);display:flex;flex-direction:column;gap:28px}
+.etk__r{padding:clamp(22px,2.4vw,36px)}
+.etk__ingr{margin-top:10px;font-size:15px;line-height:1.75;color:var(--muted);text-wrap:pretty}
+.etk strong{color:var(--ink-strong)}
+.etk__list{margin:10px 0 0;padding:0;list-style:none}
+.etk__list li{padding:9px 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-strong)}
+.etk__list em{color:var(--meta)}
+.etk__foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;padding-top:24px;border-top:1px solid var(--line);margin-top:auto}
+.etk__foot p{margin-top:8px;font-size:14px;line-height:1.65;color:var(--muted);text-wrap:pretty}
+.etk__vt{font-family:var(--serif);font-size:26px;line-height:1.1;color:var(--ink-strong)}
+.nutri{margin-top:12px}
+.nutri__h{display:flex;justify-content:space-between;font-family:var(--label);font-size:11px;letter-spacing:.1em;color:var(--meta);text-transform:uppercase;padding-bottom:8px;border-bottom:4px solid var(--ink-strong)}
+.nutri__r{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line-strong);font-size:14px;color:var(--ink-strong)}
+.nutri__r span:last-child{font-variant-numeric:tabular-nums;text-align:right}
+.nutri__r--sub{padding-left:18px;color:var(--muted)}
+.nutri--box{margin:0;background:var(--card);border:1px solid var(--ink-strong);padding:14px 16px}
+.nutri--box .nutri__r{padding-top:8px;padding-bottom:8px;border-bottom-color:var(--line)}
+.etk__acc{margin-top:14px;border-top:1px solid var(--line-strong)}
+.acc__i{border-bottom:1px solid var(--line-strong)}
+.acc__t{
+  display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:60px;
+  font-family:var(--serif);font-size:21px;text-align:left;color:var(--ink-strong);
+}
+.acc__t::after{content:"+";font-family:var(--sans);font-size:20px;color:var(--meta)}
+.acc__t[aria-expanded="true"]::after{content:"−"}
+.acc__p{padding:0 0 18px;font-size:14px;line-height:1.75;color:var(--muted)}
+.acc__p[hidden]{display:none}
+.acc__p .etk__list{margin-top:0}
+.acc__p .etk__list li{font-size:14px}
+
+/* ---- abbinalo a: su telefono si scorre di lato, su computer due schede affiancate */
+.abb2{margin-top:32px;padding:28px 0 30px;background:var(--sand)}
+@media (min-width:1120px){ .abb2{margin-top:0;padding:clamp(40px,4vw,64px) 0} }
+.abb2__list{
+  margin-top:16px;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:0 var(--pad);scroll-padding:0 var(--pad);scrollbar-width:none;
+}
+.abb2__list::-webkit-scrollbar{display:none}
+.abb2__c{flex:0 0 78%;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
+.abb2__img{position:relative;display:block;aspect-ratio:4/3}
+.abb2__img .ph{position:absolute;inset:0}
+.abb2__b{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1 1 auto;min-width:0}
+.abb2__n{font-family:var(--serif);font-size:21px;line-height:1.2;color:var(--ink-strong)}
+.abb2__n:hover{color:var(--wine)}
+.abb2__t{font-size:13px;line-height:1.55;color:var(--muted);text-wrap:pretty}
+.abb2__f{margin-top:auto;padding-top:10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.abb2__p{font-family:var(--serif);font-size:22px;color:var(--ink-strong)}
+.abb2__add{min-height:44px;height:44px;min-width:124px;font-size:12px;letter-spacing:.1em}
+@media (min-width:1120px){
+  .abb2__list{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(16px,2vw,28px);overflow:visible}
+  .abb2__c{flex-direction:row}
+  .abb2__img{flex:0 0 40%;aspect-ratio:auto;min-height:220px}
+  .abb2__b{padding:clamp(20px,2vw,28px);gap:8px}
+  .abb2__n{font-size:clamp(1.5rem,1.2rem + .8vw,2rem);line-height:1.15}
+  .abb2__t{font-size:14px;line-height:1.6}
+  .abb2__f{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
+  .abb2__p{font-size:26px}
+  .abb2__add{min-height:48px;height:48px;min-width:132px;font-size:13px}
+}
 
 .pair{display:grid;gap:var(--gap);align-items:center}
 @media (min-width:1120px){ .pair{grid-template-columns:280px minmax(0,1fr) auto;background:var(--paper)} }

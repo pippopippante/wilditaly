@@ -1208,12 +1208,11 @@ ${
     if (ctxT) ctxT.textContent = p.nome;
 
     let formato = p.formati ? p.formati[0].nome : null;
-    const prezzoCorrente = () => {
-      if (!p.formati) return p.prezzo;
-      return (p.formati.find((f) => f.nome === formato) || p.formati[0]).prezzo;
-    };
+    let qta = 1;
+    const fCorrente = () => (p.formati ? p.formati.find((f) => f.nome === formato) || p.formati[0] : p);
+    const prezzoCorrente = () => fCorrente().prezzo;
     const pesoCorrente = () => {
-      const f = p.formati ? p.formati.find((x) => x.nome === formato) || p.formati[0] : p;
+      const f = fCorrente();
       return [f.peso, alKg(f.prezzo, f)].filter(Boolean).join(" · ");
     };
 
@@ -1227,57 +1226,112 @@ ${
     const craft =
       p.artigianale && CONFIG.mostraBadgeArtigianale ? '<span class="gallery__tag">ARTIGIANALE</span>' : "";
 
-    /* ------- pannelli informativi */
+    /* ------- dati dell'etichetta: gli allergeni escono dagli ingredienti e vanno in "Contiene" */
+    const mA = (p.ingredienti || "").match(/Allergeni:\s*([^.]+)\./);
+    const allergeni = mA ? mA[1].trim().replace(/^contiene\s+/i, "") : ""; /* "Contiene: contiene solfiti" nei vini */
+    const ingrHtml = esc((p.ingredienti || "").replace(/\s*Allergeni:[^.]*\./, "").trim()).replace(
+      /\b[A-ZÀÈÉÌÒÙ]{3,}(?:\s+[A-ZÀÈÉÌÒÙ]{2,})*\b/g,
+      "<strong>$&</strong>"
+    );
+
+    /* "Per 100 g: energia … · grassi 36,0 g (saturi 13,0 g) · …" diventa una tabella come in etichetta */
+    let valTesta = "per 100 g";
+    const valori = [];
+    if (p.valori) {
+      const m = p.valori.match(/^([^:]+):\s*(.*)$/);
+      if (m) valTesta = m[1].replace(/^Per/i, "per");
+      const kv = (s) => {
+        const x = s.match(/^(.*?[a-zà-ù])\s+([\d<].*)$/i);
+        return x ? [x[1], x[2]] : [s, ""];
+      };
+      (m ? m[2] : p.valori).split(/\s*·\s*/).forEach((r) => {
+        const sub = r.match(/^(.*?)\s*\((.*)\)\s*$/);
+        const [k, v] = kv(sub ? sub[1] : r);
+        valori.push({ k: k.charAt(0).toUpperCase() + k.slice(1), v });
+        if (sub)
+          sub[2].split(/,\s*(?=[a-z])/i).forEach((x) => {
+            const [k2, v2] = kv(x);
+            valori.push({ k: "di cui " + k2, v: v2, sub: true });
+          });
+      });
+    }
+    const valoriHtml = `
+<div class="nutri__h"><span>Valori medi</span><span>${esc(valTesta)}</span></div>
+${valori
+  .map((v) => `<div class="nutri__r${v.sub ? " nutri__r--sub" : ""}"><span>${esc(v.k)}</span><span>${esc(v.v)}</span></div>`)
+  .join("")}`;
+
+    const contHtml = p.contenuto
+      ? `<ul class="etk__list">${p.contenuto
+          .map((x) => `<li>${esc(x.t)}${x.n ? ` <em>· ${esc(x.n)}</em>` : ""}</li>`)
+          .join("")}</ul>`
+      : "";
+    const prodHtml = p.produttore
+      ? p.produttore.daDefinire
+        ? `<div class="todo">DA DEFINIRE · ${esc(p.produttore.testo)}</div>`
+        : esc(p.produttore.testo)
+      : "";
+
+    /* su telefono l'etichetta è a sezioni che si aprono; si parte con contenuto e ingredienti aperti */
     const acc = [];
+    if (p.contenuto) acc.push({ t: "Cosa contiene", h: contHtml, open: true });
     if (p.ingredienti)
       acc.push({
         t: "Ingredienti",
-        p: (p.denominazione ? `Denominazione: ${p.denominazione}. ` : "") + p.ingredienti,
+        h: `<p>${p.denominazione ? `Denominazione: ${esc(p.denominazione)}. ` : ""}${ingrHtml}</p>`,
         open: true
       });
-    if (p.valori) acc.push({ t: "Valori nutrizionali", p: p.valori, open: false });
-    if (p.conservazione) acc.push({ t: "Conservazione e spedizione", p: p.conservazione, open: true });
-    if (p.produttore)
-      acc.push({
-        t: "Il produttore",
-        p: p.produttore.testo,
-        todo: p.produttore.daDefinire,
-        open: false
-      });
-    if (p.contenuto)
-      acc.unshift({
-        t: "Cosa contiene",
-        html: `<ul class="speclist" style="margin-top:0">${p.contenuto
-          .map((x) => `<li><span>${esc(x.t)}${x.n ? ` <em>· ${esc(x.n)}</em>` : ""}</span></li>`)
-          .join("")}</ul>`,
-        open: true
-      });
-
+    if (valori.length) acc.push({ t: "Valori nutrizionali", h: `<div class="nutri nutri--box">${valoriHtml}</div>` });
+    if (p.conservazione) acc.push({ t: "Conservazione e spedizione", h: `<p>${esc(p.conservazione)}</p>` });
+    if (p.produttore) acc.push({ t: "Il produttore", h: `<p>${prodHtml}</p>` });
     const accHtml = acc
-      .map((a, i) => {
-        const id = "acc-" + i;
-        const corpo = a.html
-          ? a.html
-          : a.todo
-          ? `<div class="todo">DA DEFINIRE · ${esc(a.p)}</div>`
-          : `${esc(a.p)}`;
-        return `
+      .map(
+        (a, i) => `
 <div class="acc__i">
-  <button class="acc__t" aria-expanded="${a.open}" aria-controls="${id}">${esc(a.t)} ${ico("down")}</button>
-  <div class="acc__p" id="${id}"${a.open ? "" : " hidden"}>${corpo}</div>
-</div>`;
-      })
+  <button class="acc__t" aria-expanded="${!!a.open}" aria-controls="acc-${i}">${esc(a.t)}</button>
+  <div class="acc__p" id="acc-${i}"${a.open ? "" : " hidden"}>${a.h}</div>
+</div>`
+      )
       .join("");
 
-    /* ------- profilo di gusto */
-    const tasting = p.notaBancone
+    const etichetta = acc.length
       ? `
-<div class="tasting">
-  <div class="eyebrow eyebrow--gold">LA NOTA DI GUSTO DEL BANCONE</div>
-  <p class="quote" style="margin-top:10px">${esc(p.notaBancone)}</p>
-  ${
-    p.profilo
-      ? `<div class="tasting__bars">${p.profilo
+<section class="etk" id="etichetta" aria-labelledby="t-etk">
+  <div class="wrap">
+    <div class="etk__top">
+      <h2 class="pdp-h2" id="t-etk">In etichetta</h2>
+      ${p.denominazione ? `<span class="meta only-d">Denominazione: ${esc(p.denominazione)}</span>` : ""}
+    </div>
+    <div class="etk__box only-d">
+      <div class="etk__l">
+        ${contHtml ? `<div><span class="eyebrow">Cosa contiene</span>${contHtml}</div>` : ""}
+        ${p.ingredienti ? `<div><span class="eyebrow">Ingredienti</span><p class="etk__ingr">${ingrHtml}</p></div>` : ""}
+        ${
+          p.conservazione || p.produttore
+            ? `<div class="etk__foot">
+          ${p.conservazione ? `<div><span class="eyebrow">Conservazione e spedizione</span><p>${esc(p.conservazione)}</p></div>` : ""}
+          ${p.produttore ? `<div><span class="eyebrow">Il produttore</span><p>${prodHtml}</p></div>` : ""}
+        </div>`
+            : ""
+        }
+      </div>
+      <div class="etk__r">
+        ${
+          valori.length
+            ? `<span class="etk__vt">Valori nutrizionali</span><div class="nutri">${valoriHtml}</div>`
+            : '<p class="meta">Valori nutrizionali non riportati per questo prodotto.</p>'
+        }
+      </div>
+    </div>
+    <div class="acc etk__acc only-m">${accHtml}</div>
+  </div>
+</section>`
+      : "";
+
+    /* ------- nota del bancone e racconto: la fascia bordeaux */
+    const quote = (p.notaBancone || "").replace(/^[«"]|[»"]$/g, "");
+    const profilo = p.profilo
+      ? `<div class="band__bars">${p.profilo
           .map(
             (t) => `
 <div class="tbar">
@@ -1286,16 +1340,31 @@ ${
 </div>`
           )
           .join("")}</div>`
-      : ""
-  }
-</div>`
       : "";
+    const band =
+      quote || p.descrizione
+        ? `
+<section class="band${quote ? "" : " band--solo"}">
+  <div class="wrap band__in">
+    ${
+      quote
+        ? `<div>
+      <span class="eyebrow eyebrow--gold">LA NOTA DI GUSTO DEL BANCONE</span>
+      <p class="band__q">${esc(quote)}</p>
+      ${profilo}
+    </div>`
+        : ""
+    }
+    ${p.descrizione ? `<p class="band__d">${esc(p.descrizione)}</p>` : ""}
+  </div>
+</section>`
+        : "";
 
     /* ------- formati */
     const formati = p.formati
       ? `
-<div style="margin-top:26px">
-  <div class="eyebrow">FORMATO</div>
+<div class="pdp2__fmt">
+  <div class="eyebrow only-m">FORMATO</div>
   <div class="formats" role="group" aria-label="Formato">
     ${p.formati
       .map(
@@ -1307,150 +1376,199 @@ ${
 </div>`
       : "";
 
-    const old = p.prezzoPieno ? `<span class="price--old">${euro(p.prezzoPieno)}</span>` : "";
-    /* ordine: prezzo, formato e pulsante subito (si decide), poi descrizione e nota (si legge),
-       poi "Dubbi?" (dopo la spiegazione, scelta dell'utente) e le sezioni che si aprono */
-    host.innerHTML = `
-<div class="wrap">
-  <nav class="crumbs" aria-label="Percorso">
-    <a href="index.html">Bottega</a><span class="crumbs__via"> / </span><a class="crumbs__cat" href="${c.pagina || "categoria.html?c=" + p.categoria}">${esc(c.nome || "")}</a><span class="crumbs__via"> / ${esc(p.nome)}</span>
-  </nav>
-</div>
-
-<div class="wrap sec sec--tight">
-  <div class="pdp">
-    <div class="gallery">
-      <div class="ph ph--2 gallery__main${galImg ? " gallery__main--foto" : ""}" data-gal-main>
-        ${
-          galImg
-            ? `<img src="${esc(galImg[0])}" alt="${esc(gal[0])}" data-gal-img><span class="gallery__lens" data-gal-lens hidden></span>`
-            : `<span class="ph__note" data-gal-note>${esc(gal[0])}</span>`
-        }
-        ${tre ? '<div class="gallery__3d" data-gal-3d hidden><span class="meta gallery__hint">Trascina per girare la bottiglia</span></div>' : ""}
-        ${craft}
-        ${
-          galPiu
-            ? `<span class="gallery__count"><span data-gal-i>1</span> / ${gal.length}</span>
-        <button type="button" class="zoom__nav zoom__nav--prev" data-gal-step="-1" aria-label="Foto precedente">‹</button>
-        <button type="button" class="zoom__nav zoom__nav--next" data-gal-step="1" aria-label="Foto successiva">›</button>`
-            : ""
-        }
-      </div>
-      <div class="gallery__thumbs" data-gal-thumbs${galPiu ? "" : " hidden"}>
-        ${gal
-          .map(
-            (g, i) => `
-<button type="button" class="ph ph--3" data-g="${i}" aria-label="Mostra: ${esc(g)}"${i === 0 ? ' aria-current="true"' : ""}>
-  ${
-    galImg
-      ? galImg[i]
-        ? `<img src="${esc(galImg[i])}" alt="" loading="lazy">`
-        : `<img src="${esc(galImg[0])}" alt="" loading="lazy"><span class="gallery__3dtag">3D</span>`
-      : `<span class="ph__note">${esc(g.replace(/^FOTO \d+:\s*/, ""))}</span>`
-  }
-</button>`
-          )
-          .join("")}
-      </div>
-      ${galImg ? `<div class="gallery__pane" data-gal-pane hidden></div>` : ""}
-      ${
-        galImg
-          ? `<dialog class="zoom" data-zoom aria-label="Foto ingrandite">
-        <div class="zoom__stage" data-zoom-stage><img src="${esc(galImg[0])}" alt="" draggable="false" data-zoom-img></div>
-        <button type="button" class="zoom__x" data-zoom-close aria-label="Chiudi">×</button>
-        ${
-          gal.length > 1
-            ? `<button type="button" class="zoom__nav zoom__nav--prev" data-zoom-step="-1" aria-label="Foto precedente">‹</button>
-        <button type="button" class="zoom__nav zoom__nav--next" data-zoom-step="1" aria-label="Foto successiva">›</button>`
-            : ""
-        }
-        <span class="gallery__count"><span data-zoom-i>1</span> / ${gal.length}</span>
-      </dialog>`
-          : ""
-      }
-    </div>
-
-    <div>
-      ${p.occhiello ? `<div class="eyebrow eyebrow--olive">${esc(p.occhiello)}</div>` : ""}
-      <h1 class="h1" style="margin-top:8px">${esc(p.nome)}</h1>
-      ${p.claim ? `<p class="pdp__claim">${esc(p.claim)}</p>` : ""}
-
-      ${
-        p.inArrivo
-          ? '<p class="body body--lg" style="margin-top:16px">Questo box sta per entrare in bottega. Scrivici se vuoi essere avvisato.</p>'
-          : `
-      <div class="pdp__price">
-        <span class="price" data-prezzo>${euro(prezzoCorrente())}</span>${old}
-        <span class="meta" data-peso>${esc(pesoCorrente())}</span>
-      </div>`
-      }
-
-      ${p.inArrivo ? "" : formati}
-
-      ${
-        p.inArrivo
-          ? `<a class="btn btn--wineline btn--block" style="margin-top:26px" href="info.html#contatti">Avvisami quando arriva</a>`
-          : `
-      <div class="buy" data-buy></div>
-      <p class="buy__note">Spedizione sottovuoto · consegna in circa 48 ore</p>`
-      }
-
-      ${p.descrizione ? `<p class="body body--lg" style="margin-top:26px">${esc(p.descrizione)}</p>` : ""}
-      ${tasting}
-
-      <div class="chiedi">
-        <p><strong>Dubbi? Chiedi alla bottega.</strong> Ti rispondiamo su formati, abbinamenti e spedizione.</p>
-        <div class="chiedi__btns">
-          <a class="chiedi__wa" href="${WA}?text=${encodeURIComponent("Buongiorno, scrivo dal sito per " + p.nome + ": ")}" target="_blank" rel="noopener">${WA_ICO} WhatsApp</a>
-          <a href="${C.bottega.telHref}">${ico("phone")} Chiama</a>
-        </div>
-      </div>
-
-      ${accHtml ? `<div class="acc">${accHtml}</div>` : ""}
-    </div>
+    /* ------- quantità e "Aggiungi": nella scheda su computer, nella barra fissa su telefono */
+    const buyHtml = (cls) => `
+<div class="buy2 ${cls}">
+  <div class="qty" role="group" aria-label="Quantità">
+    <button type="button" data-q="-1" aria-label="Uno in meno">−</button>
+    <span class="qty__n" data-qty>${qta}</span>
+    <button type="button" data-q="1" aria-label="Uno in più">+</button>
   </div>
+  <button type="button" class="btn btn--wine buy2__go" data-buy-go></button>
+</div>`;
+
+    /* ------- "Dubbi? Chiedi alla bottega": su computer nella colonna d'acquisto, su telefono dopo l'etichetta */
+    const chiedi = (cls) => `
+<div class="chiedi ${cls}">
+  <p><strong>Dubbi? Chiedi alla bottega.</strong> <span>Ti rispondiamo su formati, abbinamenti e spedizione.</span></p>
+  <div class="chiedi__btns">
+    <a class="chiedi__wa" href="${WA}?text=${encodeURIComponent("Buongiorno, scrivo dal sito per " + p.nome + ": ")}" target="_blank" rel="noopener">${WA_ICO} WhatsApp</a>
+    <a href="${C.bottega.telHref}">${ico("phone")} Chiama</a>
+  </div>
+  <span class="chiedi__tel">${esc(C.bottega.tel)} · ${esc(C.bottega.orari)}</span>
 </div>`;
 
     /* ------- abbinamenti */
-    const abb = (p.abbinamenti || []).map(C.get).filter(Boolean);
-    const abbHost = $("[data-pdp-abbinamenti]");
-    if (abb.length && abbHost) {
-      abbHost.hidden = false;
-      $("[data-abb-rail]").innerHTML = abb
-        .map(
-          (a) => `
-<article class="box-card">
-  <a href="prodotto.html?p=${a.slug}" aria-label="${esc(a.nome)}">${ph(a.foto, "", "", a.img)}</a>
-  <div class="box-card__b">
-    <a class="box-card__n" href="prodotto.html?p=${a.slug}">${esc(a.nome)}</a>
-    ${a.notaAbbinamento || a.nota ? `<p class="body" style="margin-top:6px;font-size:13px">${esc(a.notaAbbinamento || a.nota)}</p>` : ""}
-    <div class="pricerow" style="margin-top:auto;padding-top:14px">
-      <span class="price" style="font-size:22px">${euro(a.prezzo)}</span>
-      ${a.prezzoPieno ? `<span class="price--old">${euro(a.prezzoPieno)}</span>` : ""}
-      ${alKg(a.prezzo, a) ? `<span class="meta">${alKg(a.prezzo, a)}</span>` : ""}
+    const abb = (p.abbinamenti || []).map(C.get).filter(Boolean).slice(0, 4);
+    const abbHtml = abb.length
+      ? `
+<section class="abb2" aria-labelledby="t-abb">
+  <div class="wrap"><h2 class="pdp-h2" id="t-abb">Abbinalo a</h2></div>
+  <div class="abb2__list">
+    ${abb
+      .map((a) => {
+        const testo = a.descrizioneBreve || a.nota || a.claim || "";
+        return `
+<article class="abb2__c">
+  <a class="abb2__img" href="prodotto.html?p=${a.slug}" tabindex="-1" aria-hidden="true">${ph(a.foto, "", "", a.img)}</a>
+  <div class="abb2__b">
+    ${a.occhiello ? `<span class="eyebrow eyebrow--olive only-d">${esc(a.occhiello)}</span>` : ""}
+    <a class="abb2__n" href="prodotto.html?p=${a.slug}">${esc(a.nome)}</a>
+    ${testo ? `<p class="abb2__t">${esc(testo)}</p>` : ""}
+    <div class="abb2__f">
+      <span class="abb2__p">${euro(a.prezzo)}</span>
+      ${a.inArrivo ? "" : addq(a, "btn--wineline abb2__add", "Aggiungi")}
     </div>
-    ${addq(a, "btn--dark btn--sm btn--block addq--mt2", "Aggiungi")}
   </div>
-</article>`
-        )
-        .join("");
-    } else if (abbHost) {
-      abbHost.remove();
-    }
+</article>`;
+      })
+      .join("")}
+  </div>
+</section>`
+      : "";
 
-    /* ------- interazioni della scheda */
+    /* ------- galleria: le foto stanno in fila e scorrono (col dito su telefono) */
+    const slides = galImg
+      ? galImg
+          .map((src, i) => `<div class="gallery__slide"><img src="${esc(src)}" alt="${esc(gal[i])}" draggable="false" data-gal-img></div>`)
+          .join("") +
+        (tre
+          ? '<div class="gallery__slide" data-slide-3d><div class="gallery__3d" data-gal-3d hidden><span class="meta gallery__hint">Trascina per girare la bottiglia</span></div></div>'
+          : "")
+      : `<div class="gallery__slide"><span class="ph__note">${esc(gal[0])}</span></div>`;
+
+    const cat = c.pagina || "categoria.html?c=" + p.categoria;
+    const old = p.prezzoPieno ? `<span class="price--old">${euro(p.prezzoPieno)}</span>` : "";
+
+    host.innerHTML = `
+<div class="wrap only-m">
+  <nav class="crumbs" aria-label="Percorso"><a class="crumbs__cat" href="${cat}">${esc(c.nome || "")}</a></nav>
+</div>
+
+<section class="wrap pdp2">
+  <div class="pdp2__gal">
+    ${
+      galImg && galPiu
+        ? `<div class="gallery__thumbs" data-gal-thumbs>${gal
+            .map(
+              (g, i) =>
+                `<button type="button" data-g="${i}" aria-label="Mostra: ${esc(g)}" aria-current="${i === 0}"><img src="${esc(galImg[i] || galImg[0])}" alt="">${galImg[i] ? "" : '<span class="gallery__3dtag">3D</span>'}</button>`
+            )
+            .join("")}</div>`
+        : ""
+    }
+    <div class="gallery__main${galImg ? "" : " ph ph--2"}" data-gal-main>
+      <div class="gallery__track" data-gal-track>${slides}</div>
+      <span class="gallery__lens" data-gal-lens hidden></span>
+      ${craft}
+      ${
+        galPiu
+          ? `<span class="gallery__count"><span data-gal-i>1</span> / ${gal.length}</span>
+      <button type="button" class="zoom__nav zoom__nav--prev" data-gal-step="-1" aria-label="Foto precedente">‹</button>
+      <button type="button" class="zoom__nav zoom__nav--next" data-gal-step="1" aria-label="Foto successiva">›</button>`
+          : ""
+      }
+    </div>
+    ${
+      galPiu
+        ? `<div class="gallery__dots only-m">${gal
+            .map((g, i) => `<button type="button" data-g="${i}" aria-label="Foto ${i + 1}" aria-current="${i === 0}"><span></span></button>`)
+            .join("")}</div>`
+        : ""
+    }
+    ${
+      galImg
+        ? `<dialog class="zoom" data-zoom aria-label="Foto ingrandite">
+      <div class="zoom__stage" data-zoom-stage><img src="${esc(galImg[0])}" alt="" draggable="false" data-zoom-img></div>
+      <button type="button" class="zoom__x" data-zoom-close aria-label="Chiudi">×</button>
+      ${
+        galPiu
+          ? `<button type="button" class="zoom__nav zoom__nav--prev" data-zoom-step="-1" aria-label="Foto precedente">‹</button>
+      <button type="button" class="zoom__nav zoom__nav--next" data-zoom-step="1" aria-label="Foto successiva">›</button>`
+          : ""
+      }
+      <span class="gallery__count"><span data-zoom-i>1</span> / ${gal.length}</span>
+    </dialog>`
+        : ""
+    }
+  </div>
+
+  <div class="pdp2__buy">
+    <nav class="crumbs pdp2__crumbs only-d" aria-label="Percorso">
+      <a href="index.html">Bottega</a><span aria-hidden="true">/</span><a href="${cat}">${esc(c.nome || "")}</a>
+    </nav>
+    ${p.occhiello ? `<span class="eyebrow eyebrow--olive pdp2__occ only-d">${esc(p.occhiello)}</span>` : ""}
+    <h1 class="pdp2__h1">${esc(p.nome)}</h1>
+    ${p.nota || p.claim ? `<p class="pdp2__sub">${esc(p.nota || p.claim)}</p>` : ""}
+    ${
+      p.inArrivo
+        ? `<p class="pdp2__arrivo">Questo box sta per entrare in bottega. Scrivici se vuoi essere avvisato.</p>
+    <a class="btn btn--wineline btn--block pdp2__avvisami only-d" href="info.html#contatti">Avvisami quando arriva</a>`
+        : `
+    <div class="pdp2__price">
+      <span class="pdp2__prezzo" data-prezzo>${euro(prezzoCorrente())}</span>${old}
+      <span class="meta" data-peso>${esc(pesoCorrente())}</span>
+    </div>
+    ${formati}
+    ${buyHtml("only-d")}
+    <p class="buy__note only-d">Spedizione sottovuoto · consegna in circa 48 ore</p>
+    ${
+      allergeni
+        ? `<p class="pdp2__cont only-d"><strong>CONTIENE:</strong> ${esc(allergeni)} · <a href="#etichetta">ingredienti e valori</a></p>`
+        : ""
+    }
+    <ul class="pdp2__fatti only-m">
+      <li>Spedizione sottovuoto, consegna in circa 48 ore</li>
+      ${allergeni ? `<li>Contiene: ${esc(allergeni)}</li>` : ""}
+    </ul>`
+    }
+    ${chiedi("only-d")}
+    ${galImg ? '<div class="gallery__pane" data-gal-pane hidden></div>' : ""}
+  </div>
+</section>
+
+${band}
+${etichetta}
+${chiedi("chiedi--m only-m")}
+${abbHtml}`;
+
+    /* ------- prezzo, quantità e pulsante, uguali nella scheda e nella barra in basso */
+    const bar = $("[data-buybar]");
+    if (bar) {
+      if (p.inArrivo) bar.innerHTML = '<a class="btn btn--wineline btn--block" href="info.html#contatti">Avvisami quando arriva</a>';
+      else bar.innerHTML = buyHtml("buy2--bar");
+      bar.hidden = false;
+    }
+    let aggiunto = null;
     const aggiorna = () => {
-      const e = $("[data-prezzo]");
+      const e = $("[data-prezzo]", host);
       if (e) e.textContent = euro(prezzoCorrente());
-      const w = $("[data-peso]");
+      const w = $("[data-peso]", host);
       if (w) w.textContent = pesoCorrente();
-      /* stesso pulsante delle card: "Aggiungi", poi − n + del formato scelto */
-      const b = $("[data-buy]", host);
-      if (b) b.innerHTML = addq(p, "btn--wine btn--block", "Aggiungi al carrello · " + euro(prezzoCorrente()), formato);
-      const bb = $("[data-buybar]");
-      if (bb) bb.innerHTML = addq(p, "btn--wine btn--block", "Aggiungi al carrello · " + euro(prezzoCorrente()), formato);
+      $$("[data-qty]").forEach((n) => (n.textContent = qta));
+      $$("[data-buy-go]").forEach((b) => {
+        b.classList.toggle("is-added", !!aggiunto);
+        b.textContent = aggiunto
+          ? b.closest(".buy2--bar") ? "Aggiunto ✓" : "Aggiunto al carrello ✓"
+          : "Aggiungi · " + euro(prezzoCorrente() * qta);
+      });
     };
     aggiorna();
+    const compra = (e) => {
+      const q = e.target.closest("[data-q]");
+      if (q) {
+        qta = Math.min(20, Math.max(1, qta + +q.dataset.q));
+        return aggiorna();
+      }
+      if (!e.target.closest("[data-buy-go]")) return;
+      Cart.aggiungi(p.slug, formato, qta);
+      toast(p.nome + " nel carrello", "Vedi");
+      clearTimeout(aggiunto);
+      aggiunto = setTimeout(() => ((aggiunto = null), aggiorna()), 1800);
+      aggiorna();
+    };
+    host.addEventListener("click", compra);
+    if (bar) bar.addEventListener("click", compra);
 
     /* ------- foto a tutto schermo: frecce, tocco per ingrandire, pinch e trascinamento fatti qui.
        Il pinch nativo ingrandiva tutta la pagina e poi il riquadro scorrevole bloccava lo spostamento */
@@ -1499,9 +1617,9 @@ ${
       zoom.addEventListener("close", () => {
         document.body.classList.remove("is-locked");
         /* la galleria riparte da dove si era arrivati a tutto schermo; la bottiglia 3D torna al suo posto */
-        if (tre) $("[data-gal-lens]", host).after(box3d);
+        if (tre) $("[data-slide-3d]", host).append(box3d);
         if (vista3d) vista3d.reset(); /* ingrandita a tutto schermo, nella galleria la rotella non la rimpicciolirebbe */
-        mostraGal(galCur);
+        mostraGal(galCur, true);
       });
       /* uno o due dita (o il mouse): il centro sposta la foto, la distanza tra le dita la scala */
       const pts = new Map();
@@ -1571,78 +1689,100 @@ ${
         .catch(() => ($(".gallery__hint", box3d).textContent = "La bottiglia 3D non si è caricata, riprova più tardi"));
     };
 
-    const mostraGal = (n) => {
+    const track = $("[data-gal-track]", host);
+    const mostraGal = (n, subito) => {
       const i = (galCur = (n + gal.length) % gal.length);
-      const img = $("[data-gal-img]");
-      if (img) {
-        const in3d = tre && i === galImg.length;
-        img.hidden = in3d;
-        if (!in3d) {
-          img.src = galImg[i];
-          img.alt = gal[i];
-        }
-        if (tre) apri3d(in3d);
-      } else {
-        $("[data-gal-note]").textContent = gal[i];
-      }
-      $("[data-gal-i]").textContent = i + 1;
-      $$("[data-gal-thumbs] button", host).forEach((b, k) => b.setAttribute("aria-current", k === i ? "true" : "false"));
+      track.style.transition = subito ? "none" : "";
+      track.style.transform = i ? `translateX(${-i * 100}%)` : "";
+      if (tre) apri3d(i === galImg.length);
+      const gi = $("[data-gal-i]", host);
+      if (gi) gi.textContent = i + 1;
+      $$("[data-g]", host).forEach((b) => b.setAttribute("aria-current", String(+b.dataset.g === i)));
     };
 
     /* ------- come Amazon: su PC la miniatura cambia foto al passaggio del mouse e sulla foto
        compare la lente con l'ingrandimento a fianco; su telefono si scorre col dito */
     const galMain = $("[data-gal-main]", host);
-    const galImgEl = $("[data-gal-img]", host);
-    if (galImgEl) {
+    const fotoEls = $$("[data-gal-img]", host);
+    if (fotoEls.length) {
       const lens = $("[data-gal-lens]", host);
       const pane = $("[data-gal-pane]", host);
       const ZOOM = 2.5;
       const puoLente = () => matchMedia("(hover:hover) and (min-width:1120px)").matches;
       const nascondi = () => (lens.hidden = pane.hidden = true);
-      $("[data-gal-thumbs]", host).addEventListener("mouseover", (e) => {
-        const t = e.target.closest("[data-g]");
-        if (t && puoLente() && +t.dataset.g !== galCur) mostraGal(+t.dataset.g);
-      });
+      const thumbs = $("[data-gal-thumbs]", host);
+      if (thumbs)
+        thumbs.addEventListener("mouseover", (e) => {
+          const t = e.target.closest("[data-g]");
+          if (t && puoLente() && +t.dataset.g !== galCur) mostraGal(+t.dataset.g);
+        });
       galMain.addEventListener("mousemove", (e) => {
-        if (!puoLente() || e.target.closest("button") || galImgEl.hidden || !galImgEl.naturalWidth) return nascondi();
-        /* riquadro reale della foto dentro il box (object-fit: contain) */
+        const im = fotoEls[galCur];
+        if (!puoLente() || e.target.closest("button") || !im || !im.naturalWidth) return nascondi();
+        /* riquadro reale della foto dentro il box: su computer la foto riempie il box (cover), su telefono sta intera */
         const box = galMain.getBoundingClientRect();
-        const s = Math.min(box.width / galImgEl.naturalWidth, box.height / galImgEl.naturalHeight);
-        const rw = galImgEl.naturalWidth * s;
-        const rh = galImgEl.naturalHeight * s;
+        const fit = getComputedStyle(im).objectFit === "cover" ? Math.max : Math.min;
+        const s = fit(box.width / im.naturalWidth, box.height / im.naturalHeight);
+        const rw = im.naturalWidth * s;
+        const rh = im.naturalHeight * s;
         const ox = (box.width - rw) / 2;
         const oy = (box.height - rh) / 2;
+        /* parte della foto che si vede, in coordinate della foto */
+        const vx0 = Math.max(0, -ox), vy0 = Math.max(0, -oy);
+        const vx1 = Math.min(rw, box.width - ox), vy1 = Math.min(rh, box.height - oy);
         const x = e.clientX - box.left - ox;
         const y = e.clientY - box.top - oy;
-        if (x < 0 || y < 0 || x > rw || y > rh) return nascondi();
+        if (x < vx0 || y < vy0 || x > vx1 || y > vy1) return nascondi();
         pane.hidden = lens.hidden = false;
-        const lw = Math.min(rw, pane.clientWidth / ZOOM);
-        const lh = Math.min(rh, pane.clientHeight / ZOOM);
-        const lx = Math.max(0, Math.min(rw - lw, x - lw / 2));
-        const ly = Math.max(0, Math.min(rh - lh, y - lh / 2));
+        const lw = Math.min(vx1 - vx0, pane.clientWidth / ZOOM);
+        const lh = Math.min(vy1 - vy0, pane.clientHeight / ZOOM);
+        const lx = Math.max(vx0, Math.min(vx1 - lw, x - lw / 2));
+        const ly = Math.max(vy0, Math.min(vy1 - lh, y - lh / 2));
         Object.assign(lens.style, { width: lw + "px", height: lh + "px", left: ox + lx + "px", top: oy + ly + "px" });
         Object.assign(pane.style, {
-          backgroundImage: `url("${galImgEl.src}")`,
+          backgroundImage: `url("${im.src}")`,
           backgroundSize: `${rw * ZOOM}px ${rh * ZOOM}px`,
           backgroundPosition: `${-lx * ZOOM}px ${-ly * ZOOM}px`
         });
       });
       galMain.addEventListener("mouseleave", nascondi);
 
-      let x0 = null;
-      /* sulla bottiglia 3D il dito la gira e non cambia foto */
-      galMain.addEventListener("touchstart", (e) => (x0 = e.target.closest("[data-gal-3d]") ? null : e.touches[0].clientX), {
-        passive: true
-      });
-      galMain.addEventListener("touchend", (e) => {
+      /* su telefono la foto segue il dito e poi si posa sulla successiva (o torna al suo posto) */
+      let x0 = null, y0 = 0, dx = 0, oriz = null;
+      galMain.addEventListener(
+        "touchstart",
+        (e) => {
+          /* sulla bottiglia 3D il dito la gira e non cambia foto */
+          if (e.target.closest("[data-gal-3d]") || gal.length < 2) return (x0 = null);
+          [x0, y0, dx, oriz] = [e.touches[0].clientX, e.touches[0].clientY, 0, null];
+        },
+        { passive: true }
+      );
+      galMain.addEventListener(
+        "touchmove",
+        (e) => {
+          if (x0 === null) return;
+          const t = e.touches[0];
+          dx = t.clientX - x0;
+          if (oriz === null && Math.hypot(dx, t.clientY - y0) > 8) oriz = Math.abs(dx) > Math.abs(t.clientY - y0);
+          if (!oriz) return;
+          /* ai due capi la foto oppone resistenza */
+          const bordo = (galCur === 0 && dx > 0) || (galCur === gal.length - 1 && dx < 0);
+          track.style.transition = "none";
+          track.style.transform = `translateX(calc(${-galCur * 100}% + ${bordo ? dx / 3 : dx}px))`;
+        },
+        { passive: true }
+      );
+      const fine = (e) => {
         if (x0 === null) return;
-        const dx = e.changedTouches[0].clientX - x0;
         x0 = null;
-        if (Math.abs(dx) > 40 && gal.length > 1) {
-          mostraGal(galCur + (dx < 0 ? 1 : -1));
-          e.preventDefault(); /* niente click: lo scorrimento non apre lo zoom */
-        }
-      });
+        if (!oriz) return;
+        if (e.cancelable) e.preventDefault(); /* niente click: lo scorrimento non apre lo zoom */
+        const verso = Math.abs(dx) > 40 ? (dx < 0 ? 1 : -1) : 0;
+        mostraGal(Math.min(gal.length - 1, Math.max(0, galCur + verso)));
+      };
+      galMain.addEventListener("touchend", fine);
+      galMain.addEventListener("touchcancel", fine);
     }
 
     host.addEventListener("click", (e) => {
@@ -1662,12 +1802,6 @@ ${
     });
 
     initAcc(host);
-
-    /* ------- su telefono il pulsante sta solo nella barra fissa, sempre visibile (quello
-       nella scheda è nascosto dal CSS): niente che compare e scompare */
-    const bar = $("[data-buybar]");
-    if ($("[data-buy]", host) && bar) bar.hidden = false;
-    else if (bar) bar.remove();
 
     /* ------- su telefono, scorrendo in giù header e barra in basso escono e resta solo
        "Aggiungi"; scorrendo in su tornano (NN/g, sticky headers). Il CSS vale solo sotto i 1120 px */
