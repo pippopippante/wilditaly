@@ -1531,7 +1531,7 @@ ${abbHtml}`;
       if (w) w.textContent = pesoCorrente();
       /* clic, − e + li gestisce il carrello (data-add, data-qta), come nelle card */
       $$("[data-buy]").forEach(
-        (b) => (b.innerHTML = addq(p, "btn--wine btn--block buy2__go", "Aggiungi al carrello · " + euro(prezzoCorrente()), formato))
+        (b) => (b.innerHTML = addq(p, "btn--wine btn--block buy2__go", "Aggiungi al carrello", formato))
       );
     };
     aggiorna();
