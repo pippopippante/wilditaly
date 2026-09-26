@@ -46,7 +46,8 @@
   /* tipografia */
   --serif:"EB Garamond", Georgia, "Times New Roman", serif;
   --sans:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"Courier New", Courier, monospace;
+  --label:var(--sans);   /* occhielli, briciole, etichette */
+  --mono:"Courier New", Courier, monospace; /* solo note interne: segnaposto FOTO e riquadri da definire */
 
   /* ritmo */
   --pad:20px;
@@ -122,10 +123,9 @@ input,select,textarea{font:inherit;color:inherit}
 
 /* ---------------------------------------------------------- tipografia */
 .eyebrow{
-  font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  font-family:var(--label);font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--meta);
 }
-@media (min-width:760px){ .eyebrow{letter-spacing:.24em} }
 .eyebrow--brass{color:var(--brass-soft)}
 .eyebrow--gold{color:var(--gold)}
 .eyebrow--wine{color:var(--wine)}
@@ -251,7 +251,7 @@ input,select,textarea{font:inherit;color:inherit}
 @media (max-width:359px){ .hdr__side [data-open="cerca"]{display:none} }
 .brand__txt{display:flex;flex-direction:column;align-items:center;line-height:1}
 .brand__name{font-family:var(--serif);font-size:24px;letter-spacing:.02em;color:var(--ink)}
-.brand__sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--meta);margin-top:3px;white-space:nowrap}
+.brand__sub{font-family:var(--label);font-size:10px;letter-spacing:.1em;color:var(--meta);margin-top:3px;white-space:nowrap}
 
 /* intestazione contestuale della scheda prodotto su mobile (schermata 2b) */
 .hdr__ctx{display:none}
@@ -283,7 +283,7 @@ input,select,textarea{font:inherit;color:inherit}
   .brand__mark{width:34px;height:39px}
   .brand__txt{align-items:flex-start}
   .brand__name{font-size:28px}
-  .brand__sub{font-size:10px;letter-spacing:.24em;margin-top:4px}
+  .brand__sub{font-size:10px;margin-top:4px}
   /* 8 voci col catalogo: lo spazio fra le voci scende a 12 px a 1120 e sale a 28 px sui grandi */
   .hdr__nav{display:flex;gap:clamp(12px,2.2vw - 12px,28px);font-size:14px;letter-spacing:.04em;color:var(--ink-soft)}
   .hdr__nav a{padding-bottom:3px;border-bottom:2px solid transparent;white-space:nowrap}
@@ -308,7 +308,7 @@ input,select,textarea{font:inherit;color:inherit}
 }
 
 .crumbs{
-  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  font-family:var(--label);font-size:12px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--meta);padding-top:16px;
 }
 .crumbs a:hover{color:var(--wine)}
@@ -427,17 +427,19 @@ input,select,textarea{font:inherit;color:inherit}
 
 /* ------------------------------------------ WhatsApp, fisso in basso a destra */
 .wa{
-  position:fixed;right:16px;bottom:calc(var(--bar-h) + 16px + var(--wa-su,0px));z-index:80;
+  position:fixed;right:16px;bottom:calc(var(--bar-h) + 16px);z-index:80;
   width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 6px 18px rgba(20,16,12,.3);transition:bottom .25s ease;
 }
 .wa svg{width:30px;height:30px}
 @media (max-width:1119px){
-  /* sopra la barra acquisto della scheda prodotto e la barra della guida */
-  /* nella scheda il contatto sta nel riquadro "Chiedi alla bottega": il pulsante fisso copriva il testo (Baymard) */
-  body[data-pagina="prodotto"] .wa{display:none}
-  body[data-pagina="guida"]{--wa-su:104px}
+  /* su telefono il tondo fisso copre il contenuto mentre si scorre (Baymard, live chat):
+     tolto dove passa sopra ai prodotti. Nella scheda c'è il riquadro "Chiedi alla bottega",
+     ovunque l'icona WhatsApp accanto al numero nel footer */
+  body[data-pagina="prodotto"] .wa,
+  body[data-pagina="categoria"] .wa,
+  body[data-pagina="guida"] .wa{display:none}
 }
 @media (min-width:1120px){
   .wa{right:24px;bottom:24px;width:60px;height:60px}
@@ -523,9 +525,9 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:760px){ .prod__b{padding:22px 22px 26px} }
 .prod__n{font-family:var(--serif);font-size:26px;line-height:1.15;color:var(--ink-strong)}
 @media (min-width:760px){ .prod__n{font-size:28px} }
-.badge-craft{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--olive);margin-bottom:8px}
+.badge-craft{font-family:var(--label);font-size:11px;letter-spacing:.1em;color:var(--olive);margin-bottom:8px}
 .note{background:#F3EADA;border-left:3px solid var(--wine);padding:12px 14px;margin-top:14px}
-.note__t{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--wine);margin-bottom:4px}
+.note__t{font-family:var(--label);font-size:11px;letter-spacing:.1em;color:var(--wine);margin-bottom:4px}
 .note__q{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.4;color:#3A2C1E}
 .prod__price{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:auto;padding-top:18px}
 .prod__price .meta{text-align:right;line-height:1.4}
@@ -662,6 +664,10 @@ input,select,textarea{font:inherit;color:inherit}
 @media (min-width:1120px){ .ftr__grid{grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:48px} }
 .ftr__logo{display:block;width:120px;height:auto;border-radius:6px}
 .ftr__addr{margin-top:10px;font-size:14px;line-height:1.8}
+/* area di tocco 44 px senza allargare la riga */
+.ftr__wa{display:inline-flex;vertical-align:middle;padding:12px;margin:-12px -12px -12px -2px;color:#25D366}
+.ftr__wa svg{width:20px;height:20px}
+.ftr__wa:hover{color:#5BE38E}
 @media (min-width:1120px){ .ftr__addr{margin-top:14px} }
 .ftr__col a{display:block;font-size:14px;line-height:2.1}
 .ftr__col a:hover{color:var(--brass-soft)}
@@ -885,7 +891,7 @@ input,select,textarea{font:inherit;color:inherit}
 /* guida.html, "Fatti guidare.dc.html" versione b: la visita guidata.
    Sotto i 1120 px la 2b (foto a tutta larghezza, barra del percorso in basso),
    sopra la 1b (percorso e cesto a sinistra, tappa a destra). */
-.gv-k{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--meta)}
+.gv-k{font-family:var(--label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta)}
 
 .gv-hero{position:relative}
 .gv-hero__ph{height:400px;height:clamp(280px,52svh,400px)}
@@ -894,7 +900,7 @@ input,select,textarea{font:inherit;color:inherit}
   position:absolute;left:0;right:0;bottom:0;padding:120px var(--pad) 24px;
   background:linear-gradient(to top,rgba(20,14,10,.8),rgba(20,14,10,.1) 60%,rgba(20,14,10,0));
 }
-.gv-cap__k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-3);margin-bottom:10px}
+.gv-cap__k{font-family:var(--label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-3);margin-bottom:10px}
 .gv-cap__dove::before{content:" · "}
 .gv-cap__t{font-family:var(--serif);font-weight:500;font-size:clamp(2.125rem,1.7rem + 1.8vw,2.5rem);line-height:1.04;color:#FFFDF8;text-wrap:pretty}
 .gv-hero--noimg .gv-cap{background:none}
@@ -913,7 +919,7 @@ input,select,textarea{font:inherit;color:inherit}
 .gv-item__n{display:block;font-family:var(--serif);font-size:21px;line-height:1.2;color:var(--ink-strong);margin-bottom:4px}
 .gv-item__n:hover{color:var(--wine)}
 .gv-item__m{font-size:14.5px;line-height:1.5;color:var(--muted)}
-.gv-item__dove{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta)}
+.gv-item__dove{font-family:var(--label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta)}
 .gv-item__p{grid-area:p;font-size:16px;color:var(--ink);white-space:nowrap}
 .gv-item>.gv-ctl,.gv-item>.gv-togli{grid-area:c}
 
@@ -990,10 +996,10 @@ button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
   }
   .gv-route button:hover{background:var(--card)}
   .gv-route .is-cur{background:var(--card);border-left-color:var(--wine);color:var(--ink-strong)}
-  .gv-route__n{font-family:var(--mono);font-size:12px;color:var(--meta)}
+  .gv-route__n{font-family:var(--label);font-size:12px;color:var(--meta)}
   .gv-route .is-cur .gv-route__n{color:var(--wine)}
   .gv-route__l{flex:1;min-width:0}
-  .gv-route__b{font-family:var(--mono);font-size:12px;color:var(--wine)}
+  .gv-route__b{font-family:var(--label);font-size:12px;color:var(--wine)}
   .gv-basket{border-top:1px solid var(--line-strong);padding-top:20px}
   .gv-basket__t{font-family:var(--serif);font-size:23px;color:var(--ink-strong);margin-bottom:12px}
   .gv-basket__vuoto{font-size:15px;line-height:1.6;color:var(--muted)}

@@ -268,7 +268,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <div class="ftr__grid">
     <div>
       <img class="ftr__logo" src="assets/img/logo.jpeg" alt="${esc(b.nome)}" width="500" height="500" loading="lazy">
-      <p class="ftr__addr">${esc(b.via)}<br><a href="${b.telHref}">${esc(b.tel)}</a><br><a href="mailto:${b.email}">${esc(b.email)}</a></p>
+      <p class="ftr__addr">${esc(b.via)}<br><a href="${b.telHref}">${esc(b.tel)}</a> <a class="ftr__wa" href="${WA}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">${WA_ICO}</a><br><a href="mailto:${b.email}">${esc(b.email)}</a></p>
     </div>
     <div class="ftr__col">
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">BOTTEGA</div>
