@@ -1208,7 +1208,6 @@ ${
     if (ctxT) ctxT.textContent = p.nome;
 
     let formato = p.formati ? p.formati[0].nome : null;
-    let qta = 1;
     const fCorrente = () => (p.formati ? p.formati.find((f) => f.nome === formato) || p.formati[0] : p);
     const prezzoCorrente = () => fCorrente().prezzo;
     const pesoCorrente = () => {
@@ -1376,16 +1375,9 @@ ${valori
 </div>`
       : "";
 
-    /* ------- quantità e "Aggiungi": nella scheda su computer, nella barra fissa su telefono */
-    const buyHtml = (cls) => `
-<div class="buy2 ${cls}">
-  <div class="qty" role="group" aria-label="Quantità">
-    <button type="button" data-q="-1" aria-label="Uno in meno">−</button>
-    <span class="qty__n" data-qty>${qta}</span>
-    <button type="button" data-q="1" aria-label="Uno in più">+</button>
-  </div>
-  <button type="button" class="btn btn--wine buy2__go" data-buy-go></button>
-</div>`;
+    /* ------- "Aggiungi al carrello", che dopo il clic diventa − n + nella stessa scatola (sessione 19):
+       nella scheda su computer, nella barra fissa su telefono */
+    const buyHtml = (cls) => `<div class="buy2 ${cls}" data-buy></div>`;
 
     /* ------- "Dubbi? Chiedi alla bottega": su computer nella colonna d'acquisto, su telefono dopo l'etichetta */
     const chiedi = (cls) => `
@@ -1525,43 +1517,24 @@ ${etichetta}
 ${chiedi("chiedi--m only-m")}
 ${abbHtml}`;
 
-    /* ------- prezzo, quantità e pulsante, uguali nella scheda e nella barra in basso */
+    /* ------- prezzo e pulsante, uguali nella scheda e nella barra in basso */
     const bar = $("[data-buybar]");
     if (bar) {
       if (p.inArrivo) bar.innerHTML = '<a class="btn btn--wineline btn--block" href="info.html#contatti">Avvisami quando arriva</a>';
       else bar.innerHTML = buyHtml("buy2--bar");
       bar.hidden = false;
     }
-    let aggiunto = null;
     const aggiorna = () => {
       const e = $("[data-prezzo]", host);
       if (e) e.textContent = euro(prezzoCorrente());
       const w = $("[data-peso]", host);
       if (w) w.textContent = pesoCorrente();
-      $$("[data-qty]").forEach((n) => (n.textContent = qta));
-      $$("[data-buy-go]").forEach((b) => {
-        b.classList.toggle("is-added", !!aggiunto);
-        b.textContent = aggiunto
-          ? b.closest(".buy2--bar") ? "Aggiunto ✓" : "Aggiunto al carrello ✓"
-          : "Aggiungi · " + euro(prezzoCorrente() * qta);
-      });
+      /* clic, − e + li gestisce il carrello (data-add, data-qta), come nelle card */
+      $$("[data-buy]").forEach(
+        (b) => (b.innerHTML = addq(p, "btn--wine btn--block buy2__go", "Aggiungi al carrello · " + euro(prezzoCorrente()), formato))
+      );
     };
     aggiorna();
-    const compra = (e) => {
-      const q = e.target.closest("[data-q]");
-      if (q) {
-        qta = Math.min(20, Math.max(1, qta + +q.dataset.q));
-        return aggiorna();
-      }
-      if (!e.target.closest("[data-buy-go]")) return;
-      Cart.aggiungi(p.slug, formato, qta);
-      toast(p.nome + " nel carrello", "Vedi");
-      clearTimeout(aggiunto);
-      aggiunto = setTimeout(() => ((aggiunto = null), aggiorna()), 1800);
-      aggiorna();
-    };
-    host.addEventListener("click", compra);
-    if (bar) bar.addEventListener("click", compra);
 
     /* ------- foto a tutto schermo: frecce, tocco per ingrandire, pinch e trascinamento fatti qui.
        Il pinch nativo ingrandiva tutta la pagina e poi il riquadro scorrevole bloccava lo spostamento */

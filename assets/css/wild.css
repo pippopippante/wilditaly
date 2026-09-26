@@ -820,14 +820,9 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .formats button small{display:block;font-size:12px;color:var(--meta-2)}
 .formats button[aria-pressed="true"]{border:2px solid var(--wine);background:#F3EADA}
 
-/* quantità e "Aggiungi": − n + a misura fissa, il pulsante prende il resto */
-.buy2{display:flex;gap:10px;margin-top:18px}
-.qty{display:flex;align-items:center;flex:0 0 auto;height:58px;border:1px solid var(--line-strong);background:var(--card)}
-.qty button{width:46px;height:100%;font-size:20px;color:var(--ink-soft)}
-.qty button:hover{color:var(--wine)}
-.qty__n{min-width:26px;text-align:center;font-size:16px;font-variant-numeric:tabular-nums}
-.buy2__go{flex:1 1 auto;min-width:0;height:58px;padding:0 16px;font-size:14px;letter-spacing:.08em;white-space:nowrap}
-.buy2__go.is-added,.buy2__go.is-added:hover{background:var(--olive)}
+/* "Aggiungi al carrello" e − n + nella stessa scatola: stessa misura prima e dopo il clic */
+.buy2{margin-top:18px}
+.buy2__go{height:58px;font-size:14px;letter-spacing:.08em;white-space:nowrap}
 .buy__note{margin-top:12px;font-size:13px;color:var(--muted);text-align:center}
 .pdp2__cont{margin-top:22px;font-size:13px;color:var(--ink-soft)}
 .pdp2__cont strong{letter-spacing:.06em}
@@ -836,7 +831,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .pdp2__fatti li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--ink-soft)}
 .pdp2__fatti li::before{content:"—";color:var(--olive)}
 
-/* barra in basso su telefono: − n + con le righe fra i numeri */
+/* barra in basso su telefono: solo il pulsante, a tutta larghezza */
 .buybar{
   position:fixed;left:0;right:0;bottom:var(--bar-h);z-index:65;
   background:var(--paper);border-top:1px solid var(--line);
@@ -844,10 +839,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
   transition:bottom .3s ease;
 }
 .buybar>.btn{flex:1;white-space:nowrap}
-.buy2--bar{flex:1;margin:0;gap:12px}
-.buy2--bar .qty{height:52px;background:none}
-.buy2--bar .qty button{width:44px}
-.buy2--bar .qty__n{width:34px;align-self:stretch;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line-strong);border-right:1px solid var(--line-strong);font-size:15px}
+.buy2--bar{flex:1;margin:0}
 .buy2--bar .buy2__go{height:52px;font-size:13px}
 @media (min-width:1120px){ .buybar{display:none} }
 /* in fondo alla pagina serve spazio in più perché la barra non copra il footer */
