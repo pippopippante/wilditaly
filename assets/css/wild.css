@@ -538,6 +538,21 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
   .grid-3>.prod .prod__price{padding-top:10px}
   .grid-3>.prod .prod__cta{margin-top:12px}
 }
+/* pagina categoria su telefono: schede orizzontali, foto a sinistra (disegno "Redesign pagina
+   categoria", scelta dell'utente il 27/09): in uno schermo stanno quasi 3 prodotti invece di 1 */
+@media (max-width:759px){
+  .cat-griglia .grid-3>.prod{flex-direction:row}
+  .cat-griglia .grid-3>.prod>a{flex:0 0 116px}
+  .cat-griglia .grid-3>.prod .ph{height:100%;min-height:168px;aspect-ratio:auto}
+  .cat-griglia .grid-3>.prod .prod__b{padding:12px 12px 12px 14px;min-width:0}
+  .cat-griglia .grid-3>.prod .prod__n{font-size:21px;line-height:1.08}
+  .cat-griglia .grid-3>.prod .note{padding:8px 10px;margin-top:8px}
+  .cat-griglia .grid-3>.prod .note__q{font-size:16px;line-height:1.25}
+  .cat-griglia .grid-3>.prod .prod__price{padding-top:8px}
+  .cat-griglia .grid-3>.prod .price{font-size:23px}
+  .cat-griglia .grid-3>.prod .prod__cta{margin-top:8px}
+  .cat-griglia .prod__cta-x{display:none}
+}
 
 /* Pulsante-contatore: "Aggiungi al carrello" e - n + nella stessa scatola,
    stessa larghezza e stessa altezza prima e dopo il clic. */
