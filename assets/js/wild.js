@@ -488,13 +488,21 @@
 
   /* --------------------------------------------------------- schede card */
   /* lv: livello del titolo, uno sotto quello della sezione in cui sta la scheda */
-  function prodCard(p, lv) {
+  /* profilo di gusto a pallini, lo stesso della fascia bordeaux della scheda prodotto */
+  const pallini = (v) =>
+    `<span class="pallini" role="img" aria-label="livello ${v} su 5">${[1, 2, 3, 4, 5].map((k) => `<i${k <= v ? ' class="on"' : ""}></i>`).join("")}</span>`;
+
+  /* conProfilo: nella pagina categoria, per confrontare i salami senza aprirli (sessione 25) */
+  function prodCard(p, lv, conProfilo) {
     lv = lv || 3;
     const craft = p.artigianale && CONFIG.mostraBadgeArtigianale
       ? '<div class="badge-craft">PRODUZIONE ARTIGIANALE</div>'
       : "";
     const nota = p.nota
       ? `<div class="note"><div class="note__t">NOTA DI GUSTO</div><div class="note__q">${esc(p.nota)}</div></div>`
+      : "";
+    const profilo = conProfilo && p.profilo
+      ? `<div class="prod__prof">${p.profilo.map((t) => `<span class="prod__prof-l">${esc(t.nome)}</span>${pallini(t.valore)}`).join("")}</div>`
       : "";
     return `
 <article class="prod">
@@ -503,6 +511,7 @@
     ${craft}
     <h${lv} class="hx"><a class="prod__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a></h${lv}>
     ${nota}
+    ${profilo}
     <div class="prod__price">
       <span class="price">${euro(p.prezzo)}</span>
       <span class="meta">${[p.peso, alKg(p.prezzo, p)].filter(Boolean).map(esc).join("<br>")}</span>
@@ -885,7 +894,7 @@
     /* "Non sai da dove iniziare?" in fondo ai prodotti, ovunque: sopra spingeva il primo
        prodotto fuori dalla prima schermata (sessioni 24 e 25) */
     griglia.innerHTML =
-      lista.map((p) => prodCard(p, 2)).join("") +
+      lista.map((p) => prodCard(p, 2, true)).join("") +
       (c.helper
         ? `<aside class="helper" style="--span:${3 - (lista.length % 3)}">
   <div class="eyebrow">${esc(c.helper.occhiello)}</div>
@@ -1408,7 +1417,7 @@ ${valori
             (t) => `
 <div class="tbar">
   <span class="tbar__l">${esc(t.nome)}</span>
-  <span class="pallini" role="img" aria-label="livello ${t.valore} su 5">${[1, 2, 3, 4, 5].map((k) => `<i${k <= t.valore ? ' class="on"' : ""}></i>`).join("")}</span>
+  ${pallini(t.valore)}
 </div>`
           )
           .join("")}</div>`

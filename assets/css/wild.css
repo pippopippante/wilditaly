@@ -1010,6 +1010,12 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .pallini{display:flex;gap:6px}
 .pallini i{width:10px;height:10px;border-radius:50%;background:#7A5A30}
 .pallini i.on{background:var(--gold)}
+/* nelle schede (fondo chiaro) */
+.prod__prof{display:grid;grid-template-columns:auto auto;justify-content:start;gap:6px 14px;align-items:center;margin-top:12px}
+.prod__prof-l{font-family:var(--label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--meta)}
+.prod__prof .pallini{gap:4px}
+.prod__prof .pallini i{width:9px;height:9px;background:#E0D3BC}
+.prod__prof .pallini i.on{background:var(--wine)}
 .band__d{margin-top:22px;padding-top:20px;border-top:1px solid rgba(216,176,94,.3);font-family:var(--serif);font-size:19px;line-height:1.55;color:#EFE1C5;text-wrap:pretty}
 @media (min-width:1120px){ .band__d{margin:0;padding:34px 0 0;border:0;font-size:clamp(1.1875rem,1.05rem + .5vw,1.4375rem);line-height:1.6} }
 /* senza nota del bancone: il nome a sinistra al posto della nota, il racconto a destra (sessione 24) */
