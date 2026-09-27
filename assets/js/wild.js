@@ -861,6 +861,12 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
 
     /* niente filtri né ordinamenti: per categoria i prodotti sono pochi */
     griglia.innerHTML = lista.map((p) => prodCard(p, 2)).join("");
+    /* su telefono e tablet "Non sai da dove iniziare?" va sotto i prodotti: sopra spingeva
+       il primo prodotto fuori dalla prima schermata (sessione 24). Su computer resta a fianco dell'intro */
+    if (c.helper) {
+      helper.classList.add("only-d");
+      griglia.insertAdjacentHTML("afterend", `<aside class="helper helper--dopo only-m">${helper.innerHTML}</aside>`);
+    }
   }
 
   /* ---- catalogo completo: vista "listino" di "Catalogo completo.dc.html".
