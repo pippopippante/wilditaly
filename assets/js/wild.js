@@ -145,7 +145,6 @@
     if (!host) return;
     const el = document.createElement("div");
     el.className = "toast";
-    el.setAttribute("role", "status");
     el.innerHTML =
       ico("check") +
       `<span>${esc(msg)}</span>` +
@@ -156,6 +155,16 @@
       el.classList.add("is-out");
       setTimeout(() => el.remove(), 240);
     }, 3600);
+  }
+
+  /* per chi usa il lettore di schermo: legge a voce quello che è cambiato (quantità, risultati) */
+  let tAnnuncio;
+  function annuncia(msg) {
+    const el = $("[data-voce]");
+    if (!el) return;
+    el.textContent = "";
+    clearTimeout(tAnnuncio);
+    tAnnuncio = setTimeout(() => (el.textContent = msg), 80);
   }
 
   /* -------------------------------------------------------- apri/chiudi */
@@ -231,7 +240,7 @@
     /* la barra annuncio si vede SOLO su telefono (vedi .announce in wild.css):
        l'ha chiesto l'utente, non rimetterla su tablet e PC */
     return `
-${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuoto e a casa tua in circa 48 ore</div>' : ""}
+${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">In tutta Italia, sottovuoto e a casa tua in circa 48 ore</aside>' : ""}
 <header class="hdr">
   ${document.body.dataset.pagina === "prodotto" ? ctxBarHtml() : ""}
   <div class="hdr__bar">
@@ -291,10 +300,10 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       <div class="eyebrow" style="color:var(--sand-meta);margin-bottom:10px">NEWSLETTER</div>
       <p style="font-size:14px;line-height:1.7;margin:0">Stagionature nuove e consigli di abbinamento, una volta al mese.</p>
       <form class="nl" data-newsletter novalidate>
-        <input type="email" name="email" placeholder="la tua email" aria-label="La tua email" required>
+        <input type="email" name="email" placeholder="la tua email" aria-label="La tua email" aria-describedby="nl-msg" required>
         <button type="submit">ISCRIVIMI</button>
       </form>
-      <p class="nl__msg" data-nl-msg role="status"></p>
+      <p class="nl__msg" id="nl-msg" data-nl-msg role="status"></p>
     </div>
   </div>
   <div class="ftr__bottom">
@@ -308,6 +317,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       </span>
     </div>
   </div>
+  <a class="wa" href="${WA}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">${WA_ICO}</a>
 </footer>`;
   }
 
@@ -375,11 +385,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   <button data-open="carrello">${ico("bag")}<span>Carrello</span><span class="badge" data-cart-badge hidden>0</span></button>
 </nav>
 
-<a class="wa" href="${WA}" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
-  ${WA_ICO}
-</a>
-
-<div class="toasts" aria-live="polite"></div>`;
+<div class="toasts" aria-live="polite"></div>
+<div class="sr" aria-live="polite" data-voce></div>`;
   }
 
   /* ------------------------------------------------------------- render */
@@ -401,6 +408,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       $$("[data-cart-badge]").forEach((e) => {
         e.textContent = n;
         e.hidden = n === 0;
+        const b = e.closest("[aria-label]");
+        if (b) b.setAttribute("aria-label", n ? `Apri il carrello, ${n} ${n === 1 ? "pezzo" : "pezzi"}` : "Apri il carrello, vuoto");
       });
 
       const body = $("[data-cart-body]");
@@ -430,14 +439,14 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     <div class="cart-line__var">${esc(r.formato || p.peso || "")}</div>
     <div class="cart-line__row">
       <span class="stepper stepper--sm">
-        <button data-qta="${esc(id)}" data-d="-1" aria-label="Riduci la quantità">${ico("minus")}</button>
+        <button data-qta="${esc(id)}" data-d="-1" aria-label="Uno in meno di ${esc(p.nome)}">${ico("minus")}</button>
         <span class="stepper__n">${r.qta}</span>
-        <button data-qta="${esc(id)}" data-d="1" aria-label="Aumenta la quantità">${ico("plus")}</button>
+        <button data-qta="${esc(id)}" data-d="1" aria-label="Uno in più di ${esc(p.nome)}">${ico("plus")}</button>
       </span>
       <span class="cart-line__price">${euro(Cart.prezzoRiga(r) * r.qta)}</span>
     </div>
     <div class="cart-line__row">
-      <button class="link-del" data-rimuovi="${esc(id)}">Rimuovi</button>
+      <button class="link-del" data-rimuovi="${esc(id)}" aria-label="Rimuovi ${esc(p.nome)}">Rimuovi</button>
     </div>
   </div>
 </div>`;
@@ -450,6 +459,17 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       }
     }
   };
+
+  /* il carrello si ridisegna a ogni modifica: il fuoco torna sullo stesso pulsante,
+     o sulla prima riga rimasta, o su "Chiudi" se il carrello è vuoto */
+  function fuocoCarrello(id, d) {
+    const body = $("[data-cart-body]");
+    const el =
+      (id && $(`[data-qta="${CSS.escape(id)}"][data-d="${d}"]`, body)) ||
+      $("[data-qta]", body) ||
+      $('[data-panel="carrello"] [data-close]');
+    if (el) el.focus();
+  }
 
   /* --------------------------------------------------------- pulsante +/- */
   /* "Aggiungi al carrello" e il contatore - n + occupano la stessa scatola:
@@ -469,7 +489,9 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   }
 
   /* --------------------------------------------------------- schede card */
-  function prodCard(p) {
+  /* lv: livello del titolo, uno sotto quello della sezione in cui sta la scheda */
+  function prodCard(p, lv) {
+    lv = lv || 3;
     const craft = p.artigianale && CONFIG.mostraBadgeArtigianale
       ? '<div class="badge-craft">PRODUZIONE ARTIGIANALE</div>'
       : "";
@@ -478,10 +500,10 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       : "";
     return `
 <article class="prod">
-  <a href="prodotto.html?p=${p.slug}" aria-label="${esc(p.nome)}">${ph(p.foto, "ph--2", "", p.img)}</a>
+  <a href="prodotto.html?p=${p.slug}" tabindex="-1" aria-hidden="true">${ph(p.foto, "ph--2", "", p.img)}</a>
   <div class="prod__b">
     ${craft}
-    <a class="prod__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a>
+    <h${lv} class="hx"><a class="prod__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a></h${lv}>
     ${nota}
     <div class="prod__price">
       <span class="price">${euro(p.prezzo)}</span>
@@ -494,12 +516,13 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
 
   function boxCard(p, opz) {
     opz = opz || {};
+    const lv = opz.lv || 3;
     if (p.inArrivo) {
       return `
 <article class="box-card box-card--soon" aria-label="${esc(p.nome)} — in arrivo">
   ${ph(p.foto, "", "", p.img)}
   <div class="box-card__b">
-    <div class="box-card__n">${esc(p.nome)}</div>
+    <h${lv} class="hx box-card__n">${esc(p.nome)}</h${lv}>
     <p class="meta" style="margin-top:8px">In arrivo in bottega</p>
   </div>
 </article>`;
@@ -513,10 +536,10 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     const old = p.prezzoPieno ? `<span class="price--old">${euro(p.prezzoPieno)}</span>` : "";
     return `
 <article class="box-card${p.inEvidenza && opz.evidenza ? " box-card--pick" : ""}">
-  <a href="prodotto.html?p=${p.slug}" aria-label="${esc(p.nome)}">${ph(p.foto, "", "", p.img)}</a>
+  <a href="prodotto.html?p=${p.slug}" tabindex="-1" aria-hidden="true">${ph(p.foto, "", "", p.img)}</a>
   <div class="box-card__b">
     ${et}
-    <a class="box-card__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a>
+    <h${lv} class="hx"><a class="box-card__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a></h${lv}>
     ${testo}
     <div class="pricerow" style="margin-top:auto;padding-top:14px">
       <span class="price">${euro(p.prezzo)}</span>${old}
@@ -656,6 +679,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     if (!input || !out) return;
 
     const indice = C.prodotti.map((p) => ({ p: p, k: chiave(p) }));
+    let tConta;
 
     function cerca() {
       const q = input.value.trim().toLowerCase();
@@ -665,6 +689,8 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       }
       const parole = q.split(/\s+/);
       const hit = indice.filter((r) => parole.every((w) => r.k.indexOf(w) > -1)).map((r) => r.p);
+      clearTimeout(tConta);
+      tConta = setTimeout(() => annuncia(hit.length ? hit.length + (hit.length === 1 ? " risultato" : " risultati") : "Nessun risultato"), 700);
       if (!hit.length) {
         out.innerHTML = `
 <div class="eyebrow" style="margin-top:28px">NESSUN RISULTATO</div>
@@ -698,7 +724,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
   function mountHome() {
     /* specialità: prodotti veri; le categorie stanno una volta sola, negli scaffali qui sotto */
     const spec = $('[data-mount="specialita"]');
-    if (spec) spec.innerHTML = C.bottega.specialita.map(C.get).filter(Boolean).map(prodCard).join("");
+    if (spec) spec.innerHTML = C.bottega.specialita.map(C.get).filter(Boolean).map((p) => prodCard(p)).join("");
 
     const box = $('[data-mount="box-rail"]');
     if (box)
@@ -747,17 +773,17 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     const lista = C.prodotti.filter((p) => p.categoria === "box");
     host.innerHTML = lista
       .map((p) => {
-        if (p.inArrivo) return boxCard(p);
+        if (p.inArrivo) return boxCard(p, { lv: 2 });
         const items = (p.contenuto || [])
           .map((c) => `<li><span>${esc(c.t)}${c.n ? ` <em>· ${esc(c.n)}</em>` : ""}</span></li>`)
           .join("");
         const risp = p.prezzoPieno ? p.prezzoPieno - p.prezzo : 0;
         return `
 <article class="box-card">
-  <a href="prodotto.html?p=${p.slug}" aria-label="${esc(p.nome)}">${ph(p.foto, "", "", p.img)}</a>
+  <a href="prodotto.html?p=${p.slug}" tabindex="-1" aria-hidden="true">${ph(p.foto, "", "", p.img)}</a>
   <div class="box-card__b">
     ${p.etichetta ? `<div class="eyebrow eyebrow--wine" style="margin-bottom:8px">${esc(p.etichettaEstesa || p.etichetta)}</div>` : ""}
-    <a class="box-card__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a>
+    <h2 class="hx"><a class="box-card__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a></h2>
     <ul class="speclist">${items}</ul>
     <div style="margin-top:auto;padding-top:24px">
       <div class="pricerow">
@@ -834,7 +860,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
     }
 
     /* niente filtri né ordinamenti: per categoria i prodotti sono pochi */
-    griglia.innerHTML = lista.map(prodCard).join("");
+    griglia.innerHTML = lista.map((p) => prodCard(p, 2)).join("");
   }
 
   /* ---- catalogo completo: vista "listino" di "Catalogo completo.dc.html".
@@ -936,11 +962,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
       return i < 0 ? 999 : i;
     };
     if (!s) {
-      host.innerHTML = `
-<div class="wrap"><div class="empty">
-  <div class="h3">Selezione non trovata</div>
-  <a class="btn btn--wineline btn--sm" style="margin-top:18px" href="index.html">Torna alla bottega</a>
-</div></div>`;
+      nonTrovato("Selezione non trovata", "Questa selezione non c'è, o ha cambiato nome.");
       return;
     }
     document.title = s.titolo + " · Wild Italy";
@@ -958,7 +980,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<div class="announce">In tutta Italia, sottovuot
           : C.prodotti
               .filter((p) => !p.inArrivo && p.tipo !== "box" && z.filtro(p))
               .sort((a, b) => pos(z, a) - pos(z, b) || a.prezzo - b.prezzo);
-        const card = lista.map(prodCard).join("");
+        const card = lista.map((p) => prodCard(p, z.titolo ? 3 : 2)).join("");
         return `
 <section class="sec sec--tight">
   <div class="wrap">
@@ -1197,9 +1219,11 @@ ${
       if (!b) return;
       const az = b.dataset.k.split(":")[0];
       const slug = b.dataset.k.split(":")[1];
-      if (az === "go") vai(+slug);
-      else if (az === "add") Cart.aggiungi(slug, null, 1);
+      if (az === "go") return vai(+slug);
+      if (az === "add") Cart.aggiungi(slug, null, 1);
       else Cart.imposta(Cart.id(slug), az === "inc" ? qta(slug) + 1 : az === "dec" ? qta(slug) - 1 : 0);
+      const n = qta(slug);
+      annuncia(n ? `${C.get(slug).nome}: ${n} nel cesto` : `${C.get(slug).nome} tolto dal cesto`);
     });
 
     render.guida = () => disegna(false);
@@ -1305,7 +1329,7 @@ ${valori
       .map(
         (a, i) => `
 <div class="acc__i">
-  <button class="acc__t" aria-expanded="${!!a.open}" aria-controls="acc-${i}">${esc(a.t)}</button>
+  <h3 class="hx"><button type="button" class="acc__t" aria-expanded="${!!a.open}" aria-controls="acc-${i}">${esc(a.t)}</button></h3>
   <div class="acc__p" id="acc-${i}"${a.open ? "" : " hidden"}>${a.h}</div>
 </div>`
       )
@@ -1361,12 +1385,12 @@ ${valori
     const band =
       quote || p.descrizione
         ? `
-<section class="band${quote ? "" : " band--solo"}">
+<section class="band${quote ? "" : " band--solo"}">${quote ? "" : '<h2 class="sr">Il racconto</h2>'}
   <div class="wrap band__in">
     ${
       quote
         ? `<div>
-      <span class="eyebrow eyebrow--gold">LA NOTA DI GUSTO DEL BANCONE</span>
+      <span class="eyebrow eyebrow--gold" role="heading" aria-level="2">LA NOTA DI GUSTO DEL BANCONE</span>
       <p class="band__q">${esc(quote)}</p>
       ${profilo}
     </div>`
@@ -1400,7 +1424,7 @@ ${valori
     /* ------- "Dubbi? Chiedi alla bottega": su computer nella colonna d'acquisto, su telefono dopo l'etichetta */
     const chiedi = (cls) => `
 <div class="chiedi ${cls}">
-  <p><strong>Dubbi? Chiedi alla bottega.</strong> <span>Ti rispondiamo su formati, abbinamenti e spedizione.</span></p>
+  <p><strong role="heading" aria-level="2">Dubbi? Chiedi alla bottega.</strong> <span>Ti rispondiamo su formati, abbinamenti e spedizione.</span></p>
   <div class="chiedi__btns">
     <a class="chiedi__wa" href="${WA}?text=${encodeURIComponent("Buongiorno, scrivo dal sito per " + p.nome + ": ")}" target="_blank" rel="noopener">${WA_ICO} WhatsApp</a>
     <a href="${C.bottega.telHref}">${ico("phone")} Chiama</a>
@@ -1423,7 +1447,7 @@ ${valori
   <a class="abb2__img" href="prodotto.html?p=${a.slug}" tabindex="-1" aria-hidden="true">${ph(a.foto, "", "", a.img)}</a>
   <div class="abb2__b">
     ${a.occhiello ? `<span class="eyebrow eyebrow--olive only-d">${esc(a.occhiello)}</span>` : ""}
-    <a class="abb2__n" href="prodotto.html?p=${a.slug}">${esc(a.nome)}</a>
+    <h3 class="hx"><a class="abb2__n" href="prodotto.html?p=${a.slug}">${esc(a.nome)}</a></h3>
     ${testo ? `<p class="abb2__t">${esc(testo)}</p>` : ""}
     <div class="abb2__f">
       <span class="abb2__p">${euro(a.prezzo)}</span>
@@ -1870,22 +1894,37 @@ ${abbHtml}`;
         closePanel();
         return;
       }
+      /* "Aggiungi" diventa − n + e il carrello si ridisegna: il fuoco va sul controllo che ne prende il posto,
+         così chi usa tastiera o lettore di schermo non torna all'inizio della pagina */
       const add = e.target.closest("[data-add]");
       if (add) {
         const p = C.get(add.dataset.add);
-        Cart.aggiungi(add.dataset.add, add.closest("[data-addq]").dataset.f, 1);
+        const box = add.closest("[data-addq]");
+        Cart.aggiungi(add.dataset.add, box.dataset.f, 1);
         toast(p.nome + " nel carrello", "Vedi");
+        $('[data-d="1"]', box).focus();
         return;
       }
       const q = e.target.closest("[data-qta]");
       if (q && q.dataset.d) {
         const riga = Cart.righe.find((r) => Cart.id(r.slug, r.formato) === q.dataset.qta);
-        if (riga) Cart.imposta(q.dataset.qta, riga.qta + +q.dataset.d);
+        if (!riga) return;
+        const n = riga.qta + +q.dataset.d;
+        const box = q.closest("[data-addq]");
+        const nelCarrello = q.closest("[data-cart-body]");
+        Cart.imposta(q.dataset.qta, n);
+        const nome = C.get(riga.slug).nome;
+        annuncia(n > 0 ? `${nome}: ${n} nel carrello` : `${nome} tolto dal carrello`);
+        if (box && n <= 0) $(".addq__go", box).focus();
+        if (nelCarrello) fuocoCarrello(q.dataset.qta, q.dataset.d);
         return;
       }
       const rm = e.target.closest("[data-rimuovi]");
       if (rm) {
+        const riga = Cart.righe.find((r) => Cart.id(r.slug, r.formato) === rm.dataset.rimuovi);
         Cart.imposta(rm.dataset.rimuovi, 0);
+        if (riga) annuncia(C.get(riga.slug).nome + " tolto dal carrello");
+        fuocoCarrello();
         return;
       }
       const soon = e.target.closest("[data-soon]");
@@ -1930,6 +1969,7 @@ ${abbHtml}`;
           ? "Grazie — ti abbiamo aggiunto alla lista."
           : "Controlla l’indirizzo: sembra incompleto.";
         msg.style.color = ok ? "var(--brass-soft)" : "#E39A9A";
+        nl.email.setAttribute("aria-invalid", String(!ok));
         if (ok) nl.reset();
       });
   }

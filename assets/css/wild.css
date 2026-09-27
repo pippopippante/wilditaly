@@ -110,6 +110,9 @@ input,select,textarea{font:inherit;color:inherit}
   font-size:13px;letter-spacing:.08em;text-transform:uppercase;
 }
 .skip:focus{left:8px;top:8px}
+/* titoli messi per i lettori di schermo (nomi dei prodotti, fisarmoniche): a vederli restano come prima */
+.hx{font:inherit;letter-spacing:inherit;color:inherit}
+.hx>a{display:block}
 .sr,.sr-lg{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* -------------------------------------------------------------- layout */
