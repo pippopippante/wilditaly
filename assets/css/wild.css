@@ -458,6 +458,9 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
   background:linear-gradient(180deg,rgba(20,14,10,.2) 0%,rgba(20,14,10,.62) 38%,rgba(20,14,10,.9) 100%);
 }
 .hero__in{position:relative;padding-bottom:clamp(26px,4vw,72px);max-width:900px;width:100%}
+/* occhiello sopra la foto: a 11 px accanto a un titolo da 64 non si notava */
+@media (min-width:760px){ .hero .eyebrow{font-size:12px;letter-spacing:.12em} }
+@media (min-width:1120px){ .hero .eyebrow{font-size:14px;letter-spacing:.14em} }
 .hero__lede{margin:12px 0 20px;font-size:15px;line-height:1.6;color:#E0D2B8;max-width:560px}
 @media (min-width:1120px){ .hero__lede{margin:20px 0 32px;font-size:17px;line-height:1.65} }
 .hero__cta{display:flex;flex-direction:column;gap:10px}
