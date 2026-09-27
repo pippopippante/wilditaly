@@ -419,8 +419,10 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .tabbar .ico{width:19px;height:19px}
 .tabbar [aria-current="page"],.tabbar .is-active{color:var(--wine)}
 .tabbar .badge{top:4px;right:calc(50% - 22px);min-width:18px;height:18px;font-size:10px}
-@media (max-width:1119px){ body{--bar-h:74px} }
-@media (min-width:1120px){ .tabbar{display:none} }
+/* solo su telefono: su tablet cerca e carrello sono già nell'intestazione, e le linee guida
+   di Google (Material 3) e Apple tengono la barra in basso per i telefoni (sessione 24) */
+@media (max-width:759px){ body{--bar-h:74px} }
+@media (min-width:760px){ .tabbar{display:none} }
 
 /* ------------------------------------------ WhatsApp, fisso in basso a destra */
 .wa{
@@ -1068,6 +1070,7 @@ button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
   position:sticky;bottom:calc(60px + max(6px,env(safe-area-inset-bottom)));z-index:50;
   background:var(--paper);border-top:1px solid var(--line-strong);padding:0 var(--pad) 15px;
 }
+@media (min-width:760px){ .gv-bar{bottom:0;padding-bottom:calc(15px + env(safe-area-inset-bottom))} }
 .gv-bar .gv-k{white-space:nowrap}
 .gv-seg{display:flex;gap:5px}
 .gv-seg button{flex:1;min-height:44px;display:flex;align-items:center}
