@@ -571,7 +571,8 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .box-card__n{font-family:var(--serif);font-size:21px;line-height:1.25;color:var(--ink-strong)}
 @media (min-width:1120px){ .box-card__n{font-size:26px} }
 .box-card--pick{outline:2px solid var(--brass-soft)}
-.box-card--soon{opacity:.5}
+/* "in arrivo": sbiadita solo la foto, le scritte restano leggibili (contrasto WCAG 4,5:1) */
+.box-card--soon .ph{opacity:.5}
 .pricerow{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:10px}
 .save{background:var(--olive);color:#F0EDDF;font-size:11px;letter-spacing:.1em;padding:4px 8px}
 
@@ -591,7 +592,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 @media (min-width:760px){ .steps{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap)} }
 .step{display:flex;gap:16px;border-top:1px solid var(--line);padding:16px 0}
 .step:last-child{border-bottom:1px solid var(--line)}
-.step__n{font-family:var(--serif);font-size:30px;color:var(--brass-soft);line-height:1;flex:0 0 auto}
+.step__n{font-family:var(--serif);font-size:30px;color:#A18342;line-height:1;flex:0 0 auto}
 @media (min-width:760px){
   .step{flex-direction:column;gap:8px;border-top:2px solid var(--wine);padding:24px 0 0}
   .step:last-child{border-bottom:0}
@@ -989,7 +990,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .chap{position:relative;display:grid;gap:22px;padding:0 0 40px 26px;border-left:1px solid var(--line-strong)}
 .chap:last-child{padding-bottom:0}
 .chap::before{content:"";position:absolute;left:-5px;top:14px;width:9px;height:9px;background:var(--brass)}
-.chap__luogo{font-family:var(--serif);font-size:44px;line-height:1;color:var(--brass)}
+.chap__luogo{font-family:var(--serif);font-size:44px;line-height:1;color:#A7833B}
 .chap .ph{height:240px}
 @media (min-width:760px){ .chap .ph{height:360px} }
 @media (min-width:1120px){
