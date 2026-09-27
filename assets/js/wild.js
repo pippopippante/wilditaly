@@ -1000,7 +1000,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
   }
 
   /* ---- guida: la visita guidata fra gli scaffali ("Fatti guidare.dc.html", versione b).
-     Il cesto è il carrello vero: si aggiunge e si toglie direttamente lì, così niente
+     Il carrello della guida è quello vero: si aggiunge e si toglie direttamente lì, così niente
      doppioni e il badge dell'header resta giusto. Ogni parte si ridisegna solo se è
      cambiata, così la foto della tappa non sfarfalla quando aggiungi un prodotto. */
   function mountGuida() {
@@ -1012,7 +1012,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
     let i = location.hash === "#fine" ? FINE : tappaUrl ? Math.max(0, Math.min(FINE, tappaUrl[1] - 1)) : 0;
 
     host.innerHTML = `
-<aside class="gv-side" aria-label="Il percorso e il cesto" data-gv="side"></aside>
+<aside class="gv-side" aria-label="Il percorso e il carrello" data-gv="side"></aside>
 <div class="gv-stage">
   <div data-gv="hero"></div>
   <div class="gv-in" data-gv="in"></div>
@@ -1023,11 +1023,11 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
     const qta = (slug) => Cart.qta(slug);
     const nn = (n) => "0" + n;
 
-    /* "Nel cesto" oppure − n +: stesso riquadro .gv-ctl, stesse misure */
+    /* "Aggiungi" oppure − n +: stesso riquadro .gv-ctl, stesse misure */
     function ctl(p) {
       const n = qta(p.slug);
       if (!n)
-        return `<button type="button" class="gv-ctl" data-k="add:${p.slug}" aria-label="Metti nel cesto: ${esc(p.nome)}"><span class="gv-sm">Nel cesto</span><span class="gv-lg">Metti nel cesto</span></button>`;
+        return `<button type="button" class="gv-ctl" data-k="add:${p.slug}" aria-label="Aggiungi al carrello: ${esc(p.nome)}">Aggiungi</button>`;
       return `
 <span class="gv-ctl gv-ctl--on">
   <button type="button" data-k="dec:${p.slug}" aria-label="Riduci la quantità di ${esc(p.nome)}">${ico("minus")}</button>
@@ -1058,13 +1058,13 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
       );
       const pezzi = presi.reduce((a, x) => a + x.n, 0);
       const totale = euro(presi.reduce((a, x) => a + x.p.prezzo * x.n, 0));
-      const conta = pezzi === 1 ? "Un pezzo nel cesto" : pezzi + " pezzi nel cesto";
+      const conta = pezzi === 1 ? "Un pezzo nel carrello" : pezzi + " pezzi nel carrello";
       const tappe = V.map((s, n) => ({
         n: n,
         num: nn(n + 1),
         label: s.label,
         pezzi: s.prodotti.reduce((a, slug) => a + qta(slug), 0)
-      })).concat({ n: FINE, num: "—", label: "Il cesto e la cassa", pezzi: pezzi });
+      })).concat({ n: FINE, num: "—", label: "Il carrello e la cassa", pezzi: pezzi });
       const prossima = fine ? "" : i === FINE - 1 ? null : V[i + 1];
 
       const html = {};
@@ -1081,7 +1081,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
         .join("")}
 </ol>
 <div class="gv-basket">
-  <div class="gv-basket__t">Nel cesto</div>
+  <div class="gv-basket__t">Nel carrello</div>
   ${
     presi.length
       ? presi
@@ -1110,7 +1110,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
         : `<span>Tappa ${nn(i + 1)} di ${nn(FINE)}</span><span class="gv-cap__dove">${esc(t.dove)}</span>`
     }</div>
     <h2 class="gv-cap__t" tabindex="-1" data-gv-t>${esc(
-      fine ? (presi.length ? "Fatto: questo è il tuo cesto" : "Giro finito, cesto vuoto") : t.titolo
+      fine ? (presi.length ? "Fatto: questo è il tuo carrello" : "Giro finito, carrello vuoto") : t.titolo
     )}</h2>
   </div>
 </div>`;
@@ -1131,7 +1131,7 @@ ${
             x.p,
             `<span class="gv-item__dove">${esc(x.dove)}${x.n > 1 ? " · × " + x.n : ""}</span>`,
             euro(x.p.prezzo * x.n),
-            `<button type="button" class="gv-togli" data-k="togli:${x.p.slug}" aria-label="Togli dal cesto: ${esc(x.p.nome)}">Togli</button>`
+            `<button type="button" class="gv-togli" data-k="togli:${x.p.slug}" aria-label="Togli dal carrello: ${esc(x.p.nome)}">Togli</button>`
           )
         )
         .join("")}</div>
@@ -1161,7 +1161,7 @@ ${
 <div class="gv-nav">
   ${i > 0 ? `<button type="button" class="gv-link" data-k="go:${i - 1}">← Tappa precedente</button>` : ""}
   <button type="button" class="btn btn--dark" data-k="go:${i + 1}">${esc(
-            prossima ? "Avanti: " + prossima.label : "Chiudi il giro e vedi il cesto"
+            prossima ? "Avanti: " + prossima.label : "Chiudi il giro e vedi il carrello"
           )} →</button>
 </div>`;
 
@@ -1176,18 +1176,18 @@ ${
         .join("")}</div>
 <div class="gv-bar__row">
   <div class="gv-bar__c"><div class="gv-k">${
-    pezzi ? pezzi + (pezzi === 1 ? " pezzo" : " pezzi") : "Cesto vuoto"
+    pezzi ? pezzi + (pezzi === 1 ? " pezzo" : " pezzi") : "Carrello vuoto"
   }</div><div class="gv-bar__v">${totale}</div></div>
   ${
     fine
       ? `<button type="button" class="gv-bar__go gv-bar__go--wine" data-open="carrello">Al carrello</button>`
       : `<button type="button" class="gv-bar__go" data-k="go:${i + 1}">${esc(
-          prossima ? "Avanti: " + prossima.breve : "Vedi il cesto"
+          prossima ? "Avanti: " + prossima.breve : "Vedi il carrello"
         )} →</button>`
   }
 </div>`;
 
-      /* il fuoco resta sul controllo appena usato: "Nel cesto" diventa "+", e "−" a zero torna "Nel cesto" */
+      /* il fuoco resta sul controllo appena usato: "Aggiungi" diventa "+", e "−" a zero torna "Aggiungi" */
       const ae = document.activeElement;
       const k = ae && host.contains(ae) ? ae.dataset.k : null;
       parti.forEach((pt) => {
@@ -1223,7 +1223,7 @@ ${
       if (az === "add") Cart.aggiungi(slug, null, 1);
       else Cart.imposta(Cart.id(slug), az === "inc" ? qta(slug) + 1 : az === "dec" ? qta(slug) - 1 : 0);
       const n = qta(slug);
-      annuncia(n ? `${C.get(slug).nome}: ${n} nel cesto` : `${C.get(slug).nome} tolto dal cesto`);
+      annuncia(n ? `${C.get(slug).nome}: ${n} nel carrello` : `${C.get(slug).nome} tolto dal carrello`);
     });
 
     render.guida = () => disegna(false);

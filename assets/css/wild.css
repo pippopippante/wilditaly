@@ -1010,7 +1010,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 /* -------------------------------------------------------- fatti guidare */
 /* guida.html, "Fatti guidare.dc.html" versione b: la visita guidata.
    Sotto i 1120 px la 2b (foto a tutta larghezza, barra del percorso in basso),
-   sopra la 1b (percorso e cesto a sinistra, tappa a destra). */
+   sopra la 1b (percorso e carrello a sinistra, tappa a destra). */
 .gv-k{font-family:var(--label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta)}
 
 .gv-hero{position:relative}
@@ -1043,7 +1043,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .gv-item__p{grid-area:p;font-size:16px;color:var(--ink);white-space:nowrap}
 .gv-item>.gv-ctl,.gv-item>.gv-togli{grid-area:c}
 
-/* "Nel cesto" e − n + occupano lo stesso identico riquadro: il passaggio
+/* "Aggiungi" e − n + occupano lo stesso identico riquadro: il passaggio
    non cambia forma né dimensioni (richiesta del cliente). */
 .gv-ctl{
   width:136px;height:46px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
@@ -1055,7 +1055,6 @@ button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
 .gv-ctl--on button:hover{background:var(--sand)}
 .gv-ctl .ico{width:16px;height:16px}
 .gv-ctl__n{display:flex;align-items:center;justify-content:center;font-size:15px;font-variant-numeric:tabular-nums}
-.gv-lg{display:none}
 .gv-togli{min-height:44px;min-width:44px;padding:0 14px;border:1px solid var(--line-strong);font-size:14px;color:var(--muted)}
 .gv-togli:hover{border-color:var(--wine);color:var(--wine)}
 
@@ -1143,8 +1142,6 @@ button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
   .gv-item{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"b p c";gap:12px 18px;padding:16px 0}
   .gv-item__p{color:var(--muted)}
   .gv-ctl{width:160px;height:44px}
-  .gv-sm{display:none}
-  .gv-lg{display:inline}
 
   .gv-nav{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:28px}
   .gv-nav .btn{margin-left:auto}
