@@ -1115,7 +1115,6 @@ window.CATALOGO = (function () {
   const selezioni = [
     {
       slug: "guida",
-      occhiello: "FATTI GUIDARE",
       titolo: "Fatti guidare nella scelta",
       intro: "Dicci cosa ti piace e ti diciamo da dove partire, come faremmo al bancone.",
       sezioni: [
@@ -1143,7 +1142,6 @@ window.CATALOGO = (function () {
     },
     {
       slug: "regalo",
-      occhiello: "IDEE REGALO",
       titolo: "Idee regalo",
       intro: "Pensa a chi lo riceve: ecco cosa sceglieremmo noi.",
       sezioni: [
@@ -1171,7 +1169,6 @@ window.CATALOGO = (function () {
     },
     {
       slug: "sotto-20",
-      occhiello: "PICCOLA SPESA",
       titolo: "Sotto i 20 €",
       intro: "Tutto quello che in bottega costa meno di 20 €.",
       /* prima due salami, poi si alterna; quello che non è in `ordine` va in fondo, dal meno caro */

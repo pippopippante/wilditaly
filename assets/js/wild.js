@@ -973,7 +973,6 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
     }
     document.title = s.titolo + " · Wild Italy";
     $("[data-sel-crumb]").innerHTML = `<a href="index.html">Bottega</a> / ${esc(s.titolo)}`;
-    $("[data-sel-occhiello]").textContent = s.occhiello;
     $("[data-sel-title]").textContent = s.titolo;
     $("[data-sel-intro]").textContent = s.intro;
 
