@@ -31,9 +31,10 @@
 
   /* ------------------------------------------------------ configurazione
      Corrisponde alle props di "Wild Italy.dc.html":
-     mostraBarraAnnuncio, mostraBadgeArtigianale.                         */
+     mostraBadgeArtigianale. La barra annuncio in cima è stata tolta il 27/09/2026:
+     il suo posto è la fascia sotto la foto della home (index.html, .trust).  */
   const CONFIG = Object.assign(
-    { mostraBarraAnnuncio: true, mostraBadgeArtigianale: false },
+    { mostraBadgeArtigianale: false },
     window.WILD_CONFIG || {}
   );
 
@@ -237,10 +238,7 @@
 
   function headerHtml() {
     const b = C.bottega;
-    /* la barra annuncio si vede SOLO su telefono (vedi .announce in wild.css):
-       l'ha chiesto l'utente, non rimetterla su tablet e PC */
     return `
-${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">In tutta Italia, sottovuoto e a casa tua in circa 48 ore</aside>' : ""}
 <header class="hdr">
   ${document.body.dataset.pagina === "prodotto" ? ctxBarHtml() : ""}
   <div class="hdr__bar">
@@ -1872,7 +1870,6 @@ ${abbHtml}`;
 
   /* ------------------------------------------------------------------ avvio */
   function init() {
-    document.documentElement.dataset.annuncio = CONFIG.mostraBarraAnnuncio ? "on" : "off";
     document.documentElement.dataset.badgeArtigianale = CONFIG.mostraBadgeArtigianale ? "on" : "off";
 
     /* la categoria corrente serve già al primo disegno della navigazione */

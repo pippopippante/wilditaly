@@ -83,12 +83,11 @@ body{
   overflow-wrap:break-word;
 }
 body.is-locked{overflow:hidden}
-/* Header e barra annuncio li inserisce wild.js dopo il primo disegno: finché non ci sono
-   si tiene libero il loro spazio, se no la pagina salta giù di ~100 px (CLS).
+/* L'header lo inserisce wild.js dopo il primo disegno: finché non c'è si tiene libero
+   il suo spazio, se no la pagina salta giù (CLS).
    Le altezze sono quelle misurate dell'header vero: se cambia, vanno aggiornate. */
-body{--chrome-h:104px}
-body[data-pagina="prodotto"]{--chrome-h:95px}
-@media (min-width:760px){ body{--chrome-h:65px} body[data-pagina="prodotto"]{--chrome-h:56px} }
+body{--chrome-h:65px}
+body[data-pagina="prodotto"]{--chrome-h:56px}
 @media (min-width:1120px){ body,body[data-pagina="prodotto"]{--chrome-h:89px} }
 body:not(.has-chrome)::before{content:"";display:block;height:var(--chrome-h)}
 img{max-width:100%;display:block}
@@ -227,15 +226,6 @@ input,select,textarea{font:inherit;color:inherit}
 .ph--tag .ph__note{position:absolute;top:14px;left:14px;border:1px dashed #6B5843;padding:5px 9px}
 .ph--4.ph--tag .ph__note{border-color:#A2947C;color:#786A54}
 
-/* ------------------------------------------------------- barra annuncio */
-/* SOLO TELEFONO (sotto i 760 px), per richiesta esplicita dell'utente (2026-09-13):
-   su tablet e PC la barra NON va rimessa. */
-.announce{
-  background:var(--wine-deep);color:#E9D9B8;text-align:center;
-  padding:10px 16px;font-size:12px;letter-spacing:.05em;text-wrap:balance;
-}
-@media (min-width:760px){ .announce{display:none} }
-[data-annuncio="off"] .announce{display:none}
 [data-badge-artigianale="off"] .badge-craft{display:none}
 
 /* --------------------------------------------------------------- header */
@@ -732,6 +722,14 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
   .shop>.ph{position:relative;inset:auto;height:200px}
   .shop__card{margin:0;padding:30px var(--pad) 36px;background:var(--sand)}
 }
+
+/* fascia sotto la foto della home, solo telefono: prende il posto della barra annuncio in cima */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);background:var(--wood-dark);color:var(--sand-text);text-align:center;--focus:var(--gold)}
+.trust>*{display:flex;flex-direction:column;gap:2px;padding:14px 6px;font-size:11px;letter-spacing:.04em;line-height:1.3}
+.trust>*+*{border-left:1px solid #4A3A2A}
+.trust strong{font-family:var(--serif);font-weight:400;font-size:20px;letter-spacing:0;line-height:1.1;color:#F7EFDF}
+.trust .trust__voto{color:var(--gold)}
+@media (min-width:760px){ .trust{display:none} }
 
 /* numeri e recensioni sotto i pulsanti del titolo */
 .hero__trust{display:none}
