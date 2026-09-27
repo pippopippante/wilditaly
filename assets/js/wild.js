@@ -1506,7 +1506,8 @@ ${valori
     /* ------- galleria: le foto stanno in fila e scorrono (col dito su telefono) */
     const slides = galImg
       ? galImg
-          .map((src, i) => `<div class="gallery__slide"><img src="${esc(src)}" alt="${esc(gal[i])}" draggable="false" data-gal-img></div>`)
+          /* la foto mostrata si apre a tutto schermo anche da tastiera: è un pulsante (tabindex in mostraGal) */
+          .map((src, i) => `<div class="gallery__slide"><img src="${esc(src)}" alt="${esc(gal[i])}" draggable="false" data-gal-img role="button" tabindex="${i ? -1 : 0}" aria-label="Ingrandisci la foto: ${esc(gal[i])}"></div>`)
           .join("") +
         (tre
           ? '<div class="gallery__slide" data-slide-3d><div class="gallery__3d" data-gal-3d hidden><span class="meta gallery__hint">Trascina per girare la bottiglia</span></div></div>'
@@ -1744,6 +1745,8 @@ ${abbHtml}`;
       const gi = $("[data-gal-i]", host);
       if (gi) gi.textContent = i + 1;
       $$("[data-g]", host).forEach((b) => b.setAttribute("aria-current", String(+b.dataset.g === i)));
+      /* col Tab si arriva solo alla foto mostrata: quelle nascoste di lato farebbero scorrere la galleria */
+      $$("[data-gal-img]", host).forEach((f, k) => (f.tabIndex = k === i ? 0 : -1));
       /* su telefono la fila delle miniature scorre fino a quella della foto mostrata */
       const row = $("[data-gal-thumbs]", host);
       if (row && row.scrollWidth > row.clientWidth) {
@@ -1855,6 +1858,13 @@ ${abbHtml}`;
       if (g) return mostraGal(g.dataset.g ? +g.dataset.g : galCur + +g.dataset.galStep);
     });
 
+    host.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-gal-img]")) {
+        e.preventDefault();
+        apriZoom(galCur);
+      }
+    });
+
     initAcc(host);
 
     /* ------- su telefono, scorrendo in giù header e barra in basso escono e resta solo
@@ -1916,6 +1926,13 @@ ${abbHtml}`;
     initAcc();
     initSearch();
     initWa();
+
+    /* i link che aprono un'altra scheda lo dicono a chi usa un lettore di schermo (WCAG, tecnica G201) */
+    $$('a[target="_blank"]').forEach((a) => {
+      const avviso = " (si apre in una nuova scheda)";
+      if (a.hasAttribute("aria-label")) a.setAttribute("aria-label", a.getAttribute("aria-label") + avviso);
+      else a.insertAdjacentHTML("beforeend", `<span class="sr">${avviso}</span>`);
+    });
 
     $$("[data-spedizione]").forEach((e) => (e.textContent = euro(C.bottega.spedizione)));
 
