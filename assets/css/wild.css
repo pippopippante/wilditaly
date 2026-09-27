@@ -608,30 +608,29 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 }
 
 /* scaffali a mosaico (disegno "Home redesign", sessione 25): foto piena, fascia sabbia col nome in basso.
-   Telefono e tablet: 2 colonne, selvaggina e dispensa larghe. Computer: 4 colonne, selvaggina 2×2. */
+   Telefono e tablet: 2 colonne, selvaggina larga. Computer: 4 colonne, selvaggina 2×2. */
 .shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .shelf__i{position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--sand);height:200px}
 .shelf__i .ph{position:absolute;inset:0;height:auto}
 .shelf__i--selvaggina{grid-column:1 / -1;height:240px}
-.shelf__i--dispensa{grid-column:1 / -1;height:170px}
 .shelf__l{position:relative;display:flex;flex-direction:column;background:var(--sand);padding:10px 12px;line-height:1.15}
 .shelf__n{font-family:var(--serif);font-size:19px;color:var(--ink-strong)}
 .shelf__i--selvaggina .shelf__n{font-size:24px}
-.shelf__i--dispensa .shelf__n{font-size:22px}
 .shelf__c{font-size:12px;color:var(--meta);margin-top:2px}
 .shelf__i:hover .shelf__n{color:var(--wine)}
 .shelf__tot{margin-top:8px}
 @media (min-width:1120px){
   .shelf{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,16vw,220px);gap:clamp(10px,1.3vw,16px)}
-  .shelf__i,.shelf__i--selvaggina,.shelf__i--dispensa{height:auto}
+  .shelf__i,.shelf__i--selvaggina{height:auto}
   .shelf__i--selvaggina{grid-area:1 / 1 / 3 / 3}
   .shelf__i--tartufo{grid-area:1 / 3 / 2 / 5}
   .shelf__i--salumi{grid-area:2 / 3 / 3 / 4}
   .shelf__i--formaggi{grid-area:2 / 4 / 3 / 5}
   .shelf__i--vini{grid-area:3 / 1 / 4 / 3}
-  .shelf__i--dispensa{grid-area:3 / 3 / 4 / 5}
+  .shelf__i--dispensa{grid-area:3 / 3 / 4 / 4}
+  .shelf__i--dolci{grid-area:3 / 4 / 4 / 5}
   .shelf__l{flex-direction:row;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 18px}
-  .shelf__n,.shelf__i--selvaggina .shelf__n,.shelf__i--dispensa .shelf__n{font-size:clamp(19px,1.1vw + 12px,24px)}
+  .shelf__n,.shelf__i--selvaggina .shelf__n{font-size:clamp(19px,1.1vw + 12px,24px)}
   .shelf__c{margin-top:0;white-space:nowrap}
 }
 

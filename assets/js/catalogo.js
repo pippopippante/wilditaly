@@ -78,10 +78,21 @@ window.CATALOGO = (function () {
       nav: "Dispensa",
       nome: "Dispensa",
       titolo: "Dispensa",
-      intro: "Legumi umbri, farro, zuppe da cuocere e ciambelline al vino fatte a mano: la parte della bottega che riempie la credenza.",
+      intro: "Legumi umbri, farro, zuppe da cuocere e stuzzichini al tartufo: la parte della bottega che riempie la credenza.",
       foto: "FOTO: scaffale dispensa",
       img: "assets/img/definitive/zuppa-rapida-foto-1.jpg",
       imgAlt: "Confezione di zuppa rapida di legumi"
+    },
+    {
+      /* scaffale aggiunto il 27/09/2026: prima ciambelline e snacks stavano in Dispensa */
+      slug: "dolci",
+      nav: "Dolci",
+      nome: "Dolci",
+      titolo: "Dolci",
+      intro: "Ciambelline al vino rosso fatte a mano, in quattro gusti, e snacks dolci all'anice.",
+      foto: "FOTO: scaffale dei dolci",
+      img: "assets/img/provvisorie/ciambelline-cereali-1.jpg",
+      imgAlt: "Confezione di ciambelline ai cereali"
     },
     {
       slug: "box",
@@ -890,8 +901,8 @@ window.CATALOGO = (function () {
       slug: "ciambelline-cereali",
       nome: "Ciambelline ai cereali",
       claim: "Croccanti, rustiche e ricche di cereali: il gusto semplice delle ciambelline fatte a mano.",
-      categoria: "dispensa",
-      occhiello: "DISPENSA · CIAMBELLINE",
+      categoria: "dolci",
+      occhiello: "DOLCI · CIAMBELLINE",
       prezzo: 5.5,
       peso: "200 g",
       grammi: 200,
@@ -915,8 +926,8 @@ window.CATALOGO = (function () {
     {
       slug: "ciambelline-cacao-menta",
       nome: "Ciambelline cacao e menta",
-      categoria: "dispensa",
-      occhiello: "DISPENSA · CIAMBELLINE",
+      categoria: "dolci",
+      occhiello: "DOLCI · CIAMBELLINE",
       prezzo: 5.5,
       peso: "200 g",
       grammi: 200,
@@ -935,8 +946,8 @@ window.CATALOGO = (function () {
     {
       slug: "ciambelline-frutti-bosco",
       nome: "Ciambelline ai frutti di bosco",
-      categoria: "dispensa",
-      occhiello: "DISPENSA · CIAMBELLINE",
+      categoria: "dolci",
+      occhiello: "DOLCI · CIAMBELLINE",
       prezzo: 5.5,
       peso: "200 g",
       grammi: 200,
@@ -955,8 +966,8 @@ window.CATALOGO = (function () {
     {
       slug: "ciambelline-sambuca-caffe",
       nome: "Ciambelline sambuca e caffè",
-      categoria: "dispensa",
-      occhiello: "DISPENSA · CIAMBELLINE",
+      categoria: "dolci",
+      occhiello: "DOLCI · CIAMBELLINE",
       prezzo: 5.5,
       peso: "200 g",
       grammi: 200,
@@ -1001,8 +1012,8 @@ window.CATALOGO = (function () {
       /* proteine: in etichetta il valore è coperto dall'occhiello, "6,5" da ricontrollare */
       slug: "snacks-anice",
       nome: "Snacks gusto dolce all'anice",
-      categoria: "dispensa",
-      occhiello: "DISPENSA",
+      categoria: "dolci",
+      occhiello: "DOLCI",
       /* prezzo indicativo, da confermare col cliente */
       prezzo: 4.5,
       peso: "80 g",

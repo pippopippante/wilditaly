@@ -212,8 +212,8 @@
         const a = `<a href="${href}"${cur}${cls}>${esc(dove === "menu" ? c.nome : c.nav)}${
           dove === "menu" ? ico("right") : ""
         }</a>`;
-        /* il catalogo completo sta subito dopo la dispensa */
-        if (c.slug !== "dispensa") return a;
+        /* il catalogo completo sta subito dopo l'ultimo scaffale, i dolci */
+        if (c.slug !== "dolci") return a;
         const curCat = document.body.dataset.pagina === "catalogo" ? ' aria-current="page"' : "";
         return a + `<a href="catalogo.html"${curCat}>${dove === "menu" ? "Catalogo completo" + ico("right") : "Catalogo"}</a>`;
       })
@@ -761,11 +761,11 @@
         .map((p) => boxCard(p, { testo: true, evidenza: true }))
         .join("");
 
-    /* scaffali a mosaico: la selvaggina grande, poi tartufo, salumi, formaggi, vini, dispensa
+    /* scaffali a mosaico: la selvaggina grande, poi tartufo, salumi, formaggi, vini, dispensa, dolci
        (le posizioni sono in wild.css, .shelf__i--<slug>) */
     const shelf = $('[data-mount="shelf"]');
     if (shelf) {
-      const ordine = ["selvaggina", "tartufo", "salumi", "formaggi", "vini", "dispensa"];
+      const ordine = ["selvaggina", "tartufo", "salumi", "formaggi", "vini", "dispensa", "dolci"];
       shelf.innerHTML = ordine
         .map(C.cat)
         .filter(Boolean)
