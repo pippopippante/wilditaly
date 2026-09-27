@@ -33,11 +33,16 @@
         <a class="btn btn--wine" href="guida.html">Fatti guidare nella scelta</a>
         <a class="btn btn--brass" href="box.html">Box e degustazioni</a>
       </div>
+      <p class="hero__trust">
+        <span>Sottovuoto in tutta Italia</span>
+        <span>A casa in circa 48 ore</span>
+        <a href="#t-recensioni"><span class="hero__stella">★ 5,0</span> · 523 recensioni Google</a>
+      </p>
     </div>
   </section>
 
   <!-- ====================================================== specialità -->
-  <section class="sec sec--tight spec" aria-labelledby="t-spec">
+  <section class="sec spec" aria-labelledby="t-spec">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h2" id="t-spec">Le nostre specialità</h2>
@@ -64,25 +69,32 @@
 
   <!-- ======================================== la bottega scaffale per scaffale -->
   <section class="wrap sec sec--tight" aria-labelledby="t-scaffali">
-    <h2 class="h2" id="t-scaffali" style="margin-bottom:20px">La bottega, scaffale per scaffale</h2>
+    <div class="sec-head">
+      <div>
+        <h2 class="h2" id="t-scaffali">La bottega, scaffale per scaffale</h2>
+        <p class="meta shelf__tot only-m"><span data-shelf-tot></span> prodotti su sei scaffali</p>
+      </div>
+      <a class="link-arrow only-d" href="catalogo.html">Catalogo completo · <span data-shelf-tot></span> prodotti <span data-ico="right"></span></a>
+    </div>
     <div class="shelf" data-mount="shelf"></div>
+    <a class="btn btn--line btn--block only-m" href="catalogo.html" style="margin-top:14px">Catalogo completo</a>
   </section>
 
   <!-- ============================================= box e degustazioni -->
   <section class="sec sec--wood" aria-labelledby="t-box">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h2" id="t-box">Box e degustazioni</h2>
-        <div class="rail-nav">
-          <button type="button" data-dir="prev" aria-label="Box precedenti"><span data-ico="left"></span></button>
-          <button type="button" data-dir="next" aria-label="Box successivi"><span data-ico="right"></span></button>
+        <div>
+          <h2 class="h2" id="t-box">Box e degustazioni</h2>
+          <p class="box-intro only-m">Assortimenti pensati come li comporremmo al bancone, confezionati a mano in bottega.</p>
         </div>
+        <a class="link-arrow only-d" href="box.html">Vedi tutti i box <span data-ico="right"></span></a>
       </div>
     </div>
-    <div class="rail rail--box" data-mount="box-rail"></div>
+    <div class="rail rail--box rail--box-home" data-mount="box-rail"></div>
     <div class="dots" aria-label="Box"></div>
-    <div class="wrap" style="margin-top:22px">
-      <a class="btn btn--brass btn--block" href="box.html" style="max-width:420px">Vedi tutti i box</a>
+    <div class="wrap only-m" style="margin-top:20px">
+      <a class="btn btn--brass btn--block" href="box.html">Vedi tutti i box</a>
     </div>
   </section>
 
@@ -215,11 +227,14 @@
     <div class="shop__card">
       <h2 class="h2" id="t-negozio">Chiamaci</h2>
       <p class="shop__tel"><a href="tel:+393349206466">+39 334 920 6466</a></p>
+      <a class="btn btn--wa btn--block only-m shop__wa" href="https://wa.me/393349206466" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
       <p class="body measure" style="margin-top:14px">Non sai cosa scegliere? Chiamaci: ti guidiamo noi come se fossi da noi a Spoleto. Se non rispondiamo subito, ti richiamiamo appena possiamo.</p>
-      <p class="body measure" style="margin-top:18px">E se passi da Spoleto, vieni a trovarci in negozio.</p>
-      <p class="shop__hours">Via Porta Fuga 26, 06049 Spoleto (PG)<br>Lun–Sab 8:30–13:30 · 16:00–20:00</p>
-      <div class="shop__cta">
-        <a class="btn btn--line btn--sm" href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">Indicazioni</a>
+      <div class="shop__visita">
+        <p class="shop__vieni">E se passi da Spoleto, vieni a trovarci in negozio.</p>
+        <p class="shop__hours">Via Porta Fuga 26, 06049 Spoleto (PG)<br>Lun–Sab 8:30–13:30 · 16:00–20:00</p>
+        <div class="shop__cta">
+          <a class="btn btn--line btn--sm" href="https://maps.app.goo.gl/MFsZsuGnCjkg5w8x6" target="_blank" rel="noopener">Indicazioni</a>
+        </div>
       </div>
     </div>
   </section>

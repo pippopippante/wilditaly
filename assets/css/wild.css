@@ -479,8 +479,6 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 @media (min-width:760px){ .rail{gap:var(--gap)} }
 .rail--sel>*{width:250px}
 .rail--box>*{width:260px}
-/* specialità in home: le foto definitive sono verticali 4:5, si vedono intere invece di tagliate a quadrato */
-.spec .prod .ph{height:auto;aspect-ratio:4/5}
 .rail--pair>*{width:250px}
 @media (min-width:760px){
   .rail--sel>*{width:min(340px,72vw)}
@@ -543,10 +541,10 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
    si vedono nome e prezzo del primo prodotto e scorrendo spunta sempre il successivo */
 @media (max-width:759px){
   .grid-3>.prod .ph{height:auto;aspect-ratio:16/10}
-  .grid-3>.prod .prod__b,.spec .prod__b{padding:14px 16px 16px}
-  .grid-3>.prod .prod__n,.spec .prod__n{font-size:22px}
-  .grid-3>.prod .prod__price,.spec .prod__price{padding-top:10px}
-  .grid-3>.prod .prod__cta,.spec .prod__cta{margin-top:12px}
+  .grid-3>.prod .prod__b{padding:14px 16px 16px}
+  .grid-3>.prod .prod__n{font-size:22px}
+  .grid-3>.prod .prod__price{padding-top:10px}
+  .grid-3>.prod .prod__cta{margin-top:12px}
 }
 
 /* Pulsante-contatore: "Aggiungi al carrello" e - n + nella stessa scatola,
@@ -602,18 +600,71 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
   .step__n{font-size:52px}
 }
 
-.shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media (min-width:760px){ .shelf{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)} }
-@media (min-width:1120px){ .shelf{grid-template-columns:repeat(4,minmax(0,1fr))} }
-.shelf__i{background:var(--sand);display:flex;flex-direction:column}
-.shelf__i .ph{height:110px}
-.shelf__i span{padding:12px 12px 14px;font-family:var(--serif);font-size:19px;line-height:1.2}
+/* scaffali a mosaico (disegno "Home redesign", sessione 25): foto piena, fascia sabbia col nome in basso.
+   Telefono e tablet: 2 colonne, selvaggina e dispensa larghe. Computer: 4 colonne, selvaggina 2×2. */
+.shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.shelf__i{position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--sand);height:200px}
+.shelf__i .ph{position:absolute;inset:0;height:auto}
+.shelf__i--selvaggina{grid-column:1 / -1;height:240px}
+.shelf__i--dispensa{grid-column:1 / -1;height:170px}
+.shelf__l{position:relative;display:flex;flex-direction:column;background:var(--sand);padding:10px 12px;line-height:1.15}
+.shelf__n{font-family:var(--serif);font-size:19px;color:var(--ink-strong)}
+.shelf__i--selvaggina .shelf__n{font-size:24px}
+.shelf__i--dispensa .shelf__n{font-size:22px}
+.shelf__c{font-size:12px;color:var(--meta);margin-top:2px}
+.shelf__i:hover .shelf__n{color:var(--wine)}
+.shelf__tot{margin-top:8px}
 @media (min-width:1120px){
-  .shelf__i{position:relative;justify-content:flex-end;min-height:220px}
-  .shelf__i .ph{position:absolute;inset:0;height:auto}
-  .shelf__i span{position:relative;font-size:24px;padding:20px;color:#2B2015}
-  /* il nome sta sopra la foto: stessa fascia sabbia del telefono, se no non si legge */
-  .shelf__i .ph + span{background:var(--sand);padding:14px 20px}
+  .shelf{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,16vw,220px);gap:clamp(10px,1.3vw,16px)}
+  .shelf__i,.shelf__i--selvaggina,.shelf__i--dispensa{height:auto}
+  .shelf__i--selvaggina{grid-area:1 / 1 / 3 / 3}
+  .shelf__i--tartufo{grid-area:1 / 3 / 2 / 5}
+  .shelf__i--salumi{grid-area:2 / 3 / 3 / 4}
+  .shelf__i--formaggi{grid-area:2 / 4 / 3 / 5}
+  .shelf__i--vini{grid-area:3 / 1 / 4 / 3}
+  .shelf__i--dispensa{grid-area:3 / 3 / 4 / 5}
+  .shelf__l{flex-direction:row;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:12px 18px}
+  .shelf__n,.shelf__i--selvaggina .shelf__n,.shelf__i--dispensa .shelf__n{font-size:clamp(19px,1.1vw + 12px,24px)}
+  .shelf__c{margin-top:0;white-space:nowrap}
+}
+
+/* specialità su fondo vinaccia scuro, schede chiare */
+.spec{background:var(--wine-deep);color:#F3E6CF;--focus:var(--gold)}
+.spec .h2{color:#F7EFDF}
+.spec .dots button{--dot:rgba(216,176,94,.45)}
+.spec .dots button[aria-current="true"]{--dot:var(--gold)}
+.spec-card{display:flex;flex-direction:column;background:var(--paper);color:var(--ink)}
+/* le foto definitive sono verticali 4:5: si vedono intere invece di tagliate (decisione del 25/09) */
+.spec-card .ph{height:auto;aspect-ratio:4/5}
+.spec-card__b{display:flex;flex-direction:column;gap:10px;flex:1;padding:18px 18px 20px}
+.spec-card__n{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.1;color:var(--ink-strong)}
+.spec-card__d{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.45;color:var(--ink-soft);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.spec-card__f{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.spec-card__p{display:flex;flex-direction:column;line-height:1.1}
+.spec-card__p .price{font-size:26px}
+.spec-card__p .meta{margin-top:3px}
+.spec-card__cta{flex:0 0 auto;min-height:48px;padding:0 20px}
+.spec-card__x{display:none}
+@media (min-width:1120px){
+  .spec-card__b{padding:20px 20px 24px;gap:12px}
+  .spec-card__n{font-size:28px;line-height:1.15}
+  .spec-card__d{font-size:18px;display:block;overflow:visible}
+  .spec-card__f{flex-direction:column;align-items:stretch}
+  .spec-card__p{flex-direction:row;align-items:baseline;justify-content:space-between}
+  .spec-card__p .meta{text-align:right}
+  .spec-card__p .price{font-size:24px}
+  .spec-card__cta{width:100%}
+  .spec-card__x{display:inline}
+}
+
+/* box in home: carosello su telefono e tablet, griglia di 4 su computer */
+@media (max-width:759px){ .spec .rail--sel>*{width:84%} .rail--box-home>*{width:78%} }
+.box-intro{margin-top:8px;font-size:14px;line-height:1.6;color:var(--sand-text)}
+@media (min-width:1120px){
+  .rail--box-home{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));overflow:visible;padding-left:var(--pad);padding-right:var(--pad)}
+  .rail--box-home>*{width:auto}
+  .rail--box-home + .dots{display:none}
 }
 
 /* recensioni: le citazioni della scheda Google, nella voce della bottega (carta, Garamond, ottone).
@@ -662,6 +713,34 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .shop__tel a{display:inline-block;padding:7px 0} /* area di tocco da 44 px */
 @media (min-width:760px){ .shop__tel{font-size:30px} }
 .shop__hours{margin-top:20px;font-size:14px;line-height:1.9;color:var(--ink-soft)}
+.shop__wa{margin-top:10px}
+.btn--wa{background:#1F7A45;border-color:#1F7A45;color:#fff;gap:10px}
+.btn--wa:hover{background:#17613A;color:#fff}
+.btn--wa svg{width:20px;height:20px}
+.shop__vieni{font-family:var(--serif);font-size:21px;line-height:1.3;color:var(--ink-strong)}
+.shop__visita{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-strong,#C0AE8E)}
+.shop__visita .shop__hours{margin-top:6px}
+@media (min-width:1120px){
+  .shop__visita{margin-top:18px;padding-top:0;border-top:0}
+  .shop__vieni{font-family:inherit;font-size:15px;line-height:1.75;color:var(--ink-soft)}
+  .shop .shop__cta{display:flex}
+  .shop .shop__cta .btn{flex:0 0 auto}
+}
+/* telefono e tablet: foto sopra, testo sotto (non più la scheda sopra la foto) */
+@media (max-width:1119px){
+  .shop{display:block;min-height:0;padding-top:0;background:var(--sand)}
+  .shop>.ph{position:relative;inset:auto;height:200px}
+  .shop__card{margin:0;padding:30px var(--pad) 36px;background:var(--sand)}
+}
+
+/* numeri e recensioni sotto i pulsanti del titolo */
+.hero__trust{display:none}
+@media (min-width:760px){
+  .hero__trust{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;padding-top:18px;border-top:1px solid rgba(216,176,94,.28);
+    font-size:13px;letter-spacing:.06em;color:#D8CBB5;max-width:640px}
+  .hero__trust a:hover{color:#F7EFDF}
+  .hero__stella{color:var(--gold)}
+}
 
 /* --------------------------------------------------------------- footer */
 .ftr{background:var(--wood-dark);color:var(--sand-text);padding:32px var(--pad) 24px}

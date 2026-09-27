@@ -514,6 +514,27 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
 </article>`;
   }
 
+  /* specialità della home: la categoria sopra il nome e la prima frase della descrizione */
+  function specCard(p) {
+    const frase = (p.descrizione || "").split(/(?<=\.)\s/)[0];
+    return `
+<article class="spec-card">
+  <a href="prodotto.html?p=${p.slug}" tabindex="-1" aria-hidden="true">${ph(p.foto, "", "", p.img)}</a>
+  <div class="spec-card__b">
+    ${p.occhiello ? `<p class="eyebrow">${esc(p.occhiello)}</p>` : ""}
+    <h3 class="hx"><a class="spec-card__n" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a></h3>
+    ${frase ? `<p class="spec-card__d">${esc(frase)}</p>` : ""}
+    <div class="spec-card__f">
+      <div class="spec-card__p">
+        <span class="price">${euro(p.prezzo)}</span>
+        <span class="meta">${[p.peso, alKg(p.prezzo, p)].filter(Boolean).map(esc).join("<br>")}</span>
+      </div>
+      ${addq(p, "btn--dark spec-card__cta", `Aggiungi<span class="spec-card__x"> al carrello</span>`)}
+    </div>
+  </div>
+</article>`;
+  }
+
   function boxCard(p, opz) {
     opz = opz || {};
     const lv = opz.lv || 3;
@@ -724,7 +745,7 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
   function mountHome() {
     /* specialità: prodotti veri; le categorie stanno una volta sola, negli scaffali qui sotto */
     const spec = $('[data-mount="specialita"]');
-    if (spec) spec.innerHTML = C.bottega.specialita.map(C.get).filter(Boolean).map((p) => prodCard(p)).join("");
+    if (spec) spec.innerHTML = C.bottega.specialita.map(C.get).filter(Boolean).map(specCard).join("");
 
     const box = $('[data-mount="box-rail"]');
     if (box)
@@ -733,18 +754,28 @@ ${CONFIG.mostraBarraAnnuncio ? '<aside class="announce" aria-label="Spedizione">
         .map((p) => boxCard(p, { testo: true, evidenza: true }))
         .join("");
 
+    /* scaffali a mosaico: la selvaggina grande, poi tartufo, salumi, formaggi, vini, dispensa
+       (le posizioni sono in wild.css, .shelf__i--<slug>) */
     const shelf = $('[data-mount="shelf"]');
-    if (shelf)
-      shelf.innerHTML =
-        C.categorie
-          .filter((c) => !c.inNavEvidenza)
-          .map(
-            (c) => `
-<a class="shelf__i" href="categoria.html?c=${c.slug}">
-  ${ph("", "ph--3", "", c.img)}<span>${esc(c.nome)}</span>
-</a>`
-          )
-          .join("");
+    if (shelf) {
+      const ordine = ["selvaggina", "tartufo", "salumi", "formaggi", "vini", "dispensa"];
+      shelf.innerHTML = ordine
+        .map(C.cat)
+        .filter(Boolean)
+        .map((c) => {
+          const n = C.byCat(c.slug).length;
+          return `
+<a class="shelf__i shelf__i--${c.slug}" href="categoria.html?c=${c.slug}">
+  ${ph("", "", "", c.img)}
+  <span class="shelf__l"><span class="shelf__n">${esc(c.nome)}</span><span class="shelf__c">${n} prodott${n === 1 ? "o" : "i"}</span></span>
+</a>`;
+        })
+        .join("");
+      const tot = C.prodotti.filter((p) => p.categoria !== "box" && !p.inArrivo).length;
+      $$("[data-shelf-tot]").forEach((el) => (el.textContent = tot));
+    }
+    const wa = $(".shop__wa");
+    if (wa) wa.insertAdjacentHTML("afterbegin", WA_ICO + " ");
 
     /* recensioni: carosello, pallini e frecce li fa initRail; qui solo "Leggi di più",
        sotto i testi davvero tagliati (si misura a font caricati) */
