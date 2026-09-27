@@ -864,18 +864,11 @@
     $("[data-cat-title]").textContent = c.titolo;
     $("[data-cat-intro]").textContent = c.intro;
 
-    const helper = $("[data-cat-helper]");
-    if (c.helper) {
-      helper.innerHTML = `
-<div class="eyebrow eyebrow--wine">${esc(c.helper.occhiello)}</div>
-<p class="helper__q">${esc(c.helper.testo)}</p>
-<a class="link-arrow" style="margin-top:16px" href="${c.helper.href}">${esc(c.helper.cta)} ${ico("right")}</a>`;
-    } else {
-      helper.remove();
-    }
-
     const lista = C.byCat(slug);
     const griglia = $("[data-cat-grid]");
+    $("[data-cat-n]").innerHTML = lista.length
+      ? `<b>${String(lista.length).padStart(2, "0")}</b><span>${lista.length === 1 ? "prodotto" : "prodotti"}</span>`
+      : "";
 
     if (!lista.length) {
       griglia.innerHTML = `
@@ -889,13 +882,17 @@
     }
 
     /* niente filtri né ordinamenti: per categoria i prodotti sono pochi */
-    griglia.innerHTML = lista.map((p) => prodCard(p, 2)).join("");
-    /* su telefono e tablet "Non sai da dove iniziare?" va sotto i prodotti: sopra spingeva
-       il primo prodotto fuori dalla prima schermata (sessione 24). Su computer resta a fianco dell'intro */
-    if (c.helper) {
-      helper.classList.add("only-d");
-      griglia.insertAdjacentHTML("afterend", `<aside class="helper helper--dopo only-m">${helper.innerHTML}</aside>`);
-    }
+    /* "Non sai da dove iniziare?" in fondo ai prodotti, ovunque: sopra spingeva il primo
+       prodotto fuori dalla prima schermata (sessioni 24 e 25) */
+    griglia.innerHTML =
+      lista.map((p) => prodCard(p, 2)).join("") +
+      (c.helper
+        ? `<aside class="helper" style="--span:${3 - (lista.length % 3)}">
+  <div class="eyebrow">${esc(c.helper.occhiello)}</div>
+  <p class="helper__q">${esc(c.helper.testo)}</p>
+  <a class="link-arrow" href="${c.helper.href}">${esc(c.helper.cta)} ${ico("right")}</a>
+</aside>`
+        : "");
   }
 
   /* ---- catalogo completo: vista "listino" di "Catalogo completo.dc.html".
