@@ -624,10 +624,9 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .spec .dots button{--dot:rgba(216,176,94,.45)}
 .spec .dots button[aria-current="true"]{--dot:var(--gold)}
 .spec-card{display:flex;flex-direction:column;background:var(--paper);color:var(--ink)}
-/* su telefono le foto 4:5 intere: la scheda sta tutta nello schermo (657 px su 710).
-   Su computer 4:3: in 4:5 la scheda usciva dallo schermo (34-174 px); si taglia solo cielo e tavolo */
-.spec-card .ph{height:auto;aspect-ratio:4/5}
-@media (min-width:1120px){ .spec-card .ph{aspect-ratio:4/3} }
+/* foto 4:3 ovunque: in 4:5 la scheda usciva dallo schermo (iPhone Safari di 127 px, portatili fino
+   a 174 px). In 4:3 i prodotti restano interi, si taglia solo un po' di cielo e di tavolo */
+.spec-card .ph{height:auto;aspect-ratio:4/3}
 .spec-card__b{display:flex;flex-direction:column;gap:10px;flex:1;padding:18px 18px 20px}
 .spec-card__n{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.1;color:var(--ink-strong)}
 .spec-card__d{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.45;color:var(--ink-soft);
