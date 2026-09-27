@@ -1391,7 +1391,7 @@ ${valori
     const band =
       quote || p.descrizione
         ? `
-<section class="band${quote ? "" : " band--solo"}">${quote ? "" : '<h2 class="sr">Il racconto</h2>'}
+<section class="band${quote ? "" : " band--nome"}">
   <div class="wrap band__in">
     ${
       quote
@@ -1400,7 +1400,7 @@ ${valori
       <p class="band__q">${esc(quote)}</p>
       ${profilo}
     </div>`
-        : ""
+        : `<h2 class="hx band__q">${esc(p.nome)}</h2>` /* senza nota del bancone a sinistra il nome, come la nota nella selvaggina */
     }
     ${p.descrizione ? `<p class="band__d">${esc(p.descrizione)}</p>` : ""}
   </div>
@@ -1737,7 +1737,7 @@ ${abbHtml}`;
       galMain.addEventListener("mousemove", (e) => {
         const im = fotoEls[galCur];
         if (!puoLente() || e.target.closest("button") || !im || !im.naturalWidth) return nascondi();
-        /* riquadro reale della foto dentro il box: su computer la foto riempie il box (cover), su telefono sta intera */
+        /* riquadro reale della foto dentro il box: la foto sta intera (contain), con le fasce ai lati */
         const box = galMain.getBoundingClientRect();
         const fit = getComputedStyle(im).objectFit === "cover" ? Math.max : Math.min;
         const s = fit(box.width / im.naturalWidth, box.height / im.naturalHeight);

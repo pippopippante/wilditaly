@@ -728,8 +728,9 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 @media (min-width:1120px){ .pdp2__gal{flex-direction:row;gap:10px;margin:0} }
 .gallery__thumbs{display:flex;gap:8px;min-width:0;padding:10px var(--pad) 0;overflow-x:auto;scrollbar-width:none}
 .gallery__thumbs::-webkit-scrollbar{display:none}
-.gallery__thumbs button{position:relative;flex:0 0 auto;width:64px;height:64px;background:var(--sand);overflow:hidden}
-.gallery__thumbs img{width:100%;height:100%;object-fit:cover}
+.gallery__thumbs button{position:relative;flex:0 0 auto;width:64px;height:64px;background:var(--paper);overflow:hidden}
+/* foto mai tagliate, nemmeno nelle miniature: fasce del colore della pagina (sessione 10) */
+.gallery__thumbs img{width:100%;height:100%;object-fit:contain}
 .gallery__thumbs button[aria-current="true"]{outline:2px solid var(--wine);outline-offset:-2px}
 @media (min-width:1120px){
   .gallery__thumbs{flex-direction:column;flex:0 0 auto;padding:0;overflow:visible}
@@ -743,7 +744,6 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .gallery__slide{position:relative;flex:0 0 100%;height:100%;display:grid;place-items:center}
 /* su telefono la foto sta intera; su computer riempie il riquadro e i bordi si tagliano un po' */
 .gallery__slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;cursor:zoom-in;user-select:none;-webkit-user-select:none}
-@media (min-width:1120px){ .gallery__slide img{object-fit:cover} }
 .gallery__count{
   position:absolute;top:14px;right:14px;background:rgba(43,32,21,.8);
   color:#EFE2C8;font-size:11px;letter-spacing:.06em;padding:5px 10px;pointer-events:none;
@@ -900,9 +900,9 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .pallini i.on{background:var(--gold)}
 .band__d{margin-top:22px;padding-top:20px;border-top:1px solid rgba(216,176,94,.3);font-family:var(--serif);font-size:19px;line-height:1.55;color:#EFE1C5;text-wrap:pretty}
 @media (min-width:1120px){ .band__d{margin:0;padding:34px 0 0;border:0;font-size:clamp(1.1875rem,1.05rem + .5vw,1.4375rem);line-height:1.6} }
-/* senza nota del bancone resta solo il racconto */
-.band--solo .band__d{margin:0;padding-top:0;border:0}
-@media (min-width:1120px){ .band--solo .band__in{display:block} .band--solo .band__d{max-width:68ch} }
+/* senza nota del bancone: il nome a sinistra al posto della nota, il racconto a destra (sessione 24) */
+.band--nome .band__q{margin-top:0}
+@media (min-width:1120px){ .band--nome .band__d{padding-top:10px} }
 
 /* ---- in etichetta: su computer come un'etichetta vera, su telefono a sezioni che si aprono */
 .etk{padding:30px 0 8px;scroll-margin-top:80px}
