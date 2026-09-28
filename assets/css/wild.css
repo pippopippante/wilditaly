@@ -358,6 +358,8 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .cart-line__price{font-family:var(--serif);font-size:20px;color:var(--wine)}
 .cart-empty{padding:56px 28px;text-align:center;color:var(--muted)}
 .cart-empty .h3{margin-bottom:10px}
+.cart-sum{margin-bottom:10px;font-size:14px;color:var(--muted)}
+.cart-sum div{display:flex;justify-content:space-between;padding:2px 0}
 .cart-tot{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
 .cart-tot__v{font-family:var(--serif);font-size:28px;color:var(--wine)}
 

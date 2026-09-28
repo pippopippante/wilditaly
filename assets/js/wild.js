@@ -137,6 +137,11 @@
     totale() {
       return this.righe.reduce((s, r) => s + this.prezzoRiga(r) * r.qta, 0);
     },
+    /* spedizione dell'ordine: gratis da C.bottega.spedizioneGratisDa euro di prodotti
+       (in centesimi, così 12,90 + … che fa 100 non diventa 99,999…) */
+    spedizione() {
+      return Math.round(this.totale() * 100) >= C.bottega.spedizioneGratisDa * 100 ? 0 : C.bottega.spedizione;
+    },
     pezzi() {
       return this.righe.reduce((s, r) => s + r.qta, 0);
     }
@@ -354,11 +359,15 @@
   </div>
   <div class="panel__body" data-cart-body></div>
   <div class="panel__foot" data-cart-foot hidden>
+    <div class="cart-sum">
+      <div><span>Prodotti</span><span data-cart-prod>0,00 €</span></div>
+      <div><span>Spedizione</span><span data-cart-sped></span></div>
+    </div>
     <div class="cart-tot">
       <span class="meta">Totale · IVA inclusa</span>
       <span class="cart-tot__v" data-cart-tot>0,00 €</span>
     </div>
-    <p class="meta" style="margin-bottom:14px">Spedizione compresa: <span data-spedizione></span> · sottovuoto, in circa 48 ore.</p>
+    <p class="meta" style="margin-bottom:14px"><span data-cart-nota></span> Sottovuoto, in circa 48 ore.</p>
     <button class="btn btn--wine btn--block" data-soon="Cassa">Vai alla cassa</button>
   </div>
 </aside>
@@ -455,7 +464,13 @@
 
       if (foot) {
         foot.hidden = false;
-        $("[data-cart-tot]").textContent = euro(Cart.totale() + C.bottega.spedizione);
+        const sped = Cart.spedizione();
+        $("[data-cart-prod]").textContent = euro(Cart.totale());
+        $("[data-cart-sped]").textContent = sped ? euro(sped) : "Gratis";
+        $("[data-cart-tot]").textContent = euro(Cart.totale() + sped);
+        $("[data-cart-nota]").textContent = sped
+          ? `Ti mancano ${euro(C.bottega.spedizioneGratisDa - Cart.totale())} per la spedizione gratuita.`
+          : `Spedizione gratuita sopra i ${euro(C.bottega.spedizioneGratisDa)}.`;
       }
     }
   };
@@ -494,7 +509,8 @@
   const pallini = (v) =>
     `<span class="pallini" role="img" aria-label="livello ${v} su 5">${[1, 2, 3, 4, 5].map((k) => `<i${k <= v ? ' class="on"' : ""}></i>`).join("")}</span>`;
 
-  /* conProfilo: nella pagina categoria, per confrontare i salami senza aprirli (sessione 25) */
+  /* conProfilo: nella pagina categoria, per confrontare i prodotti senza aprirli (sessione 25);
+     sulla selvaggina tolto, i pallini restano nella scheda prodotto */
   function prodCard(p, lv, conProfilo) {
     lv = lv || 3;
     const craft = p.artigianale && CONFIG.mostraBadgeArtigianale
@@ -896,7 +912,7 @@
     /* "Non sai da dove iniziare?" in fondo ai prodotti, ovunque: sopra spingeva il primo
        prodotto fuori dalla prima schermata (sessioni 24 e 25) */
     griglia.innerHTML =
-      lista.map((p) => prodCard(p, 2, true)).join("") +
+      lista.map((p) => prodCard(p, 2, slug !== "selvaggina")).join("") +
       (c.helper
         ? `<aside class="helper" style="--span:${3 - (lista.length % 3)}">
   <div class="eyebrow">${esc(c.helper.occhiello)}</div>
@@ -1581,7 +1597,7 @@ ${valori
     </div>
     ${formati}
     ${buyHtml("only-d")}
-    <p class="buy__note only-d">Spedizione sottovuoto · consegna in circa 48 ore</p>
+    <p class="buy__note only-d">Spedizione ${euro(C.bottega.spedizione)} · gratis da ${euro(C.bottega.spedizioneGratisDa)} · circa 48 ore</p>
     ${
       allergeni
         ? `<p class="pdp2__cont only-d"><strong>CONTIENE:</strong> ${esc(allergeni)} · <a href="#etichetta">ingredienti e valori</a></p>`
@@ -1935,6 +1951,7 @@ ${abbHtml}`;
     });
 
     $$("[data-spedizione]").forEach((e) => (e.textContent = euro(C.bottega.spedizione)));
+    $$("[data-spedizione-gratis]").forEach((e) => (e.textContent = euro(C.bottega.spedizioneGratisDa)));
 
     const anno = $("[data-anno]");
     if (anno) anno.textContent = new Date().getFullYear();

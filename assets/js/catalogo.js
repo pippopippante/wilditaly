@@ -1290,9 +1290,10 @@ window.CATALOGO = (function () {
     ragioneSociale: "Wild Italy di Parmegiani Diego",
     via: "Via Porta Fuga 26, 06049 Spoleto (PG)",
     orari: "Lun–Sab 8:30–13:30 · 16:00–20:00",
-    /* costo di spedizione per ordine, in euro: 15 è quello che paga la bottega al corriere,
-       quanto far pagare al cliente è ancora da decidere (2026-09-24) */
+    /* costo di spedizione per ordine, in euro (quello che paga la bottega al corriere);
+       da `spedizioneGratisDa` euro di prodotti in su è gratis (deciso il 2026-09-29) */
     spedizione: 15,
+    spedizioneGratisDa: 100,
     /* "Le nostre specialità" in home: prodotti veri, in quest'ordine (tre riempiono la griglia su desktop).
        Solo prodotti con le foto definitive dello stesso stile (colline, luce calda, legno): una foto diversa stona.
        Il salame al cervo torna qui quando ha le sue. */
