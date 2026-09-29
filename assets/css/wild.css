@@ -1308,7 +1308,8 @@ button.gv-ctl:hover{border-color:var(--wine);color:var(--wine)}
 /* 16 px: sotto, iPhone ingrandisce la pagina quando tocchi il campo */
 .ls-cerca input{flex:1;min-width:0;height:42px;border:0;outline:0;background:none;font-size:16px}
 .ls-cerca input::placeholder{color:var(--meta)}
-.ls-filtri{display:flex;gap:8px}
+.ls-filtri{display:flex;align-items:center;gap:8px}
+.ls-filtri__l{font-size:13px;color:var(--muted)}
 .ls-chip{
   height:44px;padding:0 14px;border-radius:22px;border:1px solid var(--line-strong);
   font-size:13px;color:var(--ink-soft);white-space:nowrap;

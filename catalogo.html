@@ -41,9 +41,12 @@
       <span class="sr">Cerca nel catalogo</span>
       <input type="search" data-ls-q placeholder="Cerca: tartufo, cervo, pecorino…">
     </label>
-    <div class="ls-filtri" role="group" aria-label="Allergeni">
-      <button type="button" class="ls-chip" data-ls-f="latte" aria-pressed="false">senza latte</button>
-      <button type="button" class="ls-chip" data-ls-f="solfiti" aria-pressed="false">senza solfiti</button>
+    <!-- "Escludi" e non "senza glutine": è una dicitura regolata (Reg. UE 828/2014), i prodotti non sono certificati -->
+    <div class="ls-filtri" role="group" aria-label="Escludi gli allergeni">
+      <span class="ls-filtri__l" aria-hidden="true">Escludi:</span>
+      <button type="button" class="ls-chip" data-ls-f="latte" aria-pressed="false">latte</button>
+      <button type="button" class="ls-chip" data-ls-f="solfiti" aria-pressed="false">solfiti</button>
+      <button type="button" class="ls-chip" data-ls-f="glutine" aria-pressed="false">glutine</button>
     </div>
     <p class="ls-n" aria-live="polite" data-ls-n></p>
   </div>
@@ -61,7 +64,7 @@
   <div class="wrap">
     <div class="ls-piede">
       <p>Salumi e formaggi sono a peso variabile: i pesi indicati sono medi, il prezzo è quello del pezzo intero.
-      I filtri «senza latte» e «senza solfiti» seguono gli allergeni dichiarati in etichetta, tracce comprese.
+      I filtri «Escludi» seguono gli allergeni dichiarati in etichetta, tracce comprese: non vogliono dire che il prodotto è certificato senza glutine.
       Ingredienti, valori nutrizionali e conservazione stanno nella scheda di ogni prodotto.
       Prezzi aggiornati al 18 settembre 2026.</p>
       <p>Non trovi quello che cerchi?<br><a data-ls-tel></a> · <a data-ls-wa target="_blank" rel="noopener">WhatsApp</a></p>

@@ -952,7 +952,11 @@
     const bottoni = $$("[data-ls-f]");
     /* allergeni dichiarati in etichetta, tracce comprese. Chi non ha ingredienti
        (le box) non passa mai un filtro: dentro ci sono salumi e pecorino. */
-    const allergeni = { latte: /latte|lattosio/i, solfiti: /solfiti/i };
+    const allergeni = {
+      latte: /latte|lattosio/i,
+      solfiti: /solfiti/i,
+      glutine: /glutine|grano|farro|orzo|segale|avena|frumento|kamut/i
+    };
     const senza = (p, f) => !!p.ingredienti && !allergeni[f].test(p.ingredienti);
 
     const wa = WA + "?text=" + encodeURIComponent("Buongiorno, scrivo dal catalogo del sito: vorrei chiedere di ");
