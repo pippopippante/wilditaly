@@ -445,7 +445,7 @@
   ${ph("", "cart-line__ph ph--2", "", p.img)}
   <div class="cart-line__b">
     <a class="cart-line__name" href="prodotto.html?p=${p.slug}">${esc(p.nome)}</a>
-    <div class="cart-line__var">${esc(r.formato || p.peso || "")}</div>
+    <div class="cart-line__var">${esc([r.formato || p.peso, r.qta > 1 ? euro(Cart.prezzoRiga(r)) + " l'uno" : ""].filter(Boolean).join(" · "))}</div>
     <div class="cart-line__row">
       <span class="stepper stepper--sm">
         <button data-qta="${esc(id)}" data-d="-1" aria-label="Uno in meno di ${esc(p.nome)}">${ico("minus")}</button>
