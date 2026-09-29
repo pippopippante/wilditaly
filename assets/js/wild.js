@@ -1469,7 +1469,7 @@ ${valori
       <p class="band__q">${esc(quote)}</p>
       ${profilo}
     </div>`
-        : `<h2 class="hx band__q">${esc(p.nome)}</h2>` /* senza nota del bancone a sinistra il nome, come la nota nella selvaggina */
+        : `<div><h2 class="hx band__q">${esc(p.nome)}</h2>${profilo}</div>` /* senza nota del bancone a sinistra il nome, come la nota nella selvaggina */
     }
     ${p.descrizione ? `<p class="band__d">${esc(p.descrizione)}</p>` : ""}
   </div>

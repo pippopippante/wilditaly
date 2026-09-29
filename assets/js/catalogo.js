@@ -137,8 +137,8 @@ window.CATALOGO = (function () {
       galleriaImg: ["assets/img/provvisorie/salame-cervo-1.jpg", "assets/img/provvisorie/salame-cervo-2.jpg"],
       descrizione:
         "Compatto, magro e pulito al taglio, senza palline di pepe, cartilagini o pezzi di grasso evidenti. Al morso è morbido e uniforme. Il gusto parte dolce e delicato, poi lascia lentamente spazio a una piacevole nota affumicata. È un salame particolare ma mai aggressivo, facile da apprezzare anche per chi si avvicina per la prima volta ai salumi di selvaggina.",
-      nota: "Il più dolce della selvaggina",
-      notaBancone: "«Cervo: il più dolce della selvaggina.»",
+      nota: "Il più dolce dei quattro",
+      notaBancone: "«Cervo: il più dolce dei quattro.»",
       profilo: [
         { nome: "DOLCEZZA", valore: 3 },
         { nome: "PARTE GRASSA", valore: 1 },
@@ -583,6 +583,11 @@ window.CATALOGO = (function () {
       galleriaImg: ["assets/img/provvisorie/salame-cinghiale-tartufo-1.jpg", "assets/img/provvisorie/salame-cinghiale-tartufo-2.jpg"],
       descrizione:
         "Sapido e deciso fin dal primo assaggio, con il gusto del cinghiale che arriva subito pieno e intenso. La fetta è pulita, senza palline di pepe né lardello, con una consistenza compatta e uniforme. Nel finale emerge lentamente il tartufo, naturale e persistente, che resta sul palato senza coprire la carne. È uno dei salami più saporiti della selezione, ricco ma equilibrato.",
+      profilo: [
+        { nome: "DOLCEZZA", valore: 1 },
+        { nome: "PARTE GRASSA", valore: 2 },
+        { nome: "SAPIDITÀ", valore: 4 }
+      ],
       ingredienti:
         "Carne di suino, carne di cinghiale (6,5% minimo), tartufo estivo (Tuber aestivum Vitt.) 2% max, LATTE scremato in polvere, sale, saccarosio, destrosio, aromi, pepe, aglio, antiossidanti: E300, esaltatore di sapidità: E621, conservanti: E252, E250, correttore di pH: E262. Allergeni: latte; può contenere tracce di solfiti. Budello non edibile. Carne suina origine Italia.",
       valori:
@@ -1137,7 +1142,7 @@ window.CATALOGO = (function () {
       sezioni: [
         {
           titolo: "Non hai mai assaggiato la selvaggina",
-          testo: "Parti dal cervo, il più dolce della selvaggina. Con la degustazione provi insieme cervo, capriolo e cinghiale.",
+          testo: "Parti dal cervo, il più dolce dei quattro. Con la degustazione li provi tutti insieme.",
           prodotti: ["salame-di-cervo", "degustazione-selvaggina"]
         },
         {
@@ -1272,7 +1277,7 @@ window.CATALOGO = (function () {
   /* nota che segue il peso nelle righe della visita (testi del cliente) */
   const noteVisita = {
     "salame-di-cervo":
-      "Dolce e delicato, con un piacevole retrogusto affumicato. È il più morbido della selvaggina ed è il nostro salame più venduto.",
+      "Dolce e delicato, con un piacevole retrogusto affumicato. È il più morbido dei quattro sapori ed è il nostro salame più venduto.",
     "salame-di-capriolo":
       "Dolciastro all'inizio, poi più vivace: una leggera nota di peperoncino arriva nel finale senza coprire il gusto della carne.",
     "salame-di-cinghiale": "Il più deciso: rustico, grana larga, e la chiusura resta lunga e speziata in bocca.",
