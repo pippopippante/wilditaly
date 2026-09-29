@@ -394,6 +394,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 .chip{border:1px solid var(--line-strong);background:var(--paper);padding:12px 18px;font-size:14px;white-space:nowrap}
 .chip:hover{border-color:var(--wine);color:var(--wine)}
 .chip[aria-pressed="true"]{border-color:var(--wine);background:#F3EADA;color:var(--wine)}
+.search__vuoto p a,.empty p a{display:inline-flex;align-items:center;min-height:44px;color:var(--wine);text-decoration:underline;text-underline-offset:3px}
 .search__res{display:grid;gap:14px;margin-top:22px}
 @media (min-width:760px){ .search__res{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px} }
 @media (min-width:1120px){ .search__res{grid-template-columns:repeat(3,minmax(0,1fr))} }

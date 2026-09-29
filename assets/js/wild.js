@@ -712,12 +712,25 @@
   }
 
   /* --------------------------------------------------------------- ricerca */
-  /* testo in cui cercano sia la ricerca dell'header sia il catalogo completo */
-  const chiave = (p) =>
-    [p.nome, p.descrizione, p.nota, p.categoria, (C.cat(p.categoria) || {}).nome]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
+  /* la usano sia la ricerca dell'header sia il catalogo completo (revisione del 28/09, punto 12).
+     Senza accenti ("caffe" trova "caffè"); ogni parola cercata deve essere l'inizio di una parola del
+     testo ("pure" non trova "oppure"); via l'ultima vocale ("salami" trova "salame", "vino" i vini) */
+  const parole = (s) =>
+    s.normalize("NFD").replace(/\p{Diacritic}/gu, "").replace(/['’]/g, "").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+  const radice = (w) => (w.length > 3 ? w.replace(/[aeiou]$/, "") : w);
+  /* parole dei clienti che nei testi non ci sono: il vecchio sito lo chiamava ciauscolo */
+  const SIN = { ciauscol: "spalmabil", caci: "pecorin", regal: "box" };
+  const chiave = (p) => {
+    const titolo = [p.nome, p.denominazione, (C.cat(p.categoria) || {}).nome].filter(Boolean).join(" ");
+    return { nome: parole(titolo), tutto: parole([titolo, p.descrizione, p.nota, p.categoria].filter(Boolean).join(" ")) };
+  };
+  /* 0 = non c'entra, 1 = le parole sono nei testi, 2 = sono tutte nel nome, nella denominazione o nello scaffale (va prima) */
+  const punteggio = (k, q) => {
+    const cercate = parole(q).map(radice);
+    const c = (lista, w) => lista.some((x) => x.startsWith(w) || (SIN[w] && x.startsWith(SIN[w])));
+    if (!cercate.length || !cercate.every((w) => c(k.tutto, w))) return 0;
+    return cercate.every((w) => c(k.nome, w)) ? 2 : 1;
+  };
 
   function initSearch() {
     const input = $("[data-search-input]");
@@ -728,19 +741,28 @@
     let tConta;
 
     function cerca() {
-      const q = input.value.trim().toLowerCase();
+      const q = input.value.trim();
       if (q.length < 2) {
         out.innerHTML = "";
         return;
       }
-      const parole = q.split(/\s+/);
-      const hit = indice.filter((r) => parole.every((w) => r.k.indexOf(w) > -1)).map((r) => r.p);
+      const hit = indice
+        .map((r) => ({ p: r.p, s: punteggio(r.k, q) }))
+        .filter((r) => r.s)
+        .sort((a, b) => b.s - a.s)
+        .map((r) => r.p);
       clearTimeout(tConta);
       tConta = setTimeout(() => annuncia(hit.length ? hit.length + (hit.length === 1 ? " risultato" : " risultati") : "Nessun risultato"), 700);
       if (!hit.length) {
+        /* chi ha assaggiato qualcosa in negozio lo cerca qui: la bottega forse ce l'ha */
+        const wa = WA + "?text=" + encodeURIComponent("Buongiorno, vi scrivo dal sito Wild Italy: cercavo «" + q + "»");
         out.innerHTML = `
-<div class="eyebrow" style="margin-top:28px">NESSUN RISULTATO</div>
-<p class="lede" style="margin-top:10px">Non abbiamo trovato «${esc(input.value)}».<br>Prova con “cervo”, “tartufo” o “box”.</p>`;
+<div class="search__vuoto">
+  <div class="eyebrow" style="margin-top:28px">NESSUN RISULTATO</div>
+  <p class="lede" style="margin-top:10px">Non abbiamo trovato «${esc(q)}» online. In bottega forse c'è.</p>
+  <a class="btn btn--wineline btn--sm" style="margin-top:14px" href="${wa}" target="_blank" rel="noopener">Chiedi su WhatsApp<span class="sr"> (si apre in una nuova scheda)</span></a>
+  <p style="margin-top:14px"><a href="catalogo.html">Guarda il catalogo completo</a></p>
+</div>`;
         return;
       }
       out.innerHTML =
@@ -967,15 +989,17 @@
       })
       .join("");
 
-    const righe = $$("[data-ls-riga]", lista).map((el) => ({ el: el, p: C.get(el.dataset.lsRiga) }));
+    const righe = $$("[data-ls-riga]", lista).map((el) => {
+      const p = C.get(el.dataset.lsRiga);
+      return { el: el, p: p, k: chiave(p) };
+    });
 
     function filtra() {
-      const parole = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const cerca = q.value.trim();
       const attivi = bottoni.filter((b) => b.getAttribute("aria-pressed") === "true").map((b) => b.dataset.lsF);
       let visibili = 0;
       righe.forEach((r) => {
-        const k = chiave(r.p);
-        const ok = parole.every((w) => k.indexOf(w) > -1) && attivi.every((f) => senza(r.p, f));
+        const ok = (!cerca || punteggio(r.k, cerca) > 0) && attivi.every((f) => senza(r.p, f));
         r.el.hidden = !ok;
         if (ok) visibili++;
       });
@@ -985,7 +1009,7 @@
         $("[data-ls-sez-n]", s).textContent = n;
       });
       $("[data-ls-n]").textContent =
-        parole.length || attivi.length ? `${visibili} di ${righe.length} prodotti` : `${righe.length} prodotti`;
+        cerca || attivi.length ? `${visibili} di ${righe.length} prodotti` : `${righe.length} prodotti`;
       $("[data-ls-vuoto]").hidden = visibili > 0;
     }
 
