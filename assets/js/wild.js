@@ -1135,15 +1135,18 @@
     function disegna(nuovaTappa) {
       const fine = i >= FINE;
       const t = V[i];
-      const presi = [];
-      V.forEach((s) =>
-        s.prodotti.forEach((slug) => {
-          const n = qta(slug);
-          if (n) presi.push({ p: C.get(slug), n: n, dove: s.label });
-        })
-      );
-      const pezzi = presi.reduce((a, x) => a + x.n, 0);
-      const totale = euro(presi.reduce((a, x) => a + x.p.prezzo * x.n, 0));
+      /* conti e righe dal carrello vero, come nel pannello del carrello: contano anche il formato scelto
+         nella scheda e i prodotti presi fuori dalla guida (revisione del 28/09, punto 16) */
+      const righe = Cart.righe.map((r) => ({
+        r: r,
+        p: C.get(r.slug),
+        id: Cart.id(r.slug, r.formato),
+        euro: euro(Cart.prezzoRiga(r) * r.qta),
+        dove: (V.find((s) => s.prodotti.includes(r.slug)) || {}).label
+      }));
+      const pezzi = Cart.pezzi();
+      const sped = Cart.spedizione();
+      const totale = euro(Cart.totale());
       const conta = pezzi === 1 ? "Un pezzo nel carrello" : pezzi + " pezzi nel carrello";
       const tappe = V.map((s, n) => ({
         n: n,
@@ -1169,15 +1172,16 @@
 <div class="gv-basket">
   <div class="gv-basket__t">Nel carrello</div>
   ${
-    presi.length
-      ? presi
+    righe.length
+      ? righe
           .map(
             (x) =>
-              `<div class="gv-line"><span>${esc(x.p.nome)}${x.n > 1 ? " × " + x.n : ""}</span><span>${euro(x.p.prezzo * x.n)}</span></div>`
+              `<div class="gv-line"><span>${esc(x.p.nome)}${x.r.formato ? " · " + esc(x.r.formato) : ""}${x.r.qta > 1 ? " × " + x.r.qta : ""}</span><span>${x.euro}</span></div>`
           )
           .join("") +
         `
-  <div class="gv-tot"><span class="gv-k">Totale</span><span class="gv-tot__v">${totale}</span></div>
+  <div class="gv-line"><span>Spedizione</span><span>${sped ? euro(sped) : "Gratis"}</span></div>
+  <div class="gv-tot"><span class="gv-k">Totale</span><span class="gv-tot__v">${euro(Cart.totale() + sped)}</span></div>
   <button type="button" class="btn btn--wine btn--block" data-open="carrello">Vai al carrello</button>`
       : `<p class="gv-basket__vuoto">Ancora vuoto. Aggiungi quello che ti va mentre giri: si paga tutto insieme alla fine.</p>`
   }
@@ -1196,7 +1200,7 @@
         : `<span>Tappa ${nn(i + 1)} di ${nn(FINE)}</span><span class="gv-cap__dove">${esc(t.dove)}</span>`
     }</div>
     <h2 class="gv-cap__t" tabindex="-1" data-gv-t>${esc(
-      fine ? (presi.length ? "Fatto: questo è il tuo carrello" : "Giro finito, carrello vuoto") : t.titolo
+      fine ? (righe.length ? "Fatto: questo è il tuo carrello" : "Giro finito, carrello vuoto") : t.titolo
     )}</h2>
   </div>
 </div>`;
@@ -1204,20 +1208,20 @@
       html.in = fine
         ? `
 <p class="gv-text">${
-            presi.length
+            righe.length
               ? "Lo confezioniamo così come l'hai messo insieme: sottovuoto. Se vuoi cambiare qualcosa, si toglie qui."
               : "Capita, e non è un problema: a volte serve solo vedere com'è fatta la bottega. Rifai il giro quando vuoi, oppure guarda da dove partiremmo noi."
           }</p>
 ${
-  presi.length
+  righe.length
     ? `<div class="gv-k">Quello che hai preso</div>
-<div class="gv-list">${presi
+<div class="gv-list">${righe
         .map((x) =>
           riga(
             x.p,
-            `<span class="gv-item__dove">${esc(x.dove)}${x.n > 1 ? " · × " + x.n : ""}</span>`,
-            euro(x.p.prezzo * x.n),
-            `<button type="button" class="gv-togli" data-k="togli:${x.p.slug}" aria-label="Togli dal carrello: ${esc(x.p.nome)}">Togli</button>`
+            `<span class="gv-item__dove">${esc([x.dove, x.r.formato, x.r.qta > 1 ? "× " + x.r.qta : ""].filter(Boolean).join(" · "))}</span>`,
+            x.euro,
+            `<button type="button" class="gv-togli" data-k="togli" data-id="${esc(x.id)}" aria-label="Togli dal carrello: ${esc(x.p.nome)}">Togli</button>`
           )
         )
         .join("")}</div>
@@ -1306,6 +1310,11 @@ ${
       const az = b.dataset.k.split(":")[0];
       const slug = b.dataset.k.split(":")[1];
       if (az === "go") return vai(+slug);
+      if (az === "togli") {
+        const r = Cart.righe.find((x) => Cart.id(x.slug, x.formato) === b.dataset.id);
+        Cart.imposta(b.dataset.id, 0);
+        return r && annuncia(`${C.get(r.slug).nome} tolto dal carrello`);
+      }
       if (az === "add") Cart.aggiungi(slug, null, 1);
       else Cart.imposta(Cart.id(slug), az === "inc" ? qta(slug) + 1 : az === "dec" ? qta(slug) - 1 : 0);
       const n = qta(slug);
