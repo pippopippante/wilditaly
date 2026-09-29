@@ -650,7 +650,13 @@ window.CATALOGO = (function () {
       peso: "100 ml",
       ml: 100,
       foto: "FOTO: bottiglietta di olio al tartufo nero",
-      img: "assets/img/provvisorie/olio-tartufo-nero.jpg",
+      img: "assets/img/definitive/olio-tartufo-nero-1.jpg",
+      galleriaImg: [
+        "assets/img/definitive/olio-tartufo-nero-1.jpg",
+        "assets/img/definitive/olio-tartufo-nero-2.jpg",
+        "assets/img/definitive/olio-tartufo-nero-3.jpg"
+      ],
+      galleria: ["FOTO 1: bottiglietta, fronte", "FOTO 2: olio su una fetta di pane", "FOTO 3: bottiglietta, retro con etichetta"],
       descrizione:
         "Un condimento pensato per dare immediatamente profumo e carattere di tartufo ai piatti di tutti i giorni. Si usa in piccole quantità, preferibilmente a crudo e a fine preparazione, dopo l'olio extravergine o direttamente sul piatto caldo: bastano poche gocce per sprigionare l'aroma del tartufo senza coprire gli altri ingredienti. È estremamente versatile, perfetto su pasta, risotti, gnocchi, uova, frittate, patate, funghi, carne, pizza, focaccia e verdure. Ottimo anche su una semplice bruschetta.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
@@ -670,7 +676,13 @@ window.CATALOGO = (function () {
       peso: "100 ml",
       ml: 100,
       foto: "FOTO: bottiglietta di olio al tartufo bianco",
-      img: "assets/img/provvisorie/olio-tartufo-bianco.jpg",
+      img: "assets/img/definitive/olio-tartufo-bianco-1.jpg",
+      galleriaImg: [
+        "assets/img/definitive/olio-tartufo-bianco-1.jpg",
+        "assets/img/definitive/olio-tartufo-bianco-2.jpg",
+        "assets/img/definitive/olio-tartufo-bianco-3.jpg"
+      ],
+      galleria: ["FOTO 1: bottiglietta, fronte", "FOTO 2: risotto con l'olio", "FOTO 3: bottiglietta, retro con etichetta"],
       descrizione:
         "Un condimento dal profumo intenso, elegante e immediatamente riconoscibile, pensato per esaltare i piatti con la nota raffinata del tartufo bianco. Va utilizzato soprattutto a crudo e a fine preparazione, in piccole quantità: poche gocce sono sufficienti per sprigionare un aroma deciso e persistente, senza appesantire il piatto. È particolarmente indicato su tagliolini, risotti, uova, fondute, purè di patate, carpacci e bruschette, dove il suo profumo riesce a emergere con grande intensità. Il risultato è un condimento più fine e aromatico, ideale per chi cerca il carattere tipico del tartufo bianco e vuole dare a un piatto semplice una sensazione più ricercata.",
       ingredienti: "Olio extra vergine di oliva italiano 98%, aroma. Allergeni: nessuno indicato in etichetta.",
@@ -713,13 +725,14 @@ window.CATALOGO = (function () {
       peso: "180 g",
       grammi: 180,
       foto: "FOTO: vasetto di sugo di pomodoro e tartufo",
-      img: "assets/img/provvisorie/sugo-pomodoro-tartufo-1.jpeg",
+      img: "assets/img/definitive/sugo-pomodoro-tartufo-1.jpg",
       galleriaImg: [
-        "assets/img/provvisorie/sugo-pomodoro-tartufo-1.jpeg",
-        "assets/img/provvisorie/sugo-pomodoro-tartufo-2.jpeg",
-        "assets/img/provvisorie/sugo-pomodoro-tartufo-3.jpeg"
+        "assets/img/definitive/sugo-pomodoro-tartufo-1.jpg",
+        "assets/img/definitive/sugo-pomodoro-tartufo-2.jpg",
+        "assets/img/definitive/sugo-pomodoro-tartufo-3.jpg",
+        "assets/img/definitive/sugo-pomodoro-tartufo-4.jpg"
       ],
-      galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: ingredienti e valori", "FOTO 3: produttore e peso"],
+      galleria: ["FOTO 1: vasetto, fronte", "FOTO 2: pappardelle col sugo", "FOTO 3: ingredienti e valori", "FOTO 4: produttore e peso"],
       descrizione:
         "Un sugo pronto dal gusto pieno e mediterraneo, preparato con polpa di pomodoro italiano all'86% e arricchito con tartufo estivo al 5%. Il pomodoro dà una base morbida, rotonda e leggermente dolce, mentre il tartufo arriva nel finale con una nota più intensa e aromatica, senza coprire il sapore del sugo. È ideale per chi vuole trasformare in pochi minuti un semplice piatto di pasta in qualcosa di più ricco e particolare. Basta scaldarlo delicatamente e aggiungerlo alla pasta; ottimo anche su gnocchi, polenta o bruschette.",
       ingredienti:
