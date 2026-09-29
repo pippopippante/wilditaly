@@ -1018,9 +1018,13 @@ window.CATALOGO = (function () {
       peso: "125 g",
       grammi: 125,
       foto: "FOTO: sacchetto di stuzzichini al tartufo",
-      img: "assets/img/provvisorie/stuzzichini-tartufo-1.jpeg",
-      galleriaImg: ["assets/img/provvisorie/stuzzichini-tartufo-1.jpeg", "assets/img/provvisorie/stuzzichini-tartufo-2.jpeg"],
-      galleria: ["FOTO 1: sacchetto", "FOTO 2: etichetta, retro"],
+      img: "assets/img/definitive/stuzzichini-tartufo-1.jpg",
+      galleriaImg: [
+        "assets/img/definitive/stuzzichini-tartufo-1.jpg",
+        "assets/img/definitive/stuzzichini-tartufo-2.jpg",
+        "assets/img/definitive/stuzzichini-tartufo-3.jpg"
+      ],
+      galleria: ["FOTO 1: sacchetto, fronte", "FOTO 2: tagliere per l'aperitivo", "FOTO 3: sacchetto, retro con etichetta"],
       descrizione:
         "Snack artigianali, rustici e croccanti, preparati con farina di grano tenero macinata a pietra, vino bianco e tartufo nero. Al morso risultano friabili e saporiti, con una base semplice e fragrante che lascia spazio alla nota aromatica del tartufo. Il vino bianco aggiunge una sfumatura più profumata e rende il gusto ancora più caratteristico. Perfetti per aperitivi, taglieri, antipasti o semplicemente da sgranocchiare da soli, soprattutto quando vuoi qualcosa di diverso dal solito snack.",
       ingredienti:
