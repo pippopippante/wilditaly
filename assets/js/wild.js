@@ -1321,13 +1321,30 @@ ${
     const craft =
       p.artigianale && CONFIG.mostraBadgeArtigianale ? '<span class="gallery__tag">ARTIGIANALE</span>' : "";
 
-    /* ------- dati dell'etichetta: gli allergeni escono dagli ingredienti e vanno in "Contiene" */
+    /* ------- dati dell'etichetta: gli allergeni escono dagli ingredienti ("Allergeni: latte; può contenere
+       tracce di solfiti.") e vanno in "Contiene"; le tracce restano a parte, perché "contiene: può contenere"
+       non vuol dire niente. `p.allergeni` serve a chi in etichetta non ha la frase (i dolci). */
     const mA = (p.ingredienti || "").match(/Allergeni:\s*([^.]+)\./);
-    const allergeni = mA ? mA[1].trim().replace(/^contiene\s+/i, "") : ""; /* "Contiene: contiene solfiti" nei vini */
+    const parti = mA ? mA[1].trim().split(/;\s*/) : [];
+    const traccia = (s) => /tracce|può contenere/i.test(s);
+    const tracceEt = parti.filter(traccia);
+    /* "Contiene: contiene solfiti" nei vini */
+    const allergeni = p.allergeni || parti.filter((s) => !traccia(s)).join(", ").replace(/^contiene\s+/i, "");
+    const mT = (p.ingredienti || "").match(/Può contenere tracce di ([^.]+)\./i);
+    const tracce = (tracceEt.join(", ") || (mT ? mT[1] : ""))
+      .replace(/^(?:può contenere\s+)?(?:tracce di\s+)?/i, "")
+      .replace(/ e di /g, " e ")
+      .toLowerCase();
     /* se nessun allergene è evidenziato negli ingredienti (i vini: "contiene solfiti") la frase dell'etichetta
-       resta, altrimenti su telefono non si vedrebbe da nessuna parte (Reg. UE 1169/2011, art. 14 e 21) */
+       resta, altrimenti su telefono non si vedrebbe da nessuna parte (Reg. UE 1169/2011, art. 14 e 21).
+       Quando si toglie, le tracce restano scritte: nel salame spalmabile sono l'unico punto col latte. */
     const tieniAll = allergeni && !/^nessun/i.test(allergeni) && !/\b[A-ZÀÈÉÌÒÙ]{3,}\b/.test(p.ingredienti);
-    const ingrTesto = tieniAll ? p.ingredienti : (p.ingredienti || "").replace(/\s*Allergeni:[^.]*\./, "").trim();
+    const fraseTracce = tracceEt.map((t) => (/^può contenere/i.test(t) ? t : "può contenere " + t)).join("; ");
+    const ingrTesto = tieniAll
+      ? p.ingredienti
+      : (p.ingredienti || "")
+          .replace(/\s*Allergeni:[^.]*\./, fraseTracce ? " " + fraseTracce.charAt(0).toUpperCase() + fraseTracce.slice(1) + "." : "")
+          .trim();
     const ingrHtml = esc(ingrTesto).replace(
       /\b[A-ZÀÈÉÌÒÙ]{3,}(?:\s+[A-ZÀÈÉÌÒÙ]{2,})*\b/g,
       "<strong>$&</strong>"
@@ -1599,8 +1616,13 @@ ${valori
     ${buyHtml("only-d")}
     <p class="buy__note only-d">Spedizione ${euro(C.bottega.spedizione)} · gratis da ${euro(C.bottega.spedizioneGratisDa)} · circa 48 ore</p>
     ${
-      allergeni
-        ? `<p class="pdp2__cont only-d"><strong>CONTIENE:</strong> ${esc(allergeni)} · <a href="#etichetta">ingredienti e valori</a></p>`
+      allergeni || tracce
+        ? `<p class="pdp2__cont only-d">${[
+            allergeni && `<strong>${/^nessun/i.test(allergeni) ? "ALLERGENI" : "CONTIENE"}:</strong> ${esc(allergeni)}`,
+            tracce && `<strong>PUÒ CONTENERE:</strong> ${esc(tracce)}`
+          ]
+            .filter(Boolean)
+            .join(" · ")} · <a href="#etichetta">ingredienti e valori</a></p>`
         : ""
     }`
     }

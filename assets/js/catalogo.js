@@ -860,7 +860,7 @@ window.CATALOGO = (function () {
       galleria: ["FOTO 1: confezione, fronte", "FOTO 2: nel piatto", "FOTO 3: confezione, retro con etichetta"],
       descrizione:
         "Un cereale antico della tradizione umbra, dal gusto rustico e piacevole e dalla consistenza compatta ma morbida dopo la cottura. Essendo perlato, cuoce più velocemente e non richiede lunghe preparazioni: in circa 20 minuti è pronto per essere utilizzato in zuppe, minestre, insalate fredde o come alternativa al riso. Ha un sapore delicatamente tostato e una consistenza che resta piacevole al morso, ideale sia per ricette semplici sia per piatti più ricchi con verdure, legumi, carne o pomodoro.",
-      ingredienti: "Farro umbro perlato. Contiene glutine.",
+      ingredienti: "FARRO umbro perlato. Allergeni: glutine.",
       valori:
         "Per 100 g: energia 1389 kJ / 327 kcal · grassi 2,0 g (saturi 0,3 g) · carboidrati 63,7 g (zuccheri 1,9 g) · proteine 13,7 g · sale 0,02 g",
       produttore: fortunati
@@ -918,6 +918,7 @@ window.CATALOGO = (function () {
         "Croccanti e rustiche, preparate artigianalmente con un ricco mix di cereali, semi e fiocchi d'avena, con l'aggiunta di vino rosso che dona una nota aromatica particolare. Ogni morso è fragrante e pieno, con il gusto tostato dei cereali e la piacevole croccantezza di semi come sesamo, girasole e lino. Sono ciambelline dal sapore semplice ma intenso, ideali per chi ama prodotti asciutti, genuini e poco stucchevoli. Perfette da gustare da sole, con un bicchiere di vino, oppure come piccolo snack durante la giornata.",
       ingredienti:
         "CEREALI 61% (farina di GRANO TENERO tipo \"0\", farina di SEGALE, semi di SESAMO, semi di GIRASOLE, semi di LINO, farina di AVENA, farina di ORZO, sale, MAIS soffiato, estratto di malto d'ORZO, farina di GRANO TENERO maltato, farina di GRANO TENERO di tipo 1 macinata a pietra, agente di trattamento della farina (acido ascorbico, alfa amilasi)), fiocchi di AVENA, VINO rosso, zucchero, olio di semi di girasole altoleico, AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma]. La farina, il vino e lo zucchero sono di origine italiana. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 1,4%.",
+      allergeni: "glutine, sesamo",
       valori:
         "Per 100 g: energia 1843 kJ / 441 kcal · grassi 17 g (saturi 2,3 g) · carboidrati 48 g (zuccheri 17 g) · fibre 0 g · proteine 8,9 g · sale 0,72 g",
       conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
@@ -938,6 +939,7 @@ window.CATALOGO = (function () {
       descrizione: "Ciambelline al vino rosso fatte a mano, con cacao amaro e foglie di menta.",
       ingredienti:
         "Farina di GRANO TENERO tipo 1 macinata a pietra, VINO rosso, zucchero, olio di semi di girasole altoleico, cacao amaro (16%), AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma], menta foglie (0,00025%), Mentha piperita oil. La farina e il vino sono di origine italiana. Può contenere tracce di FRUTTA SECCA, UOVA, LATTE. Titolo alcolometrico 1,7%.",
+      allergeni: "glutine",
       valori:
         "Per 100 g: energia 1612 kJ / 385 kcal · grassi 17,00 g (saturi 2,30 g) · carboidrati 48,00 g (zuccheri 17,00 g) · fibre 0,00 g · proteine 7,00 g · sale 0,00 g",
       conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
@@ -958,6 +960,7 @@ window.CATALOGO = (function () {
       descrizione: "Ciambelline al vino rosso fatte a mano, con karkadè, uva passa, sambuco, mirtillo e ribes nero.",
       ingredienti:
         "Farina di GRANO TENERO tipo 1 macinata a pietra, VINO rosso (contiene SOLFITI), zucchero, olio di semi di girasole altoleico, frutti di bosco (karkadè fiori, uva passa, sambuco bacche, mirtillo frutti, ribes nero frutti 2,98%), aromi, AGENTI LIEVITANTI (tartrati di potassio 45,8%, carbonati di sodio, amido di mais, aroma). La farina e il vino sono di origine italiana. Può contenere tracce di FRUTTA SECCA, UOVA, LATTE.",
+      allergeni: "glutine, solfiti",
       valori:
         "Per 100 g: energia 1587 kJ / 379 kcal · grassi 14,21 g (saturi 1,59 g) · carboidrati 52,65 g (zuccheri 18,50 g) · fibre 1,58 g · proteine 6,05 g · sale 0,01 g",
       conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
@@ -978,6 +981,7 @@ window.CATALOGO = (function () {
       descrizione: "Ciambelline al vino rosso fatte a mano, con sambuca e caffè in polvere e in chicchi.",
       ingredienti:
         "Farina di GRANO TENERO tipo 1 macinata a pietra, zucchero, olio di semi di girasole altoleico, sambuca 0,1% (alcool, zuccheri, acqua e aromi naturali), VINO rosso, caffè polvere e chicchi, AGENTI LIEVITANTI [tartrato di potassio (45,8%), carbonato di sodio, amido di mais, aroma], Illicium verum fruit/seed oil. La farina e il vino sono di origine italiana. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 0,3%.",
+      allergeni: "glutine",
       valori:
         "Per 100 g: energia 1692 kJ / 403 kcal · grassi 17 g (saturi 2,5 g) · carboidrati 56 g (zuccheri 22 g) · fibre 0 g · proteine 6,5 g · sale 0 g",
       conservazione: "In luogo fresco e asciutto. Prodotto fatto a mano, soggetto a calo di peso.",
@@ -1003,6 +1007,7 @@ window.CATALOGO = (function () {
         "Snack artigianali, rustici e croccanti, preparati con farina di grano tenero macinata a pietra, vino bianco e tartufo nero. Al morso risultano friabili e saporiti, con una base semplice e fragrante che lascia spazio alla nota aromatica del tartufo. Il vino bianco aggiunge una sfumatura più profumata e rende il gusto ancora più caratteristico. Perfetti per aperitivi, taglieri, antipasti o semplicemente da sgranocchiare da soli, soprattutto quando vuoi qualcosa di diverso dal solito snack.",
       ingredienti:
         "Farina di GRANO TENERO tipo 1 macinata a pietra di origine italiana, VINO bianco, olio di semi di girasole altoleico, TARTUFO NERO (Tuber aestivum, Tuber mesentericum) 1%, sale, aroma. Può contenere tracce di FRUTTA SECCA A GUSCIO, UOVA, LATTE. Titolo alcolometrico 1,8%.",
+      allergeni: "glutine",
       valori:
         "Per 100 g: energia 1977 kJ / 471 kcal · grassi 18,7 g (saturi 2,1 g) · carboidrati 65,8 g (zuccheri 2,05 g) · fibre 1,3 g · proteine 8,9 g · sale 2,2 g",
       conservazione: "In luogo fresco e asciutto, lontano dalla luce e da fonti di calore. Prodotto fatto a mano, soggetto a calo di peso.",
@@ -1025,6 +1030,7 @@ window.CATALOGO = (function () {
       descrizione: "Sfoglie dolci all'anice, prodotte artigianalmente.",
       ingredienti:
         "Zucchero, farina di GRANO TENERO tipo \"0\", UOVA, aromi. Può contenere tracce di FRUTTA SECCA A GUSCIO, LATTE.",
+      allergeni: "glutine, uova",
       valori:
         "Per 100 g: energia 1673 kJ / 394 kcal · grassi 23 g (saturi 0 g) · carboidrati 87 g (zuccheri 50 g) · proteine 6,5 g · sale 0 g",
       conservazione: "In luogo fresco e asciutto. Prodotto artigianalmente, soggetto a calo di peso.",
