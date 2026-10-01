@@ -802,7 +802,7 @@
         .join("");
 
     /* scaffali a mosaico: la selvaggina grande, poi tartufo, salumi, formaggi, vini, dispensa, dolci
-       (le posizioni sono in wild.css, .shelf__i--<slug>) */
+       (le misure sono in wild.css, .shelf; i riquadri seguono quest'ordine) */
     const shelf = $('[data-mount="shelf"]');
     if (shelf) {
       const ordine = ["selvaggina", "tartufo", "salumi", "formaggi", "vini", "dispensa", "dolci"];
