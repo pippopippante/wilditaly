@@ -838,7 +838,8 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 }
 
 /* ---- galleria: su telefono a tutta larghezza e quadrata con le miniature sotto (Baymard: meglio dei
-   pallini, fanno vedere cosa c'è nelle altre foto); su computer alta 640 px con le miniature a lato */
+   pallini, fanno vedere cosa c'è nelle altre foto); su computer quadrata anche lei (le foto sono quadrate,
+   scelta dell'utente il 01/10/2026: prima era alta 640 px e restavano fasce sopra e sotto), miniature a lato */
 .pdp2__gal{position:relative;display:flex;flex-direction:column-reverse;margin:0 calc(-1 * var(--pad))}
 @media (min-width:1120px){ .pdp2__gal{flex-direction:row;gap:10px;margin:0} }
 .gallery__thumbs{display:flex;gap:8px;min-width:0;padding:10px var(--pad) 0;overflow-x:auto;scrollbar-width:none}
@@ -853,7 +854,8 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 }
 .gallery__main{position:relative;flex:1 1 auto;min-width:0;aspect-ratio:1/1;overflow:hidden;touch-action:pan-y}
 .gallery__main:not(.ph){background:var(--paper)}
-@media (min-width:1120px){ .gallery__main{aspect-ratio:auto;height:640px} }
+/* sugli schermi grandi non più alta dello schermo (a 1920 px sarebbe 889 px e uscirebbe sotto) */
+@media (min-width:1120px){ .gallery__main{align-self:flex-start;max-height:calc(100vh - 140px)} }
 .gallery__track{display:flex;height:100%;transition:transform .3s ease}
 @media (prefers-reduced-motion:reduce){ .gallery__track{transition:none} }
 .gallery__slide{position:relative;flex:0 0 100%;height:100%;display:grid;place-items:center}
@@ -888,7 +890,7 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 /* a tutto schermo: la bottiglia si inclina anche col dito (niente pagina da scorrere) */
 .zoom .gallery__3d>canvas{touch-action:none!important}
 .gallery__3dtag{position:absolute;right:4px;bottom:4px;background:var(--wine);color:#F0EDDF;font-size:10px;letter-spacing:.1em;padding:2px 5px}
-/* l'ingrandimento della lente copre la scheda d'acquisto, alto quanto la foto */
+/* l'ingrandimento della lente copre la scheda d'acquisto, alto quanto la foto (wild.js gli dà l'altezza vera) */
 .gallery__pane{
   position:absolute;top:0;left:0;right:0;height:640px;z-index:5;
   background:var(--card) no-repeat;border:1px solid var(--line);box-shadow:0 12px 32px rgba(42,33,26,.18);

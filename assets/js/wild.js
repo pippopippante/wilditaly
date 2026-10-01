@@ -1866,6 +1866,7 @@ ${abbHtml}`;
         const y = e.clientY - box.top - oy;
         if (x < vx0 || y < vy0 || x > vx1 || y > vy1) return nascondi();
         pane.hidden = lens.hidden = false;
+        pane.style.height = box.height + "px";
         const lw = Math.min(vx1 - vx0, pane.clientWidth / ZOOM);
         const lh = Math.min(vy1 - vy0, pane.clientHeight / ZOOM);
         const lx = Math.max(vx0, Math.min(vx1 - lw, x - lw / 2));
