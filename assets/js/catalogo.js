@@ -583,6 +583,9 @@ window.CATALOGO = (function () {
       galleriaImg: ["assets/img/provvisorie/salame-cinghiale-tartufo-1.jpg", "assets/img/provvisorie/salame-cinghiale-tartufo-2.jpg"],
       descrizione:
         "Sapido e deciso fin dal primo assaggio, con il gusto del cinghiale che arriva subito pieno e intenso. La fetta è pulita, senza palline di pepe né lardello, con una consistenza compatta e uniforme. Nel finale emerge lentamente il tartufo, naturale e persistente, che resta sul palato senza coprire la carne. È uno dei salami più saporiti della selezione, ricco ma equilibrato.",
+      /* dalla nota del cliente per la visita guidata (noteVisita), accorciata come le altre tre */
+      nota: "Saporito, con un retrogusto di tartufo",
+      notaBancone: "«Cinghiale e tartufo: saporito, con un retrogusto di tartufo.»",
       profilo: [
         { nome: "DOLCEZZA", valore: 1 },
         { nome: "PARTE GRASSA", valore: 2 },
