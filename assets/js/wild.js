@@ -188,9 +188,10 @@
     el.removeAttribute("aria-hidden");
     if (nome !== "cerca") $(".scrim").classList.add("is-open");
     document.body.classList.add("is-locked");
-    /* col pannello aperto il resto della pagina è fuori portata: il Tab resta dentro */
+    /* col pannello aperto il resto della pagina è fuori portata: il Tab resta dentro.
+       Toast e annunci restano accesi, se no "3 risultati" e "2 nel carrello" non si sentono */
     $$("body > *").forEach((x) => {
-      if (x !== el && !x.matches(".scrim, .toasts, script")) x.inert = true;
+      if (x !== el && !x.matches(".scrim, .toasts, [data-voce], script")) x.inert = true;
     });
     aperto = el;
     const f = el.querySelector("input, button, a");
@@ -1228,7 +1229,7 @@ ${
 <div class="gv-totbox">
   <div><div class="gv-k">${conta}</div><div class="gv-totbox__v">${totale}</div></div>
   <div class="gv-totbox__go">
-    <a class="gv-link gv-link--wine" href="${WA_SITO}" target="_blank" rel="noopener">Chiedi a noi →</a>
+    <a class="gv-link gv-link--wine" href="${WA_SITO}" target="_blank" rel="noopener">Chiedi a noi →<span class="sr"> (si apre in una nuova scheda)</span></a>
     <button type="button" class="btn btn--wine" data-open="carrello">Vai al carrello</button>
   </div>
 </div>`
@@ -2006,6 +2007,7 @@ ${abbHtml}`;
     /* i link che aprono un'altra scheda lo dicono a chi usa un lettore di schermo (WCAG, tecnica G201) */
     $$('a[target="_blank"]').forEach((a) => {
       const avviso = " (si apre in una nuova scheda)";
+      if (a.querySelector(".sr")) return; /* chi si ridisegna (la guida) ce l'ha già scritto */
       if (a.hasAttribute("aria-label")) a.setAttribute("aria-label", a.getAttribute("aria-label") + avviso);
       else a.insertAdjacentHTML("beforeend", `<span class="sr">${avviso}</span>`);
     });
