@@ -936,7 +936,7 @@
     griglia.innerHTML =
       lista.map((p) => prodCard(p, 2, slug !== "selvaggina")).join("") +
       (c.helper
-        ? `<aside class="helper" style="--span:${3 - (lista.length % 3)}">
+        ? `<aside class="helper" style="--span:${3 - (lista.length % 3)};--span4:${4 - (lista.length % 4)}">
   <div class="eyebrow">${esc(c.helper.occhiello)}</div>
   <p class="helper__q">${esc(c.helper.testo)}</p>
   <a class="link-arrow" href="${c.helper.href}">${esc(c.helper.cta)} ${ico("right")}</a>

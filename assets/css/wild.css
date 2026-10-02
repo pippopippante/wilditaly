@@ -517,7 +517,9 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 
 .prod{background:var(--card);border:1px solid #E6DACA;display:flex;flex-direction:column}
 .prod .ph{height:260px}
-@media (min-width:760px){ .prod .ph{height:340px} }
+/* da tablet in su la foto è quadrata come le foto dei prodotti: con l'altezza fissa di 340 px, sugli schermi
+   larghi diventava bassa e larga (a 1920 px quasi 16:9) e tagliava cima e fondo dei prodotti */
+@media (min-width:760px){ .prod .ph{height:auto;aspect-ratio:1/1} }
 .prod .ph--intera{background:var(--paper)}
 .prod .ph--intera>img{object-fit:contain}
 .prod__b{padding:20px 20px 24px;display:flex;flex-direction:column;flex:1}
@@ -546,8 +548,12 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
    categoria", scelta dell'utente il 27/09): in uno schermo stanno quasi 3 prodotti invece di 1 */
 @media (max-width:759px){
   .cat-griglia .grid-3>.prod{flex-direction:row}
-  .cat-griglia .grid-3>.prod>a{flex:0 0 116px}
-  .cat-griglia .grid-3>.prod .ph{height:100%;min-height:168px;aspect-ratio:auto}
+  /* foto intera con la sua forma, al centro della colonna, fasce color pagina sopra e sotto (versione B, 02/10/2026):
+     prima riempiva la striscia alta e stretta e tagliava fino a metà foto ai lati */
+  .cat-griglia .grid-3>.prod>a{flex:0 0 140px;display:flex;align-items:center;background:var(--paper)}
+  .cat-griglia .grid-3>.prod>a>.ph{flex:1;height:auto;aspect-ratio:auto}
+  .cat-griglia .grid-3>.prod>a>.ph:not(:has(>img)){aspect-ratio:1/1}
+  .cat-griglia .grid-3>.prod .ph>img{position:static;height:auto}
   .cat-griglia .grid-3>.prod .prod__b{padding:12px 12px 12px 14px;min-width:0}
   .cat-griglia .grid-3>.prod .prod__n{font-size:21px;line-height:1.08}
   .cat-griglia .grid-3>.prod .note{padding:8px 10px;margin-top:8px}
@@ -806,6 +812,11 @@ body[data-pagina="prodotto"] .crumbs:not(.pdp2__crumbs){padding:14px 0 12px}
 @media (min-width:1120px){
   .cat-griglia .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
   .cat-griglia .helper{grid-column:span var(--span)} /* --span da mountCategoria: le colonne libere */
+}
+/* schermi larghi: 4 per fila, se no le schede con la foto quadrata diventano enormi (a 1920 px alte 780 px) */
+@media (min-width:1600px){
+  .cat-griglia .grid-3{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .cat-griglia .helper{grid-column:span var(--span4)}
 }
 .cat-griglia{padding-top:4px}
 @media (min-width:760px){ .cat-griglia{padding-top:36px} }
